@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "RadxaRobotHatPower")(type "KiCad")(uri "${KIPRJMOD}/../libraries/radxa_robot_hat_power.kicad_sym")(options "")(descr "Project-specific verified power symbols"))
+)
