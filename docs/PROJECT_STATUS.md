@@ -4,7 +4,7 @@ Last updated: 2026-09-09
 
 ## Current phase
 
-**Phase 1 power implementation + Phase 2 Dynamixel TTL implementation**
+**Phase 1 power implementation + Phase 2 Dynamixel TTL recovery + Phase 3 sensor architecture started**
 
 ## Completed
 
@@ -27,12 +27,15 @@ Last updated: 2026-09-09
 - [x] Upstream Pollen DYNAMIXEL logic devices/BOM recovered
 - [x] Radxa UART2 physical mapping fixed to pins 8/10
 - [x] Current MicroDuck `/dev/ttyS2` 1 Mbps bus architecture confirmed
-- [x] Current MicroDuck IMU architecture reclassified: imu_to_dxl ID 200 shares the DYNAMIXEL bus
-- [x] On-HAT BMI088 reclassified as optional/compatibility hardware for current software
-- [x] DYNAMIXEL V1 connectivity contract created
-- [x] DYNAMIXEL first-pass BOM created
-- [x] DYNAMIXEL connectivity sanity checker + GitHub Actions workflow created
-- [x] `hardware/kicad/dynamixel.kicad_sch` implementation skeleton created
+- [x] Current MicroDuck IMU architecture reclassified: imu_to_dxl shares DYNAMIXEL bus
+- [x] On-HAT BMI088 reclassified as optional/compatibility hardware
+- [x] DYNAMIXEL V1 connectivity contract and CI checker created
+- [x] Earlier DYNAMIXEL U6/U7 direction-role assumption corrected by tracing upstream KiCad coordinates/nets
+- [x] Upstream recovered TX path: UART2_TX -> U7 SN74LVC1G126 -> DXL_DATA
+- [x] Upstream recovered RX path: DXL_DATA -> U6 SN74LVC1G125 -> U5 receive combiner -> UART2_RX
+- [x] U5 reclassified as TTL/optional-RS485 receive combiner, not direction generator
+- [x] DYNAMIXEL schematic implementation contract synchronized with corrected roles
+- [x] Sensor architecture document created with imu_to_dxl primary and BMI088 optional
 - [x] Upstream Apache-2.0 derivative/attribution requirements documented
 - [x] Top-level README synchronized with actual V1 architecture
 
@@ -48,54 +51,55 @@ Last updated: 2026-09-09
 - host startup ramp target: ~9.75 ms
 - host OVLO target: ~5.69 V nominal
 - DYNAMIXEL: `/dev/ttyS2`, 1 Mbps, Protocol V2
-- DYNAMIXEL bus population target: 15 servos + imu_to_dxl ID 200
+- DYNAMIXEL population target: 15 servos + imu_to_dxl
 
 ## Current implementation state
 
 ### Power
-
-Architecture and values are frozen at first-pass level. Connectivity sanity checks pass. Exact manufacturer land patterns for the TPS25947 RPW package and BSC009 SuperSO8 remain a fabrication blocker. `power.kicad_sch` is still not fully electrically populated, so actual KiCad ERC has not yet been run.
+Architecture and values are frozen at first-pass level. Connectivity sanity checks pass. Exact manufacturer land patterns for TPS25947 RPW and BSC009 SuperSO8 remain fabrication blockers. `power.kicad_sch` is not yet a fully electrically populated sheet, so real KiCad ERC has not run.
 
 ### DYNAMIXEL
+The major TX/RX role mapping is now recovered from upstream source rather than guessed. U7 is the TX tri-state buffer and U6 is the RX tri-state buffer. U5 combines receive sources and drives host RX. The remaining critical recovery item is the exact automatic OE/direction network driving U6 active-low OE and U7 active-high OE. Until that network is recovered and wired, the sheet remains DESIGNING.
 
-The upstream hardware has been narrowed to U5 `74LVC1G08`, U6 `SN74LVC1G125DBV`, U7 `SN74LVC1G126DBVR` for TTL logic and optional U8 `SIT3088E` for RS-485. Upstream labels `IO_14`, `IO_15` and `Dynamixel_dir` have been recovered. V1 preserves hardware-based direction handling because current MicroDuck opens UART2 as an ordinary serial port and does not require a new host DIR GPIO in the normal API.
-
-The exact Boolean/wire relationship around U5/U6/U7 is still being translated from the upstream KiCad source; corresponding CSV rows are intentionally marked `RECOVERING`/`TO_VERIFY` rather than being guessed.
+### Sensors
+Current MicroDuck primary orientation comes from an external `imu_to_dxl` node sharing DXL_DATA. The legacy BMI088 is optional/DNP compatibility hardware. I2C3 remains allocated for audio codec control, Qwiic/expansion, and optional sensors.
 
 ## In progress
 
-- [ ] Transcribe TI RPW0010A manufacturer land pattern and independently check all pad dimensions
-- [ ] Transcribe Infineon SuperSO8/PG-TDSON-8 recommended land pattern and check drain geometry
+- [ ] Finish exact U6/U7 OE auto-direction network recovery from upstream source
+- [ ] Confirm U5 optional-RS485 receive input and DNP idle-high bias
+- [ ] Confirm R33 150R exact TTL net placement
+- [ ] Replace Dynamixel skeleton with electrically populated KiCad sheet
+- [ ] Transcribe and independently check TPS25947 RPW manufacturer land pattern
+- [ ] Transcribe and independently check BSC009 SuperSO8 land pattern
 - [ ] Populate electrically wired `power.kicad_sch`
-- [ ] Run actual KiCad 9 ERC on power sheet
-- [ ] Finish exact upstream U5/U6/U7 DYNAMIXEL wire/Boolean recovery
-- [ ] Replace Dynamixel skeleton with electrically wired KiCad sheet
-- [ ] Freeze DXL series resistor and DATA ESD part
-- [ ] Freeze actual 3-pin servo connector after cable/mechanical verification
-- [ ] Build current-software sensor/expansion strategy with imu_to_dxl primary and optional BMI088
-- [ ] Build audio/mic sheet
+- [ ] Run actual KiCad 9 ERC
+- [ ] Verify/freeze 3-pin XL330 connector footprint and polarity
+- [ ] Define audio/mic sheet
+- [ ] Build top-level integration sheet
 
 ## Immediate execution order
 
-1. Complete exact DYNAMIXEL U5/U6/U7 source-wire recovery.
-2. Convert DYNAMIXEL skeleton to actual electrical schematic.
-3. Finish exact high-current power footprints from manufacturer drawings.
-4. Finish electrical power sheet.
-5. Integrate power + host + DYNAMIXEL at top level.
-6. Add Qwiic/I2C and optional legacy BMI088 compatibility.
-7. Add audio codec/MEMS mic/speaker circuitry.
-8. Freeze 65 x ~31 mm mechanical outline and header/mounting holes.
-9. Place high-current connector/fuse/MOSFET/servo connectors first.
-10. Place host/DYNAMIXEL/sensors/audio.
-11. Route 4-layer PCB, prioritizing high-current return and audio isolation.
-12. Run ERC/DRC and resolve every unexplained violation.
+1. Finish OE/direction and R33 upstream trace.
+2. Freeze TTL-only DYNAMIXEL circuit and optional RS-485 DNP behavior.
+3. Convert DYNAMIXEL skeleton to real symbols/wires.
+4. Finish exact high-current power footprints.
+5. Convert power skeleton to real symbols/wires.
+6. Build audio/mic and I2C expansion sheets.
+7. Integrate all sheets around Radxa header.
+8. Freeze mechanical outline/header/mounting holes and connector keepouts.
+9. Place high-current power and servo connectors first.
+10. Place DYNAMIXEL/sensor/audio blocks.
+11. Route 4-layer PCB and review current return/noise isolation.
+12. Run KiCad ERC/DRC and resolve every unexplained violation.
 13. Generate Gerber/BOM/PnP only after independent pre-fab review.
 
 ## Fabrication blockers
 
 - TPS25947 and BSC009 exact footprints not yet independently verified
-- power KiCad wiring/ERC incomplete
-- exact DYNAMIXEL auto-direction wiring recovery incomplete
+- power electrical KiCad wiring/ERC incomplete
+- DYNAMIXEL OE auto-direction network recovery incomplete
+- DYNAMIXEL electrical KiCad wiring incomplete
 - integrated schematic incomplete
 - PCB placement/routing incomplete
 - mechanical connector interference review incomplete
@@ -103,4 +107,4 @@ The exact Boolean/wire relationship around U5/U6/U7 is still being translated fr
 
 ## Current release status
 
-`v0.8-dev` — power BOM/spec synchronized, manufacturer-footprint verification gate added, current MicroDuck imu_to_dxl architecture incorporated, and DYNAMIXEL topology/BOM/connectivity/CI implementation started. **Not fabrication-ready.**
+`v0.9-dev` — upstream DYNAMIXEL TX/RX topology corrected and sensor architecture aligned to current MicroDuck. **Not fabrication-ready.**
