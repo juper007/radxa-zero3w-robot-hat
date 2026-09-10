@@ -33,6 +33,12 @@ require("U6", "Y", "TTL_RX_OUT")
 require("U5", "A", "TTL_RX_OUT")
 require("U5", "Y", "UART2_RX")
 
+# TTL-only V1 policy: optional RS485 path is DNP, therefore U5 input B must
+# be forced high. AND(A,1)=A, so the retained upstream combiner is transparent.
+require("U5", "B", "RS485_RX_IDLE_HIGH", "V1_FROZEN")
+require("R_RS485_IDLE", "pin1", "+3V3", "V1_FROZEN")
+require("R_RS485_IDLE", "pin2", "RS485_RX_IDLE_HIGH", "V1_FROZEN")
+
 # Both OE pins intentionally share Dynamixel_dir. 1G126 is active-high while
 # 1G125 is active-low, giving complementary TX/RX enables without an inverter.
 require("U6", "OE", "Dynamixel_dir", "UPSTREAM_VERIFIED")
