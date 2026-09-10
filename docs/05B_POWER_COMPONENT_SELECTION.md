@@ -6,14 +6,13 @@ Last updated: 2026-09-09
 
 ## 1. Purpose
 
-Freeze the first practical component candidates for the V1 5 V power architecture before drawing the final KiCad power sheet.
+Freeze the practical component choices for the V1 5 V power architecture before the final KiCad power sheet and PCB layout.
 
 ## 2. Radxa host protection
 
-### Candidate: TI TPS25947 family
+### Selected candidate: TI TPS25947 family
 
 Reasons:
-
 - 2.7 V to 23 V input range
 - 5.5 A class integrated eFuse
 - integrated back-to-back FETs
@@ -25,153 +24,135 @@ Reasons:
 - overvoltage/short-circuit protection features
 - compact QFN package
 
-This is a strong fit for the +5V_RADXA branch because the HAT can supply the SBC through header pins while USB-C may also be connected.
+This device is reserved for the +5V_RADXA branch. It is **not** used for the 20 A-class servo input path.
 
-### Initial host current-limit target
+### Host current target
 
-Start design around approximately 4 A current limit, then refine after:
+Radxa documentation recommends at least 15 W at 5 V, corresponding to 3 A minimum supply capability. V1 therefore allocates approximately 4 A normal host-branch capacity plus transient margin.
 
-1. Radxa boot/load measurements,
-2. audio/peripheral current measurements,
-3. thermal simulation/bench test,
-4. exact TPS25947 suffix selection.
-
-Do not lock ILIM resistor until the exact device suffix and datasheet equation are confirmed.
+The exact TPS25947 suffix and programming resistors remain to be locked against the latest TI datasheet equations before schematic REVIEW.
 
 ## 3. Main 5 V input protection
 
-The servo-system path may experience >10 A transients and potentially 20+ A under pathological load, so the main reverse-polarity protection should not use the TPS25947.
+### Selected controller candidate: TI LM74700-Q1
 
-Preferred main-path architecture:
+Reasons:
+- 3.2 V to 65 V operating range
+- external N-channel MOSFET gate drive
+- low-loss ideal-diode behavior
+- reverse-current blocking
+- reverse-polarity protection
+- small package
 
-```text
-J1 -> F1 -> back-to-back low-RDS(on) MOSFET protection -> +5V_SYS
-```
+### Selected MOSFET candidate: Infineon BSC009NE2LS5I
 
-Selection targets:
+Key parameters used for V1 design:
+- VDS: 25 V
+- SuperSO8 5 × 6 mm package
+- max RDS(on) about 1.35 mΩ at VGS = 4.5 V
 
-- effective RDS(on): <=5 mΩ preferred
-- VDS rating: >=20 V preferred despite 5 V normal operation
-- current handling: >=20 A with PCB thermal support
-- package with large exposed copper area
-- gate protection / defined off-state
+Conservative 20 A conduction estimate:
+- voltage drop ≈ 27 mV
+- MOSFET conduction loss ≈ 0.54 W
 
-A dedicated ideal-diode controller may be used if it produces a cleaner and safer implementation than discrete control.
+This makes the external MOSFET far more appropriate for the main servo rail than a 5.5 A integrated eFuse.
 
-Exact MOSFET/controller remains open until package footprint and thermal area are reviewed against the 65 × 30 mm board constraint.
+## 4. Input connector
 
-## 4. TVS candidate
+### V1 decision: XT60-class
+
+The previous XT30-first direction is superseded for the initial prototype.
+
+Reason:
+- theoretical 15-servo stall current is about 22.05 A,
+- development testing should not operate close to connector limits,
+- XT60-class input gives more margin for transient and bench fault testing.
+
+If board-mounted XT60 is too large for the final mechanical stack, use heavy solder pads and a short XT60 pigtail rather than shrinking the electrical rating prematurely.
+
+XT30 may be reconsidered only after measured robot current confirms adequate thermal margin.
+
+## 5. TVS strategy
 
 ### Candidate: Littelfuse SMBJ5.0A
 
-Key characteristics:
-
-- 5.0 V reverse stand-off
-- 600 W TVS class
-- approximately 9.2 V maximum clamp at rated pulse current
-
 Important limitation:
+- conventional 5 V TVS clamp voltage can exceed the XL330 recommended/maximum operating envelope during a strong pulse.
 
-XL330-M288-T has a maximum operating voltage around 6 V. A conventional 5 V TVS does **not** guarantee that every fast transient remains below 6 V because its clamp voltage is considerably higher under large pulse current.
-
-Therefore the TVS is secondary transient protection only. The system still requires:
-
-- a tightly regulated external 5 V supply,
-- short/low-inductance power wiring,
+Therefore TVS is supplementary protection only. V1 also relies on:
+- tightly regulated external 5 V PSU,
+- short low-inductance wiring,
 - distributed bulk capacitance,
-- potential over-voltage cutoff if tests show meaningful overshoot.
+- optional active over-voltage cutoff if transient testing shows a need.
 
-## 5. Main connector
-
-### XT30 candidate
-
-Advantages:
-
-- compact
-- polarized
-- common in robotics/RC
-- plausible for normal MicroDuck operating currents
-
-Risk:
-
-- less margin for prolonged very high current or poor ventilation.
-
-### XT60 candidate
-
-Advantages:
-
-- much more thermal/current margin
-- robust for bench testing
-
-Risk:
-
-- large relative to a 65 × 30 mm board.
-
-### V1 direction
-
-Place mechanical priority on XT30 compatibility first. If measured branch current or temperature rise is unacceptable, move to XT60 or remote power-distribution wiring.
+TVS selection remains CANDIDATE rather than LOCKED.
 
 ## 6. Main fuse
 
-Theoretical simultaneous servo stall plus host load can approach 26 A, but the fuse should protect wiring and board copper rather than permit sustained all-axis stall.
+Prototype target:
+- 20 A class replaceable fuse
 
-Prototype starting point:
-
-- external/replaceable 15–20 A fuse class
-- firmware torque/current limiting
-- optional branch protection
+The fuse protects wiring and board copper against sustained faults. It is not intended to make simultaneous 15-servo stall a valid continuous operating condition.
 
 Final value depends on:
-
-- wire gauge,
-- connector rating,
-- actual walking current waveform,
-- startup/inrush current,
-- acceptable trip behavior.
+- PSU current limiting,
+- cable gauge,
+- XT60 implementation,
+- measured walking waveform,
+- nuisance-trip behavior.
 
 ## 7. Bulk capacitance
 
 Initial distribution:
+- SERVO_A: 470 µF + 100 µF + 1 µF + 100 nF
+- SERVO_B: same
+- SERVO_C: same
+- +5V_RADXA: 470 µF + ceramic bank
 
-- servo branch A: 470 µF + 100 µF + 1 µF + 100 nF
-- servo branch B: same
-- servo branch C: same
-- host branch: 470 µF + ceramic bank
+Use 10 V minimum; 16 V bulk capacitors are preferred where size permits.
 
-Use >=10 V ratings; 16 V electrolytic/polymer parts are preferred where size allows for derating and availability.
+## 8. Servo branch topology
 
-## 8. Power-path measurements required before final lock
+V1 power distribution is split into three nominal groups:
 
-The prototype must expose measurements for:
+- SERVO_A: 5 motors
+- SERVO_B: 5 motors
+- SERVO_C: 5 motors
 
-- total +5V_SYS current,
-- +5V_RADXA current,
-- branch A/B/C voltage sag,
-- connector temperature,
-- protection MOSFET temperature,
-- host eFuse temperature.
+Theoretical stall current per branch is 7.35 A. Branch copper and power connectors must therefore tolerate short events beyond 7 A with margin.
 
-## 9. Current component status
+## 9. Copper requirement
+
+V1 prototype PCB target:
+- 4 layers
+- 2 oz outer copper preferred
+- full-current input trunk implemented as large pours, not traces
+- target >=15 mm effective 2 oz width over a short path where practical
+- top/bottom parallel copper plus dense via stitching
+
+See `05C_HIGH_CURRENT_LAYOUT_AND_PROTECTION.md` for loss calculations.
+
+## 10. Current component status
 
 | Function | Candidate | Status |
 |---|---|---|
-| Host reverse-current/eFuse | TPS25947 | SELECTED-CANDIDATE |
-| Main connector | XT30 | PRIMARY CANDIDATE |
-| Alternate connector | XT60 | ALTERNATE |
-| Main reverse protection | back-to-back N-MOSFET / ideal diode | SELECTING |
+| Host reverse-current/eFuse | TPS25947 family | SELECTED-CANDIDATE |
+| Main reverse controller | LM74700-Q1 | SELECTED-CANDIDATE |
+| Main MOSFET | BSC009NE2LS5I | SELECTED-CANDIDATE |
+| Main connector | XT60-class / pigtail | V1 DECISION |
+| Main fuse | 20 A replaceable | PROVISIONAL |
 | 5 V TVS | SMBJ5.0A | CANDIDATE |
-| Main fuse | 15–20 A replaceable | PROVISIONAL |
-| Servo bulk | 3 × 470 µF + local bypass | PROVISIONAL |
-| Host bulk | 470 µF + ceramic bank | PROVISIONAL |
+| Servo bulk | 3 × (470 µF + 100 µF + ceramics) | PROVISIONAL |
+| Host bulk | 470 µF + ceramics | PROVISIONAL |
+| PCB outer copper | 2 oz preferred | V1 DECISION |
 
-## 10. Next engineering action
+## 11. Next engineering action
 
-Before committing the final `power.kicad_sch`:
+1. freeze TPS25947 suffix and ILIM/dVdt values,
+2. define the complete reference-designator/net connectivity list,
+3. create the KiCad power sheet,
+4. perform ERC,
+5. verify actual footprint geometry,
+6. start placement review.
 
-1. choose the main MOSFET/controller,
-2. calculate copper loss for 10 A / 15 A / 20 A,
-3. freeze XT30 versus XT60,
-4. choose TPS25947 suffix and ILIM network,
-5. draw schematic,
-6. run ERC,
-7. begin placement review.
+**Not fabrication-ready.**
