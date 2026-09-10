@@ -51,7 +51,19 @@ Current gate:
 
 Selected ordering code: `BSC009NE2LS5IATMA1`.
 
-Manufacturer package has now been narrowed further to **Infineon PG-TDSON-8-46 / SuperSO8 5x6**. Infineon reports exposed paddle, body approximately 5.9 x 5.15 mm, 8 terminals and 1.27 mm terminal pitch. The BSC009NE2LS5I material/package record identifies PG-TDSON-8-46.
+### Correct package variant
+
+**Critical correction (2026-09-09):** an earlier draft incorrectly identified the exact dash variant as `PG-TDSON-8-46`. Infineon's product-specific package document for `BSC009NE2LS5IATMA1` identifies the package as **`PG-TDSON-8-7` (SuperSO8)**. Do not use the -46 land pattern for this part.
+
+Manufacturer package data checked for the exact ordering code:
+- package: `PG-TDSON-8-7`
+- terminals: 8
+- exposed paddle: yes
+- body: approximately 5.9 x 5.15 mm
+- lead pitch: 1.27 mm
+- product-specific footprint drawing exists and must be the geometry authority
+
+The product-specific Infineon drawing was visually inspected. It includes the package outline plus copper/solder-mask/stencil footprint dimensions; this is now the required source for the project footprint.
 
 Verified electrical mapping:
 - pins 1,2,3 = SOURCE
@@ -60,15 +72,15 @@ Verified electrical mapping:
 
 Current gate:
 - [x] package family identified
-- [x] exact `PG-TDSON-8-46` variant identified
+- [x] exact `PG-TDSON-8-7` variant identified from the BSC009NE2LS5IATMA1-specific Infineon package document
 - [x] source/gate/drain pin numbering identified
-- [x] package outline dimensions verified
-- [ ] exact Infineon footprint-drawing copper geometry transcribed
-- [ ] exposed-drain copper/paste strategy checked
+- [x] product-specific package/footprint drawing located and visually reviewed
+- [ ] exact PG-TDSON-8-7 copper geometry transcribed to `RadxaRobotHat.pretty`
+- [ ] exposed-drain copper and stencil-aperture geometry checked against manufacturer drawing
 - [ ] courtyard/clearance checked against main power pours
 - [ ] footprint opened in KiCad and orientation visually reviewed
 
-No provisional generic SO-8 footprint will be promoted as fabrication-ready.
+No provisional generic SO-8 footprint and no `PG-TDSON-8-46` footprint may be promoted as fabrication-ready for Q1.
 
 ## LM74700QDBVRQ1
 
@@ -78,11 +90,13 @@ Electrical pin numbering is already verified. Standard KiCad SOT-23-6 is accepta
 
 ## Project library registration
 
-`hardware/kicad/fp-lib-table` now registers `${KIPRJMOD}/../libraries/RadxaRobotHat.pretty` as `RadxaRobotHat`.
+`hardware/kicad/fp-lib-table` registers `${KIPRJMOD}/../libraries/RadxaRobotHat.pretty` as `RadxaRobotHat`.
 
 ## Automated verification
 
-`hardware/kicad/check_footprints.py` checks the critical TI RPW footprint invariants. `.github/workflows/footprint-check.yml` runs it on footprint changes.
+`hardware/kicad/check_footprints.py` currently checks the critical TI RPW footprint invariants. `.github/workflows/footprint-check.yml` runs it on footprint changes.
+
+The checker must be expanded to validate the BSC009 PG-TDSON-8-7 footprint after that footprint is added.
 
 This CI check is a regression guard, not a substitute for KiCad DRC or physical/visual footprint review.
 
@@ -92,4 +106,4 @@ XT60 and the 20 A fuse remain mechanical choices. A board-mount XT60 is allowed 
 
 ## Fabrication gate
 
-Power footprints remain **NOT YET FABRICATION-APPROVED**. TPS25947 transcription is substantially complete, but the BSC009 recommended land pattern, visual KiCad review, solder-paste review and board-level DRC remain blockers.
+Power footprints remain **NOT YET FABRICATION-APPROVED**. TPS25947 transcription is substantially complete. The Q1 package variant is now corrected to PG-TDSON-8-7, but its exact copper/stencil footprint still must be transcribed and checked; visual KiCad review and board-level DRC also remain blockers.
