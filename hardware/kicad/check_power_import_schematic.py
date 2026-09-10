@@ -20,6 +20,7 @@ required = [
     'F1_IN', 'F1_OUT', '+5V_SYS', '+5V_RADXA',
     '+5V_SERVO_A', '+5V_SERVO_B', '+5V_SERVO_C',
     'Q1_GATE', 'U1_VCAP', 'U2_EN', 'U2_OVLO', 'U2_ILM', 'U2_DVDT',
+    'no onboard high-power buck in V1',
 ]
 for token in required:
     if token not in text:
@@ -63,8 +64,9 @@ if text.count('$Comp') < 33:
 if not text.rstrip().endswith('$EndSCHEMATC'):
     errors.append('legacy schematic terminator missing')
 
-# Prevent regression to the discarded wide-input/buck architecture.
-for forbidden in ['5-28V input', 'AP63205', 'onboard high-power buck']:
+# Prevent regression to the discarded wide-input/buck implementation. The explicit
+# phrase "no onboard high-power buck in V1" above is required and is not a violation.
+for forbidden in ['5-28V input', 'AP63205']:
     if forbidden in text:
         errors.append(f"forbidden stale V1 architecture token present: {forbidden}")
 
