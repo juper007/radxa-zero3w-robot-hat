@@ -4,16 +4,19 @@ on:
   push:
     paths:
       - 'hardware/kicad/power_v1_connectivity.csv'
-      - 'hardware/kicad/power_v16_import.sch'
+      - 'hardware/kicad/power_v17_import.sch'
       - 'hardware/kicad/check_power_design.py'
       - 'hardware/kicad/check_power_import_schematic.py'
+      - 'hardware/libraries/RadxaRobotHat.pretty/HighCurrent_NetTie_2Pin_8mm.kicad_mod'
       - '.github/workflows/power-design-check.yml'
   pull_request:
     paths:
       - 'hardware/kicad/power_v1_connectivity.csv'
-      - 'hardware/kicad/power_v16_import.sch'
+      - 'hardware/kicad/power_v17_import.sch'
       - 'hardware/kicad/check_power_design.py'
       - 'hardware/kicad/check_power_import_schematic.py'
+      - 'hardware/libraries/RadxaRobotHat.pretty/HighCurrent_NetTie_2Pin_8mm.kicad_mod'
+      - '.github/workflows/power-design-check.yml'
 
 jobs:
   connectivity-check:
@@ -25,5 +28,5 @@ jobs:
           python-version: '3.12'
       - name: Validate power connectivity invariants
         run: python hardware/kicad/check_power_design.py
-      - name: Validate populated power import schematic structure
+      - name: Validate v17 populated power import schematic structure
         run: python hardware/kicad/check_power_import_schematic.py
