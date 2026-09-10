@@ -4,7 +4,7 @@ Last updated: 2026-09-09
 
 ## Current phase
 
-**Phase 1 - Power subsystem detailed design**
+**Phase 1 - Power implementation + Phase 2 Dynamixel TTL design started**
 
 ## Completed
 
@@ -18,22 +18,14 @@ Last updated: 2026-09-09
 - [x] Prototype input direction frozen to XT60-class
 - [x] Three nominal 5-servo power branches defined
 - [x] Radxa branch device frozen to TPS259470ARPWR
-- [x] TPS25947 RILM frozen to 825R (~4.05 A calculated typical target)
-- [x] TPS25947 dVdt capacitor frozen to 3.9 nF (~9.75 ms 5 V ramp target)
-- [x] TPS25947 OVLO divider frozen to 374k / 100k (~5.69 V nominal)
-- [x] LM74700 support values frozen: VCAP 100 nF, local input 22 nF minimum, local output 100 nF minimum
-- [x] Power connectivity CSV updated to implementation-level values
-- [x] Initial KiCad 9 `hardware/kicad/power.kicad_sch` source skeleton created
-- [x] Schematic-value design note `docs/05D_POWER_SCHEMATIC_VALUES.md` created
-- [x] LM74700 DBV 6-pin package pin map independently re-verified
-- [x] BSC009NE2LS5I source/gate/drain package pin map independently re-verified
-- [x] TPS259470A RPW 10-pin pin map independently re-verified
-- [x] Corrected earlier Q1 source/drain orientation error in connectivity table
-- [x] Project-local KiCad symbol library created for U1/U2/Q1
-- [x] Project `sym-lib-table` created
-- [x] Automated connectivity sanity checker added
-- [x] GitHub Actions power-design sanity check executed successfully
-- [x] Pinout/library review documented in `docs/05E_POWER_PINOUT_AND_LIBRARY_REVIEW.md`
+- [x] TPS25947 first-pass ILIM/dVdt/OVLO values frozen
+- [x] Critical U1/Q1/U2 package pin maps independently re-verified
+- [x] Earlier Q1 source/drain orientation error corrected
+- [x] Project-local power symbol library and sym-lib-table created
+- [x] Automated power connectivity sanity checker added
+- [x] GitHub Actions power-design sanity check passed
+- [x] Obsolete 5–28 V/buck POWER_SHEET_SPEC completely replaced with current 5 V architecture
+- [x] Dynamixel TTL subsystem design document started
 
 ## Key electrical numbers
 
@@ -41,79 +33,64 @@ Last updated: 2026-09-09
 - XL330-M288-T stall current at 5 V: ~1.47 A
 - 15-servo theoretical simultaneous stall: ~22.05 A
 - 5-servo branch theoretical stall: ~7.35 A
-- Radxa/audio/logic design branch target: ~4 A
+- Radxa/audio/logic branch target: ~4 A
 - Pathological total envelope: ~26 A
 - Development supply: regulated 5 V, 15–20 A class
-- TPS259470A nominal host current-limit target: ~4.05 A calculated typical
+- TPS259470A host current-limit target: ~4.05 A calculated typical
 - Host startup ramp target: ~9.75 ms
 - Host OVLO target: ~5.69 V nominal
+- Dynamixel bus target: UART2, 1 Mbps, 3.3 V host logic
 
 ## Verified package pin maps
 
-### LM74700QDBVRQ1, DBV 6-pin
+LM74700QDBVRQ1 DBV: 1 VCAP, 2 GND, 3 EN, 4 CATHODE, 5 GATE, 6 ANODE.
 
-1 VCAP, 2 GND, 3 EN, 4 CATHODE, 5 GATE, 6 ANODE.
+BSC009NE2LS5I: pins 1/2/3 SOURCE, pin 4 GATE, pins 5/6/7/8 DRAIN.
 
-Ideal-diode topology rule: LM74700 ANODE -> external N-MOSFET SOURCE/input side; LM74700 CATHODE -> external N-MOSFET DRAIN/output side.
-
-### BSC009NE2LS5I
-
-Pins 1/2/3 SOURCE, pin 4 GATE, pins 5/6/7/8 DRAIN.
-
-### TPS259470ARPWR
-
-1 EN/UVLO, 2 OVLO, 3 AUXOFF, 4 FLT, 5 IN, 6 OUT, 7 DVDT, 8 GND, 9 ILM, 10 ITIMER.
+TPS259470ARPWR: 1 EN/UVLO, 2 OVLO, 3 AUXOFF, 4 FLT, 5 IN, 6 OUT, 7 DVDT, 8 GND, 9 ILM, 10 ITIMER.
 
 ## Current implementation state
 
-The power topology, component values and critical device pin maps are now frozen at first-pass design level. `hardware/libraries/radxa_robot_hat_power.kicad_sym` contains project-specific symbols and `hardware/kicad/sym-lib-table` registers the library.
+Power architecture, values and critical pin maps are at first-pass freeze. `hardware/kicad/POWER_SHEET_SPEC.md` is now synchronized with the regulated-5-V architecture. `power.kicad_sch` is still a structured KiCad source skeleton and must not be treated as fabrication-ready.
 
-`power.kicad_sch` still remains a **structured schematic skeleton** rather than the final electrically wired sheet. It must not be treated as fabrication-ready. The authoritative connectivity is `hardware/kicad/power_v1_connectivity.csv`.
-
-The repository now includes `hardware/kicad/check_power_design.py` and `.github/workflows/power-design-check.yml`. The first GitHub Actions run completed successfully, validating the critical connectivity invariants represented in the CSV.
+Phase 2 has begun in parallel: `docs/06_DYNAMIXEL_TTL_DESIGN.md` defines UART2 pins 8/10, 1 Mbps half-duplex TTL requirements, three servo power groups sharing a logical DATA bus, protection and bring-up criteria.
 
 ## In progress
 
-- [ ] Populate `power.kicad_sch` with actual U1/Q1/U2 symbols and passive components
-- [ ] Add wires/net labels for the complete power path
-- [ ] Select/verify exact TPS25947 RPW land pattern
-- [ ] Select/verify exact BSC009NE2LS5I PG-TDSON-8 land pattern
-- [ ] Assign provisional footprints to all passives/connectors
-- [ ] Finalize TVS/OVP after transient review
-- [ ] Finalize servo branch connector footprints
-- [ ] Run actual KiCad ERC with KiCad 9
-- [ ] Perform schematic design review
+- [ ] Generate manufacturer-verified TPS25947 RPW footprint
+- [ ] Generate manufacturer-verified BSC009NE2LS5I SuperSO8 footprint
+- [ ] Populate `power.kicad_sch` with actual electrically wired symbols
+- [ ] Run actual KiCad 9 ERC
+- [ ] Freeze servo connector footprint
+- [ ] Recreate/import proven upstream Dynamixel TTL gate circuit
+- [ ] Create `hardware/kicad/dynamixel.kicad_sch`
+- [ ] Start IMU/I2C sheet after TTL circuit freeze
 
-## Next actions
+## Immediate execution order
 
-1. Create verified footprint libraries for TPS259470ARPWR and BSC009NE2LS5I using manufacturer package drawings.
-2. Replace schematic skeleton notes with electrically connected symbols and net labels.
-3. Add XT60/pigtail input, fuse, LM74700/Q1, three servo branches, TPS259470A host branch and test points.
-4. Run KiCad ERC in a KiCad 9 environment and resolve warnings intentionally.
-5. Independently inspect the final source/drain pad mapping after footprint assignment.
-6. Move power sheet to REVIEW only after ERC and schematic review.
-7. Start Dynamixel TTL interface once power reaches REVIEW.
+1. Finish exact power footprints.
+2. Finish wired power schematic and ERC.
+3. Freeze Dynamixel TTL logic from upstream proven design.
+4. Build Dynamixel schematic and connector mapping.
+5. Build sensors/I2C sheet.
+6. Build audio/mic sheet.
+7. Integrate top-level schematic.
+8. Build Radxa-size PCB outline and mechanical constraints.
+9. Place high-current power and connectors first.
+10. Place digital/sensor/audio blocks.
+11. Route 4-layer PCB with 2 oz outer copper assumption.
+12. Run ERC/DRC and resolve every unexplained violation.
+13. Generate BOM/PnP/Gerbers only after final independent review.
 
-## Decision log additions
+## Fabrication blockers
 
-| Date | Decision | Reason |
-|---|---|---|
-| 2026-09-09 | Use TPS259470ARPWR | Adjustable OVLO, active current limit, auto-retry, true reverse-current blocking |
-| 2026-09-09 | Use 825R RILM | Targets about 4.05 A calculated typical host branch current limit |
-| 2026-09-09 | Use 3.9 nF CdVdt | Targets roughly 9.75 ms 0-to-5 V startup ramp |
-| 2026-09-09 | Use 374k/100k OVLO divider | Targets roughly 5.69 V nominal host over-voltage trip |
-| 2026-09-09 | LM74700 ANODE must connect to Q1 SOURCE and CATHODE to Q1 DRAIN | Verified from TI DBV package/function documentation; fixes earlier draft orientation error |
-| 2026-09-09 | Keep custom symbol pin maps documented and CI-check connectivity invariants | Reduce chance of silent power-device pin-map regression |
-| 2026-09-09 | Keep first KiCad sheet as DESIGNING until symbols/wires/ERC are complete | Prevent a source skeleton from being mistaken for fabrication-ready hardware |
-
-## Status labels
-
-- **PLANNED** - not started
-- **DESIGNING** - active schematic/analysis
-- **REVIEW** - implementation exists, verification pending
-- **FAB-CANDIDATE** - manufacturing files generated but not validated in hardware
-- **VALIDATED** - tested on assembled hardware
+- Exact high-current footprints not yet verified.
+- Actual power schematic wiring/ERC not yet complete.
+- Dynamixel/sensor/audio sheets not yet integrated.
+- PCB placement/routing not yet complete.
+- Mechanical interference not yet reviewed.
+- No fabrication output is approved yet.
 
 ## Current release status
 
-`v0.6-dev` - critical power-device pin maps verified, source/drain orientation corrected, custom KiCad symbols added, and automated connectivity sanity checking is passing. **Not fabrication-ready.**
+`v0.7-dev` — stale power-sheet architecture corrected and Dynamixel TTL implementation phase started. **Not fabrication-ready.**
