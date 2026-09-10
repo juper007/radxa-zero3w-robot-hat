@@ -1,251 +1,296 @@
 # Power Subsystem Design — V1
 
 Status: DESIGNING  
-Target: Radxa ZERO 3W Robot HAT V1  
+Target: Radxa ZERO 3W + 15 × DYNAMIXEL XL330-M288-T  
 Last updated: 2026-09-09
 
 ## 1. Goal
 
-Design a robust power subsystem for a Radxa ZERO 3W based MicroDuck-style robot HAT. The board must accept the robot/motor supply, pass that rail to the Dynamixel bus, generate a clean 5 V rail for the Radxa host and low-voltage electronics, and avoid destructive backfeed or transient behavior.
+Design a robust power subsystem for a Radxa ZERO 3W based MicroDuck-style robot HAT.
 
-This document intentionally separates **motor VBUS** from the **regulated 5 V host rail**. The original Pollen Robot HAT is used as the architectural reference, but this project will re-validate the design for the Radxa ZERO 3W rather than copy it blindly.
+The original upstream Robot HAT supports a broad robot-power concept, but this project is optimized for the actual V1 actuator set: 15 × XL330-M288-T. Because both the Radxa ZERO 3W and XL330-M288-T are 5 V-class devices, the V1 power architecture is intentionally simplified to use an **external regulated 5 V high-current supply**.
 
-## 2. Power domains
+See `05A_POWER_CURRENT_BUDGET.md` for detailed current calculations.
 
-### 2.1 VIN / MOTOR_VBUS
+## 2. V1 design decision
 
-- External robot supply input.
-- Design envelope: 5–28 V input capability at connector/protection level.
-- Primary use: Dynamixel motor bus power.
-- Must tolerate motor current transients and cable inductance.
-- Must not be tied directly to Radxa 5 V pins.
+### Primary input
 
-### 2.2 +5V_RADXA
+- Nominal input: **5.0 V regulated**
+- Target external supply class: 15–20 A for development
+- Higher-current bench supply optional for transient/stall validation
+- Main board is **not** intended to convert 12–28 V down to the full servo-system current in V1
 
-- Regulated 5 V rail generated from VIN.
-- Feeds Radxa ZERO 3W through 40-pin header pins 2 and 4.
-- Also feeds 5 V peripherals when appropriate.
-- Target continuous capability: **5 A design target**, subject to final regulator/thermal validation.
-- Output setpoint target: 5.1 V nominal to allow modest distribution drop while remaining within host tolerance; final value must be confirmed against Radxa power requirements before fabrication.
+### Why
 
-### 2.3 +3V3_LOGIC
+At 5 V, a single XL330-M288-T can draw about 1.47 A at stall. Fifteen simultaneous stalls correspond to approximately 22.05 A before adding the Radxa and peripherals.
 
-- Prefer Radxa-provided 3.3 V for light logic loads only.
-- Do not power motors or high-current loads from Radxa 3.3 V.
-- Add local decoupling at every logic IC.
+A compact HAT-mounted 12–28 V → 5 V converter sized for this full load would create unnecessary thermal, EMI, cost and layout difficulty.
 
-## 3. Proposed V1 power tree
+## 3. Power domains
 
-```text
-External Supply
-      |
-      v
-[Input connector]
-      |
-[Reverse polarity / ideal diode]
-      |
-[TVS + surge clamp]
-      |
-[Bulk capacitance]
-      |
-      +-------------------------> MOTOR_VBUS -> Dynamixel connectors
-      |
-      +--> [5 V synchronous buck] --> +5V_RADXA --> 40-pin pins 2,4
-                                      |
-                                      +--> audio / low-voltage peripherals
-```
+### 3.1 +5V_IN
 
-## 4. Input protection
+External regulated 5 V robot supply after the physical input connector but before protection.
 
-### 4.1 Reverse-polarity protection
+### 3.2 +5V_SYS
 
-Preferred implementation: P-channel MOSFET or ideal-diode/high-side controller sized for the final motor current.
+Main protected 5 V system rail after fuse/reverse-polarity protection.
+
+### 3.3 +5V_SERVO
+
+High-current branch distributed to XL330 connectors.
 
 Requirements:
-- Low RDS(on) to minimize voltage drop and heat.
-- Voltage rating >= 40 V preferred for a nominal 28 V maximum design envelope.
-- Current rating with comfortable margin above expected robot current.
+- Large copper area
+- Very low resistance
+- Bulk capacitance near connector groups
+- Branch distribution preferred over daisy-chaining the entire load through one thin path
 
-A simple series Schottky diode is not preferred for the main motor rail because loss scales poorly at several amperes.
+### 3.4 +5V_RADXA
 
-### 4.2 TVS protection
+Protected/filtered host branch derived from +5V_SYS.
 
-Place a unidirectional TVS from protected VIN to GND near the power connector.
+Feeds Radxa ZERO 3W through 40-pin header pins 2 and 4.
 
-Selection constraints:
-- Standoff voltage above maximum intended supply voltage.
-- Clamp voltage below the downstream component absolute maximum where practical.
-- Sufficient pulse rating for motor/cable transients.
+Host branch design allocation: up to approximately 3–4 A including selected peripherals, with final current limit based on chosen protection device.
 
-Exact TVS part remains TBD until the actual robot battery/supply voltage is frozen.
+### 3.5 +3V3_LOGIC
 
-### 4.3 Fuse / resettable protection
+Use Radxa 3.3 V for low-current logic only where appropriate.
 
-V1 should provide a footprint for input over-current protection.
+Do not use the Radxa 3.3 V rail for motors or high-current loads.
 
-Preferred options:
-- Replaceable fuse for predictable fault protection, or
-- High-current resettable PTC if final current allows acceptable resistance/thermal behavior.
+## 4. V1 power tree
 
-For the prototype, a conventional fuse footprint is preferred over depending only on a PTC.
+```text
+External regulated 5 V / high-current supply
+                 |
+            [Main connector]
+                 |
+            [Main fuse]
+                 |
+     [Reverse-polarity protection]
+                 |
+              +5V_SYS
+          _______|________________
+         |                        |
+         v                        v
+   +5V_SERVO               Host protection/filter
+         |                        |
+  Servo branch A/B/C        +5V_RADXA
+                                  |
+                           Radxa header pins 2/4
+                                  |
+                           Audio / low-power 5 V
+```
 
-## 5. Motor rail filtering
+## 5. Input connector
 
-Motor VBUS must have local energy storage near the Dynamixel output connectors.
+The input connector must be selected for actual current and wire gauge.
 
-Initial target population:
-- 1 × 470 µF low-ESR electrolytic/polymer bulk capacitor
-- 1 × 100 µF low-ESR bulk capacitor
-- 1 × 1 µF ceramic
-- 1 × 100 nF ceramic
+Evaluation targets:
 
-All voltage ratings must exceed maximum MOTOR_VBUS with margin. If 28 V operation is retained, bulk capacitors should normally be rated 35 V minimum; 50 V may be preferable depending on transient testing.
+- XT30: compact, plausible for moderate-current prototype use
+- XT60: larger but more comfortable current/thermal margin
+- High-current pluggable terminal: serviceable but mechanically larger
 
-## 6. 5 V regulator architecture
+Final choice must be based on mechanical fit, connector temperature rise and available wire gauge.
 
-### 6.1 Requirements
+## 6. Main protection
 
-The host regulator should be a synchronous buck converter with:
-- Input capability covering the finalized VIN range.
-- 5 V output.
-- >= 5 A practical output capability.
-- Current limiting.
-- Thermal shutdown.
-- UVLO.
-- Good transient response.
-- Enable pin preferred.
+### 6.1 Fuse
 
-### 6.2 Current recommendation
+Provide a replaceable main fuse or equivalent serviceable over-current protection.
 
-Do **not** finalize a regulator only from headline current rating. The chosen device must be validated at the worst expected VIN, 5 V output, actual PCB copper area, ambient temperature, and expected Radxa peak load.
+The main fuse protects the board and upstream wiring, not individual servo leads.
 
-V1 footprint selection will prioritize a modern synchronous buck family with enough voltage headroom for 24–28 V systems. Candidate families should be compared in the BOM before lock.
+Branch protection may be added for groups of servos.
 
-### 6.3 Output network
+### 6.2 Reverse-polarity protection
 
-Initial target:
-- Ceramic output bank sized per regulator datasheet.
-- Additional 220–470 µF low-ESR bulk near the 40-pin 5 V injection point if transient testing shows benefit.
-- Kelvin feedback routing.
-- Short switching loop.
+Preferred implementation:
 
-## 7. Backfeed protection
+- Low-RDS(on) P-channel/N-channel ideal-diode style MOSFET architecture, or
+- Dedicated ideal-diode / reverse-input controller if layout and BOM justify it
 
-This is a critical V1 requirement.
+At 10–20 A, resistance matters significantly. A simple series diode is not preferred.
 
-The Radxa may also be connected to USB-C while the HAT is supplying 5 V through pins 2/4. The HAT must not create an unsafe uncontrolled source-to-source path.
+### 6.3 TVS / transient clamp
 
-Design rule:
-- Treat HAT 5 V injection and Radxa USB-C input coexistence as a specific validation item.
-- Do not assume the SBC includes sufficient reverse-current blocking.
-- Provide an optional load-switch / ideal-diode footprint or 0-ohm configuration point in the HAT 5 V path so the prototype can be tested safely before the connection is permanently simplified.
+For a regulated 5 V input, the TVS selection should be optimized around a 5 V system rather than a 28 V envelope.
 
-Prototype configuration should favor protection over minimum BOM count.
+The exact TVS part must be selected so its standoff/clamp behavior does not interfere with normal 5 V operation while protecting downstream devices from cable/motor transients.
 
-## 8. Grounding
+## 7. Servo power distribution
 
-Use one common electrical ground, but control current return paths physically.
+### 7.1 Branching
+
+Preferred topology:
+
+- Servo branch A
+- Servo branch B
+- Servo branch C
+
+Each branch should feed a subset of the 15 actuators so the entire current does not pass through one connector/trunk segment.
+
+### 7.2 Bulk capacitance
+
+Place bulk capacitance near the servo distribution region.
+
+Initial prototype target:
+
+- Multiple low-ESR 470 µF capacitors distributed near servo groups
+- 100 µF local bulk where useful
+- 1 µF ceramic per branch region
+- 100 nF ceramic for high-frequency bypass
+
+Because the system is 5 V, use capacitor voltage ratings with generous margin, typically 10 V or greater; 16 V parts are attractive for availability and derating.
+
+### 7.3 PCB copper
+
+Do not represent +5V_SERVO as an ordinary signal trace.
+
+Use:
+
+- copper pours,
+- multiple layers where beneficial,
+- dense via stitching between parallel power areas,
+- short connector-to-bulk paths,
+- direct low-impedance return to supply entry.
+
+Final copper requirement must be checked against board copper weight and measured temperature rise.
+
+## 8. Radxa host branch
+
+Radxa ZERO 3W is a 5 V-only SBC. The host branch must remain isolated from major servo current paths even though all rails share a common electrical ground.
+
+Host branch should include:
+
+- independent current protection or eFuse/load switch,
+- local bulk capacitance,
+- ceramic bypass,
+- optional ferrite/LC filtering if testing shows servo noise coupling,
+- explicit test points.
+
+## 9. USB-C / header backfeed risk
+
+This remains a critical validation item.
+
+The Radxa may be connected to USB-C while the HAT also injects 5 V through header pins 2/4.
+
+Do not assume safe reverse-current isolation exists inside the SBC.
+
+V1 shall preserve a configurable protection point in the +5V_RADXA branch using one of:
+
+- reverse-current blocking load switch,
+- ideal-diode device,
+- protected eFuse,
+- removable 0-ohm configuration jumper only after validation.
+
+Prototype default must favor protection.
+
+## 10. Grounding
+
+Use a common ground plane, but control physical return-current flow.
 
 Layout rules:
-- Motor-current returns should go directly to the input/bulk capacitor region.
-- Buck power loop should be compact.
-- Audio/codec ground area should not sit in the motor return path.
-- Inner-layer solid GND plane is preferred.
-- Do not split the ground plane under high-speed digital signals unless there is a verified reason.
 
-## 9. PCB current strategy
+- Servo return enters/returns close to the main input and bulk region.
+- Host/audio area must not sit in the primary servo current-return path.
+- Prefer a solid inner GND plane.
+- Stitch high-current return regions with many vias.
+- Avoid narrow necks in GND copper.
 
-Target board: 4 layers.
+## 11. PCB stack intent
 
-Recommended stack intent:
-1. L1 — components/signals + local power copper
+Target: 4-layer PCB.
+
+1. L1 — components/signals + heavy local 5 V copper
 2. L2 — solid GND
-3. L3 — power distribution / signals
-4. L4 — components/signals + power copper
+3. L3 — +5 V distribution / secondary signals
+4. L4 — components/signals + heavy local 5 V copper
 
-MOTOR_VBUS must use copper pours rather than narrow traces. Final width must be calculated from actual copper weight, temperature rise target, connector rating, and expected maximum simultaneous servo current.
+For the servo rail, parallel copper on L1/L3/L4 may be used where routing and thermal analysis support it.
 
-## 10. Connectors
+## 12. Test points
 
-Power-input connector requirements:
-- Mechanically keyed/polarized preferred.
-- Rated above final continuous current.
-- Voltage rating >= maximum VIN.
-- Accessible after HAT installation.
+Mandatory:
 
-Dynamixel power path connectors must be sized using the same current budget rather than only the single-servo current.
-
-## 11. Test points
-
-Mandatory test points:
-- TP_VIN_RAW
-- TP_MOTOR_VBUS
+- TP_5V_IN
+- TP_5V_SYS
+- TP_5V_SERVO_A
+- TP_5V_SERVO_B
+- TP_5V_SERVO_C
 - TP_5V_RADXA
 - TP_3V3
-- TP_GND
-- TP_BUCK_EN
+- multiple GND probe pads
 
-Recommended measurement pads:
-- Regulator SW node pad for oscilloscope probing, physically small and clearly marked.
-- Feedback test pad only if it does not compromise noise performance.
+Optional:
 
-## 12. Bring-up sequence
+- current-shunt footprint or removable jumper for measuring total servo current
+- host current measurement point
 
-1. Assemble power section only or keep downstream loads disconnected.
-2. Check resistance from VIN and 5 V rails to GND before power-up.
-3. Power from current-limited bench supply at low voltage.
-4. Verify reverse-polarity protection behavior.
-5. Verify +5V_RADXA no-load voltage.
-6. Load test 5 V rail incrementally: 0.5 A, 1 A, 2 A, 3 A, then higher as thermal limits allow.
-7. Measure ripple and load transient response.
-8. Verify no abnormal current when USB-C and HAT power coexist.
-9. Connect Radxa without Dynamixel servos.
-10. Only after host stability is confirmed, connect motor bus and servos.
+## 13. Bring-up sequence
 
-## 13. Thermal acceptance
+1. Populate power/protection section only.
+2. Verify resistance to GND before power-up.
+3. Power from current-limited 5 V bench supply.
+4. Verify reverse-input behavior.
+5. Verify +5V_SYS.
+6. Verify host protection behavior with Radxa disconnected.
+7. Load-test +5V_RADXA at 0.5 A, 1 A, 2 A, 3 A.
+8. Check ripple and voltage sag.
+9. Test HAT power + USB-C coexistence before normal use.
+10. Connect Radxa without servos.
+11. Connect one servo branch with one actuator.
+12. Expand actuator count gradually while logging voltage/current.
+13. Test aggressive multi-axis motion.
+14. Measure connector, MOSFET and copper temperatures.
 
-Before fabrication release, estimate and then measure:
-- Regulator IC temperature.
-- Inductor temperature.
-- Reverse-protection MOSFET temperature.
-- Input connector temperature.
-- Motor power connector temperature.
+## 14. Design targets
 
-Initial design target: no component should operate close to absolute thermal limits during sustained expected load. A minimum 20% current/thermal headroom is preferred where practical.
+### Host rail
 
-## 14. V1 provisional BOM classes
+- 5 V nominal
+- Keep voltage drop low enough for stable SBC operation
+- 3–4 A protected branch design envelope
 
-| Ref class | Function | Initial requirement | Status |
-|---|---|---|---|
-| J_PWR | Main input | 5–28 V, high-current | SELECTING |
-| F1 | Input fuse | high-current, replaceable | SELECTING |
-| Q1 / U_PROTECT | Reverse protection | >=40 V, low-loss | SELECTING |
-| D_TVS | Input transient clamp | voltage TBD after VIN freeze | SELECTING |
-| C_BULK | Motor rail bulk | 470 µF + 100 µF initial | PROVISIONAL |
-| U_BUCK | Radxa 5 V regulator | synchronous, >=5 A practical | SELECTING |
-| L_BUCK | Buck inductor | per selected regulator | TBD |
-| C_IN/C_OUT | Buck capacitors | per selected regulator | TBD |
-| U_LOAD | 5 V backfeed protection | optional/DNP-capable | PROVISIONAL |
+### Servo rail
 
-## 15. Open decisions before schematic lock
+- 5 V nominal
+- Development system target: 15–20 A supply capability
+- Theoretical 15-servo stall: ~22.05 A
+- Firmware must prevent sustained simultaneous stall
 
-- Freeze normal robot supply voltage and absolute input envelope.
-- Calculate worst-case current for the 15-servo XL330 bus.
-- Select exact regulator and inductor.
-- Select input connector family.
-- Decide whether 5 V reverse-current protection is mandatory-populated or prototype-only.
-- Verify Radxa 5 V pin injection and simultaneous USB-C behavior from official documentation/testing.
+## 15. Deferred feature: universal high-voltage input
 
-## 16. Exit criteria
+A later revision may support 12–28 V input with an external or board-level high-power 5 V converter.
 
-Power schematic can move from DESIGNING to REVIEW when:
-- Exact regulator selected.
-- Exact protection parts selected.
-- Current budget documented.
-- Capacitor voltage ratings locked.
-- Connector current ratings verified.
-- Backfeed strategy represented in schematic.
-- ERC passes.
-- Reviewer checklist completed.
+That is explicitly out of scope for the compact MicroDuck-optimized V1 unless mechanical/electrical testing demonstrates a compelling need.
 
-**Do not fabricate from this document alone.** This is the electrical design specification for the upcoming KiCad power sheet.
+## 16. Open items before schematic lock
+
+- Select exact main connector.
+- Select exact main fuse and holder.
+- Select exact reverse-polarity MOSFET/controller.
+- Select 5 V TVS device.
+- Select host eFuse/load switch with reverse-current behavior.
+- Decide servo branch grouping and connector count.
+- Determine copper weight and calculate/verify voltage drop.
+- Validate USB-C + HAT simultaneous-power behavior.
+
+## 17. Exit criteria
+
+Power design can move to REVIEW when:
+
+- all exact protection parts are selected,
+- input connector is frozen,
+- servo branch topology is frozen,
+- host protection part is frozen,
+- current budget is linked and accepted,
+- voltage-drop/copper calculations are complete,
+- schematic ERC passes,
+- PCB power-path review passes.
+
+**Do not fabricate from this document alone.**
