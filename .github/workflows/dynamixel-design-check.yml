@@ -1,0 +1,23 @@
+name: Dynamixel design sanity check
+
+on:
+  push:
+    paths:
+      - 'hardware/kicad/dynamixel_v1_connectivity.csv'
+      - 'hardware/kicad/check_dynamixel_design.py'
+      - '.github/workflows/dynamixel-design-check.yml'
+  pull_request:
+    paths:
+      - 'hardware/kicad/dynamixel_v1_connectivity.csv'
+      - 'hardware/kicad/check_dynamixel_design.py'
+
+jobs:
+  connectivity-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Dynamixel connectivity invariants
+        run: python hardware/kicad/check_dynamixel_design.py
