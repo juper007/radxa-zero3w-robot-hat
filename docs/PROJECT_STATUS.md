@@ -19,7 +19,8 @@ Last updated: 2026-09-09
 - [x] TPS25947 first-pass ILIM/dVdt/OVLO values frozen
 - [x] Critical power-device package pin maps independently checked
 - [x] Q1 ideal-diode source/drain orientation corrected
-- [x] BSC009NE2LS5I package review corrected away from erroneous PG-TDSON-8-46 assumption; product-specific land pattern remains gated pending final manufacturer drawing transcription
+- [x] BSC009 package identification corrected to manufacturer-supported `PG-TDSON-8 / SuperSO8`; unsupported dash-variant assumptions removed
+- [x] BSC009 manufacturer boardpad/stencil dimensions captured into implementation gate/spec
 - [x] TPS25947 RPW footprint transcription + geometry regression checker added
 - [x] Project-local power symbol library added
 - [x] Automated power connectivity checker added and CI passed
@@ -31,7 +32,8 @@ Last updated: 2026-09-09
 - [x] R33 = 150 ohm proven inline between `DXL_LOCAL` and external `DXL_DATA`
 - [x] Q1/R26/R27/R28 automatic direction generator fully recovered
 - [x] Direction behavior locked: UART TX idle-high -> receive; TX-low -> transmit-low
-- [x] DYNAMIXEL connectivity contract/checker/BOM synchronized with recovered topology
+- [x] TTL-only V1 U5 optional-RS485 input behavior frozen: 10k pull-up to +3V3 makes U5 transparent when U8 is DNP
+- [x] DYNAMIXEL connectivity contract/checker/BOM synchronized with recovered/frozen topology
 - [x] DYNAMIXEL direction-regression GitHub Actions check passed
 - [x] Electrically explicit DYNAMIXEL implementation specification added
 - [x] Current MicroDuck `/dev/ttyS2` 1 Mbps + imu_to_dxl architecture incorporated
@@ -56,6 +58,7 @@ Last updated: 2026-09-09
 - DXL direction: `Dynamixel_dir=0` receive; `Dynamixel_dir=1` transmit
 - DXL automatic direction: Q1 MMBT3906 + R26 10k + R27 10k + R28 20k
 - DXL external series resistor: R33 = 150 ohm
+- U5 optional-RS485 input in TTL-only V1: 10k pull-up to +3V3
 - I2C3: pins 3/5, 3.3 V, 400 kHz target
 - I2S3: pins 12 BCLK, 35 LRCLK, 38 SDI, 40 SDO
 - Audio: TLV320AIC3104IRHBR + PAM8406D + MEMS mic, 12 MHz MCLK option retained
@@ -63,10 +66,10 @@ Last updated: 2026-09-09
 ## Current implementation state
 
 ### Power
-Electrical topology and first-pass values are frozen. TPS25947 RPW footprint exists and is regression-checked. The BSC009 package/land-pattern choice is still under manufacturer-drawing verification and remains a fabrication blocker. `power.kicad_sch` is still a source skeleton rather than a final wired/ERC-checked sheet.
+Electrical topology and first-pass values are frozen. TPS25947 RPW footprint exists and is regression-checked. The BSC009 footprint authority is now corrected to the product-specific Infineon PG-TDSON-8 / SuperSO8 boardpad drawing; unsupported `-46` and `-7` assertions have been removed. The exact copper/paste footprint still must be transcribed and visually reviewed. `power.kicad_sch` remains a source skeleton rather than a final wired/ERC-checked sheet.
 
 ### DYNAMIXEL
-The TTL half-duplex architecture and automatic direction circuit are now source-recovered and CI-locked. The implementation contract is complete enough to instantiate the real KiCad sheet. Remaining items are optional RS-485/U5 idle-high handling, physical connector orientation, actual symbol/wire instantiation and KiCad ERC.
+The TTL half-duplex architecture, R33 placement and automatic direction circuit are source-recovered and CI-locked. The optional RS-485 input behavior is now also frozen for the TTL-only V1: U8 is DNP and U5 input B is pulled high through 10k, so U5 passes TTL_RX_OUT without a floating input. The remaining work is physical connector orientation, actual symbol/wire instantiation and KiCad ERC.
 
 ### Sensors
 Primary current-MicroDuck IMU is external `imu_to_dxl` on DXL_DATA. BMI088 remains optional/DNP. I2C3/Qwiic contracts and CI exist; actual KiCad wiring remains to be populated.
@@ -79,9 +82,8 @@ Cross-sheet interface invariants exist. `main.kicad_sch` still needs conversion 
 
 ## In progress
 
-- [ ] Confirm U5 optional-RS485 receive input and DNP-safe idle-high bias
 - [ ] Convert DYNAMIXEL skeleton to electrically populated KiCad sheet
-- [ ] Transcribe exact BSC009 manufacturer land pattern and add CI checks
+- [ ] Transcribe exact BSC009 PG-TDSON-8 manufacturer land pattern and add CI checks
 - [ ] Populate electrically wired `power.kicad_sch`
 - [ ] Recover exact TLV320AIC3104/PAM8406D/MEMS passive network
 - [ ] Convert sensors/audio skeletons to electrically populated sheets
@@ -92,25 +94,23 @@ Cross-sheet interface invariants exist. `main.kicad_sch` still needs conversion 
 
 ## Immediate execution order
 
-1. Resolve U5 optional RS-485/DNP-safe idle-high behavior.
-2. Convert DYNAMIXEL sheet to actual symbols/wires.
-3. Build and independently verify the exact BSC009 manufacturer land pattern; extend geometry CI.
-4. Convert power sheet to actual symbols/wires.
-5. Recover and wire audio reference circuit.
-6. Wire I2C/Qwiic optional-sensor sheet.
-7. Convert top-level skeleton to hierarchical integration.
-8. Freeze mechanical outline/header/mounting holes and connector keepouts.
-9. Place high-current power corridor first, then Radxa/DXL/sensor/audio blocks.
-10. Route 4-layer PCB with high-current return and audio isolation constraints.
-11. Run KiCad ERC/DRC and resolve every unexplained violation.
-12. Generate Gerber/BOM/PnP only after independent pre-fabrication review.
+1. Convert DYNAMIXEL sheet to actual symbols/wires using the frozen V1 implementation contract.
+2. Build and independently verify the BSC009 manufacturer PG-TDSON-8 footprint; extend geometry CI.
+3. Convert power sheet to actual symbols/wires.
+4. Recover and wire audio reference circuit.
+5. Wire I2C/Qwiic optional-sensor sheet.
+6. Convert top-level skeleton to hierarchical integration.
+7. Freeze mechanical outline/header/mounting holes and connector keepouts.
+8. Place high-current power corridor first, then Radxa/DXL/sensor/audio blocks.
+9. Route 4-layer PCB with high-current return and audio isolation constraints.
+10. Run KiCad ERC/DRC and resolve every unexplained violation.
+11. Generate Gerber/BOM/PnP only after independent pre-fabrication review.
 
 ## Fabrication blockers
 
-- BSC009 product-specific footprint not yet independently checked
+- BSC009 exact product-specific footprint not yet independently checked
 - power electrical KiCad wiring/ERC incomplete
 - DYNAMIXEL electrical KiCad wiring incomplete
-- U5 optional RS-485 DNP-safe input handling not frozen
 - audio analog/power/passive recovery incomplete
 - top-level hierarchical integration incomplete
 - PCB placement/routing incomplete
@@ -119,4 +119,4 @@ Cross-sheet interface invariants exist. `main.kicad_sch` still needs conversion 
 
 ## Current release status
 
-`v0.12-dev` — the full Q1/R26/R27/R28 DYNAMIXEL automatic-direction generator is now source-recovered, documented, BOM-synchronized and CI-locked; an electrically explicit KiCad implementation specification is present. **Not fabrication-ready.**
+`v0.13-dev` — unsupported BSC009 dash-variant claims removed; manufacturer PG-TDSON-8/SuperSO8 boardpad authority locked. DYNAMIXEL TTL-only RS-485 DNP behavior is now frozen with a 10k idle-high U5 bias and enforced in the connectivity checker/BOM. **Not fabrication-ready.**
