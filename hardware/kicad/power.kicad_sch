@@ -1,0 +1,90 @@
+(kicad_sch
+  (version 20250114)
+  (generator "eeschema")
+  (generator_version "9.0")
+  (uuid 2cc2c0b6-3f10-4b6b-89b8-2f317f3f3f8d)
+  (paper "A4")
+  (title_block
+    (title "Radxa ZERO 3W Robot HAT - Power V1")
+    (date "2026-09-09")
+    (rev "v0.5-dev")
+    (company "juper007 / DIY")
+    (comment 1 "DESIGN DRAFT - NOT FABRICATION READY")
+    (comment 2 "5V high-current input, 15x XL330, protected Radxa branch")
+  )
+  (lib_symbols)
+  (text "POWER V1 - STRUCTURED KICAD DRAFT"
+    (exclude_from_sim no)
+    (at 25.4 20.32 0)
+    (effects (font (size 2.54 2.54) (thickness 0.4)) (justify left bottom))
+  )
+  (text "J1 XT60 5V IN -> F1 20A -> U1 LM74700QDBVRQ1 + Q1 BSC009NE2LS5I -> +5V_SYS"
+    (exclude_from_sim no)
+    (at 25.4 30.48 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "+5V_SYS -> Branch A/B/C (5 XL330 each), each branch: 470uF + 100uF + 1uF + 100nF"
+    (exclude_from_sim no)
+    (at 25.4 36.83 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "+5V_SYS -> U2 TPS259470ARPWR -> +5V_RADXA -> J40 pins 2/4"
+    (exclude_from_sim no)
+    (at 25.4 43.18 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "U1 support: C_VCAP=100nF VCAP-to-ANODE; C_IN_LOCAL=22nF; C_OUT_LOCAL>=100nF"
+    (exclude_from_sim no)
+    (at 25.4 52.07 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "U2 ILIM: R_ILIM=825R 1% -> ~4.05A typical target"
+    (exclude_from_sim no)
+    (at 25.4 58.42 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "U2 dVdt: C_DVDT=3.9nF -> ~9.75ms 0-to-5V ramp target"
+    (exclude_from_sim no)
+    (at 25.4 64.77 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "U2 OVLO: 374k top / 100k bottom -> ~5.69V nominal"
+    (exclude_from_sim no)
+    (at 25.4 71.12 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "U2 EN/UVLO: 390k from +5V_SYS, plus test point / optional pull-down footprint"
+    (exclude_from_sim no)
+    (at 25.4 77.47 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Host output: 470uF + 2x22uF X7R + 1uF + 100nF after U2"
+    (exclude_from_sim no)
+    (at 25.4 83.82 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "PCB: 4-layer; 2oz outer copper; +5V_SYS as wide top/bottom pours with dense stitching vias"
+    (exclude_from_sim no)
+    (at 25.4 92.71 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "IMPORTANT: this is the first KiCad source skeleton. Symbol placement/net wiring must be completed and ERC run before REVIEW."
+    (exclude_from_sim no)
+    (at 25.4 104.14 0)
+    (effects (font (size 1.27 1.27) (thickness 0.25)) (justify left bottom))
+  )
+  (text "Authoritative connectivity: power_v1_connectivity.csv"
+    (exclude_from_sim no)
+    (at 25.4 111.76 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Authoritative component values: ../../docs/05D_POWER_SCHEMATIC_VALUES.md"
+    (exclude_from_sim no)
+    (at 25.4 118.11 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+  (embedded_fonts no)
+)
