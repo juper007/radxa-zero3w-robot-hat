@@ -19,12 +19,19 @@ U7,SN74LVC1G126DBVR,OE,Dynamixel_dir,UPSTREAM_VERIFIED,Pin1 active-high OE; shar
 U7,SN74LVC1G126DBVR,Y,DXL_LOCAL,UPSTREAM_RECOVERED,Output pin4 connects to local DXL node before R33
 DIR,Complementary OE truth table,LOW,U7_DISABLED/U6_ENABLED,UPSTREAM_VERIFIED,Dynamixel_dir low selects receive mode
 DIR,Complementary OE truth table,HIGH,U7_ENABLED/U6_DISABLED,UPSTREAM_VERIFIED,Dynamixel_dir high selects transmit mode
-R33,Series resistor,pin1,DXL_LOCAL,UPSTREAM_VERIFIED,150R at 201.93/180.34; pin1 endpoint 199.39/180.34 on U7/U6 local DXL node
-R33,Series resistor,pin2,DXL_DATA,UPSTREAM_VERIFIED,Pin2 endpoint 204.47/180.34 continues to external DXL connector/protection network
-Q_DIR,MMBT3906 PNP,all,Dynamixel_dir_generator,RECOVERING,Upstream Q1 at 118.11/68.58; exact base/emitter/collector nets still being mapped
-R_DIR_20K,Direction network resistor,all,Dynamixel_dir_generator,UPSTREAM_COMPONENT,R28 20k at 120.65/80.01
-R_DIR_10K_A,Direction network resistor,all,Dynamixel_dir_generator,UPSTREAM_COMPONENT,R26 10k at 100.33/62.23
-R_DIR_10K_B,Direction network resistor,all,Dynamixel_dir_generator,UPSTREAM_COMPONENT,R27 10k at 107.95/68.58
+R33,Series resistor,pin1,DXL_LOCAL,UPSTREAM_VERIFIED,150R at 201.93/180.34; local transceiver side
+R33,Series resistor,pin2,DXL_DATA,UPSTREAM_VERIFIED,External bus side toward connectors/protection
+R26,Direction pull-up,top,+3V3,UPSTREAM_VERIFIED,10k; top terminal joins +3V3 rail
+R26,Direction pull-up,bottom,UART2_TX_DIR_SENSE,UPSTREAM_VERIFIED,10k; bottom terminal joins UART2_TX sensing node
+R27,Direction base resistor,pin1,UART2_TX_DIR_SENSE,UPSTREAM_VERIFIED,10k between TX sensing node and Q1 base
+R27,Direction base resistor,pin2,Q1_BASE,UPSTREAM_VERIFIED,Connects directly to Q1 base pin1
+Q1,MMBT3906 PNP,pin1_BASE,Q1_BASE,UPSTREAM_VERIFIED,Base driven through R27
+Q1,MMBT3906 PNP,pin2_EMITTER,+3V3,UPSTREAM_VERIFIED,Emitter tied to +3V3 rail in upstream mirrored symbol placement
+Q1,MMBT3906 PNP,pin3_COLLECTOR,Dynamixel_dir,UPSTREAM_VERIFIED,Collector drives automatic direction node
+R28,Direction pull-down,top,Dynamixel_dir,UPSTREAM_VERIFIED,20k from direction node
+R28,Direction pull-down,bottom,GND,UPSTREAM_VERIFIED,20k to ground; establishes receive default
+DIRGEN,Auto-direction behavior,UART2_TX_IDLE_HIGH,Dynamixel_dir_LOW,UPSTREAM_VERIFIED,TX idle high turns Q1 off and R28 pulls direction low => receive mode
+DIRGEN,Auto-direction behavior,UART2_TX_LOW,Dynamixel_dir_HIGH,UPSTREAM_VERIFIED,TX low biases Q1 on and raises direction => U7 drives low bit while U6 is disabled
 D_ESD,Low-cap ESD,IO,DXL_DATA,PROVISIONAL,Select device after voltage/capacitance review
 D_ESD,Low-cap ESD,GND,GND,PROVISIONAL,
 TP_DXL,Test point,,DXL_DATA,REQUIRED,Oscilloscope access
