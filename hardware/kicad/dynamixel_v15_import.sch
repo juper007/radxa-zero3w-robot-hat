@@ -10,9 +10,9 @@ $Descr A4 11693 8268
 Sheet 1 1
 Title "Radxa ZERO 3W Robot HAT - Dynamixel TTL V1"
 Date "2026-09-09"
-Rev "v0.15-dev"
+Rev "v0.15.1-dev"
 Comp "juper007 / DIY"
-Comment1 "ELECTRICALLY POPULATED IMPORT DRAFT - KICAD 9 ERC PENDING"
+Comment1 "ELECTRICALLY POPULATED IMPORT DRAFT - PIN-ANCHOR CHECKED, KICAD 9 ERC PENDING"
 Comment2 "Derived/informed by Pollen Robotics elec_RPI_Robot_HAT, Apache-2.0"
 $EndDescr
 
@@ -201,41 +201,54 @@ Text Label 3450 2300 2 50 ~ 0
 UART2_TX
 Text Label 3450 3300 2 50 ~ 0
 DXL_LOCAL
-Text Label 6350 3300 0 50 ~ 0
+Text Label 6600 3300 0 50 ~ 0
 UART2_RX
-Text Label 4650 2300 0 50 ~ 0
+Text Label 4850 2300 0 50 ~ 0
 DXL_LOCAL
 Text Label 5250 2300 0 50 ~ 0
 DXL_DATA
-Text Label 4650 3300 0 50 ~ 0
+Text Label 4900 3300 0 50 ~ 0
 TTL_RX_OUT
-Text Label 5450 3200 2 50 ~ 0
+Text Label 5200 3400 2 50 ~ 0
 TTL_RX_OUT
-Text Label 5450 3400 2 50 ~ 0
+Text Label 5200 3200 2 50 ~ 0
 RS485_RX_BIAS
-Text Label 4300 2050 1 50 ~ 0
+Text Label 4300 2700 1 50 ~ 0
 Dynamixel_dir
-Text Label 4300 3050 1 50 ~ 0
+Text Label 4300 3700 1 50 ~ 0
 Dynamixel_dir
 
 Wire Wire Line
-	3450 2300 3850 2300
+	3450 2300 3700 2300
 Wire Wire Line
-	4750 2300 4950 2300
+	4800 2300 4950 2300
 Wire Wire Line
 	5150 2300 6800 2300
 Wire Wire Line
 	6800 2300 6800 4300
 Wire Wire Line
-	3850 3300 3450 3300
+	3700 3300 3450 3300
 Wire Wire Line
-	4750 3300 5450 3300
+	4800 3300 5000 3300
 Wire Wire Line
-	5450 3300 5450 3200
+	5000 3300 5000 3400
 Wire Wire Line
-	5450 3200 5450 3200
+	5000 3400 5300 3400
 Wire Wire Line
-	6350 3300 6350 3300
+	6400 3300 6600 3300
+
+Text Label 4100 2700 1 50 ~ 0
++3V3
+Text Label 4100 1900 3 50 ~ 0
+GND
+Text Label 4100 3700 1 50 ~ 0
++3V3
+Text Label 4100 2900 3 50 ~ 0
+GND
+Text Label 5900 3700 1 50 ~ 0
++3V3
+Text Label 5900 2900 3 50 ~ 0
+GND
 
 Text Label 1900 1550 3 50 ~ 0
 UART2_TX_DIR_SENSE
@@ -299,9 +312,9 @@ RS485_RX_BIAS
 Wire Wire Line
 	5350 2750 5350 2850
 Wire Wire Line
-	5350 3050 5350 3400
+	5350 3050 5350 3200
 Wire Wire Line
-	5350 3400 5450 3400
+	5350 3200 5300 3200
 
 Text Label 7600 2000 2 50 ~ 0
 GND
