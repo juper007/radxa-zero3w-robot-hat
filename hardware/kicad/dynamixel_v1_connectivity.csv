@@ -5,20 +5,26 @@ J40,Radxa 40-pin,pin17,+3V3,VERIFIED,Logic supply from host; do not drive from H
 U5,74LVC1G08,VCC,+3V3,UPSTREAM_VERIFIED,Receive-path combiner in upstream design
 U5,74LVC1G08,GND,GND,UPSTREAM_VERIFIED,
 U5,74LVC1G08,A,TTL_RX_OUT,UPSTREAM_RECOVERED,One receive source from U6 TTL receive buffer
-U5,74LVC1G08,B,RS485_RX_OUT,TO_VERIFY,Second receive source appears to be optional RS485 path; exact net still independently verify
-U5,74LVC1G08,Y,UART2_RX,UPSTREAM_RECOVERED,Mirror-y placement and output wire terminate on IO_15 host RX path
+U5,74LVC1G08,B,RS485_RX_OUT,TO_VERIFY,Second receive source appears to be optional RS485 path; exact DNP-safe bias still verify
+U5,74LVC1G08,Y,UART2_RX,UPSTREAM_RECOVERED,Output wire terminates on IO_15 host RX path
 U6,SN74LVC1G125DBV,VCC,+3V3,UPSTREAM_VERIFIED,TTL receive tri-state buffer
 U6,SN74LVC1G125DBV,GND,GND,UPSTREAM_VERIFIED,
-U6,SN74LVC1G125DBV,A,DXL_DATA,UPSTREAM_RECOVERED,Input pin2 traces to common TTL bus
-U6,SN74LVC1G125DBV,OE,RX_OE_N,RECOVERING,Active-low OE; exact upstream auto-direction drive still being traced
-U6,SN74LVC1G125DBV,Y,TTL_RX_OUT,UPSTREAM_RECOVERED,Output feeds upstream receive aggregation path before U5
+U6,SN74LVC1G125DBV,A,DXL_LOCAL,UPSTREAM_RECOVERED,Input pin2 connects to local DXL node before R33
+U6,SN74LVC1G125DBV,OE,Dynamixel_dir,UPSTREAM_VERIFIED,Pin1 active-low OE; shared exact net with U7 OE
+U6,SN74LVC1G125DBV,Y,TTL_RX_OUT,UPSTREAM_RECOVERED,Output feeds U5 receive combiner
 U7,SN74LVC1G126DBVR,VCC,+3V3,UPSTREAM_VERIFIED,TTL transmit tri-state buffer
 U7,SN74LVC1G126DBVR,GND,GND,UPSTREAM_VERIFIED,
 U7,SN74LVC1G126DBVR,A,UART2_TX,UPSTREAM_RECOVERED,Input pin2 traces directly to IO_14/UART TX net
-U7,SN74LVC1G126DBVR,OE,TX_OE,RECOVERING,Active-high OE; exact upstream auto-direction drive still being traced
-U7,SN74LVC1G126DBVR,Y,DXL_DATA,UPSTREAM_RECOVERED,Output pin4 traces to common TTL bus
-R33,Series resistor,1,U7_Y,UPSTREAM_VALUE,150R from upstream BOM; exact physical position in TTL data path being confirmed
-R33,Series resistor,2,DXL_DATA,RECOVERING,Retain as source-series candidate until coordinate/net recovery complete
+U7,SN74LVC1G126DBVR,OE,Dynamixel_dir,UPSTREAM_VERIFIED,Pin1 active-high OE; shared exact net with U6 OE
+U7,SN74LVC1G126DBVR,Y,DXL_LOCAL,UPSTREAM_RECOVERED,Output pin4 connects to local DXL node before R33
+DIR,Complementary OE truth table,LOW,U7_DISABLED/U6_ENABLED,UPSTREAM_VERIFIED,Dynamixel_dir low selects receive mode
+DIR,Complementary OE truth table,HIGH,U7_ENABLED/U6_DISABLED,UPSTREAM_VERIFIED,Dynamixel_dir high selects transmit mode
+R33,Series resistor,pin1,DXL_LOCAL,UPSTREAM_VERIFIED,150R at 201.93/180.34; pin1 endpoint 199.39/180.34 on U7/U6 local DXL node
+R33,Series resistor,pin2,DXL_DATA,UPSTREAM_VERIFIED,Pin2 endpoint 204.47/180.34 continues to external DXL connector/protection network
+Q_DIR,MMBT3906 PNP,all,Dynamixel_dir_generator,RECOVERING,Upstream Q1 at 118.11/68.58; exact base/emitter/collector nets still being mapped
+R_DIR_20K,Direction network resistor,all,Dynamixel_dir_generator,UPSTREAM_COMPONENT,R28 20k at 120.65/80.01
+R_DIR_10K_A,Direction network resistor,all,Dynamixel_dir_generator,UPSTREAM_COMPONENT,R26 10k at 100.33/62.23
+R_DIR_10K_B,Direction network resistor,all,Dynamixel_dir_generator,UPSTREAM_COMPONENT,R27 10k at 107.95/68.58
 D_ESD,Low-cap ESD,IO,DXL_DATA,PROVISIONAL,Select device after voltage/capacitance review
 D_ESD,Low-cap ESD,GND,GND,PROVISIONAL,
 TP_DXL,Test point,,DXL_DATA,REQUIRED,Oscilloscope access
