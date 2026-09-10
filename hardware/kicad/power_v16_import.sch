@@ -1,0 +1,646 @@
+EESchema Schematic File Version 4
+LIBS:power
+LIBS:device
+LIBS:Connector_Generic
+LIBS:RadxaRobotHatPower
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+Sheet 1 1
+Title "Radxa ZERO 3W Robot HAT - Power V1"
+Date "2026-09-09"
+Rev "v0.16.1-dev"
+Comp "juper007 / DIY"
+Comment1 "ELECTRICALLY POPULATED IMPORT DRAFT - PIN-ANCHOR CHECKED, KICAD 9 ERC PENDING"
+Comment2 "External regulated 5V input; no onboard high-power buck in V1"
+$EndDescr
+
+Text Notes 650 600 0 100 ~ 20
+POWER V1 - populated import schematic
+Text Notes 650 800 0 50 ~ 0
+Import in KiCad 9 and save as power.kicad_sch; run ERC before fabrication.
+$Comp
+L Connector_Generic:Conn_01x02 J1
+U 1 1 20000001
+P 1200 2000
+F 0 "J1" H 1300 2150 50 0000 L CNN
+F 1 "XT60_IN" H 1300 1850 50 0000 L CNN
+F 2 "Connector_Generic:Conn_01x02" H 1200 2000 50 0001 C CNN
+	1    1200 2000
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:Fuse F1
+U 1 1 20000002
+P 1900 1900
+F 0 "F1" H 2000 2050 50 0000 L CNN
+F 1 "20A" H 2000 1750 50 0000 L CNN
+F 2 "Fuse:Fuseholder_Blade_Mini_Keystone_3568" H 1900 1900 50 0001 C CNN
+	1    1900 1900
+	0 1 1 0
+$EndComp
+
+$Comp
+L RadxaRobotHatPower:LM74700QDBVRQ1 U1
+U 1 1 20000003
+P 3500 2000
+F 0 "U1" H 3600 2150 50 0000 L CNN
+F 1 "LM74700QDBVRQ1" H 3600 1850 50 0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-6" H 3500 2000 50 0001 C CNN
+	1    3500 2000
+	1 0 0 -1
+$EndComp
+
+$Comp
+L RadxaRobotHatPower:BSC009NE2LS5I Q1
+U 1 1 20000004
+P 5000 2000
+F 0 "Q1" H 5100 2150 50 0000 L CNN
+F 1 "BSC009NE2LS5I" H 5100 1850 50 0000 L CNN
+F 2 "RadxaRobotHat:Infineon_PG-TDSON-8_SuperSO8" H 5000 2000 50 0001 C CNN
+	1    5000 2000
+	1 0 0 -1
+$EndComp
+
+$Comp
+L RadxaRobotHatPower:TPS259470ARPWR U2
+U 1 1 20000005
+P 7000 2600
+F 0 "U2" H 7100 2750 50 0000 L CNN
+F 1 "TPS259470ARPWR" H 7100 2450 50 0000 L CNN
+F 2 "RadxaRobotHat:TI_RPW0010A_2x2mm_P0.45mm" H 7000 2600 50 0001 C CNN
+	1    7000 2600
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Small C_VCAP
+U 1 1 20000010
+P 3500 2700
+F 0 "C_VCAP" H 3600 2850 50 0000 L CNN
+F 1 "100n" H 3600 2550 50 0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 3500 2700 50 0001 C CNN
+	1    3500 2700
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Small C_U1_IN
+U 1 1 20000011
+P 3000 2600
+F 0 "C_U1_IN" H 3100 2750 50 0000 L CNN
+F 1 "22n" H 3100 2450 50 0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 3000 2600 50 0001 C CNN
+	1    3000 2600
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Small C_U1_OUT
+U 1 1 20000012
+P 4100 2600
+F 0 "C_U1_OUT" H 4200 2750 50 0000 L CNN
+F 1 "100n" H 4200 2450 50 0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 4100 2600 50 0001 C CNN
+	1    4100 2600
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized C1
+U 1 1 20000013
+P 5600 2800
+F 0 "C1" H 5700 2950 50 0000 L CNN
+F 1 "470u" H 5700 2650 50 0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_8x10.2" H 5600 2800 50 0001 C CNN
+	1    5600 2800
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized C2
+U 1 1 20000014
+P 6000 2800
+F 0 "C2" H 6100 2950 50 0000 L CNN
+F 1 "100u" H 6100 2650 50 0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_6.3x5.8" H 6000 2800 50 0001 C CNN
+	1    6000 2800
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:R_Small R_EN
+U 1 1 20000015
+P 6200 3000
+F 0 "R_EN" H 6300 3150 50 0000 L CNN
+F 1 "390k" H 6300 2850 50 0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 6200 3000 50 0001 C CNN
+	1    6200 3000
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:R_Small R_OV_TOP
+U 1 1 20000016
+P 6200 3400
+F 0 "R_OV_TOP" H 6300 3550 50 0000 L CNN
+F 1 "374k" H 6300 3250 50 0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 6200 3400 50 0001 C CNN
+	1    6200 3400
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:R_Small R_OV_BOTTOM
+U 1 1 20000017
+P 6500 3600
+F 0 "R_OV_BOTTOM" H 6600 3750 50 0000 L CNN
+F 1 "100k" H 6600 3450 50 0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 6500 3600 50 0001 C CNN
+	1    6500 3600
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:R_Small R_ILIM
+U 1 1 20000018
+P 6500 2200
+F 0 "R_ILIM" H 6600 2350 50 0000 L CNN
+F 1 "825R" H 6600 2050 50 0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 6500 2200 50 0001 C CNN
+	1    6500 2200
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Small C_DVDT
+U 1 1 20000019
+P 7700 2200
+F 0 "C_DVDT" H 7800 2350 50 0000 L CNN
+F 1 "3.9n" H 7800 2050 50 0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 7700 2200 50 0001 C CNN
+	1    7700 2200
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized C5
+U 1 1 20000020
+P 8200 2900
+F 0 "C5" H 8300 3050 50 0000 L CNN
+F 1 "470u" H 8300 2750 50 0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_8x10.2" H 8200 2900 50 0001 C CNN
+	1    8200 2900
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Small C6
+U 1 1 20000021
+P 8500 2900
+F 0 "C6" H 8600 3050 50 0000 L CNN
+F 1 "22u" H 8600 2750 50 0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 8500 2900 50 0001 C CNN
+	1    8500 2900
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Small C7
+U 1 1 20000022
+P 8800 2900
+F 0 "C7" H 8900 3050 50 0000 L CNN
+F 1 "22u" H 8900 2750 50 0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 8800 2900 50 0001 C CNN
+	1    8800 2900
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Small C8
+U 1 1 20000023
+P 9100 2900
+F 0 "C8" H 9200 3050 50 0000 L CNN
+F 1 "1u" H 9200 2750 50 0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 9100 2900 50 0001 C CNN
+	1    9100 2900
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Small C9
+U 1 1 20000024
+P 9400 2900
+F 0 "C9" H 9500 3050 50 0000 L CNN
+F 1 "100n" H 9500 2750 50 0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 9400 2900 50 0001 C CNN
+	1    9400 2900
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:R_Small RBA
+U 1 1 20000025
+P 5500 4200
+F 0 "RBA" H 5600 4350 50 0000 L CNN
+F 1 "0R_LINK" H 5600 4050 50 0000 L CNN
+F 2 "Resistor_SMD:R_2512_6332Metric" H 5500 4200 50 0001 C CNN
+	1    5500 4200
+	0 1 1 0
+$EndComp
+
+$Comp
+L Device:R_Small RBB
+U 1 1 20000026
+P 5500 4700
+F 0 "RBB" H 5600 4850 50 0000 L CNN
+F 1 "0R_LINK" H 5600 4550 50 0000 L CNN
+F 2 "Resistor_SMD:R_2512_6332Metric" H 5500 4700 50 0001 C CNN
+	1    5500 4700
+	0 1 1 0
+$EndComp
+
+$Comp
+L Device:R_Small RBC
+U 1 1 20000027
+P 5500 5200
+F 0 "RBC" H 5600 5350 50 0000 L CNN
+F 1 "0R_LINK" H 5600 5050 50 0000 L CNN
+F 2 "Resistor_SMD:R_2512_6332Metric" H 5500 5200 50 0001 C CNN
+	1    5500 5200
+	0 1 1 0
+$EndComp
+
+$Comp
+L Device:C_Polarized CA1
+U 1 1 20000028
+P 6500 4200
+F 0 "CA1" H 6600 4350 50 0000 L CNN
+F 1 "470u" H 6600 4050 50 0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_8x10.2" H 6500 4200 50 0001 C CNN
+	1    6500 4200
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized CA2
+U 1 1 20000029
+P 6900 4200
+F 0 "CA2" H 7000 4350 50 0000 L CNN
+F 1 "100u" H 7000 4050 50 0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_8x10.2" H 6900 4200 50 0001 C CNN
+	1    6900 4200
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized CB1
+U 1 1 20000030
+P 6500 4700
+F 0 "CB1" H 6600 4850 50 0000 L CNN
+F 1 "470u" H 6600 4550 50 0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_8x10.2" H 6500 4700 50 0001 C CNN
+	1    6500 4700
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized CB2
+U 1 1 20000031
+P 6900 4700
+F 0 "CB2" H 7000 4850 50 0000 L CNN
+F 1 "100u" H 7000 4550 50 0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_8x10.2" H 6900 4700 50 0001 C CNN
+	1    6900 4700
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized CC1
+U 1 1 20000032
+P 6500 5200
+F 0 "CC1" H 6600 5350 50 0000 L CNN
+F 1 "470u" H 6600 5050 50 0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_8x10.2" H 6500 5200 50 0001 C CNN
+	1    6500 5200
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized CC2
+U 1 1 20000033
+P 6900 5200
+F 0 "CC2" H 7000 5350 50 0000 L CNN
+F 1 "100u" H 7000 5050 50 0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_8x10.2" H 6900 5200 50 0001 C CNN
+	1    6900 5200
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Connector_Generic:Conn_01x02 J2
+U 1 1 20000034
+P 8200 4200
+F 0 "J2" H 8300 4350 50 0000 L CNN
+F 1 "+5V_SERVO_A" H 8300 4050 50 0000 L CNN
+F 2 "Connector_Generic:Conn_01x02" H 8200 4200 50 0001 C CNN
+	1    8200 4200
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Connector_Generic:Conn_01x02 J3
+U 1 1 20000035
+P 8200 4700
+F 0 "J3" H 8300 4850 50 0000 L CNN
+F 1 "+5V_SERVO_B" H 8300 4550 50 0000 L CNN
+F 2 "Connector_Generic:Conn_01x02" H 8200 4700 50 0001 C CNN
+	1    8200 4700
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Connector_Generic:Conn_01x02 J4
+U 1 1 20000036
+P 8200 5200
+F 0 "J4" H 8300 5350 50 0000 L CNN
+F 1 "+5V_SERVO_C" H 8300 5050 50 0000 L CNN
+F 2 "Connector_Generic:Conn_01x02" H 8200 5200 50 0001 C CNN
+	1    8200 5200
+	1 0 0 -1
+$EndComp
+
+Text Label 1000 1950 2 50 ~ 0
+F1_IN
+
+Text Label 1000 2050 2 50 ~ 0
+GND
+
+Text Label 1800 1900 2 50 ~ 0
+F1_IN
+
+Text Label 2000 1900 0 50 ~ 0
+F1_OUT
+
+Text Label 3100 2000 2 50 ~ 0
+F1_OUT
+
+Text Label 3900 2000 0 50 ~ 0
++5V_SYS
+
+Text Label 3900 2150 0 50 ~ 0
+Q1_GATE
+
+Text Label 3100 2150 2 50 ~ 0
+F1_OUT
+
+Text Label 3500 2350 1 50 ~ 0
+U1_VCAP
+
+Text Label 3500 1650 3 50 ~ 0
+GND
+
+Text Label 4600 1900 2 50 ~ 0
+F1_OUT
+
+Text Label 4600 2000 2 50 ~ 0
+F1_OUT
+
+Text Label 4600 2100 2 50 ~ 0
+F1_OUT
+
+Text Label 5000 1700 1 50 ~ 0
+Q1_GATE
+
+Text Label 5400 1850 0 50 ~ 0
++5V_SYS
+
+Text Label 5400 1950 0 50 ~ 0
++5V_SYS
+
+Text Label 5400 2050 0 50 ~ 0
++5V_SYS
+
+Text Label 5400 2150 0 50 ~ 0
++5V_SYS
+
+Text Label 3500 2600 1 50 ~ 0
+U1_VCAP
+
+Text Label 3500 2800 3 50 ~ 0
+F1_OUT
+
+Text Label 3000 2500 1 50 ~ 0
+F1_OUT
+
+Text Label 3000 2700 3 50 ~ 0
+GND
+
+Text Label 4100 2500 1 50 ~ 0
++5V_SYS
+
+Text Label 4100 2700 3 50 ~ 0
+GND
+
+Text Label 5600 2700 1 50 ~ 0
++5V_SYS
+
+Text Label 5600 2900 3 50 ~ 0
+GND
+
+Text Label 6000 2700 1 50 ~ 0
++5V_SYS
+
+Text Label 6000 2900 3 50 ~ 0
+GND
+
+Text Label 6550 2600 2 50 ~ 0
++5V_SYS
+
+Text Label 7450 2600 0 50 ~ 0
++5V_RADXA
+
+Text Label 7000 2100 3 50 ~ 0
+GND
+
+Text Label 6550 2900 2 50 ~ 0
+U2_EN
+
+Text Label 6550 2750 2 50 ~ 0
+U2_OVLO
+
+Text Label 7450 2900 0 50 ~ 0
+TP_HOST_STATUS
+
+Text Label 7450 2750 0 50 ~ 0
+TP_HOST_FLT
+
+Text Label 7450 2450 0 50 ~ 0
+U2_DVDT
+
+Text Label 6550 2450 2 50 ~ 0
+U2_ILM
+
+Text Label 6550 2300 2 50 ~ 0
+NC_ITIMER
+
+Text Label 6200 2900 1 50 ~ 0
++5V_SYS
+
+Text Label 6200 3100 3 50 ~ 0
+U2_EN
+
+Text Label 6200 3300 1 50 ~ 0
++5V_SYS
+
+Text Label 6200 3500 3 50 ~ 0
+U2_OVLO
+
+Text Label 6500 3500 1 50 ~ 0
+U2_OVLO
+
+Text Label 6500 3700 3 50 ~ 0
+GND
+
+Text Label 6500 2100 1 50 ~ 0
+U2_ILM
+
+Text Label 6500 2300 3 50 ~ 0
+GND
+
+Text Label 7700 2100 1 50 ~ 0
+U2_DVDT
+
+Text Label 7700 2300 3 50 ~ 0
+GND
+
+Text Label 8200 2800 1 50 ~ 0
++5V_RADXA
+
+Text Label 8200 3000 3 50 ~ 0
+GND
+
+Text Label 8500 2800 1 50 ~ 0
++5V_RADXA
+
+Text Label 8500 3000 3 50 ~ 0
+GND
+
+Text Label 8800 2800 1 50 ~ 0
++5V_RADXA
+
+Text Label 8800 3000 3 50 ~ 0
+GND
+
+Text Label 9100 2800 1 50 ~ 0
++5V_RADXA
+
+Text Label 9100 3000 3 50 ~ 0
+GND
+
+Text Label 9400 2800 1 50 ~ 0
++5V_RADXA
+
+Text Label 9400 3000 3 50 ~ 0
+GND
+
+Text Label 5400 4200 2 50 ~ 0
++5V_SYS
+
+Text Label 5600 4200 0 50 ~ 0
++5V_SERVO_A
+
+Text Label 5400 4700 2 50 ~ 0
++5V_SYS
+
+Text Label 5600 4700 0 50 ~ 0
++5V_SERVO_B
+
+Text Label 5400 5200 2 50 ~ 0
++5V_SYS
+
+Text Label 5600 5200 0 50 ~ 0
++5V_SERVO_C
+
+Text Label 6500 4100 1 50 ~ 0
++5V_SERVO_A
+
+Text Label 6500 4300 3 50 ~ 0
+GND
+
+Text Label 6900 4100 1 50 ~ 0
++5V_SERVO_A
+
+Text Label 6900 4300 3 50 ~ 0
+GND
+
+Text Label 6500 4600 1 50 ~ 0
++5V_SERVO_B
+
+Text Label 6500 4800 3 50 ~ 0
+GND
+
+Text Label 6900 4600 1 50 ~ 0
++5V_SERVO_B
+
+Text Label 6900 4800 3 50 ~ 0
+GND
+
+Text Label 6500 5100 1 50 ~ 0
++5V_SERVO_C
+
+Text Label 6500 5300 3 50 ~ 0
+GND
+
+Text Label 6900 5100 1 50 ~ 0
++5V_SERVO_C
+
+Text Label 6900 5300 3 50 ~ 0
+GND
+
+Text Label 8000 4150 2 50 ~ 0
++5V_SERVO_A
+
+Text Label 8000 4250 2 50 ~ 0
+GND
+
+Text Label 8000 4650 2 50 ~ 0
++5V_SERVO_B
+
+Text Label 8000 4750 2 50 ~ 0
+GND
+
+Text Label 8000 5150 2 50 ~ 0
++5V_SERVO_C
+
+Text Label 8000 5250 2 50 ~ 0
+GND
+
+$Comp
+L Connector_Generic:Conn_01x03 J40_PWR
+U 1 1 2000002C
+P 10100 2900
+F 0 "J40_PWR" H 10180 2942 50 0000 L CNN
+F 1 "RADXA_PWR_INTERFACE" H 10180 2851 50 0000 L CNN
+F 2 "" H 10100 2900 50 0001 C CNN
+	1    10100 2900
+	1 0 0 -1
+$EndComp
+
+Text Label 9900 2800 2 50 ~ 0
++5V_RADXA
+Text Label 9900 2900 2 50 ~ 0
++5V_RADXA
+Text Label 9900 3000 2 50 ~ 0
+GND
+
+Text Notes 900 5800 0 50 ~ 0
+Critical topology: XT60 -> 20A fuse -> LM74700 + BSC009 ideal-diode path -> +5V_SYS.
+Text Notes 900 5950 0 50 ~ 0
++5V_SYS fans out to three servo branches and TPS259470A protected +5V_RADXA host branch.
+Text Notes 900 6100 0 50 ~ 0
+Branch links shown as 0R schematic elements represent high-current configurable copper links; PCB implementation must use pours/appropriate jumpers, not ordinary 2512 resistors at full current.
+Text Notes 900 6250 0 50 ~ 0
+TVS final clamp choice, test points, exact connector footprints, and real KiCad ERC/DRC remain release blockers.
+$EndSCHEMATC
