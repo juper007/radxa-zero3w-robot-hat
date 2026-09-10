@@ -7,7 +7,7 @@
   (title_block
     (title "Radxa ZERO 3W Robot HAT - Dynamixel TTL V1")
     (date "2026-09-09")
-    (rev "v0.9-dev")
+    (rev "v0.12-dev")
     (company "juper007 / DIY")
     (comment 1 "DESIGN DRAFT - NOT FABRICATION READY")
     (comment 2 "Derived/informed by Pollen Robotics elec_RPI_Robot_HAT, Apache-2.0; modified for Radxa ZERO 3W")
@@ -18,49 +18,54 @@
     (at 20.32 20.32 0)
     (effects (font (size 2.54 2.54) (thickness 0.4)) (justify left bottom))
   )
-  (text "TX recovered: Radxa pin 8 UART2_TX_M0 -> U7 SN74LVC1G126 A -> U7 Y -> DXL_DATA"
+  (text "TX: Radxa pin 8 UART2_TX -> U7 SN74LVC1G126 -> DXL_LOCAL -> R33 150R -> DXL_DATA"
     (exclude_from_sim no)
     (at 20.32 31.75 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
   )
-  (text "RX recovered: DXL_DATA -> U6 SN74LVC1G125 A -> U6 Y -> U5 74LVC1G08 -> Radxa pin 10 UART2_RX_M0"
+  (text "RX: DXL_LOCAL -> U6 SN74LVC1G125 -> U5 74LVC1G08 -> Radxa pin 10 UART2_RX"
     (exclude_from_sim no)
     (at 20.32 38.1 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
   )
-  (text "U5 combines TTL RX and optional RS-485 RX; when RS-485 is DNP its U5 input must be held idle-high"
+  (text "AUTO-DIR: +3V3--R26 10k--UART2_TX sense--R27 10k--Q1 base; Q1 emitter=+3V3; collector=Dynamixel_dir; R28 20k to GND"
     (exclude_from_sim no)
     (at 20.32 47.0 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
   )
-  (text "U6 OE is active-low; U7 OE is active-high. Exact upstream automatic-OE network is the remaining critical recovery item."
+  (text "Dynamixel_dir LOW = RX: U7 disabled/U6 enabled. HIGH = TX: U7 enabled/U6 disabled."
     (exclude_from_sim no)
     (at 20.32 53.35 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
   )
-  (text "One DXL_DATA bus -> branch A/B/C + current MicroDuck imu_to_dxl node; branch power rails remain separated"
+  (text "UART TX idle-high turns Q1 off and R28 defaults direction LOW; TX low automatically enables transmit path."
     (exclude_from_sim no)
     (at 20.32 59.7 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
   )
-  (text "RS-485/SIT3088E remains optional DNP for core XL330 V1"
+  (text "U5 combines TTL RX and optional RS-485 RX; RS-485 remains DNP in core XL330 V1 and its unused U5 input must be deterministic idle-high."
     (exclude_from_sim no)
     (at 20.32 66.05 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
   )
-  (text "IMPORTANT: this remains a structured source contract, not an electrically populated KiCad sheet. Do not fabricate."
+  (text "One DXL_DATA bus -> branch A/B/C + imu_to_dxl; branch power rails stay separated."
     (exclude_from_sim no)
-    (at 20.32 77.47 0)
-    (effects (font (size 1.27 1.27) (thickness 0.25)) (justify left bottom))
-  )
-  (text "Authoritative interim connectivity: dynamixel_v1_connectivity.csv"
-    (exclude_from_sim no)
-    (at 20.32 86.36 0)
+    (at 20.32 72.4 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
   )
-  (text "Upstream recovery notes: ../../docs/06A_DYNAMIXEL_UPSTREAM_TOPOLOGY.md"
+  (text "IMPORTANT: structured electrical contract only; symbols/wires and real KiCad ERC are still pending. DO NOT FABRICATE."
+    (exclude_from_sim no)
+    (at 20.32 83.82 0)
+    (effects (font (size 1.27 1.27) (thickness 0.25)) (justify left bottom))
+  )
+  (text "Authoritative connectivity: dynamixel_v1_connectivity.csv"
     (exclude_from_sim no)
     (at 20.32 92.71 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Recovery details: ../../docs/06A_DYNAMIXEL_UPSTREAM_TOPOLOGY.md"
+    (exclude_from_sim no)
+    (at 20.32 99.06 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
   )
   (sheet_instances
