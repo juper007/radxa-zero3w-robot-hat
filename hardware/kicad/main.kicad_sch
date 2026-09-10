@@ -1,0 +1,55 @@
+(kicad_sch
+  (version 20250114)
+  (generator "eeschema")
+  (generator_version "9.0")
+  (uuid 6f415bd0-2f06-47c2-9001-e2b73cb7f3f7)
+  (paper "A3" landscape)
+  (title_block
+    (title "Radxa ZERO 3W Robot HAT - Top Level V1")
+    (date "2026-09-09")
+    (rev "v0.10-dev")
+    (company "juper007 / DIY")
+    (comment 1 "DESIGN DRAFT - NOT FABRICATION READY")
+    (comment 2 "Subsheet contracts: power / dynamixel / sensors / audio")
+  )
+  (lib_symbols)
+  (text "TOP LEVEL V1 - INTEGRATION CONTRACT"
+    (exclude_from_sim no)
+    (at 20.32 20.32 0)
+    (effects (font (size 2.54 2.54) (thickness 0.4)) (justify left bottom))
+  )
+  (text "POWER: +5V_IN -> fuse -> LM74700/Q1 -> +5V_SYS -> servo branches + TPS259470A -> +5V_RADXA"
+    (exclude_from_sim no)
+    (at 20.32 31.75 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "DYNAMIXEL: pin8 UART2_TX -> U7 -> DXL_DATA -> U6/U5 -> pin10 UART2_RX"
+    (exclude_from_sim no)
+    (at 20.32 38.1 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "SENSORS: pin3/5 I2C3 -> Qwiic + optional BMI088; primary IMU remains imu_to_dxl on DXL_DATA"
+    (exclude_from_sim no)
+    (at 20.32 44.45 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "AUDIO: I2C3 control + I2S3 pins 12/35/38/40 -> TLV320AIC3104 -> MEMS mic / PAM8406D speaker path"
+    (exclude_from_sim no)
+    (at 20.32 50.8 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Authoritative interface contract: top_level_v1_connectivity.csv"
+    (exclude_from_sim no)
+    (at 20.32 63.5 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Next conversion: replace text contract with hierarchical sheets, sheet pins, J40 header and physical net wiring."
+    (exclude_from_sim no)
+    (at 20.32 72.39 0)
+    (effects (font (size 1.27 1.27) (thickness 0.25)) (justify left bottom))
+  )
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+  (embedded_fonts no)
+)
