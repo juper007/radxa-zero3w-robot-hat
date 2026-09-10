@@ -4,12 +4,16 @@ on:
   push:
     paths:
       - 'hardware/kicad/dynamixel_v1_connectivity.csv'
+      - 'hardware/kicad/dynamixel_v15_import.sch'
       - 'hardware/kicad/check_dynamixel_design.py'
+      - 'hardware/kicad/check_dynamixel_import_schematic.py'
       - '.github/workflows/dynamixel-design-check.yml'
   pull_request:
     paths:
       - 'hardware/kicad/dynamixel_v1_connectivity.csv'
+      - 'hardware/kicad/dynamixel_v15_import.sch'
       - 'hardware/kicad/check_dynamixel_design.py'
+      - 'hardware/kicad/check_dynamixel_import_schematic.py'
 
 jobs:
   connectivity-check:
@@ -21,3 +25,5 @@ jobs:
           python-version: '3.12'
       - name: Validate Dynamixel connectivity invariants
         run: python hardware/kicad/check_dynamixel_design.py
+      - name: Validate populated import schematic structure
+        run: python hardware/kicad/check_dynamixel_import_schematic.py
