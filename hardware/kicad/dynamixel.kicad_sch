@@ -1,0 +1,65 @@
+(kicad_sch
+  (version 20250114)
+  (generator "eeschema")
+  (generator_version "9.0")
+  (uuid 4fdce114-33f7-4d85-9414-cc650957844b)
+  (paper "A4")
+  (title_block
+    (title "Radxa ZERO 3W Robot HAT - Dynamixel TTL V1")
+    (date "2026-09-09")
+    (rev "v0.8-dev")
+    (company "juper007 / DIY")
+    (comment 1 "DESIGN DRAFT - NOT FABRICATION READY")
+    (comment 2 "Derived/informed by Pollen Robotics elec_RPI_Robot_HAT, Apache-2.0; modified for Radxa ZERO 3W")
+  )
+  (lib_symbols)
+  (text "DYNAMIXEL TTL V1 - KICAD IMPLEMENTATION CONTRACT"
+    (exclude_from_sim no)
+    (at 20.32 20.32 0)
+    (effects (font (size 2.54 2.54) (thickness 0.4)) (justify left bottom))
+  )
+  (text "Radxa pin 8 UART2_TX_M0 -> upstream-derived U5/U6 direction/TX logic -> DXL_DATA"
+    (exclude_from_sim no)
+    (at 20.32 31.75 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "DXL_DATA -> upstream-derived U7 receive logic -> Radxa pin 10 UART2_RX_M0"
+    (exclude_from_sim no)
+    (at 20.32 38.1 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "U5=74LVC1G08; U6=SN74LVC1G125DBV; U7=SN74LVC1G126DBVR; powered from Radxa +3V3"
+    (exclude_from_sim no)
+    (at 20.32 47.0 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "One DXL_DATA bus -> branch A/B/C + imu_to_dxl ID200; branch power rails remain separated"
+    (exclude_from_sim no)
+    (at 20.32 53.35 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "RS-485/SIT3088E is optional DNP for core XL330 V1"
+    (exclude_from_sim no)
+    (at 20.32 59.7 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "IMPORTANT: exact U5/U6/U7 Boolean/wire translation from upstream is still being recovered; do not fabricate."
+    (exclude_from_sim no)
+    (at 20.32 71.12 0)
+    (effects (font (size 1.27 1.27) (thickness 0.25)) (justify left bottom))
+  )
+  (text "Authoritative interim connectivity: dynamixel_v1_connectivity.csv"
+    (exclude_from_sim no)
+    (at 20.32 80.01 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Upstream recovery notes: ../../docs/06A_DYNAMIXEL_UPSTREAM_TOPOLOGY.md"
+    (exclude_from_sim no)
+    (at 20.32 86.36 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+  (embedded_fonts no)
+)
