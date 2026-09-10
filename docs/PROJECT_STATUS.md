@@ -4,7 +4,7 @@ Last updated: 2026-09-09
 
 ## Current phase
 
-**Phase 1 power implementation + Phase 2 Dynamixel TTL recovery + Phase 3 sensors + Phase 4 audio/top-level integration**
+**Phase 1 power implementation + Phase 2 Dynamixel TTL implementation + Phase 3 sensors + Phase 4 audio/top-level integration**
 
 ## Completed
 
@@ -19,7 +19,7 @@ Last updated: 2026-09-09
 - [x] TPS25947 first-pass ILIM/dVdt/OVLO values frozen
 - [x] Critical power-device package pin maps independently checked
 - [x] Q1 ideal-diode source/drain orientation corrected
-- [x] BSC009NE2LS5I exact package variant corrected from erroneous PG-TDSON-8-46 to product-specific PG-TDSON-8-7
+- [x] BSC009NE2LS5I package review corrected away from erroneous PG-TDSON-8-46 assumption; product-specific land pattern remains gated pending final manufacturer drawing transcription
 - [x] TPS25947 RPW footprint transcription + geometry regression checker added
 - [x] Project-local power symbol library added
 - [x] Automated power connectivity checker added and CI passed
@@ -29,8 +29,11 @@ Last updated: 2026-09-09
 - [x] U6/U7 OE pins proven to share `Dynamixel_dir`
 - [x] Complementary OE truth table proven: dir=0 RX, dir=1 TX
 - [x] R33 = 150 ohm proven inline between `DXL_LOCAL` and external `DXL_DATA`
-- [x] Direction-generator devices identified: Q1 MMBT3906, R26 10k, R27 10k, R28 20k
+- [x] Q1/R26/R27/R28 automatic direction generator fully recovered
+- [x] Direction behavior locked: UART TX idle-high -> receive; TX-low -> transmit-low
 - [x] DYNAMIXEL connectivity contract/checker/BOM synchronized with recovered topology
+- [x] DYNAMIXEL direction-regression GitHub Actions check passed
+- [x] Electrically explicit DYNAMIXEL implementation specification added
 - [x] Current MicroDuck `/dev/ttyS2` 1 Mbps + imu_to_dxl architecture incorporated
 - [x] BMI088 reclassified optional/DNP
 - [x] Sensor/I2C architecture, connectivity checker, CI and KiCad skeleton created
@@ -51,6 +54,7 @@ Last updated: 2026-09-09
 - DYNAMIXEL: `/dev/ttyS2`, 1 Mbps, Protocol V2
 - DYNAMIXEL population: 15 XL330 + imu_to_dxl
 - DXL direction: `Dynamixel_dir=0` receive; `Dynamixel_dir=1` transmit
+- DXL automatic direction: Q1 MMBT3906 + R26 10k + R27 10k + R28 20k
 - DXL external series resistor: R33 = 150 ohm
 - I2C3: pins 3/5, 3.3 V, 400 kHz target
 - I2S3: pins 12 BCLK, 35 LRCLK, 38 SDI, 40 SDO
@@ -59,10 +63,10 @@ Last updated: 2026-09-09
 ## Current implementation state
 
 ### Power
-Electrical topology and first-pass values are frozen. TPS25947 RPW footprint exists and is regression-checked. A critical footprint-review error was caught: the exact BSC009NE2LS5I ordering code uses **PG-TDSON-8-7**, not the previously documented -46 variant. Its product-specific copper/stencil land pattern still must be transcribed and independently reviewed. `power.kicad_sch` is still a source skeleton rather than a final wired/ERC-checked sheet.
+Electrical topology and first-pass values are frozen. TPS25947 RPW footprint exists and is regression-checked. The BSC009 package/land-pattern choice is still under manufacturer-drawing verification and remains a fabrication blocker. `power.kicad_sch` is still a source skeleton rather than a final wired/ERC-checked sheet.
 
 ### DYNAMIXEL
-The core half-duplex structure is now substantially recovered. `UART2_TX -> U7 -> DXL_LOCAL`, U6 receives from `DXL_LOCAL`, and R33=150R connects `DXL_LOCAL -> DXL_DATA`. U6 and U7 share `Dynamixel_dir`; opposite OE polarities create complementary receive/transmit mode. The remaining critical upstream recovery is how Q1 MMBT3906 + R26/R27/R28 generate `Dynamixel_dir`, plus final optional RS-485 input bias behavior at U5.
+The TTL half-duplex architecture and automatic direction circuit are now source-recovered and CI-locked. The implementation contract is complete enough to instantiate the real KiCad sheet. Remaining items are optional RS-485/U5 idle-high handling, physical connector orientation, actual symbol/wire instantiation and KiCad ERC.
 
 ### Sensors
 Primary current-MicroDuck IMU is external `imu_to_dxl` on DXL_DATA. BMI088 remains optional/DNP. I2C3/Qwiic contracts and CI exist; actual KiCad wiring remains to be populated.
@@ -75,10 +79,9 @@ Cross-sheet interface invariants exist. `main.kicad_sch` still needs conversion 
 
 ## In progress
 
-- [ ] Finish Q1/R26/R27/R28 `Dynamixel_dir` generator net recovery
 - [ ] Confirm U5 optional-RS485 receive input and DNP-safe idle-high bias
 - [ ] Convert DYNAMIXEL skeleton to electrically populated KiCad sheet
-- [ ] Transcribe exact BSC009 PG-TDSON-8-7 manufacturer land pattern and add CI checks
+- [ ] Transcribe exact BSC009 manufacturer land pattern and add CI checks
 - [ ] Populate electrically wired `power.kicad_sch`
 - [ ] Recover exact TLV320AIC3104/PAM8406D/MEMS passive network
 - [ ] Convert sensors/audio skeletons to electrically populated sheets
@@ -89,9 +92,9 @@ Cross-sheet interface invariants exist. `main.kicad_sch` still needs conversion 
 
 ## Immediate execution order
 
-1. Finish `Dynamixel_dir` generator source-net recovery.
+1. Resolve U5 optional RS-485/DNP-safe idle-high behavior.
 2. Convert DYNAMIXEL sheet to actual symbols/wires.
-3. Build exact BSC009 PG-TDSON-8-7 footprint and extend geometry CI.
+3. Build and independently verify the exact BSC009 manufacturer land pattern; extend geometry CI.
 4. Convert power sheet to actual symbols/wires.
 5. Recover and wire audio reference circuit.
 6. Wire I2C/Qwiic optional-sensor sheet.
@@ -104,10 +107,10 @@ Cross-sheet interface invariants exist. `main.kicad_sch` still needs conversion 
 
 ## Fabrication blockers
 
-- BSC009 exact PG-TDSON-8-7 footprint not yet transcribed/independently checked
+- BSC009 product-specific footprint not yet independently checked
 - power electrical KiCad wiring/ERC incomplete
-- `Dynamixel_dir` generator wiring recovery incomplete
 - DYNAMIXEL electrical KiCad wiring incomplete
+- U5 optional RS-485 DNP-safe input handling not frozen
 - audio analog/power/passive recovery incomplete
 - top-level hierarchical integration incomplete
 - PCB placement/routing incomplete
@@ -116,4 +119,4 @@ Cross-sheet interface invariants exist. `main.kicad_sch` still needs conversion 
 
 ## Current release status
 
-`v0.11-dev` — critical BSC009 package correction completed; DYNAMIXEL complementary OE truth table and R33 series placement are now source-verified and CI-locked. **Not fabrication-ready.**
+`v0.12-dev` — the full Q1/R26/R27/R28 DYNAMIXEL automatic-direction generator is now source-recovered, documented, BOM-synchronized and CI-locked; an electrically explicit KiCad implementation specification is present. **Not fabrication-ready.**
