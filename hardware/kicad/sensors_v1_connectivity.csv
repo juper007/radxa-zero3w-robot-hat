@@ -1,0 +1,19 @@
+RefDes,Type,Pin/Node,Connects_To,Status,Notes
+J40,Radxa 40-pin,pin3,I2C3_SDA,VERIFIED,MicroDuck-style overlay remuxes physical pin 3 to I2C3 SDA M0
+J40,Radxa 40-pin,pin5,I2C3_SCL,VERIFIED,MicroDuck-style overlay remuxes physical pin 5 to I2C3 SCL M0
+J40,Radxa 40-pin,pin17,+3V3,VERIFIED,3.3 V logic/expansion supply from host
+R_I2C_SDA,Pull-up,1,+3V3,REQUIRED,Only one intentional pull-up pair on physical I2C3 bus
+R_I2C_SDA,Pull-up,2,I2C3_SDA,REQUIRED,Initial target 10k to match reference MicroDuck overlay/hardware convention
+R_I2C_SCL,Pull-up,1,+3V3,REQUIRED,
+R_I2C_SCL,Pull-up,2,I2C3_SCL,REQUIRED,Initial target 10k
+J_QWIIC,I2C expansion,pin1,GND,PROVISIONAL,Exact connector family/orientation to freeze during mechanical layout
+J_QWIIC,I2C expansion,pin2,+3V3,PROVISIONAL,3.3 V only
+J_QWIIC,I2C expansion,pin3,I2C3_SDA,PROVISIONAL,
+J_QWIIC,I2C expansion,pin4,I2C3_SCL,PROVISIONAL,
+U_BMI088,Optional BMI088,VDD,+3V3,DNP_OPTIONAL,Legacy/reference HAT compatibility only; not required by current MicroDuck control loop
+U_BMI088,Optional BMI088,GND,GND,DNP_OPTIONAL,
+U_BMI088,Optional BMI088,SDA,I2C3_SDA,DNP_OPTIONAL,
+U_BMI088,Optional BMI088,SCL,I2C3_SCL,DNP_OPTIONAL,
+J_IMU_DXL,Primary current MicroDuck IMU,pin1,GND,REQUIRED_CURRENT_SW,Physical connector lives on Dynamixel sheet
+J_IMU_DXL,Primary current MicroDuck IMU,pin2,+5V_SERVO_A,PROVISIONAL,Final power branch may change after connector placement
+J_IMU_DXL,Primary current MicroDuck IMU,pin3,DXL_DATA,REQUIRED_CURRENT_SW,imu_to_dxl shares same bus as 15 XL330 servos
