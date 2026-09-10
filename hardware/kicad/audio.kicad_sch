@@ -1,0 +1,55 @@
+(kicad_sch
+  (version 20250114)
+  (generator "eeschema")
+  (generator_version "9.0")
+  (uuid 8f8c531b-65e7-4e94-9d09-ae68ac2cf5c2)
+  (paper "A4")
+  (title_block
+    (title "Radxa ZERO 3W Robot HAT - Audio V1")
+    (date "2026-09-09")
+    (rev "v0.10-dev")
+    (company "juper007 / DIY")
+    (comment 1 "DESIGN DRAFT - NOT FABRICATION READY")
+    (comment 2 "Reference architecture: TLV320AIC3104 + PAM8406D + MEMS mic + 12 MHz clock option")
+  )
+  (lib_symbols)
+  (text "AUDIO V1 - IMPLEMENTATION CONTRACT"
+    (exclude_from_sim no)
+    (at 20.32 20.32 0)
+    (effects (font (size 2.54 2.54) (thickness 0.4)) (justify left bottom))
+  )
+  (text "I2C3 pins 3/5 -> codec control; I2S3 pins 12/35/38/40 -> BCLK/LRCLK/SDI/SDO"
+    (exclude_from_sim no)
+    (at 20.32 31.75 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "TLV320AIC3104 digital audio <-> MEMS microphone / codec analog path"
+    (exclude_from_sim no)
+    (at 20.32 38.1 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Codec output -> PAM8406D -> speaker connector; amplifier supply initially +5V_SYS"
+    (exclude_from_sim no)
+    (at 20.32 44.45 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Explicit 12 MHz CODEC_MCLK option retained until final Radxa audio overlay/clocking verification"
+    (exclude_from_sim no)
+    (at 20.32 50.8 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Authoritative interim connectivity: audio_v1_connectivity.csv"
+    (exclude_from_sim no)
+    (at 20.32 63.5 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Exact upstream codec/amp/mic passive network still requires recovery before REVIEW."
+    (exclude_from_sim no)
+    (at 20.32 72.39 0)
+    (effects (font (size 1.27 1.27) (thickness 0.25)) (justify left bottom))
+  )
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+  (embedded_fonts no)
+)
