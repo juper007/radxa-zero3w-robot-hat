@@ -1,0 +1,23 @@
+name: Footprint geometry sanity check
+
+on:
+  push:
+    paths:
+      - 'hardware/libraries/RadxaRobotHat.pretty/**'
+      - 'hardware/kicad/check_footprints.py'
+      - '.github/workflows/footprint-check.yml'
+  pull_request:
+    paths:
+      - 'hardware/libraries/RadxaRobotHat.pretty/**'
+      - 'hardware/kicad/check_footprints.py'
+
+jobs:
+  footprint-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate critical footprint geometry
+        run: python hardware/kicad/check_footprints.py
