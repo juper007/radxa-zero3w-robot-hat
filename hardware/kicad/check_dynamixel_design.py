@@ -23,7 +23,24 @@ for u in ("U5", "U6", "U7"):
     require(u, "VCC", "+3V3")
     require(u, "GND", "GND")
 
-# All V1 TTL branches must share one DATA net while retaining independent power rails.
+# Recovered upstream TTL signal direction:
+# UART TX -> U7(1G126) -> DXL_DATA -> U6(1G125) -> U5 receive combiner -> UART RX.
+require("U7", "A", "UART2_TX")
+require("U7", "Y", "DXL_DATA")
+require("U6", "A", "DXL_DATA")
+require("U6", "Y", "TTL_RX_OUT")
+require("U5", "A", "TTL_RX_OUT")
+require("U5", "Y", "UART2_RX")
+
+# OE polarity remains an explicit recovery item; don't silently call it verified.
+u6oe = index.get(("U6", "OE"))
+u7oe = index.get(("U7", "OE"))
+if u6oe is None or u6oe.get("Status") not in {"RECOVERING", "UPSTREAM_RECOVERED", "VERIFIED"}:
+    errors.append("U6.OE recovery state missing")
+if u7oe is None or u7oe.get("Status") not in {"RECOVERING", "UPSTREAM_RECOVERED", "VERIFIED"}:
+    errors.append("U7.OE recovery state missing")
+
+# All V1 TTL branches share one DATA net while retaining independent power rails.
 for ref, rail in (("J_DXL_A", "+5V_SERVO_A"), ("J_DXL_B", "+5V_SERVO_B"), ("J_DXL_C", "+5V_SERVO_C")):
     require(ref, "pin1", "GND")
     require(ref, "pin2", rail)
@@ -44,6 +61,6 @@ if errors:
         print(" -", e)
     raise SystemExit(1)
 
-recovering = [r for r in rows if r["Status"] in {"RECOVERING", "TO_VERIFY", "PROVISIONAL", "SELECTING"}]
+open_items = [r for r in rows if r["Status"] in {"RECOVERING", "TO_VERIFY", "PROVISIONAL", "SELECTING"}]
 print("DYNAMIXEL DESIGN CHECK: PASS (connectivity invariants)")
-print(f"Validated {len(rows)} rows; {len(recovering)} rows still require design freeze/review")
+print(f"Validated {len(rows)} rows; {len(open_items)} rows still require design freeze/review")
