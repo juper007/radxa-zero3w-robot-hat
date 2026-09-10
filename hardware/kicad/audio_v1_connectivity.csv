@@ -1,0 +1,21 @@
+RefDes,Type,Pin/Node,Connects_To,Status,Notes
+J40,Radxa 40-pin,pin3,I2C3_SDA,VERIFIED,Codec control SDA
+J40,Radxa 40-pin,pin5,I2C3_SCL,VERIFIED,Codec control SCL
+J40,Radxa 40-pin,pin12,I2S3_BCLK,VERIFIED,Audio bit clock
+J40,Radxa 40-pin,pin35,I2S3_LRCLK,VERIFIED,Audio frame/LR clock
+J40,Radxa 40-pin,pin38,I2S3_SDI,VERIFIED,Audio data into host
+J40,Radxa 40-pin,pin40,I2S3_SDO,VERIFIED,Audio data out from host
+U_AUDIO,TLV320AIC3104,CTRL_SDA,I2C3_SDA,REQUIRED,Exact package pin number to recover from upstream/audio datasheet
+U_AUDIO,TLV320AIC3104,CTRL_SCL,I2C3_SCL,REQUIRED,
+U_AUDIO,TLV320AIC3104,BCLK,I2S3_BCLK,REQUIRED,
+U_AUDIO,TLV320AIC3104,WCLK,I2S3_LRCLK,REQUIRED,
+U_AUDIO,TLV320AIC3104,DOUT,I2S3_SDI,REQUIRED,Codec ADC data toward Radxa
+U_AUDIO,TLV320AIC3104,DIN,I2S3_SDO,REQUIRED,Radxa playback data toward codec
+Y_AUDIO,12MHz oscillator,OUT,CODEC_MCLK,UPSTREAM_VERIFIED,Keep explicit clock option until Radxa overlay validated
+U_AUDIO,TLV320AIC3104,MCLK,CODEC_MCLK,RECOVERING,Exact upstream pin and clock mode to verify
+MK1,MEMS microphone,OUT,CODEC_MIC_IN,RECOVERING,Use recovered upstream microphone circuit; exact part/pins pending
+U_AUDIO,TLV320AIC3104,MIC_INPUT,CODEC_MIC_IN,RECOVERING,Exact input pin and bias network pending
+U_AMP,PAM8406D,IN,CODEC_SPK_PREAMP,UPSTREAM_VERIFIED,Exact upstream analog network pending
+U_AUDIO,TLV320AIC3104,SPK_OUT,CODEC_SPK_PREAMP,RECOVERING,Exact codec output pins/network pending
+U_AMP,PAM8406D,VCC,+5V_SYS,PROVISIONAL,Noise/filter network must be reviewed before freeze
+J_SPK,Speaker connector,OUT,U_AMP_BTL_OUT,REQUIRED,Exact connector and pin polarity to freeze during mechanical design
