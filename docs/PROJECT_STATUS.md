@@ -4,7 +4,7 @@ Last updated: 2026-09-09
 
 ## Current phase
 
-**Phase 1 power implementation + Phase 2 Dynamixel TTL recovery + Phase 3 sensors + Phase 4 audio/top-level integration started**
+**Phase 1 power implementation + Phase 2 Dynamixel TTL recovery + Phase 3 sensors + Phase 4 audio/top-level integration**
 
 ## Completed
 
@@ -18,109 +18,97 @@ Last updated: 2026-09-09
 - [x] Radxa branch selected: TPS259470ARPWR
 - [x] TPS25947 first-pass ILIM/dVdt/OVLO values frozen
 - [x] Critical power-device package pin maps independently checked
-- [x] Earlier Q1 source/drain orientation error corrected
+- [x] Q1 ideal-diode source/drain orientation corrected
+- [x] BSC009NE2LS5I exact package variant corrected from erroneous PG-TDSON-8-46 to product-specific PG-TDSON-8-7
+- [x] TPS25947 RPW footprint transcription + geometry regression checker added
 - [x] Project-local power symbol library added
-- [x] Automated power connectivity checker added and GitHub Actions run passed
-- [x] Stale 5–28 V/buck POWER_SHEET_SPEC replaced with current 5 V design
-- [x] Power BOM synchronized with frozen V1 parts/values
-- [x] Power footprint verification gate created
-- [x] Upstream Pollen DYNAMIXEL logic devices/BOM recovered
-- [x] Radxa UART2 physical mapping fixed to pins 8/10
-- [x] Current MicroDuck `/dev/ttyS2` 1 Mbps bus architecture confirmed
-- [x] Current MicroDuck IMU architecture aligned to imu_to_dxl on DYNAMIXEL bus
-- [x] On-HAT BMI088 reclassified as optional/compatibility hardware
-- [x] DYNAMIXEL V1 connectivity contract and CI checker created
-- [x] DYNAMIXEL TX/RX role correction recovered from upstream: U7 TX, U6 RX, U5 receive combiner
-- [x] Sensor architecture document created
-- [x] Sensor/I2C connectivity contract created
-- [x] Sensor architecture sanity checker + GitHub Actions workflow created
-- [x] `hardware/kicad/sensors.kicad_sch` implementation skeleton created
-- [x] Audio architecture document created
-- [x] Audio connectivity contract created
-- [x] Audio architecture sanity checker + GitHub Actions workflow created
-- [x] `hardware/kicad/audio.kicad_sch` implementation skeleton created
-- [x] Top-level integration connectivity contract created
-- [x] Top-level integration checker + GitHub Actions workflow created
-- [x] `hardware/kicad/main.kicad_sch` top-level implementation skeleton created
-- [x] Upstream Apache-2.0 derivative/attribution requirements documented
-- [x] Top-level README synchronized with current V1 architecture
+- [x] Automated power connectivity checker added and CI passed
+- [x] Stale 5–28 V/buck POWER_SHEET_SPEC replaced with regulated-5-V architecture
+- [x] Power BOM synchronized with V1 parts/values
+- [x] Upstream Pollen DYNAMIXEL TX/RX topology recovered: U7 TX, U6 RX, U5 receive combiner
+- [x] U6/U7 OE pins proven to share `Dynamixel_dir`
+- [x] Complementary OE truth table proven: dir=0 RX, dir=1 TX
+- [x] R33 = 150 ohm proven inline between `DXL_LOCAL` and external `DXL_DATA`
+- [x] Direction-generator devices identified: Q1 MMBT3906, R26 10k, R27 10k, R28 20k
+- [x] DYNAMIXEL connectivity contract/checker/BOM synchronized with recovered topology
+- [x] Current MicroDuck `/dev/ttyS2` 1 Mbps + imu_to_dxl architecture incorporated
+- [x] BMI088 reclassified optional/DNP
+- [x] Sensor/I2C architecture, connectivity checker, CI and KiCad skeleton created
+- [x] Audio architecture, connectivity checker, CI and KiCad skeleton created
+- [x] Top-level integration contract/checker/CI and KiCad skeleton created
+- [x] Upstream Apache-2.0 attribution requirements documented
 
 ## Key electrical / interface targets
 
 - XL330 supply: regulated 5 V
-- XL330 stall current at 5 V: ~1.47 A each
+- XL330 stall current: ~1.47 A each at 5 V
 - 15-servo theoretical simultaneous stall: ~22.05 A
 - 5-servo branch theoretical stall: ~7.35 A
-- Radxa/audio/logic branch target: ~4 A
 - development supply: regulated 5 V, 15–20 A class
 - TPS259470A host current-limit target: ~4.05 A calculated typical
 - host startup ramp target: ~9.75 ms
 - host OVLO target: ~5.69 V nominal
 - DYNAMIXEL: `/dev/ttyS2`, 1 Mbps, Protocol V2
 - DYNAMIXEL population: 15 XL330 + imu_to_dxl
-- I2C3: pins 3/5, 3.3 V, 400 kHz design target
+- DXL direction: `Dynamixel_dir=0` receive; `Dynamixel_dir=1` transmit
+- DXL external series resistor: R33 = 150 ohm
+- I2C3: pins 3/5, 3.3 V, 400 kHz target
 - I2S3: pins 12 BCLK, 35 LRCLK, 38 SDI, 40 SDO
-- Audio reference codec: TLV320AIC3104IRHBR
-- Audio reference amplifier: PAM8406D
-- Explicit codec 12 MHz MCLK option retained pending final overlay/clock validation
+- Audio: TLV320AIC3104IRHBR + PAM8406D + MEMS mic, 12 MHz MCLK option retained
 
 ## Current implementation state
 
 ### Power
-Architecture, component choices, values and connectivity contracts are frozen at first-pass level. Exact TPS25947 RPW and BSC009 SuperSO8 manufacturer land patterns remain fabrication blockers. `power.kicad_sch` is still a structured source skeleton rather than a fully wired/ERC-checked sheet.
+Electrical topology and first-pass values are frozen. TPS25947 RPW footprint exists and is regression-checked. A critical footprint-review error was caught: the exact BSC009NE2LS5I ordering code uses **PG-TDSON-8-7**, not the previously documented -46 variant. Its product-specific copper/stencil land pattern still must be transcribed and independently reviewed. `power.kicad_sch` is still a source skeleton rather than a final wired/ERC-checked sheet.
 
 ### DYNAMIXEL
-Major TX/RX topology is corrected from upstream evidence: `UART2_TX -> U7 SN74LVC1G126 -> DXL_DATA`, and `DXL_DATA -> U6 SN74LVC1G125 -> U5 -> UART2_RX`. Exact U6/U7 OE automatic-direction network and the exact R33 150 ohm placement are still being recovered. The sheet remains DESIGNING until those nets are frozen and electrically wired.
+The core half-duplex structure is now substantially recovered. `UART2_TX -> U7 -> DXL_LOCAL`, U6 receives from `DXL_LOCAL`, and R33=150R connects `DXL_LOCAL -> DXL_DATA`. U6 and U7 share `Dynamixel_dir`; opposite OE polarities create complementary receive/transmit mode. The remaining critical upstream recovery is how Q1 MMBT3906 + R26/R27/R28 generate `Dynamixel_dir`, plus final optional RS-485 input bias behavior at U5.
 
 ### Sensors
-Primary current-MicroDuck IMU is the external `imu_to_dxl` node on DXL_DATA. BMI088 is optional/DNP. A single intentional I2C3 pull-up pair, Qwiic expansion interface, architecture checker, CI workflow and KiCad skeleton now exist.
+Primary current-MicroDuck IMU is external `imu_to_dxl` on DXL_DATA. BMI088 remains optional/DNP. I2C3/Qwiic contracts and CI exist; actual KiCad wiring remains to be populated.
 
 ### Audio
-Reference architecture is frozen at block level around TLV320AIC3104 + PAM8406D + MEMS mic + explicit 12 MHz MCLK option. Radxa I2C3/I2S3 interface nets are contractually frozen. Exact codec power/analog/passive network still needs upstream recovery before the audio sheet can reach REVIEW.
+Block-level architecture and Radxa digital interface are frozen. Exact TLV320AIC3104/PAM8406D/MEMS mic power/analog/passive network still requires upstream recovery.
 
 ### Top level
-`top_level_v1_connectivity.csv` now defines all cross-sheet interface invariants and `main.kicad_sch` exists as the integration skeleton. It still needs conversion to real hierarchical sheets, J40 symbol, sheet pins and net wiring.
+Cross-sheet interface invariants exist. `main.kicad_sch` still needs conversion from implementation contract to real hierarchical sheets, J40 symbol, sheet pins and electrical wiring.
 
 ## In progress
 
-- [ ] Finish exact U6/U7 OE auto-direction network recovery from upstream
-- [ ] Confirm U5 optional-RS485 receive input and DNP-safe idle behavior
-- [ ] Confirm R33 150 ohm exact net placement
-- [ ] Convert Dynamixel skeleton to electrically populated KiCad sheet
-- [ ] Transcribe/check TPS25947 RPW manufacturer land pattern
-- [ ] Transcribe/check BSC009 SuperSO8 manufacturer land pattern
+- [ ] Finish Q1/R26/R27/R28 `Dynamixel_dir` generator net recovery
+- [ ] Confirm U5 optional-RS485 receive input and DNP-safe idle-high bias
+- [ ] Convert DYNAMIXEL skeleton to electrically populated KiCad sheet
+- [ ] Transcribe exact BSC009 PG-TDSON-8-7 manufacturer land pattern and add CI checks
 - [ ] Populate electrically wired `power.kicad_sch`
 - [ ] Recover exact TLV320AIC3104/PAM8406D/MEMS passive network
 - [ ] Convert sensors/audio skeletons to electrically populated sheets
 - [ ] Convert `main.kicad_sch` to real hierarchical integration
 - [ ] Verify/freeze 3-pin XL330/imu_to_dxl connector footprint and polarity
 - [ ] Freeze board outline/header/mounting holes/connector keepouts
-- [ ] Run real KiCad 9 ERC
+- [ ] Run real KiCad 9 ERC/DRC in a capable environment
 
 ## Immediate execution order
 
-1. Finish Dynamixel OE/direction and R33 source-wire recovery.
+1. Finish `Dynamixel_dir` generator source-net recovery.
 2. Convert DYNAMIXEL sheet to actual symbols/wires.
-3. Finish exact high-current power footprints.
+3. Build exact BSC009 PG-TDSON-8-7 footprint and extend geometry CI.
 4. Convert power sheet to actual symbols/wires.
 5. Recover and wire audio reference circuit.
 6. Wire I2C/Qwiic optional-sensor sheet.
-7. Convert top-level skeleton to hierarchical sheet integration.
+7. Convert top-level skeleton to hierarchical integration.
 8. Freeze mechanical outline/header/mounting holes and connector keepouts.
-9. Place high-current input/fuse/MOSFET/servo connector corridor first.
-10. Place Radxa protection, DXL logic, sensor and audio blocks.
-11. Route 4-layer PCB with high-current/ground/audio constraints.
-12. Run KiCad ERC/DRC and resolve every unexplained violation.
-13. Generate Gerber/BOM/PnP only after independent pre-fab review.
+9. Place high-current power corridor first, then Radxa/DXL/sensor/audio blocks.
+10. Route 4-layer PCB with high-current return and audio isolation constraints.
+11. Run KiCad ERC/DRC and resolve every unexplained violation.
+12. Generate Gerber/BOM/PnP only after independent pre-fabrication review.
 
 ## Fabrication blockers
 
-- TPS25947 and BSC009 exact footprints not independently verified
+- BSC009 exact PG-TDSON-8-7 footprint not yet transcribed/independently checked
 - power electrical KiCad wiring/ERC incomplete
-- DYNAMIXEL OE auto-direction network recovery incomplete
+- `Dynamixel_dir` generator wiring recovery incomplete
 - DYNAMIXEL electrical KiCad wiring incomplete
-- audio analog/power/passive network recovery incomplete
-- all current subsystem KiCad files are still implementation skeletons, not ERC-complete circuits
+- audio analog/power/passive recovery incomplete
 - top-level hierarchical integration incomplete
 - PCB placement/routing incomplete
 - mechanical connector interference review incomplete
@@ -128,4 +116,4 @@ Reference architecture is frozen at block level around TLV320AIC3104 + PAM8406D 
 
 ## Current release status
 
-`v0.10-dev` — sensors, audio and top-level interface contracts/CI/KiCad skeletons added; the project is now structurally prepared for full schematic implementation. **Not fabrication-ready.**
+`v0.11-dev` — critical BSC009 package correction completed; DYNAMIXEL complementary OE truth table and R33 series placement are now source-verified and CI-locked. **Not fabrication-ready.**
