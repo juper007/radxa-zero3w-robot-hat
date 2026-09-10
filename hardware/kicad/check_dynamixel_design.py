@@ -8,13 +8,15 @@ rows = list(csv.DictReader(CSV.open(newline="", encoding="utf-8")))
 index = {(r["RefDes"], r["Pin/Node"]): r for r in rows}
 errors = []
 
-def require(ref, pin, target):
+def require(ref, pin, target, status=None):
     row = index.get((ref, pin))
     if row is None:
         errors.append(f"missing {ref}.{pin}")
         return
     if target not in row["Connects_To"]:
         errors.append(f"{ref}.{pin}: expected {target!r} in {row['Connects_To']!r}")
+    if status is not None and row.get("Status") != status:
+        errors.append(f"{ref}.{pin}: expected status {status!r}, got {row.get('Status')!r}")
 
 require("J40", "pin8", "UART2_TX")
 require("J40", "pin10", "UART2_RX")
@@ -23,24 +25,27 @@ for u in ("U5", "U6", "U7"):
     require(u, "VCC", "+3V3")
     require(u, "GND", "GND")
 
-# Recovered upstream TTL signal direction:
-# UART TX -> U7(1G126) -> DXL_DATA -> U6(1G125) -> U5 receive combiner -> UART RX.
+# Recovered upstream TTL signal direction.
 require("U7", "A", "UART2_TX")
-require("U7", "Y", "DXL_DATA")
-require("U6", "A", "DXL_DATA")
+require("U7", "Y", "DXL_LOCAL")
+require("U6", "A", "DXL_LOCAL")
 require("U6", "Y", "TTL_RX_OUT")
 require("U5", "A", "TTL_RX_OUT")
 require("U5", "Y", "UART2_RX")
 
-# OE polarity remains an explicit recovery item; don't silently call it verified.
-u6oe = index.get(("U6", "OE"))
-u7oe = index.get(("U7", "OE"))
-if u6oe is None or u6oe.get("Status") not in {"RECOVERING", "UPSTREAM_RECOVERED", "VERIFIED"}:
-    errors.append("U6.OE recovery state missing")
-if u7oe is None or u7oe.get("Status") not in {"RECOVERING", "UPSTREAM_RECOVERED", "VERIFIED"}:
-    errors.append("U7.OE recovery state missing")
+# Both output-enable pins are on the exact same Dynamixel_dir net. The gate types
+# intentionally make them complementary: 1G126 OE is active-high; 1G125 /OE is active-low.
+require("U6", "OE", "Dynamixel_dir", "UPSTREAM_VERIFIED")
+require("U7", "OE", "Dynamixel_dir", "UPSTREAM_VERIFIED")
+require("DIR", "LOW", "U7_DISABLED/U6_ENABLED", "UPSTREAM_VERIFIED")
+require("DIR", "HIGH", "U7_ENABLED/U6_DISABLED", "UPSTREAM_VERIFIED")
 
-# All V1 TTL branches share one DATA net while retaining independent power rails.
+# Upstream R33 is a verified 150R series element between the local transceiver node and
+# the off-board DXL_DATA network.
+require("R33", "pin1", "DXL_LOCAL", "UPSTREAM_VERIFIED")
+require("R33", "pin2", "DXL_DATA", "UPSTREAM_VERIFIED")
+
+# All V1 TTL branches share one external DATA net while retaining independent power rails.
 for ref, rail in (("J_DXL_A", "+5V_SERVO_A"), ("J_DXL_B", "+5V_SERVO_B"), ("J_DXL_C", "+5V_SERVO_C")):
     require(ref, "pin1", "GND")
     require(ref, "pin2", rail)
