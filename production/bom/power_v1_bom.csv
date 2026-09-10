@@ -1,0 +1,22 @@
+RefDes,Qty,Function,Initial specification,Selection status,Notes
+J1,1,Main power input,"5-28 V, high-current, polarized",SELECTING,"Freeze connector after motor current budget"
+F1,1,Input fuse,"Replaceable fuse, rating TBD",SELECTING,"Prototype should not rely only on PTC"
+Q1/U1,1,Reverse polarity / ideal diode,">=40 V preferred, low-loss",SELECTING,"Must support final continuous motor current"
+D1,1,TVS clamp,"Unidirectional, standoff TBD",SELECTING,"Select after final VIN is frozen"
+C1,1,Motor bulk capacitor,"470 uF low ESR, >=35 V if 28 V retained",PROVISIONAL,"50 V may be preferable after transient test"
+C2,1,Motor bulk capacitor,"100 uF low ESR, voltage margin",PROVISIONAL,"Parallel with main bulk"
+C3,1,Motor rail ceramic,"1 uF, voltage margin",PROVISIONAL,"Close to rail distribution"
+C4,1,Motor rail ceramic,"100 nF, voltage margin",PROVISIONAL,"High-frequency bypass"
+U2,1,5 V synchronous buck,"VIN covers final input range, 5 V / practical >=5 A",SELECTING,"Must include UVLO/current limit/thermal shutdown"
+L1,1,Buck inductor,"Value per U2 reference design; Isat > peak current",TBD,"Select with thermal margin"
+CINx,TBD,Buck input capacitors,"Per U2 datasheet",TBD,"Place at VIN/PGND pins"
+COUTx,TBD,Buck output capacitors,"Per U2 datasheet",TBD,"Verify ripple/transient stability"
+C5,1,Host rail bulk,"220-470 uF low ESR",PROVISIONAL,"Populate if transient testing benefits"
+U3,1,5 V reverse-current protection,"Load switch / ideal diode, optional DNP",SELECTING,"Prototype safety feature for USB-C coexistence"
+R0,1,Protection bypass,"0 ohm configuration option",PROVISIONAL,"Only bypass after backfeed validation"
+TP1,1,VIN test point,"Probe-friendly",PROVISIONAL,
+TP2,1,MOTOR_VBUS test point,"Probe-friendly",PROVISIONAL,
+TP3,1,5V_PRE test point,"Probe-friendly",PROVISIONAL,
+TP4,1,5V_RADXA test point,"Probe-friendly",PROVISIONAL,
+TP5,1,GND test point,"Probe-friendly",PROVISIONAL,
+TP6,1,BUCK_EN test point,"Small signal test pad",PROVISIONAL,
