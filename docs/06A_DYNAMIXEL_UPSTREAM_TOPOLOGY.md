@@ -1,6 +1,6 @@
 # Dynamixel Upstream Topology Recovery
 
-Status: DESIGNING / evidence-backed recovery  
+Status: RECOVERED / implementation pending  
 Date: 2026-09-09
 
 ## Goal
@@ -13,50 +13,48 @@ Recover the proven half-duplex DYNAMIXEL interface from Pollen Robotics' Apache-
 - U6: `SN74LVC1G125DBV`, SOT-23-5 — active-low-OE TTL receive buffer
 - U7: `SN74LVC1G126DBVR`, SOT-23-5 — active-high-OE TTL transmit buffer
 - Q1: `MMBT3906`, SOT-23 — PNP element in automatic direction-generation network
-- R26: 10 kΩ, 0402 — direction network
-- R27: 10 kΩ, 0402 — direction network
-- R28: 20 kΩ, 0402 — direction network
+- R26: 10 kΩ, 0402 — UART TX direction-sense pull-up
+- R27: 10 kΩ, 0402 — Q1 base resistor
+- R28: 20 kΩ, 0402 — `Dynamixel_dir` pull-down
 - R33: 150 Ω, 0402 — verified DXL series resistor
 - U8: `SIT3088E`, MSOP-8-EP — optional RS-485 path
 
 ## Recovered TTL signal direction
 
-The actual upstream TTL flow is:
-
 ```text
-IO_14 / host UART TX
-        |
-        v
- U7 SN74LVC1G126
- active-high OE TX buffer
-        |
-        v
-     DXL_LOCAL
-        |
-      R33 150R
-        |
-        v
-     DXL_DATA ------------------> off-board servos / imu_to_dxl
-        ^
-        |
-     DXL_LOCAL
-        |
- U6 SN74LVC1G125
- active-low OE RX buffer
-        |
-        v
-    TTL_RX_OUT
-        |
-        +----> U5 74LVC1G08 ----> IO_15 / host UART RX
+UART2_TX
+   |
+   v
+U7 SN74LVC1G126
+active-high OE TX buffer
+   |
+   v
+DXL_LOCAL
+   |
+ R33 150R
+   |
+   v
+DXL_DATA ------------------> off-board servos / imu_to_dxl
+   ^
+   |
+DXL_LOCAL
+   |
+U6 SN74LVC1G125
+active-low OE RX buffer
+   |
+   v
+TTL_RX_OUT
+   |
+   +----> U5 74LVC1G08 ----> UART2_RX
                     ^
                     |
               optional RS-485 RX
 ```
 
-The local receive tap is on the transceiver side of R33: U7 output and U6 input share `DXL_LOCAL`, then R33 separates that node from the external DXL_DATA wiring.
+The local receive tap is on the transceiver side of R33: U7 output and U6 input share `DXL_LOCAL`, then R33 separates that node from external `DXL_DATA`.
 
-Therefore on Radxa ZERO 3W:
-- physical pin 8 / UART2_TX_M0 -> U7 A
+Radxa ZERO 3W mapping:
+- physical pin 8 / UART2_TX_M0 -> U7 A and automatic-direction sensing network
 - U7 Y -> DXL_LOCAL
 - DXL_LOCAL -> U6 A
 - DXL_LOCAL -> R33 pin 1
@@ -66,59 +64,78 @@ Therefore on Radxa ZERO 3W:
 
 ## Verified complementary OE control
 
-Source-coordinate tracing proves that U6 pin 1 and U7 pin 1 are on the **same `Dynamixel_dir` net**.
-
-The two buffer types intentionally interpret that same level oppositely:
+U6 pin 1 and U7 pin 1 are on the same `Dynamixel_dir` net.
 
 | Dynamixel_dir | U7 SN74LVC1G126 TX | U6 SN74LVC1G125 RX | Mode |
 |---|---|---|---|
 | 0 | disabled | enabled | receive |
 | 1 | enabled | disabled | transmit |
 
-This removes the need for an inverter between the TX and RX enable controls. It also means tying both OE pins to the same direction net is correct **because** U7 OE is active-high while U6 /OE is active-low.
+The opposite OE polarities intentionally provide complementary TX/RX switching without an extra inverter.
 
-This truth table is now enforced by `hardware/kicad/check_dynamixel_design.py`.
+## Fully recovered automatic direction generator
+
+The upstream circuit derives `Dynamixel_dir` directly from UART TX; no host direction GPIO is required.
+
+```text
+                    +3V3
+                      |
+          +-----------+-----------+
+          |                       |
+       R26 10k                 Q1 emitter
+          |                   MMBT3906 PNP
+          +---- UART2_TX --------- base path
+          |          |
+          |        R27 10k
+          |          |
+          +----------+----> Q1 base
+                              |
+                         Q1 collector
+                              |
+                       Dynamixel_dir
+                              |
+                           R28 20k
+                              |
+                             GND
+```
+
+Electrical interpretation:
+- R26 = 10 kΩ pulls the UART TX direction-sense node toward +3V3.
+- R27 = 10 kΩ limits Q1 base current between UART TX and the PNP base.
+- Q1 emitter is tied to +3V3.
+- Q1 collector drives `Dynamixel_dir`.
+- R28 = 20 kΩ pulls `Dynamixel_dir` to GND when Q1 is off.
+
+### Direction behavior
+
+UART is idle-high. With TX high, Q1 base is approximately at its emitter potential, so Q1 is off and R28 pulls `Dynamixel_dir` low. This selects receive mode: U7 disabled, U6 enabled.
+
+When UART TX goes low, base current flows through R27, Q1 turns on, and its collector raises `Dynamixel_dir`. This enables U7 and disables U6 while the low transmit bit is driven onto DXL_LOCAL/DXL_DATA.
+
+Because UART data is idle-high and the DYNAMIXEL TTL bus is also idle-high, the hardware automatically releases back to receive mode as TX returns high. This preserves the upstream hardware-managed turnaround and avoids software timing dependence on a direction GPIO.
 
 ## Verified R33 placement
 
-R33 is `150R`, footprint 0402, located in the upstream source at schematic coordinate `(201.93, 180.34)` rotated 90 degrees. The generic KiCad `R_Small` symbol has terminals ±2.54 mm from its center; after rotation, R33 endpoints are `(199.39,180.34)` and `(204.47,180.34)`.
+R33 is `150R`, footprint 0402, at upstream schematic coordinate `(201.93, 180.34)`. Source wiring establishes:
+- U7 Y and U6 A share the local node `DXL_LOCAL`.
+- R33 pin 1 connects to DXL_LOCAL.
+- R33 pin 2 connects to external DXL_DATA.
 
-The upstream wires prove:
-- U7 Y reaches the local bus node through `(189.23,180.34) -> (199.39,180.34)`.
-- R33 spans `(199.39,180.34)` to `(204.47,180.34)`.
-- The far side continues `(204.47,180.34) -> (209.55,180.34)` toward the connector/protection network.
-- U6 A reaches the same local bus node through the `(119.38,140.97) -> (189.23,140.97) -> (189.23,180.34)` trunk.
-
-Therefore R33 is no longer a candidate: it is a **verified series element between DXL_LOCAL and external DXL_DATA**.
-
-## Automatic direction generator — remaining recovery
-
-The remaining source-recovery task is the circuit that generates `Dynamixel_dir` itself.
-
-Verified elements/coordinates so far:
-- Q1 `MMBT3906` PNP at `(118.11,68.58)`, mirrored in the upstream schematic.
-- R26 `10k` at `(100.33,62.23)`.
-- R27 `10k` at `(107.95,68.58)`.
-- R28 `20k` at `(120.65,80.01)`.
-- `Dynamixel_dir` trunk junction at `(120.65,74.93)`.
-- direction trunk continues to both U6 and U7 OE pins.
-- source wire from the host-TX corridor reaches `(85.09,68.58) -> (100.33,68.58)`.
-
-The exact Q1 base/emitter/collector-to-resistor wiring and resulting edge behavior still need to be mapped before the electrical KiCad sheet can enter REVIEW.
+R33 is therefore a verified series element between the local logic node and off-board bus.
 
 ## Why U5 exists
 
-U5 output is on the upstream `IO_15` receive path. Its inputs aggregate TTL receive and optional RS-485 receive. For a TTL-only optimized V1 U5 could theoretically be removed, but V1 retains it initially to preserve upstream behavior and optional RS-485 compatibility.
+U5 output is on the upstream host RX path. Its inputs aggregate TTL receive and optional RS-485 receive. V1 retains U5 to preserve upstream behavior and keep the RS-485 layout option available.
 
-If RS-485 is DNP, the unused U5 input must have a defined idle-high state and must not float.
+The remaining RS-485-specific implementation check is to ensure that when U8 is DNP, U5's second input has a deterministic idle-high state rather than floating.
 
 ## Current MicroDuck software implication
 
-Current MicroDuck uses `/dev/ttyS2` at 1 Mbps and performs a combined DYNAMIXEL sync-read covering the 15 XL330 servos plus the `imu_to_dxl` IMU node. No normal user-space direction GPIO transaction is required, reinforcing the decision to retain hardware-managed turnaround.
+Current MicroDuck uses `/dev/ttyS2` at 1 Mbps and performs a combined DYNAMIXEL sync-read across the 15 XL330 servos plus the `imu_to_dxl` node. The recovered direction circuit is hardware-managed and therefore does not require a separate normal user-space direction-GPIO transaction.
 
 ## IMU implication
 
-The current robot's primary orientation source is the `imu_to_dxl` node on DXL_DATA. Consequently the old HAT BMI088 is optional compatibility/diagnostic hardware rather than a primary control-loop requirement.
+The current robot's primary orientation source is the `imu_to_dxl` node on DXL_DATA. The old HAT BMI088 is optional compatibility/diagnostic hardware rather than a primary control-loop requirement.
 
 ## RS-485 policy
 
@@ -128,7 +145,8 @@ RS-485 remains optional/DNP in V1. U8 may be retained as a layout option, but it
 
 - logic supply is Radxa +3V3;
 - no Radxa UART pin may see unsafe 5 V levels;
-- preserve the verified complementary OE truth table;
+- preserve the recovered R26/R27/Q1/R28 automatic-direction network;
+- preserve the complementary shared-OE truth table;
 - preserve R33 = 150 Ω between DXL_LOCAL and external DXL_DATA unless bench signal-integrity testing justifies a value change;
 - keep DXL_DATA test access;
 - reserve low-capacitance ESD protection near off-board connectors;
@@ -148,14 +166,16 @@ HIGH / recovered:
 - shared `Dynamixel_dir` on U6/U7 OE
 - complementary OE truth table
 - R33 150 Ω exact inline placement
-- Q1/R26/R27/R28 component identities and placement in direction generator
+- Q1/R26/R27/R28 exact automatic-direction topology
+- receive-default / transmit-low behavior of direction generator
 - 3.3 V logic domain
 - current `/dev/ttyS2` / 1 Mbps architecture
 
 OPEN / fabrication blocker:
-- exact Q1/R26/R27/R28 automatic-direction generator wiring
-- exact second U5 receive input net and DNP bias policy
+- exact second U5 receive input / optional RS-485 DNP-safe bias
 - final DXL connector footprint/orientation
+- conversion of this recovered topology to a real KiCad electrical sheet
+- real KiCad ERC/DRC
 
 ## Licensing
 
