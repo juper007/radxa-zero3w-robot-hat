@@ -1,0 +1,17 @@
+Domain,Signal,Source,Destination,Status,Notes
+POWER,+5V_IN,J1,F1,REQUIRED,External regulated 5 V high-current input
+POWER,F1_OUT,F1,U1_ANODE/Q1_SOURCE,REQUIRED,LM74700 protected input node
+POWER,+5V_SYS,Q1_DRAIN/U1_CATHODE,Servo_A/Servo_B/Servo_C/U2/U_AMP,REQUIRED,Primary protected 5 V system rail
+POWER,+5V_RADXA,U2_OUT,J40_pin2/J40_pin4,REQUIRED,Host branch through TPS259470A
+POWER,+3V3,J40_pin1/J40_pin17,Logic/I2C/Audio,REQUIRED,Host-sourced logic rail; HAT does not drive host 3V3
+DYNAMIXEL,UART2_TX,J40_pin8,U7_TX_BUFFER,REQUIRED,Radxa UART2 TX M0
+DYNAMIXEL,UART2_RX,U5_RX_COMBINER,J40_pin10,REQUIRED,Radxa UART2 RX M0
+DYNAMIXEL,DXL_DATA,U7_TX/U6_RX,J_DXL_A/J_DXL_B/J_DXL_C/J_IMU_DXL,REQUIRED,One logical half-duplex bus
+I2C,I2C3_SDA,J40_pin3,U_AUDIO/J_QWIIC/U_BMI088_optional,REQUIRED,Single physical I2C3 bus
+I2C,I2C3_SCL,J40_pin5,U_AUDIO/J_QWIIC/U_BMI088_optional,REQUIRED,400 kHz design target
+AUDIO,I2S3_BCLK,J40_pin12,U_AUDIO,REQUIRED,
+AUDIO,I2S3_LRCLK,J40_pin35,U_AUDIO,REQUIRED,
+AUDIO,I2S3_SDI,U_AUDIO,J40_pin38,REQUIRED,Codec ADC data toward host
+AUDIO,I2S3_SDO,J40_pin40,U_AUDIO,REQUIRED,Host playback data toward codec
+AUDIO,CODEC_MCLK,Y_AUDIO,U_AUDIO,PROVISIONAL,12 MHz explicit clock option retained until overlay validation
+GROUND,GND,J1_GND/J40_GND,All_subsystems,REQUIRED,Common electrical ground with controlled high-current returns
