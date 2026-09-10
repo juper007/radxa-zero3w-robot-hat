@@ -1,0 +1,441 @@
+EESchema Schematic File Version 4
+LIBS:power
+LIBS:device
+LIBS:Connector_Generic
+LIBS:RadxaRobotHatPower
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+Sheet 1 1
+Title "Radxa ZERO 3W Robot HAT - Power V1"
+Date "2026-09-10"
+Rev "v0.17-dev"
+Comp "juper007 / DIY"
+Comment1 "VALIDATION-CORRECTED POPULATED IMPORT DRAFT - KICAD 9 ERC PENDING"
+Comment2 "External regulated 5V input; no onboard high-power buck in V1"
+$EndDescr
+
+Text Notes 650 600 0 100 ~ 20
+POWER V1 - validation-corrected populated import schematic
+Text Notes 650 800 0 50 ~ 0
+Servo branches use NTA/NTB/NTC copper net ties; no generic zero-ohm branch resistors.
+
+$Comp
+L Connector_Generic:Conn_01x02 J1
+U 1 1 27000001
+P 1200 2000
+F 0 "J1" H 1300 2150 50 0000 L CNN
+F 1 "XT60_IN" H 1300 1850 50 0000 L CNN
+F 2 "Connector_Generic:Conn_01x02" H 1200 2000 50 0001 C CNN
+	1    1200 2000
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:Fuse F1
+U 1 1 27000002
+P 1900 1950
+F 0 "F1" V 1700 1950 50 0000 C CNN
+F 1 "20A" V 1800 1950 50 0000 C CNN
+	1    1900 1950
+	0 1 1 0
+$EndComp
+$Comp
+L RadxaRobotHatPower:LM74700QDBVRQ1 U1
+U 1 1 27000003
+P 3500 2000
+F 0 "U1" H 3600 2150 50 0000 L CNN
+F 1 "LM74700QDBVRQ1" H 3600 1850 50 0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-6" H 3500 2000 50 0001 C CNN
+	1    3500 2000
+	1 0 0 -1
+$EndComp
+$Comp
+L RadxaRobotHatPower:BSC009NE2LS5I Q1
+U 1 1 27000004
+P 5000 2000
+F 0 "Q1" H 5100 2150 50 0000 L CNN
+F 1 "BSC009NE2LS5I" H 5100 1850 50 0000 L CNN
+F 2 "RadxaRobotHat:Infineon_PG-TDSON-8_SuperSO8" H 5000 2000 50 0001 C CNN
+	1    5000 2000
+	1 0 0 -1
+$EndComp
+$Comp
+L RadxaRobotHatPower:TPS259470ARPWR U2
+U 1 1 27000005
+P 7000 2600
+F 0 "U2" H 7100 2750 50 0000 L CNN
+F 1 "TPS259470ARPWR" H 7100 2450 50 0000 L CNN
+F 2 "RadxaRobotHat:TI_RPW0010A_2x2mm_P0.45mm" H 7000 2600 50 0001 C CNN
+	1    7000 2600
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Small C_VCAP
+U 1 1 27000006
+P 3500 2700
+F 0 "C_VCAP" H 3600 2850 50 0000 L CNN
+F 1 "100n" H 3600 2550 50 0000 L CNN
+	1    3500 2700
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Small C_U1_IN
+U 1 1 27000007
+P 3000 2700
+F 0 "C_U1_IN" H 3100 2850 50 0000 L CNN
+F 1 "22n" H 3100 2550 50 0000 L CNN
+	1    3000 2700
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Small C_U1_OUT
+U 1 1 27000008
+P 4100 2700
+F 0 "C_U1_OUT" H 4200 2850 50 0000 L CNN
+F 1 "100n" H 4200 2550 50 0000 L CNN
+	1    4100 2700
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Polarized C1
+U 1 1 27000009
+P 5600 2900
+F 0 "C1" H 5700 3050 50 0000 L CNN
+F 1 "470u" H 5700 2750 50 0000 L CNN
+	1    5600 2900
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Polarized C2
+U 1 1 2700000A
+P 6000 2900
+F 0 "C2" H 6100 3050 50 0000 L CNN
+F 1 "100u" H 6100 2750 50 0000 L CNN
+	1    6000 2900
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:R_Small R_EN
+U 1 1 2700000B
+P 6200 3100
+F 0 "R_EN" H 6300 3250 50 0000 L CNN
+F 1 "390k" H 6300 2950 50 0000 L CNN
+	1    6200 3100
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:R_Small R_OV_TOP
+U 1 1 2700000C
+P 6200 3500
+F 0 "R_OV_TOP" H 6300 3650 50 0000 L CNN
+F 1 "374k" H 6300 3350 50 0000 L CNN
+	1    6200 3500
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:R_Small R_OV_BOTTOM
+U 1 1 2700000D
+P 6500 3800
+F 0 "R_OV_BOTTOM" H 6600 3950 50 0000 L CNN
+F 1 "100k" H 6600 3650 50 0000 L CNN
+	1    6500 3800
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:R_Small R_ILIM
+U 1 1 2700000E
+P 6500 2200
+F 0 "R_ILIM" H 6600 2350 50 0000 L CNN
+F 1 "825R" H 6600 2050 50 0000 L CNN
+	1    6500 2200
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Small C_DVDT
+U 1 1 2700000F
+P 7700 2200
+F 0 "C_DVDT" H 7800 2350 50 0000 L CNN
+F 1 "3.9n" H 7800 2050 50 0000 L CNN
+	1    7700 2200
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized C5
+U 1 1 27000010
+P 8200 2900
+F 0 "C5" H 8300 3050 50 0000 L CNN
+F 1 "470u" H 8300 2750 50 0000 L CNN
+	1    8200 2900
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Small C6
+U 1 1 27000011
+P 8500 2900
+F 0 "C6" H 8600 3050 50 0000 L CNN
+F 1 "22u" H 8600 2750 50 0000 L CNN
+	1    8500 2900
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Small C7
+U 1 1 27000012
+P 8800 2900
+F 0 "C7" H 8900 3050 50 0000 L CNN
+F 1 "22u" H 8900 2750 50 0000 L CNN
+	1    8800 2900
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Small C8
+U 1 1 27000013
+P 9100 2900
+F 0 "C8" H 9200 3050 50 0000 L CNN
+F 1 "1u" H 9200 2750 50 0000 L CNN
+	1    9100 2900
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Small C9
+U 1 1 27000014
+P 9400 2900
+F 0 "C9" H 9500 3050 50 0000 L CNN
+F 1 "100n" H 9500 2750 50 0000 L CNN
+	1    9400 2900
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:Net-Tie_2 NTA
+U 1 1 27000015
+P 5500 4300
+F 0 "NTA" H 5500 4481 50 0000 C CNN
+F 1 "SERVO_A_COPPER_TIE" H 5500 4390 50 0000 C CNN
+F 2 "RadxaRobotHat:HighCurrent_NetTie_2Pin_8mm" H 5500 4300 50 0001 C CNN
+	1    5500 4300
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:Net-Tie_2 NTB
+U 1 1 27000016
+P 5500 4900
+F 0 "NTB" H 5500 5081 50 0000 C CNN
+F 1 "SERVO_B_COPPER_TIE" H 5500 4990 50 0000 C CNN
+F 2 "RadxaRobotHat:HighCurrent_NetTie_2Pin_8mm" H 5500 4900 50 0001 C CNN
+	1    5500 4900
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:Net-Tie_2 NTC
+U 1 1 27000017
+P 5500 5500
+F 0 "NTC" H 5500 5681 50 0000 C CNN
+F 1 "SERVO_C_COPPER_TIE" H 5500 5590 50 0000 C CNN
+F 2 "RadxaRobotHat:HighCurrent_NetTie_2Pin_8mm" H 5500 5500 50 0001 C CNN
+	1    5500 5500
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Device:C_Polarized CA1
+U 1 1 27000018
+P 6500 4300
+F 0 "CA1" H 6600 4450 50 0000 L CNN
+F 1 "470u" H 6600 4150 50 0000 L CNN
+	1    6500 4300
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Polarized CA2
+U 1 1 27000019
+P 6900 4300
+F 0 "CA2" H 7000 4450 50 0000 L CNN
+F 1 "100u" H 7000 4150 50 0000 L CNN
+	1    6900 4300
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Polarized CB1
+U 1 1 2700001A
+P 6500 4900
+F 0 "CB1" H 6600 5050 50 0000 L CNN
+F 1 "470u" H 6600 4750 50 0000 L CNN
+	1    6500 4900
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Polarized CB2
+U 1 1 2700001B
+P 6900 4900
+F 0 "CB2" H 7000 5050 50 0000 L CNN
+F 1 "100u" H 7000 4750 50 0000 L CNN
+	1    6900 4900
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Polarized CC1
+U 1 1 2700001C
+P 6500 5500
+F 0 "CC1" H 6600 5650 50 0000 L CNN
+F 1 "470u" H 6600 5350 50 0000 L CNN
+	1    6500 5500
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:C_Polarized CC2
+U 1 1 2700001D
+P 6900 5500
+F 0 "CC2" H 7000 5650 50 0000 L CNN
+F 1 "100u" H 7000 5350 50 0000 L CNN
+	1    6900 5500
+	1 0 0 -1
+$EndComp
+
+$Comp
+L Connector_Generic:Conn_01x02 J2
+U 1 1 2700001E
+P 8300 4300
+F 0 "J2" H 8380 4292 50 0000 L CNN
+F 1 "SERVO_A_PWR" H 8380 4201 50 0000 L CNN
+	1    8300 4300
+	1 0 0 -1
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J3
+U 1 1 2700001F
+P 8300 4900
+F 0 "J3" H 8380 4892 50 0000 L CNN
+F 1 "SERVO_B_PWR" H 8380 4801 50 0000 L CNN
+	1    8300 4900
+	1 0 0 -1
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J4
+U 1 1 27000020
+P 8300 5500
+F 0 "J4" H 8380 5492 50 0000 L CNN
+F 1 "SERVO_C_PWR" H 8380 5401 50 0000 L CNN
+	1    8300 5500
+	1 0 0 -1
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 J40_PWR
+U 1 1 27000021
+P 9300 4200
+F 0 "J40_PWR" H 9380 4242 50 0000 L CNN
+F 1 "RADXA_PWR_IF" H 9380 4151 50 0000 L CNN
+	1    9300 4200
+	1 0 0 -1
+$EndComp
+
+Text Label 1000 1950 2 50 ~ 0
+F1_IN
+Text Label 1000 2050 2 50 ~ 0
+GND
+Text Label 1750 1950 2 50 ~ 0
+F1_IN
+Text Label 2050 1950 0 50 ~ 0
+F1_OUT
+Wire Wire Line
+	1000 1950 1750 1950
+Wire Wire Line
+	1000 2050 1200 2050
+Wire Wire Line
+	2050 1950 3100 1950
+
+Text Label 3100 2000 2 50 ~ 0
+F1_OUT
+Text Label 3900 2000 0 50 ~ 0
++5V_SYS
+Text Label 3900 2150 0 50 ~ 0
+Q1_GATE
+Text Label 3500 2350 3 50 ~ 0
+U1_VCAP
+Text Label 3500 1650 1 50 ~ 0
+GND
+Text Label 4600 1900 2 50 ~ 0
+F1_OUT
+Text Label 4600 2000 2 50 ~ 0
+F1_OUT
+Text Label 4600 2100 2 50 ~ 0
+F1_OUT
+Text Label 5000 1700 1 50 ~ 0
+Q1_GATE
+Text Label 5400 1850 0 50 ~ 0
++5V_SYS
+Text Label 5400 1950 0 50 ~ 0
++5V_SYS
+Text Label 5400 2050 0 50 ~ 0
++5V_SYS
+Text Label 5400 2150 0 50 ~ 0
++5V_SYS
+
+Text Label 6550 2600 2 50 ~ 0
++5V_SYS
+Text Label 7450 2600 0 50 ~ 0
++5V_RADXA
+Text Label 6550 2900 2 50 ~ 0
+U2_EN
+Text Label 6550 2750 2 50 ~ 0
+U2_OVLO
+Text Label 7450 2450 0 50 ~ 0
+U2_DVDT
+Text Label 6550 2450 2 50 ~ 0
+U2_ILM
+Text Label 7000 2100 1 50 ~ 0
+GND
+
+Text Label 5300 4300 2 50 ~ 0
++5V_SYS
+Text Label 5700 4300 0 50 ~ 0
++5V_SERVO_A
+Text Label 5300 4900 2 50 ~ 0
++5V_SYS
+Text Label 5700 4900 0 50 ~ 0
++5V_SERVO_B
+Text Label 5300 5500 2 50 ~ 0
++5V_SYS
+Text Label 5700 5500 0 50 ~ 0
++5V_SERVO_C
+Wire Wire Line
+	5300 4300 5400 4300
+Wire Wire Line
+	5600 4300 5700 4300
+Wire Wire Line
+	5300 4900 5400 4900
+Wire Wire Line
+	5600 4900 5700 4900
+Wire Wire Line
+	5300 5500 5400 5500
+Wire Wire Line
+	5600 5500 5700 5500
+
+Text Label 8100 4300 2 50 ~ 0
++5V_SERVO_A
+Text Label 8100 4400 2 50 ~ 0
+GND
+Text Label 8100 4900 2 50 ~ 0
++5V_SERVO_B
+Text Label 8100 5000 2 50 ~ 0
+GND
+Text Label 8100 5500 2 50 ~ 0
++5V_SERVO_C
+Text Label 8100 5600 2 50 ~ 0
+GND
+
+Text Label 9100 4100 2 50 ~ 0
++5V_RADXA
+Text Label 9100 4200 2 50 ~ 0
++5V_RADXA
+Text Label 9100 4300 2 50 ~ 0
+GND
+
+Text Notes 650 6500 0 50 ~ 0
+NTA/NTB/NTC are PCB copper net ties using RadxaRobotHat:HighCurrent_NetTie_2Pin_8mm; they are not BOM resistors.
+Text Notes 650 6650 0 50 ~ 0
+Power/current integrity, exact net-tie current path, connector/fuse mechanics and real KiCad 9 ERC/DRC remain mandatory before fabrication.
+
+$EndSCHEMATC
