@@ -9,6 +9,7 @@ C_U1_OUT,1,LM74700 local output bypass,100nF X7R minimum,"CATHODE/+5V_SYS to GND
 D1,1,5V rail transient clamp,SMBJ5.0A footprint/candidate,"secondary transient protection only",VALIDATION_PENDING,"Conventional TVS clamp cannot alone guarantee XL330 <=6V"
 C1,1,System bulk,470uF low-ESR 16V,"+5V_SYS",PROVISIONAL,"Near distribution split"
 C2,1,System bulk,100uF low-ESR 16V,"+5V_SYS",PROVISIONAL,
+NTA/NTB/NTC,3,Servo branch copper net ties,HighCurrent_NetTie_2Pin_8mm,"short 8mm-wide 2oz copper bridge; no resistor element",FROZEN_LAYOUT_INTENT,"Not a BOM component; project-local net-tie footprint; final PCB DRC/thermal review required"
 CA1/CB1/CC1,3,Servo branch bulk,470uF low-ESR 16V,"one per branch",PROVISIONAL,
 CA2/CB2/CC2,3,Servo branch bulk,100uF low-ESR 16V,"one per branch",PROVISIONAL,
 CA3/CB3/CC3,3,Servo branch ceramic,1uF X7R >=10V,"one per branch",PROVISIONAL,
