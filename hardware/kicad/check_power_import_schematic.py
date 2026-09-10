@@ -36,11 +36,16 @@ for net in [
 # High-current branch split: three explicit copper net ties, no resistor links.
 for ref, rail in [('NTA', '+5V_SERVO_A'), ('NTB', '+5V_SERVO_B'), ('NTC', '+5V_SERVO_C')]:
     require(f'Device:Net-Tie_2 {ref}', f'{ref} net-tie symbol')
-    require(f'F 1 "SERVO_{ref[-1]}_COPPER_TIE"' if ref[-1] in 'ABC' else '', f'{ref} value')
+    require(f'F 1 "SERVO_{ref[-1]}_COPPER_TIE"', f'{ref} value')
     require(rail, f'{ref} branch rail')
 
-if text.count('RadxaRobotHat:HighCurrent_NetTie_2Pin_8mm') != 3:
-    errors.append('expected exactly three HighCurrent_NetTie_2Pin_8mm footprint assignments')
+# Count only footprint field assignments, not explanatory text notes that mention the footprint name.
+net_tie_fp_assignment = 'F 2 "RadxaRobotHat:HighCurrent_NetTie_2Pin_8mm"'
+if text.count(net_tie_fp_assignment) != 3:
+    errors.append(
+        f'expected exactly three HighCurrent_NetTie_2Pin_8mm footprint assignments, '
+        f'found {text.count(net_tie_fp_assignment)}'
+    )
 
 # Each servo power connector and local branch bulk network must exist.
 for token in [
