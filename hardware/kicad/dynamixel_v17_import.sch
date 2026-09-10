@@ -9,17 +9,17 @@ EELAYER END
 $Descr A4 11693 8268
 Sheet 1 1
 Title "Radxa ZERO 3W Robot HAT - Dynamixel TTL V1"
-Date "2026-09-09"
-Rev "v0.17-dev"
+Date "2026-09-10"
+Rev "v0.17.1-dev"
 Comp "juper007 / DIY"
 Comment1 "VALIDATION-CORRECTED POPULATED IMPORT DRAFT - KICAD 9 ERC PENDING"
-Comment2 "Derived/informed by Pollen Robotics elec_RPI_Robot_HAT, Apache-2.0"
+Comment2 "R31/R32 upstream pull-ups restored; Pollen upstream Apache-2.0 informed"
 $EndDescr
 
 Text Notes 650 600 0 100 ~ 20
-DYNAMIXEL TTL V1 - validation-corrected electrically populated import schematic
+DYNAMIXEL TTL V1 - corrected populated import schematic
 Text Notes 650 800 0 50 ~ 0
-U5/U6/U7 power and OE anchors independently rechecked against upstream KiCad symbol definitions. Run KiCad 9 ERC before fabrication.
+KiCad standard 74LVC1Gxx symbol anchors independently rechecked; run KiCad 9 ERC before fabrication.
 
 $Comp
 L 74xGxx:74LVC1G126 U7
@@ -31,7 +31,6 @@ F 2 "Package_TO_SOT_SMD:SOT-23-5" H 4300 2300 50 0001 C CNN
 	1    4300 2300
 	1 0 0 -1
 $EndComp
-
 $Comp
 L 74xGxx:74LVC1G125 U6
 U 1 1 17000002
@@ -42,7 +41,6 @@ F 2 "Package_TO_SOT_SMD:SOT-23-5" H 4300 3300 50 0001 C CNN
 	1    4300 3300
 	1 0 0 -1
 $EndComp
-
 $Comp
 L 74xGxx:74LVC1G08 U5
 U 1 1 17000003
@@ -53,7 +51,6 @@ F 2 "Package_TO_SOT_SMD:SOT-23-5" H 5900 3300 50 0001 C CNN
 	1    5900 3300
 	1 0 0 -1
 $EndComp
-
 $Comp
 L Transistor_BJT:MMBT3906 Q1
 U 1 1 17000004
@@ -75,7 +72,6 @@ F 2 "Resistor_SMD:R_0402_1005Metric" H 1900 1350 50 0001 C CNN
 	1    1900 1350
 	1 0 0 -1
 $EndComp
-
 $Comp
 L Device:R_Small R27
 U 1 1 17000006
@@ -86,7 +82,6 @@ F 2 "Resistor_SMD:R_0402_1005Metric" H 2450 1750 50 0001 C CNN
 	1    2450 1750
 	0 1 1 0
 $EndComp
-
 $Comp
 L Device:R_Small R28
 U 1 1 17000007
@@ -97,10 +92,29 @@ F 2 "Resistor_SMD:R_0402_1005Metric" H 3300 2250 50 0001 C CNN
 	1    3300 2250
 	1 0 0 -1
 $EndComp
-
+$Comp
+L Device:R_Small R31
+U 1 1 17000008
+P 5000 3000
+F 0 "R31" H 5059 3046 50 0000 L CNN
+F 1 "10k" H 5059 2955 50 0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 5000 3000 50 0001 C CNN
+	1    5000 3000
+	1 0 0 -1
+$EndComp
+$Comp
+L Device:R_Small R32
+U 1 1 17000009
+P 4900 1900
+F 0 "R32" H 4959 1946 50 0000 L CNN
+F 1 "10k" H 4959 1855 50 0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 4900 1900 50 0001 C CNN
+	1    4900 1900
+	1 0 0 -1
+$EndComp
 $Comp
 L Device:R_Small R33
-U 1 1 17000008
+U 1 1 1700000A
 P 5050 2300
 F 0 "R33" V 4854 2300 50 0000 C CNN
 F 1 "150R" V 4945 2300 50 0000 C CNN
@@ -108,10 +122,9 @@ F 2 "Resistor_SMD:R_0402_1005Metric" H 5050 2300 50 0001 C CNN
 	1    5050 2300
 	0 1 1 0
 $EndComp
-
 $Comp
 L Device:R_Small R34
-U 1 1 17000009
+U 1 1 1700000B
 P 5350 2950
 F 0 "R34" H 5409 2996 50 0000 L CNN
 F 1 "10k" H 5409 2905 50 0000 L CNN
@@ -122,40 +135,38 @@ $EndComp
 
 $Comp
 L Device:C_Small C_U7
-U 1 1 1700000A
-P 3900 1400
-F 0 "C_U7" H 3992 1446 50 0000 L CNN
-F 1 "100n" H 3992 1355 50 0000 L CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 3900 1400 50 0001 C CNN
-	1    3900 1400
+U 1 1 1700000C
+P 3900 1800
+F 0 "C_U7" H 3992 1846 50 0000 L CNN
+F 1 "100n" H 3992 1755 50 0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 3900 1800 50 0001 C CNN
+	1    3900 1800
 	1 0 0 -1
 $EndComp
-
 $Comp
 L Device:C_Small C_U6
-U 1 1 1700000B
-P 3900 4100
-F 0 "C_U6" H 3992 4146 50 0000 L CNN
-F 1 "100n" H 3992 4055 50 0000 L CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 3900 4100 50 0001 C CNN
-	1    3900 4100
+U 1 1 1700000D
+P 3900 3800
+F 0 "C_U6" H 3992 3846 50 0000 L CNN
+F 1 "100n" H 3992 3755 50 0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 3900 3800 50 0001 C CNN
+	1    3900 3800
 	1 0 0 -1
 $EndComp
-
 $Comp
 L Device:C_Small C_U5
-U 1 1 1700000C
-P 5500 4100
-F 0 "C_U5" H 5592 4146 50 0000 L CNN
-F 1 "100n" H 5592 4055 50 0000 L CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 5500 4100 50 0001 C CNN
-	1    5500 4100
+U 1 1 1700000E
+P 5500 3800
+F 0 "C_U5" H 5592 3846 50 0000 L CNN
+F 1 "100n" H 5592 3755 50 0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 5500 3800 50 0001 C CNN
+	1    5500 3800
 	1 0 0 -1
 $EndComp
 
 $Comp
 L Connector_Generic:Conn_01x03 J_DXL_A
-U 1 1 1700000D
+U 1 1 1700000F
 P 8000 2100
 F 0 "J_DXL_A" H 8080 2142 50 0000 L CNN
 F 1 "DYNAMIXEL_A" H 8080 2051 50 0000 L CNN
@@ -163,10 +174,9 @@ F 2 "Connector_JST:JST_EH_B3B-EH-A_1x03_P2.50mm_Vertical" H 8000 2100 50 0001 C 
 	1    8000 2100
 	1 0 0 -1
 $EndComp
-
 $Comp
 L Connector_Generic:Conn_01x03 J_DXL_B
-U 1 1 1700000E
+U 1 1 17000010
 P 8000 2800
 F 0 "J_DXL_B" H 8080 2842 50 0000 L CNN
 F 1 "DYNAMIXEL_B" H 8080 2751 50 0000 L CNN
@@ -174,10 +184,9 @@ F 2 "Connector_JST:JST_EH_B3B-EH-A_1x03_P2.50mm_Vertical" H 8000 2800 50 0001 C 
 	1    8000 2800
 	1 0 0 -1
 $EndComp
-
 $Comp
 L Connector_Generic:Conn_01x03 J_DXL_C
-U 1 1 1700000F
+U 1 1 17000011
 P 8000 3500
 F 0 "J_DXL_C" H 8080 3542 50 0000 L CNN
 F 1 "DYNAMIXEL_C" H 8080 3451 50 0000 L CNN
@@ -185,10 +194,9 @@ F 2 "Connector_JST:JST_EH_B3B-EH-A_1x03_P2.50mm_Vertical" H 8000 3500 50 0001 C 
 	1    8000 3500
 	1 0 0 -1
 $EndComp
-
 $Comp
 L Connector_Generic:Conn_01x03 J_IMU_DXL
-U 1 1 17000010
+U 1 1 17000012
 P 8000 4200
 F 0 "J_IMU_DXL" H 8080 4242 50 0000 L CNN
 F 1 "IMU_TO_DXL" H 8080 4151 50 0000 L CNN
@@ -201,20 +209,20 @@ Text Label 3450 2300 2 50 ~ 0
 UART2_TX
 Wire Wire Line
 	3450 2300 3700 2300
-Text Label 4850 2300 0 50 ~ 0
+Text Label 4800 2300 0 50 ~ 0
 DXL_LOCAL
 Wire Wire Line
 	4800 2300 4950 2300
-Text Label 5400 2300 0 50 ~ 0
+Text Label 5150 2300 0 50 ~ 0
 DXL_DATA
 Wire Wire Line
-	5150 2300 5400 2300
-
-Text Label 3450 3300 2 50 ~ 0
-DXL_LOCAL
+	5150 2300 6800 2300
 Wire Wire Line
-	3450 3300 3700 3300
-Text Label 4900 3300 0 50 ~ 0
+	6800 2300 6800 4300
+
+Text Label 3700 3300 2 50 ~ 0
+DXL_LOCAL
+Text Label 4800 3300 0 50 ~ 0
 TTL_RX_OUT
 Wire Wire Line
 	4800 3300 5000 3300
@@ -222,38 +230,30 @@ Wire Wire Line
 	5000 3300 5000 3400
 Wire Wire Line
 	5000 3400 5300 3400
-Text Label 5200 3400 2 50 ~ 0
+Text Label 5300 3400 2 50 ~ 0
 TTL_RX_OUT
-Text Label 5200 3200 2 50 ~ 0
+Text Label 5300 3200 2 50 ~ 0
 RS485_RX_BIAS
-Wire Wire Line
-	5350 3050 5350 3200
-Wire Wire Line
-	5350 3200 5300 3200
-Text Label 5350 2750 1 50 ~ 0
-+3V3
-Wire Wire Line
-	5350 2750 5350 2850
 Wire Wire Line
 	6400 3300 6600 3300
 Text Label 6600 3300 0 50 ~ 0
 UART2_RX
 
-Text Label 4100 1900 1 50 ~ 0
+Text Label 4100 2700 1 50 ~ 0
 +3V3
-Text Label 4300 1900 1 50 ~ 0
-Dynamixel_dir
-Text Label 4100 2700 3 50 ~ 0
+Text Label 4100 1900 3 50 ~ 0
 GND
-Text Label 4100 2900 1 50 ~ 0
-+3V3
-Text Label 4300 2900 1 50 ~ 0
+Text Label 4300 2700 1 50 ~ 0
 Dynamixel_dir
-Text Label 4100 3700 3 50 ~ 0
-GND
-Text Label 5900 2900 1 50 ~ 0
+Text Label 4100 3700 1 50 ~ 0
 +3V3
-Text Label 5900 3700 3 50 ~ 0
+Text Label 4100 2900 3 50 ~ 0
+GND
+Text Label 4300 3700 1 50 ~ 0
+Dynamixel_dir
+Text Label 5900 3700 1 50 ~ 0
++3V3
+Text Label 5900 2900 3 50 ~ 0
 GND
 
 Text Label 1900 1250 1 50 ~ 0
@@ -262,10 +262,10 @@ Text Label 1900 1550 3 50 ~ 0
 UART2_TX_DIR_SENSE
 Wire Wire Line
 	1900 1450 1900 1750
-Text Label 1700 1750 2 50 ~ 0
-UART2_TX
 Wire Wire Line
 	1700 1750 2350 1750
+Text Label 1700 1750 2 50 ~ 0
+UART2_TX
 Connection ~ 1900 1750
 Wire Wire Line
 	2550 1750 2800 1750
@@ -281,35 +281,62 @@ Wire Wire Line
 	3300 1950 3300 2150
 Text Label 3300 2050 0 50 ~ 0
 Dynamixel_dir
-Text Label 3300 2450 3 50 ~ 0
-GND
 Wire Wire Line
 	3300 2350 3300 2450
+Text Label 3300 2450 3 50 ~ 0
+GND
 
-Text Label 3900 1200 1 50 ~ 0
+Text Label 5000 2800 1 50 ~ 0
 +3V3
 Wire Wire Line
-	3900 1200 3900 1300
-Text Label 3900 1600 3 50 ~ 0
+	5000 2800 5000 2900
+Wire Wire Line
+	5000 3100 5000 3300
+Connection ~ 5000 3300
+
+Text Label 4900 1700 1 50 ~ 0
++3V3
+Wire Wire Line
+	4900 1700 4900 1800
+Wire Wire Line
+	4900 2000 4900 2300
+Wire Wire Line
+	4900 2300 4950 2300
+Connection ~ 4900 2300
+
+Text Label 5350 2750 1 50 ~ 0
++3V3
+Wire Wire Line
+	5350 2750 5350 2850
+Wire Wire Line
+	5350 3050 5350 3200
+Wire Wire Line
+	5350 3200 5300 3200
+
+Text Label 3900 1600 1 50 ~ 0
++3V3
+Text Label 3900 2000 3 50 ~ 0
 GND
 Wire Wire Line
-	3900 1500 3900 1600
-Text Label 3900 3900 1 50 ~ 0
+	3900 1600 3900 1700
+Wire Wire Line
+	3900 1900 3900 2000
+Text Label 3900 3600 1 50 ~ 0
 +3V3
+Text Label 3900 4000 3 50 ~ 0
+GND
+Wire Wire Line
+	3900 3600 3900 3700
 Wire Wire Line
 	3900 3900 3900 4000
-Text Label 3900 4300 3 50 ~ 0
+Text Label 5500 3600 1 50 ~ 0
++3V3
+Text Label 5500 4000 3 50 ~ 0
 GND
 Wire Wire Line
-	3900 4200 3900 4300
-Text Label 5500 3900 1 50 ~ 0
-+3V3
+	5500 3600 5500 3700
 Wire Wire Line
 	5500 3900 5500 4000
-Text Label 5500 4300 3 50 ~ 0
-GND
-Wire Wire Line
-	5500 4200 5500 4300
 
 Text Label 7600 2000 2 50 ~ 0
 GND
@@ -361,10 +388,8 @@ Wire Wire Line
 	7600 4300 7800 4300
 
 Text Notes 6900 4750 0 50 ~ 0
-JST EH logical pin order 1=GND 2=VDD 3=DATA matches XL330; physical latch/orientation must still be checked before fab.
+JST EH pin order remains provisional until XL330 cable orientation is physically verified.
 Text Notes 6900 4900 0 50 ~ 0
-U8 RS-485 is DNP in V1; R34 holds U5 second input high. D_ESD part selection and TP_DXL remain before PCB freeze.
-Text Notes 6900 5050 0 50 ~ 0
-Radxa UART2 boot-console/getty configuration is a required software deployment step.
+R31 and R32 restored from upstream Pollen design. KiCad 9 ERC still required.
 
 $EndSCHEMATC
