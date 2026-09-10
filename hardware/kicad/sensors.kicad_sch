@@ -1,0 +1,55 @@
+(kicad_sch
+  (version 20250114)
+  (generator "eeschema")
+  (generator_version "9.0")
+  (uuid 4da0a864-76cb-4fb2-9b48-0f80ba9c6c2e)
+  (paper "A4")
+  (title_block
+    (title "Radxa ZERO 3W Robot HAT - Sensors / I2C V1")
+    (date "2026-09-09")
+    (rev "v0.10-dev")
+    (company "juper007 / DIY")
+    (comment 1 "DESIGN DRAFT - NOT FABRICATION READY")
+    (comment 2 "Primary current-MicroDuck IMU is imu_to_dxl on DXL bus; BMI088 is optional/DNP")
+  )
+  (lib_symbols)
+  (text "SENSORS / I2C3 V1 - IMPLEMENTATION CONTRACT"
+    (exclude_from_sim no)
+    (at 20.32 20.32 0)
+    (effects (font (size 2.54 2.54) (thickness 0.4)) (justify left bottom))
+  )
+  (text "Radxa pin 3 = I2C3_SDA_M0; pin 5 = I2C3_SCL_M0; +3V3 from host"
+    (exclude_from_sim no)
+    (at 20.32 31.75 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "One intentional I2C pull-up pair: 10k initial target on SDA/SCL to +3V3"
+    (exclude_from_sim no)
+    (at 20.32 38.1 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Qwiic/expansion: GND, +3V3, SDA, SCL. Never expose 5V to I2C GPIO."
+    (exclude_from_sim no)
+    (at 20.32 44.45 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "BMI088 block optional/DNP; current primary robot IMU connector is on Dynamixel sheet"
+    (exclude_from_sim no)
+    (at 20.32 50.8 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "Authoritative interim connectivity: sensors_v1_connectivity.csv"
+    (exclude_from_sim no)
+    (at 20.32 63.5 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+  )
+  (text "This file is a source skeleton; actual symbols/wires and KiCad ERC are still required."
+    (exclude_from_sim no)
+    (at 20.32 72.39 0)
+    (effects (font (size 1.27 1.27) (thickness 0.25)) (justify left bottom))
+  )
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+  (embedded_fonts no)
+)
