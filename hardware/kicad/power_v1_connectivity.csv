@@ -1,18 +1,24 @@
 RefDes,Type,Pin/Node,Connects_To,Notes
 J1,XT60 input,+,F1_IN,Regulated 5V input
 J1,XT60 input,-,GND,High-current ground
-F1,Fuse,F1_IN,J1+,20A class provisional
+F1,Fuse,F1_IN,J1+,20A nominal prototype fuse
 F1,Fuse,F1_OUT,U1_ANODE,Main fault protection
-U1,LM74700-Q1,ANODE,F1_OUT,Main ideal-diode controller
-U1,LM74700-Q1,CATHODE,+5V_SYS,Sense protected output
-U1,LM74700-Q1,GATE,Q1_GATE,Drive external N-MOSFET
-U1,LM74700-Q1,VCAP,C_VCAP,Charge-pump capacitor per datasheet
-U1,LM74700-Q1,EN,F1_OUT,Always enabled in V1 unless jumper added
-U1,LM74700-Q1,GND,GND,Controller ground
-Q1,BSC009NE2LS5I,DRAIN,F1_OUT,Orientation to follow LM74700 reference topology
+U1,LM74700QDBVRQ1,ANODE,F1_OUT,Main ideal-diode controller
+U1,LM74700QDBVRQ1,CATHODE,+5V_SYS,Kelvin sense protected output
+U1,LM74700QDBVRQ1,GATE,Q1_GATE,Drive external N-MOSFET
+U1,LM74700QDBVRQ1,VCAP,C_VCAP,100nF to ANODE
+U1,LM74700QDBVRQ1,EN,F1_OUT,Always enabled in V1; optional disable test pad
+U1,LM74700QDBVRQ1,GND,GND,Controller ground
+C_VCAP,Capacitor,1,U1_VCAP,100nF
+C_VCAP,Capacitor,2,U1_ANODE,Charge pump capacitor return
+C_U1_IN,Capacitor,1,U1_ANODE,22nF minimum local input capacitance
+C_U1_IN,Capacitor,2,GND,
+C_U1_OUT,Capacitor,1,+5V_SYS,100nF minimum local output capacitance
+C_U1_OUT,Capacitor,2,GND,
+Q1,BSC009NE2LS5I,DRAIN,F1_OUT,Final pad orientation must be checked against footprint
 Q1,BSC009NE2LS5I,SOURCE,+5V_SYS,Low-RDS main path
 Q1,BSC009NE2LS5I,GATE,U1_GATE,Controller-driven gate
-D1,TVS,KA,+5V_SYS/GND,SMBJ5.0A candidate; exact orientation unidirectional
+D1,TVS,KA,+5V_SYS/GND,TVS footprint retained; final clamp choice validation pending
 C1,Bulk capacitor,+,+5V_SYS,470uF 16V near distribution
 C1,Bulk capacitor,-,GND,
 C2,Bulk capacitor,+,+5V_SYS,100uF 16V
@@ -23,28 +29,52 @@ J3,Servo branch B,VCC,+5V_SERVO_B,Five-servo nominal group
 J3,Servo branch B,GND,GND,
 J4,Servo branch C,VCC,+5V_SERVO_C,Five-servo nominal group
 J4,Servo branch C,GND,GND,
-RBA,Branch link,1,+5V_SYS,0R/high-current link or copper bridge strategy
+RBA,Branch link,1,+5V_SYS,Copper bridge / high-current configurable link
 RBA,Branch link,2,+5V_SERVO_A,
-RBB,Branch link,1,+5V_SYS,0R/high-current link or copper bridge strategy
+RBB,Branch link,1,+5V_SYS,Copper bridge / high-current configurable link
 RBB,Branch link,2,+5V_SERVO_B,
-RBC,Branch link,1,+5V_SYS,0R/high-current link or copper bridge strategy
+RBC,Branch link,1,+5V_SYS,Copper bridge / high-current configurable link
 RBC,Branch link,2,+5V_SERVO_C,
 CA1,Bulk capacitor,+,+5V_SERVO_A,470uF 16V local branch bulk
 CA1,Bulk capacitor,-,GND,
+CA2,Bulk capacitor,+,+5V_SERVO_A,100uF 16V
+CA2,Bulk capacitor,-,GND,
 CB1,Bulk capacitor,+,+5V_SERVO_B,470uF 16V local branch bulk
 CB1,Bulk capacitor,-,GND,
+CB2,Bulk capacitor,+,+5V_SERVO_B,100uF 16V
+CB2,Bulk capacitor,-,GND,
 CC1,Bulk capacitor,+,+5V_SERVO_C,470uF 16V local branch bulk
 CC1,Bulk capacitor,-,GND,
-U2,TPS25947,IN,+5V_SYS,Radxa branch only
-U2,TPS25947,OUT,+5V_RADXA,Protected host rail
-U2,TPS25947,GND,GND,
-U2,TPS25947,EN/UVLO,+5V_SYS,Program network TBD
-U2,TPS25947,OVLO/OVC,OV_NETWORK,Program for 5V rail protection
-U2,TPS25947,ILM,R_ILIM,Current-limit programming resistor TBD
-U2,TPS25947,dVdt,C_DVDT,Soft-start capacitor TBD
-U2,TPS25947,PG/FLT,TP_HOST_PG,Expose for bring-up
-C5,Host bulk,+,+5V_RADXA,470uF low-ESR
+CC2,Bulk capacitor,+,+5V_SERVO_C,100uF 16V
+CC2,Bulk capacitor,-,GND,
+U2,TPS259470ARPWR,IN,+5V_SYS,Radxa branch only
+U2,TPS259470ARPWR,OUT,+5V_RADXA,Protected host rail
+U2,TPS259470ARPWR,GND,GND,
+U2,TPS259470ARPWR,EN/UVLO,R_EN,390k to +5V_SYS; test point on EN
+U2,TPS259470ARPWR,OVLO,R_OV_DIV,374k top / 100k bottom; ~5.69V nominal OVLO
+U2,TPS259470ARPWR,ILM,R_ILIM,825R 1%; ~4.05A typical target
+U2,TPS259470ARPWR,dVdt,C_DVDT,3.9nF; ~9.75ms 0-to-5V ramp target
+U2,TPS259470ARPWR,AUXOFF,TP_HOST_STATUS,Expose for bring-up
+R_EN,Resistor,1,+5V_SYS,390k
+R_EN,Resistor,2,U2_EN,
+R_OV_TOP,Resistor,1,+5V_SYS,374k 1%
+R_OV_TOP,Resistor,2,U2_OVLO,
+R_OV_BOTTOM,Resistor,1,U2_OVLO,100k 1%
+R_OV_BOTTOM,Resistor,2,GND,
+R_ILIM,Resistor,1,U2_ILM,825R 1%
+R_ILIM,Resistor,2,GND,
+C_DVDT,Capacitor,1,U2_DVDT,3.9nF
+C_DVDT,Capacitor,2,GND,
+C5,Host bulk,+,+5V_RADXA,470uF low-ESR 10/16V
 C5,Host bulk,-,GND,
+C6,Host ceramic,1,+5V_RADXA,22uF X7R
+C6,Host ceramic,2,GND,
+C7,Host ceramic,1,+5V_RADXA,22uF X7R
+C7,Host ceramic,2,GND,
+C8,Host ceramic,1,+5V_RADXA,1uF
+C8,Host ceramic,2,GND,
+C9,Host ceramic,1,+5V_RADXA,100nF
+C9,Host ceramic,2,GND,
 J40,Radxa header,pin2,+5V_RADXA,5V injection
 J40,Radxa header,pin4,+5V_RADXA,5V injection
 J40,Radxa header,GND pins,GND,Multiple ground pins
@@ -55,4 +85,5 @@ TP4,Test point,,+5V_SERVO_B,
 TP5,Test point,,+5V_SERVO_C,
 TP6,Test point,,+5V_RADXA,
 TP7,Test point,,GND,Scope ground
-TP8,Test point,,TP_HOST_PG,Host eFuse status
+TP8,Test point,,TP_HOST_STATUS,Host eFuse status
+TP9,Test point,,U2_EN,Host eFuse enable
