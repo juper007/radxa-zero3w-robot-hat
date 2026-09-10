@@ -1,0 +1,15 @@
+RefDes,Qty,Function,Selected/Candidate Part,Footprint,Status,Notes
+U5,1,Auto direction logic,74LVC1G08,SOT-23-5,UPSTREAM_SELECTED,LCSC C7666 in upstream production BOM
+U6,1,TTL transmit tri-state buffer,SN74LVC1G125DBV,SOT-23-5,UPSTREAM_SELECTED,LCSC C3040625 in upstream production BOM
+U7,1,TTL receive tri-state buffer,SN74LVC1G126DBVR,SOT-23-5,UPSTREAM_SELECTED,LCSC C7834 in upstream production BOM
+U8,1,Optional RS-485 transceiver,SIT3088E,MSOP-8-1EP_3x3mm_P0.65mm,DNP_V1,LCSC C2922535 upstream; keep optional only
+R_TX,1,TTL source series resistor,TBD,0402,SELECTING,Freeze after exact upstream wiring/passive identification
+D_ESD,1,DXL_DATA ESD protection,TBD low-capacitance SMD,TBD,SELECTING,Must tolerate bus voltage while preserving 1Mbps edges
+C_U5,1,U5 bypass,100nF X7R,0402,REQUIRED,Place at VCC pin
+C_U6,1,U6 bypass,100nF X7R,0402,REQUIRED,Place at VCC pin
+C_U7,1,U7 bypass,100nF X7R,0402,REQUIRED,Place at VCC pin
+J_DXL_A,1,TTL branch A,JST EH 3-pin 2.50mm candidate,JST_EH_B3B-EH-A_1x03_P2.50mm_Vertical,CANDIDATE,Upstream uses B3B-EH-A; verify cable latch/mechanics
+J_DXL_B,1,TTL branch B,JST EH 3-pin 2.50mm candidate,JST_EH_B3B-EH-A_1x03_P2.50mm_Vertical,CANDIDATE,
+J_DXL_C,1,TTL branch C,JST EH 3-pin 2.50mm candidate,JST_EH_B3B-EH-A_1x03_P2.50mm_Vertical,CANDIDATE,
+J_IMU_DXL,1,imu_to_dxl branch,JST EH 3-pin 2.50mm candidate,JST_EH_B3B-EH-A_1x03_P2.50mm_Vertical,CANDIDATE,ID200 board shares same bus
+TP_DXL,1,DXL data test point,Probe pad,TestPoint,REQUIRED,Scope bus turnaround/ringing
