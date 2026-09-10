@@ -8,95 +8,71 @@ Last updated: 2026-09-09
 
 ## Completed
 
-- [x] Repository initialized
-- [x] Project goals documented
-- [x] Initial functional/electrical/mechanical requirements
-- [x] Upstream Pollen Robot HAT architecture analysis
-- [x] Initial Radxa ZERO 3W 40-pin mapping
-- [x] Top-level system architecture
-- [x] KiCad hierarchy proposal
-- [x] Preliminary PCB layer/floor-plan strategy
-- [x] Initial architecture-risk list
-- [x] XL330-M288-T 15-servo current budget
-- [x] V1 input architecture changed to regulated 5 V high-current supply
-- [x] Removed unnecessary high-power 12–28 V to 5 V conversion from V1 scope
-- [x] Separated servo and Radxa current paths
-- [x] USB-C / HAT backfeed identified as mandatory validation item
-- [x] TPS25947 selected as host-branch eFuse/reverse-current candidate
-- [x] Main reverse-protection controller selected: LM74700-Q1 candidate
-- [x] Main low-RDS MOSFET selected: BSC009NE2LS5I candidate
-- [x] V1 input connector direction moved to XT60-class/pigtail for prototype margin
-- [x] 10 A / 15 A / 20 A copper-loss calculations completed
-- [x] 2 oz outer copper preferred for high-current prototype
+- [x] Repository initialized and architecture documented
+- [x] Radxa ZERO 3W 40-pin mapping established
+- [x] XL330-M288-T 15-servo current budget completed
+- [x] V1 input frozen to regulated 5 V high-current supply
+- [x] Servo and Radxa current paths physically separated
+- [x] 2 oz outer copper / wide-pour high-current strategy defined
+- [x] Main reverse protection selected: LM74700QDBVRQ1 + BSC009NE2LS5I
+- [x] Prototype input direction frozen to XT60-class
 - [x] Three nominal 5-servo power branches defined
-- [x] V1 power connectivity table created
+- [x] Radxa branch device frozen to TPS259470ARPWR
+- [x] TPS25947 RILM frozen to 825R (~4.05 A typical target)
+- [x] TPS25947 dVdt capacitor frozen to 3.9 nF (~9.75 ms 5 V ramp target)
+- [x] TPS25947 OVLO divider frozen to 374k / 100k (~5.69 V nominal)
+- [x] LM74700 support values frozen: VCAP 100 nF, local input 22 nF minimum, local output 100 nF minimum
+- [x] Power connectivity CSV updated to implementation-level values
+- [x] Initial KiCad 9 `hardware/kicad/power.kicad_sch` source skeleton created
+- [x] Schematic-value design note `docs/05D_POWER_SCHEMATIC_VALUES.md` created
 
 ## Key electrical numbers
 
-- XL330-M288-T input voltage: 5 V
+- XL330-M288-T supply: 5 V
 - XL330-M288-T stall current at 5 V: ~1.47 A
 - 15-servo theoretical simultaneous stall: ~22.05 A
 - 5-servo branch theoretical stall: ~7.35 A
-- Radxa official recommended supply: >=15 W at 5 V (>=3 A source capability)
-- Provisional Radxa/audio/logic allocation: ~4 A branch target
+- Radxa/audio/logic design branch target: ~4 A
 - Pathological total envelope: ~26 A
-- Recommended development supply: regulated 5 V, 15–20 A class
-- BSC009NE2LS5I conservative RDS(on) used: 1.35 mΩ @ 4.5 V gate
-- Estimated Q1 loss at 20 A: ~0.54 W
+- Development supply: regulated 5 V, 15–20 A class
+- TPS259470A nominal host current-limit target: ~4.05 A typical
+- Host startup ramp target: ~9.75 ms
+- Host OVLO target: ~5.69 V nominal
 
-## Current component decisions
+## Current implementation state
 
-| Function | V1 direction |
-|---|---|
-| Main input | regulated 5 V |
-| Main connector | XT60-class / heavy pigtail |
-| Main reverse protection | LM74700-Q1 + BSC009NE2LS5I |
-| Main fuse | 20 A class provisional |
-| Servo distribution | 3 branches × 5 servos nominal |
-| Host protection | TPS25947 family |
-| Outer copper | 2 oz preferred |
-| Main routing | wide polygon pours + multilayer sharing |
+The first-pass power topology and component values are frozen. `power.kicad_sch` now exists as a KiCad 9 source file, but it is currently a **structured schematic skeleton** rather than the final electrically wired sheet. The authoritative connectivity is `hardware/kicad/power_v1_connectivity.csv` and the authoritative first-pass values are in `docs/05D_POWER_SCHEMATIC_VALUES.md`.
 
 ## In progress
 
-- [ ] Freeze exact TPS25947 ordering suffix
-- [ ] Calculate TPS25947 ILIM resistor
-- [ ] Calculate TPS25947 dV/dt capacitor
-- [ ] Freeze OVLO/OVC behavior for 5 V Radxa branch
-- [ ] Select fuse holder/package
-- [ ] Select exact XT60/pigtail footprint geometry
-- [ ] Implement actual `hardware/kicad/power.kicad_sch`
+- [ ] Create/import project-local symbols for LM74700QDBVRQ1, BSC009NE2LS5I and TPS259470ARPWR
+- [ ] Populate `power.kicad_sch` with actual symbols and wires
+- [ ] Verify physical package pin numbering and MOSFET source/drain orientation
+- [ ] Assign provisional footprints
+- [ ] Finalize TVS/OVP after transient review
+- [ ] Finalize servo branch connector footprints
 - [ ] Run KiCad ERC
+- [ ] Perform schematic design review
 
 ## Next actions
 
-1. Freeze TPS25947 suffix and programming network from TI datasheet.
-2. Translate `power_v1_connectivity.csv` into KiCad symbols/wires/net labels.
-3. Add LM74700 reference circuitry and charge-pump components.
-4. Assign provisional footprints.
-5. Run ERC.
-6. Review current path and connector placement.
-7. Move the power subsystem to REVIEW only after schematic checks pass.
-8. Start Dynamixel TTL interface after power sheet is stable.
+1. Build/import project-local power symbols and footprint mappings.
+2. Replace schematic skeleton notes with electrically connected symbols and net labels.
+3. Add XT60, fuse, three servo power branches, host eFuse and all test points.
+4. Run ERC and resolve warnings intentionally.
+5. Independently verify 40-pin pins 2/4 and all protection-device pinouts.
+6. Move power sheet to REVIEW only after ERC and design review.
+7. Start Dynamixel TTL interface once power reaches REVIEW.
 
-## Decision log
+## Decision log additions
 
 | Date | Decision | Reason |
 |---|---|---|
-| 2026-09-09 | Use Radxa ZERO 3W as the primary host | Target MicroDuck DIY compute module |
-| 2026-09-09 | Direct 40-pin HAT connection | Avoid unnecessary adapter PCB |
-| 2026-09-09 | Dynamixel TTL is mandatory | XL330 target actuators use TTL bus |
-| 2026-09-09 | RS-485 is optional/DNP-capable | Not required for core MicroDuck actuator set |
-| 2026-09-09 | Retain audio in V1 scope | Microphone and speaker are desired robot functions |
-| 2026-09-09 | Prefer 4-layer PCB | Better ground integrity, power distribution and noise control |
-| 2026-09-09 | Use regulated 5 V high-current external input for V1 | Radxa and XL330 are both 5 V devices; avoid high-power onboard buck |
-| 2026-09-09 | Keep servo and host current paths physically separated | Reduce servo-induced host voltage sag/noise |
-| 2026-09-09 | Use TPS25947 family for host branch | True reverse-current blocking and 5.5 A-class protection |
-| 2026-09-09 | Use LM74700-Q1 + low-RDS external FET for main path | Integrated 5.5 A eFuse is insufficient for servo rail |
-| 2026-09-09 | Use BSC009NE2LS5I as first main MOSFET candidate | 25 V, ~1.35 mΩ max at 4.5 V, compact power package |
-| 2026-09-09 | Use XT60-class input for V1 prototype | More margin for >20 A pathological servo current than XT30 |
-| 2026-09-09 | Prefer 2 oz outer copper | Reduce high-current copper loss and temperature rise |
-| 2026-09-09 | Do not fabricate until explicit design review | Power and connector mistakes can damage Radxa/servos |
+| 2026-09-09 | Use TPS259470ARPWR | Adjustable OVLO, active current limit, auto-retry, true reverse-current blocking |
+| 2026-09-09 | Use 825R RILM | Targets about 4.05 A typical host branch current limit |
+| 2026-09-09 | Use 3.9 nF CdVdt | Targets roughly 9.75 ms 0-to-5 V startup ramp |
+| 2026-09-09 | Use 374k/100k OVLO divider | Targets roughly 5.69 V nominal host over-voltage trip |
+| 2026-09-09 | Keep first KiCad sheet as DESIGNING until symbols/wires/ERC are complete | Prevent a source skeleton from being mistaken for fabrication-ready hardware |
 
 ## Status labels
 
@@ -108,4 +84,4 @@ Last updated: 2026-09-09
 
 ## Current release status
 
-`v0.4-dev` - main high-current protection, connector direction, copper strategy and schematic connectivity are established. **Not fabrication-ready.**
+`v0.5-dev` - exact first-pass power values and initial KiCad power source established. **Not fabrication-ready.**
