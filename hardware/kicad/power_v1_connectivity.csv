@@ -3,8 +3,8 @@ J1,XT60 input,+,F1_IN,Regulated 5V input
 J1,XT60 input,-,GND,High-current ground
 F1,Fuse,F1_IN,J1+,20A nominal prototype fuse
 F1,Fuse,F1_OUT,U1_ANODE,Main fault protection
-U1,LM74700QDBVRQ1,ANODE,F1_OUT,Main ideal-diode controller
-U1,LM74700QDBVRQ1,CATHODE,+5V_SYS,Kelvin sense protected output
+U1,LM74700QDBVRQ1,ANODE,F1_OUT,Main ideal-diode controller; Kelvin sense to Q1 source/input side
+U1,LM74700QDBVRQ1,CATHODE,+5V_SYS,Kelvin sense protected output; connect to Q1 drain/output side
 U1,LM74700QDBVRQ1,GATE,Q1_GATE,Drive external N-MOSFET
 U1,LM74700QDBVRQ1,VCAP,C_VCAP,100nF to ANODE
 U1,LM74700QDBVRQ1,EN,F1_OUT,Always enabled in V1; optional disable test pad
@@ -15,9 +15,9 @@ C_U1_IN,Capacitor,1,U1_ANODE,22nF minimum local input capacitance
 C_U1_IN,Capacitor,2,GND,
 C_U1_OUT,Capacitor,1,+5V_SYS,100nF minimum local output capacitance
 C_U1_OUT,Capacitor,2,GND,
-Q1,BSC009NE2LS5I,DRAIN,F1_OUT,Final pad orientation must be checked against footprint
-Q1,BSC009NE2LS5I,SOURCE,+5V_SYS,Low-RDS main path
-Q1,BSC009NE2LS5I,GATE,U1_GATE,Controller-driven gate
+Q1,BSC009NE2LS5I,SOURCE,F1_OUT,"Pins 1,2,3 source; LM74700 ANODE/input side"
+Q1,BSC009NE2LS5I,DRAIN,+5V_SYS,"Pins 5,6,7,8 drain; LM74700 CATHODE/output side"
+Q1,BSC009NE2LS5I,GATE,U1_GATE,Pin 4; controller-driven gate
 D1,TVS,KA,+5V_SYS/GND,TVS footprint retained; final clamp choice validation pending
 C1,Bulk capacitor,+,+5V_SYS,470uF 16V near distribution
 C1,Bulk capacitor,-,GND,
@@ -47,14 +47,16 @@ CC1,Bulk capacitor,+,+5V_SERVO_C,470uF 16V local branch bulk
 CC1,Bulk capacitor,-,GND,
 CC2,Bulk capacitor,+,+5V_SERVO_C,100uF 16V
 CC2,Bulk capacitor,-,GND,
-U2,TPS259470ARPWR,IN,+5V_SYS,Radxa branch only
-U2,TPS259470ARPWR,OUT,+5V_RADXA,Protected host rail
-U2,TPS259470ARPWR,GND,GND,
-U2,TPS259470ARPWR,EN/UVLO,R_EN,390k to +5V_SYS; test point on EN
-U2,TPS259470ARPWR,OVLO,R_OV_DIV,374k top / 100k bottom; ~5.69V nominal OVLO
-U2,TPS259470ARPWR,ILM,R_ILIM,825R 1%; ~4.05A typical target
-U2,TPS259470ARPWR,dVdt,C_DVDT,3.9nF; ~9.75ms 0-to-5V ramp target
-U2,TPS259470ARPWR,AUXOFF,TP_HOST_STATUS,Expose for bring-up
+U2,TPS259470ARPWR,IN,+5V_SYS,Pin 5; Radxa branch only
+U2,TPS259470ARPWR,OUT,+5V_RADXA,Pin 6; protected host rail
+U2,TPS259470ARPWR,GND,GND,Pin 8
+U2,TPS259470ARPWR,EN/UVLO,R_EN,Pin 1; 390k to +5V_SYS; test point on EN
+U2,TPS259470ARPWR,OVLO,R_OV_DIV,Pin 2; 374k top / 100k bottom; ~5.69V nominal OVLO
+U2,TPS259470ARPWR,AUXOFF,TP_HOST_STATUS,Pin 3; open-drain auxiliary control output
+U2,TPS259470ARPWR,FLT,TP_HOST_FLT,Pin 4; open-drain fault output
+U2,TPS259470ARPWR,DVDT,C_DVDT,Pin 7; 3.9nF; ~9.75ms 0-to-5V ramp target
+U2,TPS259470ARPWR,ILM,R_ILIM,Pin 9; 825R 1%; ~4.05A typical target
+U2,TPS259470ARPWR,ITIMER,NC,Pin 10; leave open for V1 unless transient blanking is intentionally added
 R_EN,Resistor,1,+5V_SYS,390k
 R_EN,Resistor,2,U2_EN,
 R_OV_TOP,Resistor,1,+5V_SYS,374k 1%
@@ -85,5 +87,6 @@ TP4,Test point,,+5V_SERVO_B,
 TP5,Test point,,+5V_SERVO_C,
 TP6,Test point,,+5V_RADXA,
 TP7,Test point,,GND,Scope ground
-TP8,Test point,,TP_HOST_STATUS,Host eFuse status
+TP8,Test point,,TP_HOST_STATUS,Host AUXOFF status
 TP9,Test point,,U2_EN,Host eFuse enable
+TP10,Test point,,TP_HOST_FLT,Host eFuse fault
