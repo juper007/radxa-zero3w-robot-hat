@@ -17,6 +17,8 @@ Last updated: 2026-09-10
 - [x] Removed generic 0-ohm / 2512 parts as the servo-branch high-current links from the authoritative power contract
 - [x] Replaced them with NTA/NTB/NTC 8 mm copper net ties
 - [x] Added project footprint `HighCurrent_NetTie_2Pin_8mm.kicad_mod`
+- [x] Regenerated populated power import draft as `power_v17_import.sch` using NTA/NTB/NTC
+- [x] Updated power schematic checker and workflow to use `power_v17_import.sch` and reject the superseded resistor-link implementation
 - [x] Extended power and footprint CI to reject stale zero-ohm links and require the copper net-tie geometry
 - [x] Rechecked BSC009NE2LS5IATMA1 package identity and documented the product-specific `PG-TDSON-8-7` variant within the SuperSO8 family
 
@@ -59,10 +61,10 @@ Last updated: 2026-09-10
 ## Current implementation state
 
 ### Power
-`power_v1_connectivity.csv` and the BOM now use NTA/NTB/NTC high-current copper net ties instead of generic 0-ohm / 2512 links. The project-local 8 mm net-tie footprint exists and is covered by geometry CI. The older `power_v16_import.sch` still contains the superseded resistor-link representation and is **NOT AUTHORITATIVE / DO NOT USE FOR FABRICATION**. It must be regenerated or converted to a v0.17 import/native sheet using NTA/NTB/NTC before KiCad ERC.
+`power_v17_import.sch` is now the current validation-corrected populated import draft. It contains the LM74700/BSC009 protected 5 V path, TPS259470A Radxa branch, support passives, host capacitors, and three servo rails split through NTA/NTB/NTC high-current copper net ties. `power_v1_connectivity.csv`, BOM, import checker, power CI and footprint CI are aligned to this implementation. `power_v16_import.sch` is superseded and must not be used for fabrication. Real KiCad 9 ERC/DRC is still pending.
 
 ### DYNAMIXEL
-`dynamixel_v17_import.sch` is now the current validation-corrected import draft. U5/U6/U7 VCC/GND/OE anchors were rechecked against the upstream KiCad symbol definitions, and R31/R32 pull-ups are restored. `dynamixel_v15_import.sch` is superseded. Real KiCad 9 ERC is still pending.
+`dynamixel_v17_import.sch` is the current validation-corrected import draft. U5/U6/U7 VCC/GND/OE anchors were rechecked against upstream KiCad symbol definitions, and R31/R32 pull-ups are restored. `dynamixel_v15_import.sch` is superseded. Real KiCad 9 ERC is still pending.
 
 ### Footprints
 TPS25947 RPW, BSC009 PG-TDSON-8-7/SuperSO8 and the 8 mm high-current branch net tie have project footprints and structural geometry checks. Real KiCad visual/DRC/stencil review is still required.
@@ -72,20 +74,18 @@ Architecture contracts and CI exist, but populated native KiCad implementations 
 
 ## Immediate execution order
 
-1. Regenerate power populated import/native schematic using NTA/NTB/NTC copper net ties; retire `power_v16_import.sch` from active use.
-2. Run Dynamixel and power connectivity/structure CI after the validation corrections.
-3. In a KiCad 9-capable environment, import/save corrected Dynamixel and power sheets and run real ERC.
-4. Recover exact upstream audio codec/amplifier/MEMS passive network.
-5. Populate sensors/audio schematics and top-level hierarchy.
-6. Freeze XL330/imu_to_dxl connector orientation and mechanical footprint.
-7. Freeze board outline/header/mounting holes/connector keepouts.
-8. Place high-current corridor and route 4-layer PCB.
-9. Run final ERC/DRC, power integrity and 1 Mbps bus bench validation.
-10. Generate Gerber/BOM/PnP only after independent pre-fabrication review.
+1. Confirm the new `power_v17_import.sch` connectivity/structure CI is green.
+2. In a KiCad 9-capable environment, import/save corrected Dynamixel and power sheets and run real ERC.
+3. Recover exact upstream audio codec/amplifier/MEMS passive network.
+4. Populate sensors/audio schematics and top-level hierarchy.
+5. Freeze XL330/imu_to_dxl connector orientation and mechanical footprint.
+6. Freeze board outline/header/mounting holes/connector keepouts.
+7. Place high-current corridor and route 4-layer PCB.
+8. Run final ERC/DRC, power integrity and 1 Mbps bus bench validation.
+9. Generate Gerber/BOM/PnP only after independent pre-fabrication review.
 
 ## Fabrication blockers
 
-- `power_v16_import.sch` contains superseded zero-ohm branch-link representation and must not be fabricated
 - real KiCad 9 ERC/DRC has not been run
 - high-current copper net ties need final PCB-context DRC/thermal/current-path review
 - BSC009/TPS25947 visual pad/stencil review incomplete
@@ -97,4 +97,4 @@ Architecture contracts and CI exist, but populated native KiCad implementations 
 
 ## Current release status
 
-`v0.17-dev` — validation correction pass completed for the Dynamixel logic and servo branch power split. R31/R32 are restored, U5/U6/U7 anchors are rechecked, generic 0-ohm branch links are removed from the authoritative power contract, and 8 mm copper net ties are now required. **Not fabrication-ready.**
+`v0.17-dev` — validation-corrected populated drafts now exist for both Dynamixel and power. R31/R32 are restored, U5/U6/U7 anchors are rechecked, generic 0-ohm servo links are removed, and power v17 uses explicit 8 mm copper net ties. **Not fabrication-ready.**
