@@ -1,5 +1,5 @@
 RefDes,Qty,Function,Selected/Candidate Part,Footprint,Status,Notes
-U5,1,Receive-path combiner,74LVC1G08,SOT-23-5,UPSTREAM_SELECTED,LCSC C7666; combines TTL RX and optional RS485 RX before host UART2_RX
+U5,1,Receive-path combiner,74LVC1G08,SOT-23-5,UPSTREAM_SELECTED,LCSC C7666; retained from upstream
 U6,1,TTL receive tri-state buffer,SN74LVC1G125DBV,SOT-23-5,UPSTREAM_SELECTED,LCSC C3040625; active-low OE on shared Dynamixel_dir
 U7,1,TTL transmit tri-state buffer,SN74LVC1G126DBVR,SOT-23-5,UPSTREAM_SELECTED,LCSC C7834; active-high OE on shared Dynamixel_dir
 Q1,1,Automatic-direction PNP,MMBT3906,SOT-23,UPSTREAM_VERIFIED,LCSC C727128; emitter +3V3; base through R27; collector drives Dynamixel_dir
@@ -7,7 +7,8 @@ R26,1,UART TX direction-sense pull-up,10k,0402,UPSTREAM_VERIFIED,+3V3 to UART2_T
 R27,1,Q1 base resistor,10k,0402,UPSTREAM_VERIFIED,UART2_TX_DIR_SENSE to Q1 base
 R28,1,Dynamixel_dir pull-down,20k,0402,UPSTREAM_VERIFIED,Dynamixel_dir to GND; receive-mode default when TX idle high
 R33,1,DXL bus series resistor,150R,0402,UPSTREAM_VERIFIED,LCSC C138054; inline between DXL_LOCAL and external DXL_DATA
-U8,1,Optional RS-485 transceiver,SIT3088E,MSOP-8-1EP_3x3mm_P0.65mm,DNP_V1,LCSC C2922535 upstream; keep optional only
+R_RS485_IDLE,1,U5 unused-input bias,10k 1%,0402,V1_FROZEN,+3V3 to RS485_RX_IDLE_HIGH; makes U5 transparent when U8 is DNP
+U8,1,Optional RS-485 transceiver,SIT3088E,MSOP-8-1EP_3x3mm_P0.65mm,DNP_V1,LCSC C2922535 upstream; not fitted in core XL330 V1
 D_ESD,1,DXL_DATA ESD protection,TBD low-capacitance SMD,TBD,SELECTING,Must preserve 1Mbps signal integrity and be compatible with 3.3V logic bus
 C_U5,1,U5 bypass,100nF X7R,0402,REQUIRED,Place at VCC pin
 C_U6,1,U6 bypass,100nF X7R,0402,REQUIRED,Place at VCC pin
