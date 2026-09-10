@@ -17,34 +17,45 @@ Last updated: 2026-09-09
 - [x] KiCad hierarchy proposal
 - [x] Preliminary PCB layer/floor-plan strategy
 - [x] Initial architecture-risk list
-- [x] V1 power-domain architecture
-- [x] Input protection strategy
-- [x] Motor VBUS / host 5 V separation strategy
+- [x] XL330-M288-T 15-servo current budget
+- [x] V1 input architecture changed to regulated 5 V high-current supply
+- [x] Removed unnecessary high-power 12–28 V to 5 V conversion from V1 scope
+- [x] Separated +5V_SERVO and +5V_RADXA physical current paths
 - [x] USB-C / HAT backfeed identified as mandatory validation item
-- [x] Power-sheet KiCad implementation contract
-- [x] Provisional power BOM created
+- [x] TPS25947 selected as host-branch eFuse/reverse-current candidate
+- [x] Main connector candidates narrowed to XT30 / XT60
+- [x] 5 V TVS candidate documented with clamp-voltage limitation
+- [x] Provisional power BOM revised
 - [x] Initial power bring-up sequence defined
+
+## Key electrical numbers
+
+- XL330-M288-T recommended supply: 5.0 V
+- XL330-M288-T stall current at 5 V: ~1.47 A
+- 15-servo theoretical simultaneous stall: ~22.05 A
+- Provisional Radxa/audio/logic design allocation: up to ~4 A
+- Pathological total worst-case envelope: ~26 A
+- Recommended development supply: regulated 5 V, 15–20 A class
 
 ## In progress
 
-- [ ] Freeze normal robot supply voltage and maximum VIN
-- [ ] Calculate 15-servo XL330 worst-case/current-budget scenarios
-- [ ] Select exact 5 V synchronous buck regulator
-- [ ] Select exact reverse-polarity / ideal-diode implementation
-- [ ] Select TVS and fuse ratings
-- [ ] Select final power connector
-- [ ] Create `hardware/kicad/power.kicad_sch`
+- [ ] Select exact main reverse-polarity MOSFET / ideal-diode controller
+- [ ] Calculate PCB copper loss and temperature rise at 10 A / 15 A / 20 A
+- [ ] Freeze XT30 versus XT60 based on mechanical/current review
+- [ ] Select exact TPS25947 suffix and host-current-limit network
+- [ ] Decide servo branch grouping and connector count
+- [ ] Implement `hardware/kicad/power.kicad_sch`
 
 ## Next actions
 
-1. Build the XL330 bus current budget for 15 servos.
-2. Freeze the prototype input-voltage target around the intended MicroDuck actuator supply.
-3. Compare suitable high-input-voltage 5 V / >=5 A synchronous buck regulators.
-4. Select protection MOSFET/controller, TVS and fuse.
-5. Freeze power-section footprints.
-6. Implement `hardware/kicad/power.kicad_sch` in KiCad 9 format.
-7. Run ERC and perform a power schematic design review.
-8. Only then move to the Dynamixel TTL interface sheet.
+1. Perform high-current copper/connector loss calculations.
+2. Select main protection MOSFET/controller.
+3. Freeze main connector.
+4. Freeze TPS25947 variant and calculate ILIM/dVdt components.
+5. Finalize servo branch topology.
+6. Implement KiCad power schematic.
+7. Run ERC and power design review.
+8. Move to Dynamixel TTL interface only after power sheet reaches REVIEW.
 
 ## Decision log
 
@@ -52,13 +63,14 @@ Last updated: 2026-09-09
 |---|---|---|
 | 2026-09-09 | Use Radxa ZERO 3W as the primary host | Target MicroDuck DIY compute module |
 | 2026-09-09 | Direct 40-pin HAT connection | Avoid unnecessary adapter PCB |
-| 2026-09-09 | Dynamixel TTL is mandatory | XL330-class target actuators use TTL bus |
+| 2026-09-09 | Dynamixel TTL is mandatory | XL330 target actuators use TTL bus |
 | 2026-09-09 | RS-485 is optional/DNP-capable | Not required for core MicroDuck actuator set |
 | 2026-09-09 | Retain audio in V1 scope | Microphone and speaker are desired robot functions |
 | 2026-09-09 | Prefer 4-layer PCB | Better ground integrity, power distribution and noise control |
-| 2026-09-09 | Separate MOTOR_VBUS and +5V_RADXA | Prevent motor rail from reaching host directly and improve noise control |
-| 2026-09-09 | Target a practical 5 A class host regulator | Provide margin for Radxa and attached low-voltage peripherals; final thermal validation required |
-| 2026-09-09 | Keep configurable reverse-current protection in first prototype | USB-C and HAT 5 V coexistence must be proven before simplifying |
+| 2026-09-09 | Use regulated 5 V high-current external input for V1 | Both Radxa ZERO 3W and XL330 are 5 V-class devices; avoids an impractical 20+A onboard buck |
+| 2026-09-09 | Keep servo and host current paths physically separated | Reduce servo-induced host voltage sag/noise |
+| 2026-09-09 | Use TPS25947 as the leading host eFuse candidate | 5.5 A class with true reverse-current blocking and protection features |
+| 2026-09-09 | Keep configurable host reverse-current protection in prototype | USB-C and HAT 5 V coexistence must be proven before simplification |
 | 2026-09-09 | Do not fabricate until explicit design review | Power and connector mistakes can damage Radxa/servos |
 
 ## Status labels
@@ -71,4 +83,4 @@ Last updated: 2026-09-09
 
 ## Current release status
 
-`v0.2-dev` - power architecture and implementation specification established. **Not fabrication-ready.**
+`v0.3-dev` - MicroDuck-specific 5 V power architecture, current budget and first component candidates established. **Not fabrication-ready.**
