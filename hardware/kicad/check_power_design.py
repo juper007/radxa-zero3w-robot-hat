@@ -42,6 +42,15 @@ for ref, rail in [("J2", "+5V_SERVO_A"), ("J3", "+5V_SERVO_B"), ("J4", "+5V_SERV
     require(ref, "VCC", rail)
     require(ref, "GND", "GND")
 
+# High-current branch split must be copper net ties, not generic zero-ohm resistors.
+for ref, rail in [("NTA", "+5V_SERVO_A"), ("NTB", "+5V_SERVO_B"), ("NTC", "+5V_SERVO_C")]:
+    require(ref, "pin1", "+5V_SYS")
+    require(ref, "pin2", rail)
+
+for stale_ref in ("RBA", "RBB", "RBC"):
+    if any(r["RefDes"] == stale_ref for r in rows):
+        errors.append(f"stale high-current zero-ohm branch link still present: {stale_ref}")
+
 if errors:
     print("POWER DESIGN CHECK: FAIL")
     for e in errors:
@@ -50,3 +59,4 @@ if errors:
 
 print("POWER DESIGN CHECK: PASS")
 print(f"Validated {len(rows)} connectivity rows in {CSV.name}")
+print("Servo branches use explicit high-current copper net ties NTA/NTB/NTC; generic 0-ohm links are rejected.")
