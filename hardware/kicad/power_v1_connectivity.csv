@@ -29,12 +29,12 @@ J3,Servo branch B,VCC,+5V_SERVO_B,Five-servo nominal group
 J3,Servo branch B,GND,GND,
 J4,Servo branch C,VCC,+5V_SERVO_C,Five-servo nominal group
 J4,Servo branch C,GND,GND,
-RBA,Branch link,1,+5V_SYS,Copper bridge / high-current configurable link
-RBA,Branch link,2,+5V_SERVO_A,
-RBB,Branch link,1,+5V_SYS,Copper bridge / high-current configurable link
-RBB,Branch link,2,+5V_SERVO_B,
-RBC,Branch link,1,+5V_SYS,Copper bridge / high-current configurable link
-RBC,Branch link,2,+5V_SERVO_C,
+NTA,High-current net tie,pin1,+5V_SYS,8mm copper net-tie; no resistor element
+NTA,High-current net tie,pin2,+5V_SERVO_A,Short 2oz copper bridge; branch A
+NTB,High-current net tie,pin1,+5V_SYS,8mm copper net-tie; no resistor element
+NTB,High-current net tie,pin2,+5V_SERVO_B,Short 2oz copper bridge; branch B
+NTC,High-current net tie,pin1,+5V_SYS,8mm copper net-tie; no resistor element
+NTC,High-current net tie,pin2,+5V_SERVO_C,Short 2oz copper bridge; branch C
 CA1,Bulk capacitor,+,+5V_SERVO_A,470uF 16V local branch bulk
 CA1,Bulk capacitor,-,GND,
 CA2,Bulk capacitor,+,+5V_SERVO_A,100uF 16V
