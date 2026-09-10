@@ -4,7 +4,7 @@ Last updated: 2026-09-10
 
 ## Current phase
 
-**Validation correction pass + Phase 1 power + Phase 2 Dynamixel TTL + Phase 3 sensors + Phase 4 audio/top-level integration**
+**v0.18-dev — validation correction pass closed at connectivity/structure level; native KiCad/ERC phase next**
 
 ## Validation corrections completed
 
@@ -13,14 +13,24 @@ Last updated: 2026-09-10
 - [x] Corrected `dynamixel_v17_import.sch` to the verified U5/U6/U7 VCC/GND/OE anchors
 - [x] Restored upstream R31 = 10k pull-up from +3V3 to `TTL_RX_OUT`
 - [x] Restored upstream R32 = 10k pull-up from +3V3 to `DXL_LOCAL`
-- [x] Added R31/R32 to connectivity contract, BOM and both Dynamixel CI checkers
-- [x] Removed generic 0-ohm / 2512 parts as the servo-branch high-current links from the authoritative power contract
+- [x] Added R31/R32 to connectivity contract, BOM and Dynamixel CI checkers
+- [x] Removed generic 0-ohm / 2512 parts as servo-branch high-current links from the authoritative power contract
 - [x] Replaced them with NTA/NTB/NTC 8 mm copper net ties
 - [x] Added project footprint `HighCurrent_NetTie_2Pin_8mm.kicad_mod`
 - [x] Regenerated populated power import draft as `power_v17_import.sch` using NTA/NTB/NTC
-- [x] Updated power schematic checker and workflow to use `power_v17_import.sch` and reject the superseded resistor-link implementation
-- [x] Extended power and footprint CI to reject stale zero-ohm links and require the copper net-tie geometry
+- [x] Updated power schematic checker/workflow to use `power_v17_import.sch`
+- [x] Fixed the power CI regression checker so it counts only actual `F 2` footprint assignments, not explanatory schematic notes
 - [x] Rechecked BSC009NE2LS5IATMA1 package identity and documented the product-specific `PG-TDSON-8-7` variant within the SuperSO8 family
+
+## CI validation snapshot
+
+- [x] Power design sanity check run #9 (`34529510853`) — SUCCESS
+  - power connectivity invariants — SUCCESS
+  - v17 populated power import schematic structure — SUCCESS
+- [x] Dynamixel design sanity check run #16 (`34485919884`) — SUCCESS
+- [x] Footprint geometry sanity check run #5 (`34485821537`) — SUCCESS
+
+These checks are regression guards for design intent, connectivity tables, populated legacy-import structure and footprint geometry. They are **not** substitutes for KiCad ERC/DRC.
 
 ## Completed architecture
 
@@ -61,23 +71,23 @@ Last updated: 2026-09-10
 ## Current implementation state
 
 ### Power
-`power_v17_import.sch` is now the current validation-corrected populated import draft. It contains the LM74700/BSC009 protected 5 V path, TPS259470A Radxa branch, support passives, host capacitors, and three servo rails split through NTA/NTB/NTC high-current copper net ties. `power_v1_connectivity.csv`, BOM, import checker, power CI and footprint CI are aligned to this implementation. `power_v16_import.sch` is superseded and must not be used for fabrication. Real KiCad 9 ERC/DRC is still pending.
+`power_v17_import.sch` is the current validation-corrected populated import draft. It contains the LM74700/BSC009 protected 5 V path, TPS259470A Radxa branch, support passives, host capacitors, and three servo rails split through NTA/NTB/NTC high-current copper net ties. `power_v1_connectivity.csv`, import checker, power CI and footprint CI are aligned to this implementation. `power_v16_import.sch` is superseded and must not be used for fabrication. Power CI run #9 is green. Real KiCad 9 import/save/ERC/DRC is still pending.
 
 ### DYNAMIXEL
-`dynamixel_v17_import.sch` is the current validation-corrected import draft. U5/U6/U7 VCC/GND/OE anchors were rechecked against upstream KiCad symbol definitions, and R31/R32 pull-ups are restored. `dynamixel_v15_import.sch` is superseded. Real KiCad 9 ERC is still pending.
+`dynamixel_v17_import.sch` is the current validation-corrected import draft. U5/U6/U7 VCC/GND/OE anchors were rechecked against upstream KiCad symbol definitions, and R31/R32 pull-ups are restored. `dynamixel_v15_import.sch` is superseded. Dynamixel CI run #16 is green. Real KiCad 9 ERC is still pending.
 
 ### Footprints
-TPS25947 RPW, BSC009 PG-TDSON-8-7/SuperSO8 and the 8 mm high-current branch net tie have project footprints and structural geometry checks. Real KiCad visual/DRC/stencil review is still required.
+TPS25947 RPW, BSC009 PG-TDSON-8-7/SuperSO8 and the 8 mm high-current branch net tie have project footprints and structural geometry checks. Footprint CI run #5 is green. Real KiCad visual/DRC/stencil review is still required.
 
 ### Sensors / Audio / Top level
-Architecture contracts and CI exist, but populated native KiCad implementations remain incomplete. Audio passive/reference network recovery is still pending.
+Architecture contracts and CI exist, but populated native KiCad implementations remain incomplete. Audio passive/reference network recovery is the next major schematic task.
 
 ## Immediate execution order
 
-1. Confirm the new `power_v17_import.sch` connectivity/structure CI is green.
-2. In a KiCad 9-capable environment, import/save corrected Dynamixel and power sheets and run real ERC.
-3. Recover exact upstream audio codec/amplifier/MEMS passive network.
-4. Populate sensors/audio schematics and top-level hierarchy.
+1. Recover exact upstream audio codec/amplifier/MEMS passive/reference network.
+2. Create populated audio import/native schematic and extend CI around recovered component values/nets.
+3. Populate sensors schematic and top-level hierarchy.
+4. In a KiCad 9-capable environment, import/save corrected Dynamixel, power, audio and sensor sheets and run real ERC.
 5. Freeze XL330/imu_to_dxl connector orientation and mechanical footprint.
 6. Freeze board outline/header/mounting holes/connector keepouts.
 7. Place high-current corridor and route 4-layer PCB.
@@ -97,4 +107,4 @@ Architecture contracts and CI exist, but populated native KiCad implementations 
 
 ## Current release status
 
-`v0.17-dev` — validation-corrected populated drafts now exist for both Dynamixel and power. R31/R32 are restored, U5/U6/U7 anchors are rechecked, generic 0-ohm servo links are removed, and power v17 uses explicit 8 mm copper net ties. **Not fabrication-ready.**
+`v0.18-dev` — Power, Dynamixel and footprint validation corrections are closed at the repository connectivity/structure level. Power run #9, Dynamixel run #16 and Footprint run #5 are green. The next gate is native KiCad implementation plus real ERC/DRC. **Not fabrication-ready.**
