@@ -14,14 +14,18 @@ U6,SN74LVC1G125DBV,GND,GND,UPSTREAM_VERIFIED,
 U6,SN74LVC1G125DBV,A,DXL_LOCAL,UPSTREAM_RECOVERED,Input pin2 connects to local DXL node before R33
 U6,SN74LVC1G125DBV,OE,Dynamixel_dir,UPSTREAM_VERIFIED,Pin1 active-low OE; shared exact net with U7 OE
 U6,SN74LVC1G125DBV,Y,TTL_RX_OUT,UPSTREAM_RECOVERED,Output feeds U5 receive combiner
+R31,TTL_RX_OUT pull-up,pin1,+3V3,UPSTREAM_VERIFIED,10k; keeps tri-state RX output deterministic while U6 is disabled
+R31,TTL_RX_OUT pull-up,pin2,TTL_RX_OUT,UPSTREAM_VERIFIED,Recovered from upstream schematic/BOM
 U7,SN74LVC1G126DBVR,VCC,+3V3,UPSTREAM_VERIFIED,TTL transmit tri-state buffer
 U7,SN74LVC1G126DBVR,GND,GND,UPSTREAM_VERIFIED,
 U7,SN74LVC1G126DBVR,A,UART2_TX,UPSTREAM_RECOVERED,Input pin2 traces directly to IO_14/UART TX net
 U7,SN74LVC1G126DBVR,OE,Dynamixel_dir,UPSTREAM_VERIFIED,Pin1 active-high OE; shared exact net with U6 OE
 U7,SN74LVC1G126DBVR,Y,DXL_LOCAL,UPSTREAM_RECOVERED,Output pin4 connects to local DXL node before R33
+R32,DXL_LOCAL pull-up,pin1,+3V3,UPSTREAM_VERIFIED,10k; establishes bus high level when U7 releases the local half-duplex node
+R32,DXL_LOCAL pull-up,pin2,DXL_LOCAL,UPSTREAM_VERIFIED,Recovered from upstream schematic/BOM
 DIR,Complementary OE truth table,LOW,U7_DISABLED/U6_ENABLED,UPSTREAM_VERIFIED,Dynamixel_dir low selects receive mode
 DIR,Complementary OE truth table,HIGH,U7_ENABLED/U6_DISABLED,UPSTREAM_VERIFIED,Dynamixel_dir high selects transmit mode
-R33,Series resistor,pin1,DXL_LOCAL,UPSTREAM_VERIFIED,150R at 201.93/180.34; local transceiver side
+R33,Series resistor,pin1,DXL_LOCAL,UPSTREAM_VERIFIED,150R at upstream local transceiver side
 R33,Series resistor,pin2,DXL_DATA,UPSTREAM_VERIFIED,External bus side toward connectors/protection
 R26,Direction pull-up,top,+3V3,UPSTREAM_VERIFIED,10k; top terminal joins +3V3 rail
 R26,Direction pull-up,bottom,UART2_TX_DIR_SENSE,UPSTREAM_VERIFIED,10k; bottom terminal joins UART2_TX sensing node
