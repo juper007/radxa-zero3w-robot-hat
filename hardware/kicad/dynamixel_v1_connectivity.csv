@@ -2,11 +2,13 @@ RefDes,Type,Pin/Node,Connects_To,Status,Notes
 J40,Radxa 40-pin,pin8,UART2_TX,VERIFIED,UART2_TX_M0 physical pin 8
 J40,Radxa 40-pin,pin10,UART2_RX,VERIFIED,UART2_RX_M0 physical pin 10
 J40,Radxa 40-pin,pin17,+3V3,VERIFIED,Logic supply from host; do not drive from HAT
-U5,74LVC1G08,VCC,+3V3,UPSTREAM_VERIFIED,Receive-path combiner in upstream design
+U5,74LVC1G08,VCC,+3V3,UPSTREAM_VERIFIED,Receive-path combiner retained from upstream design
 U5,74LVC1G08,GND,GND,UPSTREAM_VERIFIED,
-U5,74LVC1G08,A,TTL_RX_OUT,UPSTREAM_RECOVERED,One receive source from U6 TTL receive buffer
-U5,74LVC1G08,B,RS485_RX_OUT,TO_VERIFY,Second receive source appears to be optional RS485 path; exact DNP-safe bias still verify
-U5,74LVC1G08,Y,UART2_RX,UPSTREAM_RECOVERED,Output wire terminates on IO_15 host RX path
+U5,74LVC1G08,A,TTL_RX_OUT,UPSTREAM_RECOVERED,TTL receive source from U6
+U5,74LVC1G08,B,RS485_RX_IDLE_HIGH,V1_FROZEN,TTL-only V1: force unused optional RS485 receive input high so U5 becomes transparent to TTL_RX_OUT
+U5,74LVC1G08,Y,UART2_RX,UPSTREAM_RECOVERED,Output to Radxa UART2_RX
+R_RS485_IDLE,Pull-up,pin1,+3V3,V1_FROZEN,10k 1% pull-up for U5 optional-RS485 input when U8 is DNP
+R_RS485_IDLE,Pull-up,pin2,RS485_RX_IDLE_HIGH,V1_FROZEN,Ensures U5 input B never floats; AND gate Y=A when B=1
 U6,SN74LVC1G125DBV,VCC,+3V3,UPSTREAM_VERIFIED,TTL receive tri-state buffer
 U6,SN74LVC1G125DBV,GND,GND,UPSTREAM_VERIFIED,
 U6,SN74LVC1G125DBV,A,DXL_LOCAL,UPSTREAM_RECOVERED,Input pin2 connects to local DXL node before R33
@@ -26,7 +28,7 @@ R26,Direction pull-up,bottom,UART2_TX_DIR_SENSE,UPSTREAM_VERIFIED,10k; bottom te
 R27,Direction base resistor,pin1,UART2_TX_DIR_SENSE,UPSTREAM_VERIFIED,10k between TX sensing node and Q1 base
 R27,Direction base resistor,pin2,Q1_BASE,UPSTREAM_VERIFIED,Connects directly to Q1 base pin1
 Q1,MMBT3906 PNP,pin1_BASE,Q1_BASE,UPSTREAM_VERIFIED,Base driven through R27
-Q1,MMBT3906 PNP,pin2_EMITTER,+3V3,UPSTREAM_VERIFIED,Emitter tied to +3V3 rail in upstream mirrored symbol placement
+Q1,MMBT3906 PNP,pin2_EMITTER,+3V3,UPSTREAM_VERIFIED,Emitter tied to +3V3 rail
 Q1,MMBT3906 PNP,pin3_COLLECTOR,Dynamixel_dir,UPSTREAM_VERIFIED,Collector drives automatic direction node
 R28,Direction pull-down,top,Dynamixel_dir,UPSTREAM_VERIFIED,20k from direction node
 R28,Direction pull-down,bottom,GND,UPSTREAM_VERIFIED,20k to ground; establishes receive default
