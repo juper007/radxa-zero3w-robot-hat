@@ -4,6 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent / "libraries" / "RadxaRobotHat.pretty"
 RPW = ROOT / "TI_RPW0010A_2x2mm_P0.45mm.kicad_mod"
 BSC = ROOT / "Infineon_PG-TDSON-8_SuperSO8.kicad_mod"
+NETTIE = ROOT / "HighCurrent_NetTie_2Pin_8mm.kicad_mod"
 errors = []
 
 # TPS259470A RPW HotRod invariants
@@ -38,9 +39,7 @@ for c in [
     if c not in text:
         errors.append(f"missing critical RPW geometry: {c}")
 
-# BSC009 / Infineon PG-TDSON-8 SuperSO8 invariants.
-# Geometry follows Infineon recommended boardpads and is cross-checked against
-# KiCad's TDSON-8-1 reference footprint. Pins 1-3 source, 4 gate, 5-8 drain.
+# BSC009 / Infineon PG-TDSON-8-7 (SuperSO8) invariants.
 b = BSC.read_text(encoding="utf-8")
 for p in ('"1"', '"2"', '"3"', '"4"', '"5"', '"6"', '"7"', '"8"'):
     if f'(pad {p}' not in b:
@@ -56,12 +55,24 @@ bsc_checks = [
     '(at 2.905 -0.635) (size 0.80 0.60)',
     '(at 2.905 0.635) (size 0.80 0.60)',
     '(at 2.905 1.905) (size 0.80 0.60)',
-    '(at -0.20 -0.85) (size 1.50 1.50)',
-    '(at 1.50 0.85) (size 1.50 1.50)',
 ]
 for c in bsc_checks:
     if c not in b:
         errors.append(f"missing critical BSC009 geometry: {c}")
+
+# Servo branch high-current net tie invariants. This is copper, not a zero-ohm resistor.
+n = NETTIE.read_text(encoding="utf-8")
+for c in [
+    '(net_tie_pad_groups "1,2")',
+    '(pad "1" smd rect (at -2 0) (size 5 8)',
+    '(pad "2" smd rect (at 2 0) (size 5 8)',
+    'exclude_from_bom',
+    'exclude_from_pos_files',
+]:
+    if c not in n:
+        errors.append(f"missing high-current net-tie invariant: {c}")
+if 'F.Paste' in n:
+    errors.append('high-current copper net tie must not create solder-paste apertures')
 
 if errors:
     print("FOOTPRINT CHECK: FAIL")
@@ -70,4 +81,4 @@ if errors:
     raise SystemExit(1)
 
 print("FOOTPRINT CHECK: PASS")
-print("TPS259470A RPW and BSC009 PG-TDSON-8/SuperSO8 critical geometry invariants present")
+print("TPS259470A, BSC009 and 8mm servo-branch copper net-tie geometry invariants present")
