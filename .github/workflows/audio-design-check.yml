@@ -1,0 +1,23 @@
+name: Audio design sanity check
+
+on:
+  push:
+    paths:
+      - 'hardware/kicad/audio_v1_connectivity.csv'
+      - 'hardware/kicad/check_audio_design.py'
+      - '.github/workflows/audio-design-check.yml'
+  pull_request:
+    paths:
+      - 'hardware/kicad/audio_v1_connectivity.csv'
+      - 'hardware/kicad/check_audio_design.py'
+
+jobs:
+  connectivity-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate audio architecture invariants
+        run: python hardware/kicad/check_audio_design.py
