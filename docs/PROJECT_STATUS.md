@@ -1,113 +1,100 @@
 # Project Status
 
-Last updated: 2026-09-09
+Last updated: 2026-09-10
 
 ## Current phase
 
-**Phase 1 power implementation + Phase 2 Dynamixel TTL implementation + Phase 3 sensors + Phase 4 audio/top-level integration**
+**Validation correction pass + Phase 1 power + Phase 2 Dynamixel TTL + Phase 3 sensors + Phase 4 audio/top-level integration**
 
-## Completed
+## Validation corrections completed
 
-- [x] Repository initialized and Radxa/MicroDuck architecture documented
-- [x] Radxa ZERO 3W 40-pin mapping established
-- [x] XL330-M288-T 15-servo current budget completed
+- [x] Rechecked KiCad 74LVC1G08/125/126 symbol definitions against upstream Pollen source
+- [x] Corrected the validation misconception about U5/U6/U7 VCC/GND orientation: in this legacy orientation VCC is the +400 mil Y anchor and GND is the -400 mil Y anchor
+- [x] Corrected `dynamixel_v17_import.sch` to the verified U5/U6/U7 VCC/GND/OE anchors
+- [x] Restored upstream R31 = 10k pull-up from +3V3 to `TTL_RX_OUT`
+- [x] Restored upstream R32 = 10k pull-up from +3V3 to `DXL_LOCAL`
+- [x] Added R31/R32 to connectivity contract, BOM and both Dynamixel CI checkers
+- [x] Removed generic 0-ohm / 2512 parts as the servo-branch high-current links from the authoritative power contract
+- [x] Replaced them with NTA/NTB/NTC 8 mm copper net ties
+- [x] Added project footprint `HighCurrent_NetTie_2Pin_8mm.kicad_mod`
+- [x] Extended power and footprint CI to reject stale zero-ohm links and require the copper net-tie geometry
+- [x] Rechecked BSC009NE2LS5IATMA1 package identity and documented the product-specific `PG-TDSON-8-7` variant within the SuperSO8 family
+
+## Completed architecture
+
 - [x] V1 frozen to external regulated 5 V high-current input; no onboard high-power buck
 - [x] Servo and Radxa current paths separated
 - [x] 4-layer / 2 oz outer-copper high-current strategy defined
-- [x] Main protection selected: LM74700QDBVRQ1 + BSC009NE2LS5I
-- [x] Radxa branch selected: TPS259470ARPWR
+- [x] LM74700QDBVRQ1 + BSC009NE2LS5I ideal-diode path selected
+- [x] TPS259470ARPWR Radxa host branch selected
 - [x] TPS25947 first-pass ILIM/dVdt/OVLO values frozen
-- [x] Critical power-device package pin maps independently checked
-- [x] Q1 ideal-diode source/drain orientation corrected
-- [x] BSC009 package identification corrected to manufacturer-supported `PG-TDSON-8 / SuperSO8`
-- [x] TPS25947 RPW and BSC009 SuperSO8 project footprints created and covered by geometry regression checks
-- [x] Project-local power symbol and footprint libraries registered
-- [x] Power connectivity contract/checker/BOM synchronized
-- [x] Populated power legacy-import schematic `power_v16_import.sch` created with LM74700, BSC009, TPS259470A, support passives, servo rails and Radxa power interface
-- [x] Power import schematic pin-anchor regression checker added
-- [x] Power design Actions run #3 passed after fixing a checker false-positive; connectivity and populated-schematic structure both pass
-- [x] Upstream Pollen DYNAMIXEL TX/RX topology recovered: U7 TX, U6 RX, U5 receive combiner
-- [x] U6/U7 OE pins proven to share `Dynamixel_dir`; complementary RX/TX truth table frozen
-- [x] R33 = 150 ohm proven inline between `DXL_LOCAL` and external `DXL_DATA`
-- [x] Q1/R26/R27/R28 automatic direction generator fully recovered
-- [x] TTL-only V1 U5 optional-RS485 input frozen with 10k pull-up to +3V3
-- [x] DYNAMIXEL connectivity contract/checker/BOM synchronized
-- [x] Populated Dynamixel legacy-import schematic `dynamixel_v15_import.sch` created with logic, auto-direction network, R33 and four DXL connectors
-- [x] Dynamixel standard-symbol pin anchors corrected and guarded by CI
-- [x] DYNAMIXEL Actions run #10 passed for connectivity plus populated-import schematic structure
-- [x] Current MicroDuck `/dev/ttyS2` 1 Mbps + imu_to_dxl architecture incorporated
+- [x] TPS25947 RPW and BSC009 SuperSO8 footprints created and covered by geometry checks
+- [x] DYNAMIXEL U7 TX / U6 RX / U5 combiner topology recovered
+- [x] Automatic direction generator Q1/R26/R27/R28 recovered
+- [x] R31/R32 required pull-ups restored from upstream
+- [x] R33 = 150 ohm between `DXL_LOCAL` and `DXL_DATA` recovered
+- [x] TTL-only RS-485 DNP input bias policy defined
+- [x] Current MicroDuck `/dev/ttyS2`, 1 Mbps and `imu_to_dxl` architecture incorporated
 - [x] BMI088 reclassified optional/DNP
-- [x] Sensor/I2C architecture, connectivity checker, CI and KiCad skeleton created
-- [x] Audio architecture, connectivity checker, CI and KiCad skeleton created
-- [x] Top-level integration contract/checker/CI and KiCad skeleton created
-- [x] Upstream Apache-2.0 attribution requirements documented
+- [x] Sensor/I2C, audio and top-level contracts/checkers exist
 
-## Key electrical / interface targets
+## Key electrical targets
 
 - XL330 supply: regulated 5 V
 - XL330 stall current: ~1.47 A each at 5 V
 - 15-servo theoretical simultaneous stall: ~22.05 A
 - 5-servo branch theoretical stall: ~7.35 A
+- servo branch split: NTA/NTB/NTC copper net ties, approximately 8 mm width; no 0-ohm resistor element
 - development supply: regulated 5 V, 15–20 A class
 - TPS259470A host current-limit target: ~4.05 A calculated typical
 - host startup ramp target: ~9.75 ms
 - host OVLO target: ~5.69 V nominal
-- BSC009 package: PG-TDSON-8 / SuperSO8
+- BSC009 selected package: PG-TDSON-8-7 / SuperSO8 family
 - DYNAMIXEL: `/dev/ttyS2`, 1 Mbps, Protocol V2
 - DYNAMIXEL population: 15 XL330 + imu_to_dxl
-- DXL direction: `Dynamixel_dir=0` receive; `Dynamixel_dir=1` transmit
-- DXL automatic direction: Q1 MMBT3906 + R26 10k + R27 10k + R28 20k
+- DXL local pull-up: R32 = 10k to +3V3
+- TTL receive-output pull-up: R31 = 10k to +3V3
 - DXL external series resistor: R33 = 150 ohm
-- U5 optional-RS485 input in TTL-only V1: 10k pull-up to +3V3
-- I2C3: pins 3/5, 3.3 V, 400 kHz target
-- I2S3: pins 12 BCLK, 35 LRCLK, 38 SDI, 40 SDO
-- Audio: TLV320AIC3104IRHBR + PAM8406D + MEMS mic, 12 MHz MCLK option retained
 
 ## Current implementation state
 
 ### Power
-The electrical contract is now represented by a populated KiCad legacy-import draft, not just notes. `power_v16_import.sch` contains the frozen ideal-diode path, TPS259470A host eFuse network, bulk/decoupling components, three segmented servo rails and a Radxa power interface. Custom-symbol and connector pin anchors are regression-checked and structure CI passes. The native `power.kicad_sch` remains the older skeleton until the import draft is opened/saved in KiCad 9. Real KiCad ERC/DRC has not run.
+`power_v1_connectivity.csv` and the BOM now use NTA/NTB/NTC high-current copper net ties instead of generic 0-ohm / 2512 links. The project-local 8 mm net-tie footprint exists and is covered by geometry CI. The older `power_v16_import.sch` still contains the superseded resistor-link representation and is **NOT AUTHORITATIVE / DO NOT USE FOR FABRICATION**. It must be regenerated or converted to a v0.17 import/native sheet using NTA/NTB/NTC before KiCad ERC.
 
 ### DYNAMIXEL
-The TTL half-duplex architecture, R33 placement, automatic direction circuit and TTL-only RS-485 DNP behavior are frozen. `dynamixel_v15_import.sch` is populated with the actual logic/passive/connector circuit and has pin-anchor structure CI coverage. The native `dynamixel.kicad_sch` remains a skeleton until KiCad 9 import/save. Real ERC is still pending. XL330/imu_to_dxl connector mechanical orientation remains provisional.
+`dynamixel_v17_import.sch` is now the current validation-corrected import draft. U5/U6/U7 VCC/GND/OE anchors were rechecked against the upstream KiCad symbol definitions, and R31/R32 pull-ups are restored. `dynamixel_v15_import.sch` is superseded. Real KiCad 9 ERC is still pending.
 
 ### Footprints
-TPS25947 RPW and BSC009 SuperSO8 footprints exist and pass project geometry regression checks. These checks are not a substitute for KiCad visual review, paste/stencil review or board-level DRC. The BSC009 footprint remains pre-fabrication-review gated.
+TPS25947 RPW, BSC009 PG-TDSON-8-7/SuperSO8 and the 8 mm high-current branch net tie have project footprints and structural geometry checks. Real KiCad visual/DRC/stencil review is still required.
 
-### Sensors
-Primary current-MicroDuck IMU is external `imu_to_dxl` on DXL_DATA. BMI088 remains optional/DNP. I2C3/Qwiic contracts and CI exist; actual populated schematic implementation remains to be done.
-
-### Audio
-Block-level architecture and Radxa digital interface are frozen. Exact TLV320AIC3104/PAM8406D/MEMS mic power/analog/passive network still requires upstream recovery before a populated import schematic is generated.
-
-### Top level
-Cross-sheet interface invariants exist. `main.kicad_sch` is still a structural skeleton and needs real hierarchical sheets, J40 symbol, sheet pins and electrical wiring.
+### Sensors / Audio / Top level
+Architecture contracts and CI exist, but populated native KiCad implementations remain incomplete. Audio passive/reference network recovery is still pending.
 
 ## Immediate execution order
 
-1. Recover exact upstream audio codec/amplifier/MEMS passive network and create a populated audio import schematic.
-2. Create populated I2C/Qwiic sensor import schematic with optional BMI088 DNP policy.
-3. Create a top-level hierarchical integration draft tying power/DXL/sensors/audio to Radxa J40.
-4. In a KiCad 9-capable environment, import/save `dynamixel_v15_import.sch` and `power_v16_import.sch` as native `.kicad_sch` files and run ERC.
-5. Resolve all ERC findings; visually review BSC009/TPS25947 footprints and stencil apertures.
-6. Freeze board outline/header/mounting holes/connector keepouts.
-7. Place high-current power corridor first, then Radxa/DXL/sensor/audio blocks.
-8. Route the 4-layer PCB with high-current return and audio isolation constraints.
-9. Run KiCad ERC/DRC and resolve every unexplained violation.
+1. Regenerate power populated import/native schematic using NTA/NTB/NTC copper net ties; retire `power_v16_import.sch` from active use.
+2. Run Dynamixel and power connectivity/structure CI after the validation corrections.
+3. In a KiCad 9-capable environment, import/save corrected Dynamixel and power sheets and run real ERC.
+4. Recover exact upstream audio codec/amplifier/MEMS passive network.
+5. Populate sensors/audio schematics and top-level hierarchy.
+6. Freeze XL330/imu_to_dxl connector orientation and mechanical footprint.
+7. Freeze board outline/header/mounting holes/connector keepouts.
+8. Place high-current corridor and route 4-layer PCB.
+9. Run final ERC/DRC, power integrity and 1 Mbps bus bench validation.
 10. Generate Gerber/BOM/PnP only after independent pre-fabrication review.
 
 ## Fabrication blockers
 
-- native KiCad 9 import/save and real ERC for power/DYNAMIXEL not yet performed
-- BSC009/TPS25947 visual pad/stencil/board-level DRC review incomplete
-- XL330/imu_to_dxl connector footprint orientation and polarity not mechanically frozen
-- audio analog/power/passive recovery incomplete
-- sensors populated schematic incomplete
-- top-level hierarchical integration incomplete
+- `power_v16_import.sch` contains superseded zero-ohm branch-link representation and must not be fabricated
+- real KiCad 9 ERC/DRC has not been run
+- high-current copper net ties need final PCB-context DRC/thermal/current-path review
+- BSC009/TPS25947 visual pad/stencil review incomplete
+- XL330/imu_to_dxl connector orientation/polarity not mechanically frozen
+- audio populated schematic incomplete
+- sensors/top-level native hierarchy incomplete
 - PCB placement/routing incomplete
-- mechanical connector interference review incomplete
 - no Gerber is approved
 
 ## Current release status
 
-`v0.16-dev` — populated, pin-anchor-checked import schematics now exist for both DYNAMIXEL and power, and their connectivity/structure CI checks pass. Native KiCad 9 conversion and real ERC/DRC remain mandatory before fabrication. **Not fabrication-ready.**
+`v0.17-dev` — validation correction pass completed for the Dynamixel logic and servo branch power split. R31/R32 are restored, U5/U6/U7 anchors are rechecked, generic 0-ohm branch links are removed from the authoritative power contract, and 8 mm copper net ties are now required. **Not fabrication-ready.**
