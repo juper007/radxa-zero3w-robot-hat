@@ -51,36 +51,47 @@ Current gate:
 
 Selected ordering code: `BSC009NE2LS5IATMA1`.
 
-### Correct package variant
+### Authoritative package identification
 
-**Critical correction (2026-09-09):** an earlier draft incorrectly identified the exact dash variant as `PG-TDSON-8-46`. Infineon's product-specific package document for `BSC009NE2LS5IATMA1` identifies the package as **`PG-TDSON-8-7` (SuperSO8)**. Do not use the -46 land pattern for this part.
+A prior draft first called this device `PG-TDSON-8-46`, then over-corrected it to `PG-TDSON-8-7`. Neither dash-variant claim is sufficiently supported by the BSC009NE2LS5I product-specific public data and **must not be used as the footprint authority**.
 
-Manufacturer package data checked for the exact ordering code:
-- package: `PG-TDSON-8-7`
+The authoritative BSC009NE2LS5I data establishes:
+- package family: `PG-TDSON-8`
+- package name: `SuperSO8`
 - terminals: 8
-- exposed paddle: yes
-- body: approximately 5.9 x 5.15 mm
-- lead pitch: 1.27 mm
-- product-specific footprint drawing exists and must be the geometry authority
+- electrical mapping: pins 1/2/3 SOURCE, pin 4 GATE, pins 5/6/7/8 DRAIN
+- nominal body class: approximately 5 x 6 mm SuperSO8
+- terminal pitch: 1.27 mm
 
-The product-specific Infineon drawing was visually inspected. It includes the package outline plus copper/solder-mask/stencil footprint dimensions; this is now the required source for the project footprint.
+The product-specific datasheet includes the recommended PG-TDSON-8 boardpad and stencil-aperture drawing. That drawing, not a guessed dash variant, is the geometry authority for Q1.
 
-Verified electrical mapping:
-- pins 1,2,3 = SOURCE
-- pin 4 = GATE
-- pins 5,6,7,8 = DRAIN
+### Manufacturer boardpad dimensions captured for implementation
 
-Current gate:
-- [x] package family identified
-- [x] exact `PG-TDSON-8-7` variant identified from the BSC009NE2LS5IATMA1-specific Infineon package document
-- [x] source/gate/drain pin numbering identified
-- [x] product-specific package/footprint drawing located and visually reviewed
-- [ ] exact PG-TDSON-8-7 copper geometry transcribed to `RadxaRobotHat.pretty`
-- [ ] exposed-drain copper and stencil-aperture geometry checked against manufacturer drawing
+From the Infineon PG-TDSON-8 recommended-boardpad drawing used by this product family:
+- terminal pitch: 1.27 mm, 3 intervals
+- small terminal copper size: 0.8 mm x 0.6 mm
+- large drain copper width/length callouts: 3.325 mm and 2.863 mm
+- overall copper span callout: 4.455 mm
+- additional copper/solder-mask callouts: 0.5 mm and 0.925 mm
+- stencil drawing callouts include 2.9 mm, 1.6 mm, 1.5 mm, 0.875 mm, 0.825 mm, 0.75 mm, 0.5 mm, 0.4 mm and 0.2 mm separations
+
+These values are retained as the transcription checklist. The final KiCad pad geometry must be compared visually against the Infineon drawing before fabrication status can be granted.
+
+### Current gate
+
+- [x] exact ordering code frozen: `BSC009NE2LS5IATMA1`
+- [x] package family confirmed as `PG-TDSON-8 / SuperSO8`
+- [x] source/gate/drain pin numbering verified
+- [x] manufacturer recommended boardpad/stencil drawing located
+- [x] critical drawing dimensions captured in this gate document
+- [ ] exact copper pad geometry transcribed into `RadxaRobotHat.pretty`
+- [ ] pad-number mapping visually checked against source/gate/drain drawing
+- [ ] exposed-drain paste aperture strategy reproduced or intentionally documented
 - [ ] courtyard/clearance checked against main power pours
 - [ ] footprint opened in KiCad and orientation visually reviewed
+- [ ] board-level DRC performed
 
-No provisional generic SO-8 footprint and no `PG-TDSON-8-46` footprint may be promoted as fabrication-ready for Q1.
+No generic SO-8 footprint and no dash-variant-specific footprint may be promoted as fabrication-ready unless the exact variant is independently proven for the selected ordering code.
 
 ## LM74700QDBVRQ1
 
@@ -96,7 +107,7 @@ Electrical pin numbering is already verified. Standard KiCad SOT-23-6 is accepta
 
 `hardware/kicad/check_footprints.py` currently checks the critical TI RPW footprint invariants. `.github/workflows/footprint-check.yml` runs it on footprint changes.
 
-The checker must be expanded to validate the BSC009 PG-TDSON-8-7 footprint after that footprint is added.
+The checker must be expanded to validate BSC009 PG-TDSON-8 geometry after the footprint is added.
 
 This CI check is a regression guard, not a substitute for KiCad DRC or physical/visual footprint review.
 
@@ -106,4 +117,4 @@ XT60 and the 20 A fuse remain mechanical choices. A board-mount XT60 is allowed 
 
 ## Fabrication gate
 
-Power footprints remain **NOT YET FABRICATION-APPROVED**. TPS25947 transcription is substantially complete. The Q1 package variant is now corrected to PG-TDSON-8-7, but its exact copper/stencil footprint still must be transcribed and checked; visual KiCad review and board-level DRC also remain blockers.
+Power footprints remain **NOT YET FABRICATION-APPROVED**. TPS25947 transcription is substantially complete. Q1 is now correctly constrained to the BSC009NE2LS5I product-specific PG-TDSON-8/SuperSO8 drawing; its exact copper/stencil footprint still must be transcribed, visually checked and board-level DRC reviewed.
