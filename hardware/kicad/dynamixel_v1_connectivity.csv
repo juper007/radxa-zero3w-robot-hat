@@ -2,22 +2,23 @@ RefDes,Type,Pin/Node,Connects_To,Status,Notes
 J40,Radxa 40-pin,pin8,UART2_TX,VERIFIED,UART2_TX_M0 physical pin 8
 J40,Radxa 40-pin,pin10,UART2_RX,VERIFIED,UART2_RX_M0 physical pin 10
 J40,Radxa 40-pin,pin17,+3V3,VERIFIED,Logic supply from host; do not drive from HAT
-U5,74LVC1G08,VCC,+3V3,UPSTREAM_VERIFIED,Upstream direction logic
+U5,74LVC1G08,VCC,+3V3,UPSTREAM_VERIFIED,Receive-path combiner in upstream design
 U5,74LVC1G08,GND,GND,UPSTREAM_VERIFIED,
-U5,74LVC1G08,logic inputs,UART2_TX/DIR_LOGIC,RECOVERING,Exact Boolean wiring still being translated from upstream source
-U5,74LVC1G08,logic output,Dynamixel_dir,RECOVERING,Upstream label recovered
-U6,SN74LVC1G125DBV,VCC,+3V3,UPSTREAM_VERIFIED,TX tri-state buffer
+U5,74LVC1G08,A,TTL_RX_OUT,UPSTREAM_RECOVERED,One receive source from U6 TTL receive buffer
+U5,74LVC1G08,B,RS485_RX_OUT,TO_VERIFY,Second receive source appears to be optional RS485 path; exact net still independently verify
+U5,74LVC1G08,Y,UART2_RX,UPSTREAM_RECOVERED,Mirror-y placement and output wire terminate on IO_15 host RX path
+U6,SN74LVC1G125DBV,VCC,+3V3,UPSTREAM_VERIFIED,TTL receive tri-state buffer
 U6,SN74LVC1G125DBV,GND,GND,UPSTREAM_VERIFIED,
-U6,SN74LVC1G125DBV,A,UART2_TX,TO_VERIFY,Exact upstream pin wire to be confirmed before REVIEW
-U6,SN74LVC1G125DBV,OE,Dynamixel_dir,TO_VERIFY,Active-low OE polarity must match recovered direction node
-U6,SN74LVC1G125DBV,Y,DXL_DATA,TO_VERIFY,Primary TTL bus drive
-U7,SN74LVC1G126DBVR,VCC,+3V3,UPSTREAM_VERIFIED,RX tri-state buffer
+U6,SN74LVC1G125DBV,A,DXL_DATA,UPSTREAM_RECOVERED,Input pin2 traces to common TTL bus
+U6,SN74LVC1G125DBV,OE,RX_OE_N,RECOVERING,Active-low OE; exact upstream auto-direction drive still being traced
+U6,SN74LVC1G125DBV,Y,TTL_RX_OUT,UPSTREAM_RECOVERED,Output feeds upstream receive aggregation path before U5
+U7,SN74LVC1G126DBVR,VCC,+3V3,UPSTREAM_VERIFIED,TTL transmit tri-state buffer
 U7,SN74LVC1G126DBVR,GND,GND,UPSTREAM_VERIFIED,
-U7,SN74LVC1G126DBVR,A,DXL_DATA,TO_VERIFY,Primary TTL bus receive
-U7,SN74LVC1G126DBVR,OE,Dynamixel_dir,TO_VERIFY,Active-high OE polarity; exact upstream polarity translation required
-U7,SN74LVC1G126DBVR,Y,UART2_RX,TO_VERIFY,Host receive path
-R_TX,Series resistor,1,U6_Y,PROVISIONAL,Source-series tuning footprint
-R_TX,Series resistor,2,DXL_DATA,PROVISIONAL,Initial population to be frozen from upstream/source measurement
+U7,SN74LVC1G126DBVR,A,UART2_TX,UPSTREAM_RECOVERED,Input pin2 traces directly to IO_14/UART TX net
+U7,SN74LVC1G126DBVR,OE,TX_OE,RECOVERING,Active-high OE; exact upstream auto-direction drive still being traced
+U7,SN74LVC1G126DBVR,Y,DXL_DATA,UPSTREAM_RECOVERED,Output pin4 traces to common TTL bus
+R33,Series resistor,1,U7_Y,UPSTREAM_VALUE,150R from upstream BOM; exact physical position in TTL data path being confirmed
+R33,Series resistor,2,DXL_DATA,RECOVERING,Retain as source-series candidate until coordinate/net recovery complete
 D_ESD,Low-cap ESD,IO,DXL_DATA,PROVISIONAL,Select device after voltage/capacitance review
 D_ESD,Low-cap ESD,GND,GND,PROVISIONAL,
 TP_DXL,Test point,,DXL_DATA,REQUIRED,Oscilloscope access
@@ -30,7 +31,7 @@ J_DXL_B,TTL servo branch B,pin3,DXL_DATA,PROVISIONAL,
 J_DXL_C,TTL servo branch C,pin1,GND,PROVISIONAL,Same logical DATA bus
 J_DXL_C,TTL servo branch C,pin2,+5V_SERVO_C,PROVISIONAL,
 J_DXL_C,TTL servo branch C,pin3,DXL_DATA,PROVISIONAL,
-J_IMU_DXL,imu_to_dxl branch,pin1,GND,REQUIRED_CURRENT_SW,Current MicroDuck IMU node ID 200 shares bus
+J_IMU_DXL,imu_to_dxl branch,pin1,GND,REQUIRED_CURRENT_SW,Current MicroDuck IMU node shares bus
 J_IMU_DXL,imu_to_dxl branch,pin2,+5V_SERVO_A,PROVISIONAL,Branch choice can change at placement
 J_IMU_DXL,imu_to_dxl branch,pin3,DXL_DATA,REQUIRED_CURRENT_SW,
 U8,SIT3088E,all,RS485_OPTIONAL,DNP,Optional upstream-compatible RS-485 path; not required for XL330 V1
