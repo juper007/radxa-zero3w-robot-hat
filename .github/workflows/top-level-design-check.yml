@@ -1,0 +1,23 @@
+name: Top-level design sanity check
+
+on:
+  push:
+    paths:
+      - 'hardware/kicad/top_level_v1_connectivity.csv'
+      - 'hardware/kicad/check_top_level_design.py'
+      - '.github/workflows/top-level-design-check.yml'
+  pull_request:
+    paths:
+      - 'hardware/kicad/top_level_v1_connectivity.csv'
+      - 'hardware/kicad/check_top_level_design.py'
+
+jobs:
+  integration-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate top-level interface invariants
+        run: python hardware/kicad/check_top_level_design.py
