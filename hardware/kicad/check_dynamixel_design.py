@@ -33,15 +33,31 @@ require("U6", "Y", "TTL_RX_OUT")
 require("U5", "A", "TTL_RX_OUT")
 require("U5", "Y", "UART2_RX")
 
-# Both output-enable pins are on the exact same Dynamixel_dir net. The gate types
-# intentionally make them complementary: 1G126 OE is active-high; 1G125 /OE is active-low.
+# Both OE pins intentionally share Dynamixel_dir. 1G126 is active-high while
+# 1G125 is active-low, giving complementary TX/RX enables without an inverter.
 require("U6", "OE", "Dynamixel_dir", "UPSTREAM_VERIFIED")
 require("U7", "OE", "Dynamixel_dir", "UPSTREAM_VERIFIED")
 require("DIR", "LOW", "U7_DISABLED/U6_ENABLED", "UPSTREAM_VERIFIED")
 require("DIR", "HIGH", "U7_ENABLED/U6_DISABLED", "UPSTREAM_VERIFIED")
 
-# Upstream R33 is a verified 150R series element between the local transceiver node and
-# the off-board DXL_DATA network.
+# Automatic direction generator recovered from upstream source:
+# +3V3 --R26--> UART_TX sense --R27--> PNP base
+# +3V3 -----------------------------> PNP emitter
+# PNP collector --> Dynamixel_dir --R28--> GND
+require("R26", "top", "+3V3", "UPSTREAM_VERIFIED")
+require("R26", "bottom", "UART2_TX_DIR_SENSE", "UPSTREAM_VERIFIED")
+require("R27", "pin1", "UART2_TX_DIR_SENSE", "UPSTREAM_VERIFIED")
+require("R27", "pin2", "Q1_BASE", "UPSTREAM_VERIFIED")
+require("Q1", "pin1_BASE", "Q1_BASE", "UPSTREAM_VERIFIED")
+require("Q1", "pin2_EMITTER", "+3V3", "UPSTREAM_VERIFIED")
+require("Q1", "pin3_COLLECTOR", "Dynamixel_dir", "UPSTREAM_VERIFIED")
+require("R28", "top", "Dynamixel_dir", "UPSTREAM_VERIFIED")
+require("R28", "bottom", "GND", "UPSTREAM_VERIFIED")
+require("DIRGEN", "UART2_TX_IDLE_HIGH", "Dynamixel_dir_LOW", "UPSTREAM_VERIFIED")
+require("DIRGEN", "UART2_TX_LOW", "Dynamixel_dir_HIGH", "UPSTREAM_VERIFIED")
+
+# Upstream R33 is a verified 150R series element between the local transceiver
+# node and the off-board DXL_DATA network.
 require("R33", "pin1", "DXL_LOCAL", "UPSTREAM_VERIFIED")
 require("R33", "pin2", "DXL_DATA", "UPSTREAM_VERIFIED")
 
