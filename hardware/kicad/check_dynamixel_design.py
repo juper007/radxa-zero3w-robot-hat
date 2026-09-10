@@ -25,7 +25,6 @@ for u in ("U5", "U6", "U7"):
     require(u, "VCC", "+3V3")
     require(u, "GND", "GND")
 
-# Recovered upstream TTL signal direction.
 require("U7", "A", "UART2_TX")
 require("U7", "Y", "DXL_LOCAL")
 require("U6", "A", "DXL_LOCAL")
@@ -33,23 +32,22 @@ require("U6", "Y", "TTL_RX_OUT")
 require("U5", "A", "TTL_RX_OUT")
 require("U5", "Y", "UART2_RX")
 
-# TTL-only V1 policy: optional RS485 path is DNP, therefore U5 input B must
-# be forced high. AND(A,1)=A, so the retained upstream combiner is transparent.
+# Restored upstream pull-ups that are required for deterministic half-duplex behavior.
+require("R31", "pin1", "+3V3", "UPSTREAM_VERIFIED")
+require("R31", "pin2", "TTL_RX_OUT", "UPSTREAM_VERIFIED")
+require("R32", "pin1", "+3V3", "UPSTREAM_VERIFIED")
+require("R32", "pin2", "DXL_LOCAL", "UPSTREAM_VERIFIED")
+
+# TTL-only V1 policy: U8 RS485 is DNP, so the unused U5 input is forced high.
 require("U5", "B", "RS485_RX_IDLE_HIGH", "V1_FROZEN")
 require("R_RS485_IDLE", "pin1", "+3V3", "V1_FROZEN")
 require("R_RS485_IDLE", "pin2", "RS485_RX_IDLE_HIGH", "V1_FROZEN")
 
-# Both OE pins intentionally share Dynamixel_dir. 1G126 is active-high while
-# 1G125 is active-low, giving complementary TX/RX enables without an inverter.
 require("U6", "OE", "Dynamixel_dir", "UPSTREAM_VERIFIED")
 require("U7", "OE", "Dynamixel_dir", "UPSTREAM_VERIFIED")
 require("DIR", "LOW", "U7_DISABLED/U6_ENABLED", "UPSTREAM_VERIFIED")
 require("DIR", "HIGH", "U7_ENABLED/U6_DISABLED", "UPSTREAM_VERIFIED")
 
-# Automatic direction generator recovered from upstream source:
-# +3V3 --R26--> UART_TX sense --R27--> PNP base
-# +3V3 -----------------------------> PNP emitter
-# PNP collector --> Dynamixel_dir --R28--> GND
 require("R26", "top", "+3V3", "UPSTREAM_VERIFIED")
 require("R26", "bottom", "UART2_TX_DIR_SENSE", "UPSTREAM_VERIFIED")
 require("R27", "pin1", "UART2_TX_DIR_SENSE", "UPSTREAM_VERIFIED")
@@ -62,12 +60,9 @@ require("R28", "bottom", "GND", "UPSTREAM_VERIFIED")
 require("DIRGEN", "UART2_TX_IDLE_HIGH", "Dynamixel_dir_LOW", "UPSTREAM_VERIFIED")
 require("DIRGEN", "UART2_TX_LOW", "Dynamixel_dir_HIGH", "UPSTREAM_VERIFIED")
 
-# Upstream R33 is a verified 150R series element between the local transceiver
-# node and the off-board DXL_DATA network.
 require("R33", "pin1", "DXL_LOCAL", "UPSTREAM_VERIFIED")
 require("R33", "pin2", "DXL_DATA", "UPSTREAM_VERIFIED")
 
-# All V1 TTL branches share one external DATA net while retaining independent power rails.
 for ref, rail in (("J_DXL_A", "+5V_SERVO_A"), ("J_DXL_B", "+5V_SERVO_B"), ("J_DXL_C", "+5V_SERVO_C")):
     require(ref, "pin1", "GND")
     require(ref, "pin2", rail)
@@ -77,7 +72,6 @@ require("J_IMU_DXL", "pin1", "GND")
 require("J_IMU_DXL", "pin3", "DXL_DATA")
 require("TP_DXL", "", "DXL_DATA")
 
-# V1 must not accidentally make RS-485 mandatory.
 row = index.get(("U8", "all"))
 if row is None or row.get("Status") != "DNP":
     errors.append("U8 RS-485 path must remain DNP for core XL330 V1")
