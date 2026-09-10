@@ -6,6 +6,8 @@ Q1,1,Automatic-direction PNP,MMBT3906,SOT-23,UPSTREAM_VERIFIED,LCSC C727128; emi
 R26,1,UART TX direction-sense pull-up,10k,0402,UPSTREAM_VERIFIED,+3V3 to UART2_TX_DIR_SENSE
 R27,1,Q1 base resistor,10k,0402,UPSTREAM_VERIFIED,UART2_TX_DIR_SENSE to Q1 base
 R28,1,Dynamixel_dir pull-down,20k,0402,UPSTREAM_VERIFIED,Dynamixel_dir to GND; receive-mode default when TX idle high
+R31,1,TTL RX tri-state output pull-up,10k,0402,UPSTREAM_VERIFIED,+3V3 to TTL_RX_OUT; prevents floating U5 input while U6 disabled
+R32,1,DXL local bus pull-up,10k,0402,UPSTREAM_VERIFIED,+3V3 to DXL_LOCAL; supplies logic-high when TX buffer releases bus
 R33,1,DXL bus series resistor,150R,0402,UPSTREAM_VERIFIED,LCSC C138054; inline between DXL_LOCAL and external DXL_DATA
 R_RS485_IDLE,1,U5 unused-input bias,10k 1%,0402,V1_FROZEN,+3V3 to RS485_RX_IDLE_HIGH; makes U5 transparent when U8 is DNP
 U8,1,Optional RS-485 transceiver,SIT3088E,MSOP-8-1EP_3x3mm_P0.65mm,DNP_V1,LCSC C2922535 upstream; not fitted in core XL330 V1
