@@ -1,22 +1,21 @@
-RefDes,Qty,Function,Initial specification,Selection status,Notes
-J1,1,Main power input,"5-28 V, high-current, polarized",SELECTING,"Freeze connector after motor current budget"
-F1,1,Input fuse,"Replaceable fuse, rating TBD",SELECTING,"Prototype should not rely only on PTC"
-Q1/U1,1,Reverse polarity / ideal diode,">=40 V preferred, low-loss",SELECTING,"Must support final continuous motor current"
-D1,1,TVS clamp,"Unidirectional, standoff TBD",SELECTING,"Select after final VIN is frozen"
-C1,1,Motor bulk capacitor,"470 uF low ESR, >=35 V if 28 V retained",PROVISIONAL,"50 V may be preferable after transient test"
-C2,1,Motor bulk capacitor,"100 uF low ESR, voltage margin",PROVISIONAL,"Parallel with main bulk"
-C3,1,Motor rail ceramic,"1 uF, voltage margin",PROVISIONAL,"Close to rail distribution"
-C4,1,Motor rail ceramic,"100 nF, voltage margin",PROVISIONAL,"High-frequency bypass"
-U2,1,5 V synchronous buck,"VIN covers final input range, 5 V / practical >=5 A",SELECTING,"Must include UVLO/current limit/thermal shutdown"
-L1,1,Buck inductor,"Value per U2 reference design; Isat > peak current",TBD,"Select with thermal margin"
-CINx,TBD,Buck input capacitors,"Per U2 datasheet",TBD,"Place at VIN/PGND pins"
-COUTx,TBD,Buck output capacitors,"Per U2 datasheet",TBD,"Verify ripple/transient stability"
-C5,1,Host rail bulk,"220-470 uF low ESR",PROVISIONAL,"Populate if transient testing benefits"
-U3,1,5 V reverse-current protection,"Load switch / ideal diode, optional DNP",SELECTING,"Prototype safety feature for USB-C coexistence"
-R0,1,Protection bypass,"0 ohm configuration option",PROVISIONAL,"Only bypass after backfeed validation"
-TP1,1,VIN test point,"Probe-friendly",PROVISIONAL,
-TP2,1,MOTOR_VBUS test point,"Probe-friendly",PROVISIONAL,
-TP3,1,5V_PRE test point,"Probe-friendly",PROVISIONAL,
-TP4,1,5V_RADXA test point,"Probe-friendly",PROVISIONAL,
-TP5,1,GND test point,"Probe-friendly",PROVISIONAL,
-TP6,1,BUCK_EN test point,"Small signal test pad",PROVISIONAL,
+RefDes,Qty,Function,Selected/Candidate Part,Electrical target,Status,Notes
+J1,1,Main 5V power input,XT30/XT60 family,"5V; >=15A continuous preferred",CANDIDATE,"Mechanical fit decides XT30 vs XT60"
+F1,1,Main input fuse,Automotive/blade or inline replaceable fuse,"Initial 15-20A development class; final rating after wire/connector selection",SELECTING,"Protect board and input wiring; do not size from stall current alone"
+Q1/Q2,2,Main reverse-polarity ideal-diode FETs,Back-to-back low-RDS(on) N-MOSFET solution,">=20A path; <=5mOhm effective target; >=20V VDS preferred",SELECTING,"Dedicated controller/discrete implementation to be selected after layout study"
+D1,1,5V rail transient clamp,Littelfuse SMBJ5.0A candidate,"VRWM 5.0V; 600W class",CANDIDATE,"Clamp is ~9.2V at rated pulse; not sufficient alone to enforce XL330 6V max—supply quality/OV cutoff still required"
+C1-C3,3,Servo bus bulk capacitors,"470uF low-ESR each, >=10V (16V preferred)","Distributed near servo branch groups",PROVISIONAL,"One per branch starting point"
+C4-C6,3,Servo branch bulk,"100uF low-ESR, >=10V","Local transient support",PROVISIONAL,"One per branch"
+C7-C9,3,Servo branch ceramic,"1uF X7R, >=10V","HF bypass",PROVISIONAL,
+C10-C12,3,Servo branch ceramic,"100nF X7R, >=10V","HF bypass",PROVISIONAL,
+U2,1,Radxa host eFuse / reverse-current block,TI TPS25947,"2.7-23V; 5.5A class; 28.3mOhm typ; true reverse-current blocking",SELECTED-CANDIDATE,"Strong fit for HAT-power + USB-C coexistence prototype; verify thermal/current limit configuration"
+R_ILIM,TBD,TPS25947 current-limit set,TBD,"Target 3.5-4.5A initial host limit",TBD,"Calculate from exact TPS25947 variant/datasheet equation"
+C_DVDT,1,TPS25947 slew-rate capacitor,TBD,"Controlled Radxa inrush",TBD,"Select after output capacitance is frozen"
+C13,1,Host rail bulk,"470uF low-ESR, >=10V","Near 40-pin 5V injection",PROVISIONAL,"Tune after transient test"
+C14-C16,3,Host ceramics,"22uF X7R, >=10V","Near eFuse/header",PROVISIONAL,
+R0,1,Host protection bypass,0 ohm DNP-by-default,"Debug/configuration only",PROVISIONAL,"Do not populate until backfeed tests pass"
+TP1,1,5V input test point,Probe pad,"TP_5V_IN",PROVISIONAL,
+TP2,1,System rail test point,Probe pad,"TP_5V_SYS",PROVISIONAL,
+TP3-TP5,3,Servo branch test points,Probe pads,"TP_5V_SERVO_A/B/C",PROVISIONAL,
+TP6,1,Host protected rail test point,Probe pad,"TP_5V_RADXA",PROVISIONAL,
+TP7,1,3V3 test point,Probe pad,"TP_3V3",PROVISIONAL,
+TP8-TP10,3,Ground probe points,Large probe pads,"GND",PROVISIONAL,
