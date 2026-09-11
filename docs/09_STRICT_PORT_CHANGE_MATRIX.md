@@ -26,9 +26,38 @@
 | Main Qwiic | J5 on pins 3/5 I2C | J5 on I2C3 M0 pins 3/5 | Host compatibility | Applied |
 | Auxiliary Qwiic | J6/J7/J8 use Pi-specific auxiliary I2C/GPIO selections | Retained physically, marked DNP | Verified incompatibility containment | Applied |
 | HAT EEPROM | Pi HAT identification EEPROM | Retained DNP | Raspberry Pi-only feature | Preserved DNP |
-| PCB routing | Production-routed upstream board | Routing retained; critical net names changed only | Preserved invariant | Applied |
+| PCB routing | Production-routed upstream board | Routing retained; 18 host-facing net labels renamed without connectivity changes | Preserved invariant | Applied |
 | Project identity | `elec_RPI_Robot_HAT` | `radxa_zero3w_robot_hat` | Required derivative identity | Applied |
 | Daughterboard | None | None | Preserved invariant | Applied |
+
+## Complete host-net rename list
+
+All 18 host-facing net renames are listed below. The first eight select the
+active Radxa I2C/UART/I2S functions. The remaining ten replace Raspberry Pi BCM
+names with the Radxa ball/function or physical-pin identity. These are semantic
+label changes only: component membership and PCB copper connectivity are
+unchanged.
+
+| Header pin | Upstream net | Radxa-port net | Role |
+|---:|---|---|---|
+| 3 | `IO_02` | `I2C3_SDA_M0` | Active I2C3 data |
+| 5 | `IO_03` | `I2C3_SCL_M0` | Active I2C3 clock |
+| 8 | `IO_14` | `UART2_TX_M0` | Active Dynamixel UART TX |
+| 10 | `IO_15` | `UART2_RX_M0` | Active Dynamixel UART RX |
+| 12 | `IO_18` | `I2S3_SCLK_M0` | Active audio serial clock |
+| 35 | `IO_19` | `I2S3_LRCK_M0` | Active audio frame clock |
+| 38 | `IO_20` | `I2S3_SDI_M0` | Active audio input |
+| 40 | `IO_21` | `I2S3_SDO_M0` | Active audio output |
+| 7 | `IO_04` | `GPIO3_C4_P7` | Radxa GPIO identity; auxiliary option DNP |
+| 15 | `IO_22` | `GPIO3_B0_P15` | Radxa GPIO identity |
+| 19 | `IO_10` | `GPIO4_C3_P19` | Radxa GPIO identity; auxiliary option DNP |
+| 21 | `IO_09` | `GPIO4_C5_P21` | Radxa GPIO identity; auxiliary option DNP |
+| 23 | `IO_11` | `GPIO4_C2_P23` | Radxa GPIO identity; auxiliary option DNP |
+| 24 | `IO_08` | `GPIO4_C6_P24` | Radxa GPIO identity; auxiliary option DNP |
+| 27 | `ID_SD` | `I2C4_SDA_M0_P27` | Upstream HAT-ID path; U4 DNP |
+| 28 | `ID_SC` | `I2C4_SCL_M0_P28` | Upstream HAT-ID path; U4 DNP |
+| 29 | `IO_05` | `GPIO3_B3_P29` | Radxa GPIO identity; auxiliary option DNP |
+| 31 | `IO_06` | `GPIO3_B4_P31` | Radxa GPIO identity; auxiliary option DNP |
 
 ## Explicitly excluded from this port
 

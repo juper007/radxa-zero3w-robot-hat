@@ -5,6 +5,7 @@ from collections import Counter
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -59,6 +60,19 @@ def run_kicad(cli: str, arguments: list[str]) -> None:
             f"kicad-cli failed ({result.returncode}): {' '.join(arguments)}\n"
             f"{result.stdout}\n{result.stderr}"
         )
+
+
+def require_kicad_10(cli: str) -> None:
+    result = subprocess.run(
+        [cli, "--version"],
+        text=True,
+        capture_output=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    version = result.stdout.strip()
+    if result.returncode != 0 or not version.startswith("10."):
+        fail(f"KiCad 10.x is required; detected {version or 'unknown'}")
 
 
 def symbol_block(text: str, ref: str) -> str:
@@ -168,6 +182,60 @@ def netlist_signature(path: Path) -> tuple:
     return components, nets
 
 
+def top_level_blocks(text: str, keyword: str) -> list[str]:
+    blocks = []
+    for match in re.finditer(rf"^\t\({re.escape(keyword)}\s", text, re.MULTILINE):
+        start = match.start()
+        depth = 0
+        for index in range(start, len(text)):
+            if text[index] == "(":
+                depth += 1
+            elif text[index] == ")":
+                depth -= 1
+                if depth == 0:
+                    blocks.append(text[start:index + 1])
+                    break
+    return blocks
+
+
+def board_metrics(text: str) -> dict:
+    edge_blocks = [
+        block
+        for keyword in ("gr_line", "gr_arc", "gr_circle", "gr_rect")
+        for block in top_level_blocks(text, keyword)
+        if '(layer "Edge.Cuts")' in block
+    ]
+    points = [
+        (float(match.group(1)), float(match.group(2)))
+        for block in edge_blocks
+        for match in re.finditer(
+            r"\((?:start|mid|end|center)\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\)",
+            block,
+        )
+    ]
+    stroke_widths = [
+        float(match.group(1))
+        for block in edge_blocks
+        for match in re.finditer(r"\(width\s+(\d+(?:\.\d+)?)\)", block)
+    ]
+    if not points or not stroke_widths:
+        fail("cannot derive the PCB outline from current Edge.Cuts geometry")
+    stroke = max(stroke_widths)
+    outline = [
+        round(max(x for x, _ in points) - min(x for x, _ in points) + stroke, 2),
+        round(max(y for _, y in points) - min(y for _, y in points) + stroke, 2),
+    ]
+    segments = len(top_level_blocks(text, "segment"))
+    track_arcs = len(top_level_blocks(text, "arc"))
+    vias = len(top_level_blocks(text, "via"))
+    return {
+        "outline_mm": outline,
+        "footprints": len(top_level_blocks(text, "footprint")),
+        "tracks": segments + track_arcs + vias,
+        "zones": len(top_level_blocks(text, "zone")),
+    }
+
+
 for path in (
     SCH,
     PCB,
@@ -181,6 +249,9 @@ for path in (
     if not path.exists():
         fail(f"missing required artifact: {path.relative_to(REPO)}")
 
+board_files = list(ROOT.glob("*.kicad_pcb"))
+if board_files != [PCB]:
+    fail(f"strict port must contain exactly one active PCB: {board_files}")
 if any(ROOT.glob("*daughterboard*")):
     fail("daughterboard artifact exists in the active strict-port branch")
 
@@ -231,6 +302,7 @@ for ref, source in (
         fail(f"PCB footprint {ref} must remain DNP")
 
 cli = find_kicad_cli()
+require_kicad_10(cli)
 with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     temporary = Path(directory)
     fresh_erc_path = temporary / "radxa_port_erc.json"
@@ -275,15 +347,25 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
         4: "+5V",
         5: "I2C3_SCL_M0",
         6: "GND",
+        7: "GPIO3_C4_P7",
         8: "UART2_TX_M0",
         9: "GND",
         10: "UART2_RX_M0",
         12: "I2S3_SCLK_M0",
         14: "GND",
+        15: "GPIO3_B0_P15",
         17: "+3V3",
+        19: "GPIO4_C3_P19",
         20: "GND",
+        21: "GPIO4_C5_P21",
+        23: "GPIO4_C2_P23",
+        24: "GPIO4_C6_P24",
         25: "GND",
+        27: "I2C4_SDA_M0_P27",
+        28: "I2C4_SCL_M0_P28",
+        29: "GPIO3_B3_P29",
         30: "GND",
+        31: "GPIO3_B4_P31",
         34: "GND",
         35: "I2S3_LRCK_M0",
         38: "I2S3_SDI_M0",
@@ -329,6 +411,7 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
         fail("committed Radxa ERC report is stale relative to the current schematic")
 
 summary = load_json(SUMMARY)
+current_board = board_metrics(pcb_text)
 expected_summary = {
     "board_count": 1,
     "outline_mm": [65.05, 30.95],
@@ -342,10 +425,10 @@ expected_summary = {
     "parity_new": 0,
 }
 actual_summary = {
-    "board_count": summary["architecture"]["board_count"],
-    "outline_mm": summary["architecture"]["outline_mm"],
-    "footprints": summary["pcb"]["footprints"],
-    "tracks": summary["pcb"]["tracks"],
+    "board_count": len(board_files),
+    "outline_mm": current_board["outline_mm"],
+    "footprints": current_board["footprints"],
+    "tracks": current_board["tracks"],
     "erc_total": summary["erc_baseline"]["total"],
     "erc_new": summary["erc_baseline"]["new_vs_upstream"],
     "drc_total": summary["drc_baseline"]["total"],
@@ -355,6 +438,23 @@ actual_summary = {
 }
 if actual_summary != expected_summary or summary.get("fabrication_ready") is not False:
     fail(f"summary mismatch: {actual_summary}")
+if current_board["zones"] != summary["pcb"]["zones"]:
+    fail(f"summary zone count is stale: current={current_board['zones']}")
+if summary["architecture"]["board_count"] != len(board_files):
+    fail("summary board count is stale")
+if summary["architecture"]["outline_mm"] != current_board["outline_mm"]:
+    fail("summary outline is stale")
+if summary["pcb"]["footprints"] != current_board["footprints"]:
+    fail("summary footprint count is stale")
+if summary["pcb"]["tracks"] != current_board["tracks"]:
+    fail("summary track count is stale")
+expected_host_mapping = {
+    str(pin): net
+    for pin, net in expected_header.items()
+    if net not in {"+3V3", "+5V", "GND"}
+}
+if summary["host_mapping"] != expected_host_mapping:
+    fail("summary host mapping is incomplete or stale")
 
 print("STRICT PORT CHECK: PASS")
 print(
