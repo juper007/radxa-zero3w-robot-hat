@@ -1,86 +1,54 @@
-# 01 - Design Requirements
+# 01 — Strict-port requirements
 
-## Functional requirements
+## Product identity
 
 | ID | Requirement | Priority |
 |---|---|---|
-| FR-001 | Mount/connect directly to Radxa ZERO 3W 40-pin header | Must |
-| FR-002 | Provide Dynamixel TTL communication for XL330-class servos | Must |
-| FR-003 | Support target UART bus rate of at least 1 Mbps | Must |
-| FR-004 | Provide I2C sensor/control bus | Must |
-| FR-005 | Provide on-board 6-axis IMU | Must |
-| FR-006 | Provide I2S audio connectivity | Must |
-| FR-007 | Provide microphone input | Must |
-| FR-008 | Provide speaker output | Must |
-| FR-009 | Accept wide-range robot supply, target 5-28 V | Must |
-| FR-010 | Generate regulated 5 V suitable for Radxa ZERO 3W | Must |
-| FR-011 | Provide motor/system power distribution | Must |
-| FR-012 | Provide accessible test points for critical rails/buses | Must |
-| FR-013 | Provide optional RS-485 motor interface | Should |
-| FR-014 | Provide 3.3 V Qwiic-style expansion | Should |
+| SR-001 | Remain a single Radxa ZERO 3W HAT; no daughterboard | Must |
+| SR-002 | Preserve the upstream 65 × 31 mm form factor and mounting concept | Must |
+| SR-003 | Preserve the upstream routed PCB as the starting point | Must |
+| SR-004 | Preserve the upstream power-flow concept unless a verified incompatibility blocks it | Must |
+| SR-005 | Preserve Dynamixel TTL/RS-485, IMU, audio and main Qwiic functions | Must |
 
-## Electrical requirements
+## Host interface
 
-- Radxa-facing GPIO signals shall use 3.3 V-compatible logic levels.
-- No external circuit shall force >3.3 V onto an RK3566 GPIO.
-- 5 V rail must be reviewed for host backfeed behavior before fabrication.
-- Motor current paths shall not share narrow signal return paths.
-- DC/DC input and switching nodes shall be kept away from audio analog inputs and IMU-sensitive areas.
-- All components exposed directly to the robot input supply must have suitable voltage derating above the maximum intended operating voltage.
-- Bulk and local decoupling must be provided close to motor-power and regulator interfaces.
-- Dynamixel connector polarity shall be treated as a critical safety item.
+| Physical pin(s) | Required Radxa function |
+|---|---|
+| 3 / 5 | `I2C3_SDA_M0` / `I2C3_SCL_M0` |
+| 8 / 10 | `UART2_TX_M0` / `UART2_RX_M0` |
+| 12 / 35 / 38 / 40 | `I2S3_SCLK_M0` / `LRCK_M0` / `SDI_M0` / `SDO_M0` |
+| 1 / 17 | 3.3 V |
+| 2 / 4 | 5 V |
+| 6 / 9 / 14 / 20 / 25 / 30 / 34 / 39 | GND |
 
-## Interface allocation baseline
+- All host-facing GPIO must remain within the Radxa 3.3 V domain.
+- Raspberry Pi BCM labels shall not be used as the authoritative signal definition.
+- Hardware I2C3 M0 and its FUSB302/I2C3 M1 conflict must be handled in the Radxa device tree and documented for users.
+- UART2 console/getty ownership must be disabled before Dynamixel use.
+- I2S3 clocking and codec compatibility must be verified on the target OS image.
 
-Planned host interfaces:
+## Upstream options
 
-- I2C3 M0: physical pins 3 / 5
-- UART2 M0: physical pins 8 / 10
-- I2S3: physical pins 12 / 35 / 38 / 40
-- 5 V: physical pins 2 / 4
-- 3.3 V: physical pins 1 / 17
-- GND: multiple ground pins
+- U4, the Raspberry Pi HAT identification EEPROM, remains DNP.
+- J6/J7/J8 auxiliary Qwiic connectors remain physically present but shall be DNP until a Radxa-compatible reassignment is explicitly designed and routed.
+- J5 remains the primary Qwiic connector on I2C3 pins 3/5.
 
-These assignments must be rechecked against the selected Radxa OS/device-tree configuration immediately before schematic release.
+## Mechanical and power gates
 
-## Mechanical requirements
+- Radxa ZERO 3W mounting holes and the 40-pin mating orientation must be checked against an authoritative mechanical drawing.
+- USB-C, HDMI, microSD, camera and antenna clearances must be reviewed with the actual stack orientation.
+- The upstream 5–28 V input and on-board converter are retained for the strict port.
+- Simultaneous USB-C and HAT 5 V power is prohibited until backfeed behavior is verified.
+- Motor connector polarity and power-input use must retain upstream behavior unless explicitly changed.
 
-- Target PCB footprint: approximately Radxa ZERO 3W size class (65 x 30 mm) where connector and power-stage placement permits.
-- Maintain access/clearance for the Radxa microSD, USB, HDMI and antenna regions as required by the final stack orientation.
-- Pin 1 and connector orientation shall be unambiguous on both copper documentation and silkscreen.
-- Mounting holes shall align to verified Radxa ZERO 3W mechanical drawings before fabrication.
+## Verification gates
 
-## PCB requirements
+Before fabrication:
 
-- KiCad 9 project format.
-- 4-layer PCB preferred.
-- Continuous inner ground plane preferred.
-- Keep switching regulator hot loop compact.
-- Keep IMU away from inductors, high-current motor connectors and board flex concentration where practical.
-- Keep audio analog routing away from switching nodes and Dynamixel power traces.
-- Use wide copper/pours for motor and input-power paths based on calculated current requirements.
-
-## Verification requirements
-
-Before Gerber release:
-
-- ERC completed with no unexplained errors.
-- DRC completed with no unexplained errors.
-- Independent pin-by-pin 40-pin header verification.
-- Connector pin-1/polarity verification.
-- Power-tree current and thermal calculation.
-- Datasheet pin-number cross-check for every IC.
-- Footprint/package cross-check for every IC and connector.
-- Mechanical collision review.
-
-## Open parameters
-
-The following values will be finalized during detailed design:
-
-- Maximum continuous motor-bus current
-- Exact 5 V regulator output-current target
-- Input connector family
-- Number of Dynamixel connectors
-- Whether RS-485 is populated in V1
-- Audio speaker power target
-- Exact microphone implementation
+- native KiCad ERC and DRC reviewed with every finding dispositioned;
+- no new violations relative to the captured upstream baseline;
+- pin-by-pin J4 netlist check passes;
+- routed connection count and board outline remain consistent with upstream;
+- Radxa mechanical overlay and connector-height review completed;
+- BOM/footprints checked against the upstream production package;
+- bench test plan approved.

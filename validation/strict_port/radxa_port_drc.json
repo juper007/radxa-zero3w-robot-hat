@@ -1,0 +1,2767 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-11T15:19:11",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "PTH inside courtyard",
+            "key": "pth_inside_courtyard"
+        },
+        {
+            "description": "NPTH inside courtyard",
+            "key": "npth_inside_courtyard"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.6",
+    "schematic_parity": [
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 FID1",
+                    "pos": {
+                        "x": 132.254881,
+                        "y": 83.440001
+                    },
+                    "uuid": "acc0a757-4f87-4368-bb3b-c3a4c174cad5"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 FID2",
+                    "pos": {
+                        "x": 115.997501,
+                        "y": 103.640001
+                    },
+                    "uuid": "a659f489-8f27-4b16-a9e8-00b5a63c7947"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 FID3",
+                    "pos": {
+                        "x": 78.554881,
+                        "y": 103.940001
+                    },
+                    "uuid": "f0aea18b-8a3a-48c6-8f31-d2058c3eb7bb"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C25",
+                    "pos": {
+                        "x": 117.717501,
+                        "y": 85.360001
+                    },
+                    "uuid": "718e5dd6-208c-4321-86c6-ecc0f834014f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J4",
+                    "pos": {
+                        "x": 103.3975,
+                        "y": 79.64
+                    },
+                    "uuid": "1a2c60f8-aeea-470f-946a-686c70f86d9c"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R10",
+                    "pos": {
+                        "x": 115.672501,
+                        "y": 86.265001
+                    },
+                    "uuid": "53b68105-0e5a-422e-9b39-129d22d42cc5"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R11",
+                    "pos": {
+                        "x": 114.697501,
+                        "y": 87.265001
+                    },
+                    "uuid": "43f489a0-f849-4836-ac9e-b0b885bf4eeb"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C19",
+                    "pos": {
+                        "x": 94.054881,
+                        "y": 100.940001
+                    },
+                    "uuid": "9f75ca88-4f21-431f-bba4-7919bfa669bb"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C20",
+                    "pos": {
+                        "x": 98.937501,
+                        "y": 98.440001
+                    },
+                    "uuid": "de636867-df73-4297-9c83-e31d5035e364"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C21",
+                    "pos": {
+                        "x": 99.254881,
+                        "y": 104.777501
+                    },
+                    "uuid": "3e9412bb-39cc-4e01-9df7-b7932d7b61c8"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C22",
+                    "pos": {
+                        "x": 96.897501,
+                        "y": 103.540001
+                    },
+                    "uuid": "1e6b9c9a-b1b2-40dc-8981-38d7ea2f2f86"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C39",
+                    "pos": {
+                        "x": 106.697501,
+                        "y": 98.840001
+                    },
+                    "uuid": "3db277dc-0bd3-4353-9cb2-ed3931b86bb7"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C44",
+                    "pos": {
+                        "x": 100.997501,
+                        "y": 91.740001
+                    },
+                    "uuid": "1b9bae5c-0b2d-4f90-bd8c-57e3f9851023"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 D2",
+                    "pos": {
+                        "x": 99.597501,
+                        "y": 93.440001
+                    },
+                    "uuid": "3d68585d-29b4-4ee8-99b5-7155bc8ceb6b"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 L4",
+                    "pos": {
+                        "x": 104.454881,
+                        "y": 102.040001
+                    },
+                    "uuid": "83dbbd06-c74d-46c4-8568-51332f489fbb"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 Q2",
+                    "pos": {
+                        "x": 103.497501,
+                        "y": 103.040001
+                    },
+                    "uuid": "2080a52e-68dc-45dd-a1ce-a708fbf3f890"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R8",
+                    "pos": {
+                        "x": 107.397501,
+                        "y": 100.840001
+                    },
+                    "uuid": "f21c8535-e6a8-4f40-bd5b-7cf72d2ae466"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R24",
+                    "pos": {
+                        "x": 98.007501,
+                        "y": 97.340001
+                    },
+                    "uuid": "e85025b8-aa89-4d7b-96d2-2a882e5a3148"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C15",
+                    "pos": {
+                        "x": 91.497501,
+                        "y": 96.540001
+                    },
+                    "uuid": "dd01498c-90f6-4583-86b0-e8ec31945a70"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C16",
+                    "pos": {
+                        "x": 91.947501,
+                        "y": 85.765001
+                    },
+                    "uuid": "8ed6f3b6-694e-41ae-b573-a7221032e6c7"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C17",
+                    "pos": {
+                        "x": 92.610001,
+                        "y": 91.540001
+                    },
+                    "uuid": "d4f1a478-d45d-46bc-9c49-4259cba5150f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C18",
+                    "pos": {
+                        "x": 82.102621,
+                        "y": 89.977501
+                    },
+                    "uuid": "9584f66a-a7cd-42c4-9c2f-bde9d25e1ece"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 D4",
+                    "pos": {
+                        "x": 76.097501,
+                        "y": 90.040001
+                    },
+                    "uuid": "25f64da3-cd01-4c25-8114-399d42e12ac0"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J3",
+                    "pos": {
+                        "x": 87.797501,
+                        "y": 102.640001
+                    },
+                    "uuid": "b1bdf0ed-7dcf-449f-8693-73d31f76198a"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J11",
+                    "pos": {
+                        "x": 82.997501,
+                        "y": 102.640001
+                    },
+                    "uuid": "eec6cec9-2ce8-41e9-a9d3-f34e9a5314d2"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J13",
+                    "pos": {
+                        "x": 73.347501,
+                        "y": 97.090001
+                    },
+                    "uuid": "bd07535d-d1ed-4c24-bb40-a0df3801915f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J14",
+                    "pos": {
+                        "x": 78.147501,
+                        "y": 97.090001
+                    },
+                    "uuid": "3818b89b-37b1-4d50-ace0-2b383d9cd98f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R26",
+                    "pos": {
+                        "x": 96.064881,
+                        "y": 92.840001
+                    },
+                    "uuid": "af21a3a1-bf5c-49c8-b846-01cd132846b5"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R27",
+                    "pos": {
+                        "x": 97.564881,
+                        "y": 92.340001
+                    },
+                    "uuid": "9ad32790-5ae9-4ed2-a6dc-ed6acc232007"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R28",
+                    "pos": {
+                        "x": 99.697501,
+                        "y": 96.340001
+                    },
+                    "uuid": "5a906be2-8889-423c-bc2e-2136819d6ade"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R29",
+                    "pos": {
+                        "x": 93.497501,
+                        "y": 96.540001
+                    },
+                    "uuid": "e23b5539-2856-4841-8391-f2bb210b845f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R31",
+                    "pos": {
+                        "x": 90.410001,
+                        "y": 89.590001
+                    },
+                    "uuid": "75390b12-c94d-45eb-ac53-5080b8ce4add"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R32",
+                    "pos": {
+                        "x": 81.5175,
+                        "y": 92.527501
+                    },
+                    "uuid": "3bd4f89a-a70b-4f44-8d12-746c2484a7e0"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R33",
+                    "pos": {
+                        "x": 78.697501,
+                        "y": 90.040001
+                    },
+                    "uuid": "bbf8b882-506d-4740-a67e-60317715f4c9"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R40",
+                    "pos": {
+                        "x": 96.097501,
+                        "y": 98.340001
+                    },
+                    "uuid": "2f448730-52c0-4475-853c-bc2096fdbd16"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R41",
+                    "pos": {
+                        "x": 95.297501,
+                        "y": 96.440001
+                    },
+                    "uuid": "dc8bc5e6-c59d-474c-b8b4-544b9ef46f94"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 TH1",
+                    "pos": {
+                        "x": 75.897501,
+                        "y": 93.340001
+                    },
+                    "uuid": "6be0fbbe-193b-4382-97f5-0f4dae6e477a"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C23",
+                    "pos": {
+                        "x": 94.597501,
+                        "y": 85.440001
+                    },
+                    "uuid": "add57f68-01d2-45f7-ba42-0fc2fb7c25af"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C24",
+                    "pos": {
+                        "x": 93.697501,
+                        "y": 91.940001
+                    },
+                    "uuid": "de42522b-cc50-44b7-9d7d-853e73d8cbb9"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J5",
+                    "pos": {
+                        "x": 75.154881,
+                        "y": 86.440001
+                    },
+                    "uuid": "22ec7062-2674-4bfb-99c7-a75ba2442348"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J6",
+                    "pos": {
+                        "x": 83.154881,
+                        "y": 86.430001
+                    },
+                    "uuid": "598e8349-cd18-4384-9349-2155bbd1c1a4"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J7",
+                    "pos": {
+                        "x": 101.617501,
+                        "y": 87.715001
+                    },
+                    "uuid": "b1de406e-99e7-4c09-b6df-40343420dc20"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J8",
+                    "pos": {
+                        "x": 109.654881,
+                        "y": 87.700001
+                    },
+                    "uuid": "cbaae299-a323-48bf-840b-bbb64b0cb892"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R9",
+                    "pos": {
+                        "x": 92.697501,
+                        "y": 84.640001
+                    },
+                    "uuid": "d11092b3-7fb1-464e-afcf-78dc433b9573"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R12",
+                    "pos": {
+                        "x": 75.097501,
+                        "y": 83.240001
+                    },
+                    "uuid": "a1f396f6-2a8f-456d-abab-f425ceee994d"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R13",
+                    "pos": {
+                        "x": 72.297501,
+                        "y": 83.940001
+                    },
+                    "uuid": "b525b582-b209-46e5-a322-c28fa8afd429"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R14",
+                    "pos": {
+                        "x": 96.097501,
+                        "y": 85.740001
+                    },
+                    "uuid": "8e660fc8-e73e-4a7e-aefc-a3d6bec33c38"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R15",
+                    "pos": {
+                        "x": 92.697501,
+                        "y": 85.640001
+                    },
+                    "uuid": "a515a093-de51-4538-bb2b-814c1e392620"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R16",
+                    "pos": {
+                        "x": 112.997501,
+                        "y": 84.140001
+                    },
+                    "uuid": "4f253337-6b84-47db-a001-f18d76c3e5c1"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R17",
+                    "pos": {
+                        "x": 86.497501,
+                        "y": 85.940001
+                    },
+                    "uuid": "ea218272-f122-4060-bea1-c4305eda3dc5"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R18",
+                    "pos": {
+                        "x": 86.697501,
+                        "y": 84.140001
+                    },
+                    "uuid": "6215553a-9861-402f-be81-a8356ff6e87b"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R19",
+                    "pos": {
+                        "x": 112.997501,
+                        "y": 85.140001
+                    },
+                    "uuid": "84cf0c1f-88a7-4c3d-abfe-3009b0fe8d83"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R20",
+                    "pos": {
+                        "x": 82.597501,
+                        "y": 87.640001
+                    },
+                    "uuid": "061de754-5bad-43bc-8165-b4d78c09548e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R21",
+                    "pos": {
+                        "x": 81.597501,
+                        "y": 87.630001
+                    },
+                    "uuid": "55fae4fd-339f-47b8-902b-1505fbb5c8dd"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R25",
+                    "pos": {
+                        "x": 97.197501,
+                        "y": 85.740001
+                    },
+                    "uuid": "d3c57a97-6169-43ce-80cf-fbccbdd1181e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R34",
+                    "pos": {
+                        "x": 101.290121,
+                        "y": 88.915001
+                    },
+                    "uuid": "2a9a602c-aac5-44e9-87cc-1ad2b91402d2"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R35",
+                    "pos": {
+                        "x": 100.290121,
+                        "y": 88.915001
+                    },
+                    "uuid": "f4096e20-3508-4db0-998c-5d5e244ac24d"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R38",
+                    "pos": {
+                        "x": 109.097501,
+                        "y": 89.000001
+                    },
+                    "uuid": "1e7455eb-7451-45b8-9b78-99a5ae49d742"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R39",
+                    "pos": {
+                        "x": 108.097501,
+                        "y": 89.000001
+                    },
+                    "uuid": "7e31c823-368c-413e-83e3-eb6c4b164d7f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C1",
+                    "pos": {
+                        "x": 123.197501,
+                        "y": 95.015001
+                    },
+                    "uuid": "6fc60d34-3427-4d30-8425-c32070177c1d"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C2",
+                    "pos": {
+                        "x": 123.172501,
+                        "y": 93.790001
+                    },
+                    "uuid": "604e94c1-2a74-4b94-bc43-9fd0bc453d43"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C3",
+                    "pos": {
+                        "x": 119.797501,
+                        "y": 92.540001
+                    },
+                    "uuid": "2da26157-9d8e-4c22-90a7-dcc430b5cf3a"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C4",
+                    "pos": {
+                        "x": 113.597501,
+                        "y": 90.040001
+                    },
+                    "uuid": "bbe84a54-a7ab-4522-b431-852c1c5b1cc2"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C5",
+                    "pos": {
+                        "x": 114.904881,
+                        "y": 89.415001
+                    },
+                    "uuid": "5f6873f6-73c9-4a29-9479-b152d5f0a80e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C6",
+                    "pos": {
+                        "x": 113.597501,
+                        "y": 101.340001
+                    },
+                    "uuid": "45b6c8ad-ae1a-41d6-91fd-f50c7d8389a9"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C7",
+                    "pos": {
+                        "x": 115.697501,
+                        "y": 102.340001
+                    },
+                    "uuid": "386cf2b4-b2e6-49c7-9538-e408c112d59e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C8",
+                    "pos": {
+                        "x": 111.597501,
+                        "y": 100.940001
+                    },
+                    "uuid": "478d7a02-bfa4-44a8-beb6-f04c63f6775c"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C9",
+                    "pos": {
+                        "x": 110.597501,
+                        "y": 100.940001
+                    },
+                    "uuid": "5475451e-ab60-43b8-8e1b-99ec587e87b3"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C10",
+                    "pos": {
+                        "x": 133.657501,
+                        "y": 93.620001
+                    },
+                    "uuid": "6b73a0fb-858a-49bf-a943-196ced645009"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C11",
+                    "pos": {
+                        "x": 132.622501,
+                        "y": 91.740001
+                    },
+                    "uuid": "2e7c85ae-a80c-410b-99a4-870109f59c57"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C12",
+                    "pos": {
+                        "x": 124.852621,
+                        "y": 89.290001
+                    },
+                    "uuid": "dc399694-2d8e-4b44-b236-03b45948993e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C13",
+                    "pos": {
+                        "x": 130.552621,
+                        "y": 89.290001
+                    },
+                    "uuid": "13e9163f-2528-4368-99db-272c0aafe9ee"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C14",
+                    "pos": {
+                        "x": 123.737501,
+                        "y": 87.200001
+                    },
+                    "uuid": "cf7fcfd3-7290-4a36-b5c6-042a0f270970"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C26",
+                    "pos": {
+                        "x": 123.115121,
+                        "y": 91.240001
+                    },
+                    "uuid": "6e0f5e3b-45c9-4719-a00e-e5713b736f08"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C27",
+                    "pos": {
+                        "x": 129.115121,
+                        "y": 89.190001
+                    },
+                    "uuid": "286605d9-2f67-4937-9175-3eaa9489e668"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C28",
+                    "pos": {
+                        "x": 129.115121,
+                        "y": 90.190001
+                    },
+                    "uuid": "ba686fbf-068a-47d6-bb42-a335afea43b1"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C29",
+                    "pos": {
+                        "x": 123.215121,
+                        "y": 96.990001
+                    },
+                    "uuid": "9c39d653-b876-42fe-8910-232bad98b690"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C30",
+                    "pos": {
+                        "x": 123.215121,
+                        "y": 95.990001
+                    },
+                    "uuid": "ab7bff1f-ec51-4eec-b02b-16db819b7ca6"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C31",
+                    "pos": {
+                        "x": 125.340121,
+                        "y": 98.890001
+                    },
+                    "uuid": "202e9f9c-ef09-48f4-b012-1abeefc112e0"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C32",
+                    "pos": {
+                        "x": 125.340121,
+                        "y": 97.890001
+                    },
+                    "uuid": "bdc6dec5-5f56-4934-b9e4-ef80de7fdd63"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C33",
+                    "pos": {
+                        "x": 117.397501,
+                        "y": 91.040001
+                    },
+                    "uuid": "bbdd5dc8-41ec-46c5-9b3a-467cd9737ccc"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C34",
+                    "pos": {
+                        "x": 118.397501,
+                        "y": 91.040001
+                    },
+                    "uuid": "11ca568c-4556-4772-afcf-467520a67673"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C35",
+                    "pos": {
+                        "x": 128.735121,
+                        "y": 98.915001
+                    },
+                    "uuid": "a2edb141-3b5f-4d19-9dcb-224aa2f850c0"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C36",
+                    "pos": {
+                        "x": 128.735121,
+                        "y": 97.915001
+                    },
+                    "uuid": "4669d7d6-4c44-4e98-acf7-53ef7fd24f3a"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C37",
+                    "pos": {
+                        "x": 127.015121,
+                        "y": 99.465001
+                    },
+                    "uuid": "7a4c4d8d-111e-4b52-b041-136855f35702"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C38",
+                    "pos": {
+                        "x": 122.697501,
+                        "y": 92.240001
+                    },
+                    "uuid": "34ad0fdf-2b93-45aa-b6e6-36f37fb7ce27"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C40",
+                    "pos": {
+                        "x": 130.797501,
+                        "y": 94.040001
+                    },
+                    "uuid": "64e73c72-87e6-42d3-a780-a7b884b1ebbf"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C41",
+                    "pos": {
+                        "x": 129.597501,
+                        "y": 93.040001
+                    },
+                    "uuid": "58478d29-2df0-4ff0-960d-d169defb3091"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C42",
+                    "pos": {
+                        "x": 130.917501,
+                        "y": 95.040001
+                    },
+                    "uuid": "0fe070f2-fc20-464d-ae61-5ac1585c9d3e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 C43",
+                    "pos": {
+                        "x": 120.497501,
+                        "y": 95.140001
+                    },
+                    "uuid": "28eb88d7-02c6-4cc7-8a12-5cf002f815af"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 FB1",
+                    "pos": {
+                        "x": 119.422501,
+                        "y": 90.040001
+                    },
+                    "uuid": "f08b75fe-673a-4b42-9a5a-765b4b5a5c97"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 FB2",
+                    "pos": {
+                        "x": 112.597501,
+                        "y": 100.640001
+                    },
+                    "uuid": "84292eff-19d4-4709-b671-7d2fd70b3d76"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 FB3",
+                    "pos": {
+                        "x": 109.597501,
+                        "y": 100.625001
+                    },
+                    "uuid": "e4db1382-dbb9-4ba5-931e-1194c20a7d3e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J1",
+                    "pos": {
+                        "x": 111.154881,
+                        "y": 101.340001
+                    },
+                    "uuid": "05aa95d3-d856-4481-8e80-c174c46dcf74"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J2",
+                    "pos": {
+                        "x": 120.497501,
+                        "y": 101.293146
+                    },
+                    "uuid": "f4f60177-15b5-46a8-ae4e-3977a7815015"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 J9",
+                    "pos": {
+                        "x": 126.897501,
+                        "y": 101.293146
+                    },
+                    "uuid": "422ebc0b-c456-487d-b171-217454965e3f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 MK1",
+                    "pos": {
+                        "x": 134.254881,
+                        "y": 91.340001
+                    },
+                    "uuid": "aa982b9d-9979-4c5a-a434-e0876d017a71"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R1",
+                    "pos": {
+                        "x": 121.272501,
+                        "y": 95.015001
+                    },
+                    "uuid": "8f5cfc87-243b-47cf-a358-ba12393f2766"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R2",
+                    "pos": {
+                        "x": 121.272501,
+                        "y": 93.790001
+                    },
+                    "uuid": "697be21a-4513-435b-bf3e-03310bdbdcc7"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R3",
+                    "pos": {
+                        "x": 114.897501,
+                        "y": 100.540001
+                    },
+                    "uuid": "da1e2968-3898-46d3-8f09-49f562ec5242"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R4",
+                    "pos": {
+                        "x": 114.354881,
+                        "y": 91.540001
+                    },
+                    "uuid": "d18f2a23-2577-4dd1-a6b6-f302de020702"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R5",
+                    "pos": {
+                        "x": 118.697501,
+                        "y": 100.540001
+                    },
+                    "uuid": "53fce17f-74ba-4a16-9879-4e7ebb49e796"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R6",
+                    "pos": {
+                        "x": 122.197501,
+                        "y": 88.440001
+                    },
+                    "uuid": "a64cfb9d-c9c6-4a57-adf9-e68acce72fee"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R7",
+                    "pos": {
+                        "x": 131.715121,
+                        "y": 94.790001
+                    },
+                    "uuid": "cddf2b9c-154e-40af-b924-93bd54f28278"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R22",
+                    "pos": {
+                        "x": 121.497501,
+                        "y": 94.140001
+                    },
+                    "uuid": "87c668f8-efe9-4232-9069-3b3b6495244c"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R23",
+                    "pos": {
+                        "x": 128.997501,
+                        "y": 95.940001
+                    },
+                    "uuid": "2f33754f-b120-4ecd-b34f-9104d0d73545"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R36",
+                    "pos": {
+                        "x": 120.487501,
+                        "y": 96.140001
+                    },
+                    "uuid": "dd49a1e0-c3ca-43c2-a856-abcc4cef057d"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 R37",
+                    "pos": {
+                        "x": 126.987501,
+                        "y": 95.940001
+                    },
+                    "uuid": "596ec7fc-30a8-4ebe-9412-a1e0d22285b2"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 TP2",
+                    "pos": {
+                        "x": 132.997501,
+                        "y": 98.240001
+                    },
+                    "uuid": "375d8214-a746-4450-b685-9c74a7282cef"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 TP3",
+                    "pos": {
+                        "x": 104.097501,
+                        "y": 95.465001
+                    },
+                    "uuid": "2a12d48a-c583-4778-8589-d3c5b2f117f9"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        },
+        {
+            "description": "필드 'Datasheet'이(가) 다릅니다 (PCB: '~', 회로도: '')",
+            "items": [
+                {
+                    "description": "풋프린트 TP4",
+                    "pos": {
+                        "x": 107.697501,
+                        "y": 95.465001
+                    },
+                    "uuid": "c66add2f-2024-493a-a5e1-8d7d31ba4de7"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_field_mismatch"
+        }
+    ],
+    "source": "radxa_zero3w_robot_hat.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 40 [/Schematic/Audio/I2S3_SDO_M0]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 127.5275,
+                        "y": 76.84
+                    },
+                    "uuid": "a63ea6e7-8a7e-474b-b160-b793a3e7e517"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 127.5275,
+                        "y": 78.37
+                    },
+                    "uuid": "d1956c17-cd16-44a1-9c60-cb69dc74b249"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 38 [/Schematic/Audio/I2S3_SDI_M0]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 124.9875,
+                        "y": 76.84
+                    },
+                    "uuid": "86759cb5-cd58-42dc-b58d-313c7ce63aad"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 124.9875,
+                        "y": 78.37
+                    },
+                    "uuid": "a623264c-cb17-493b-a6c4-16ba4aad8336"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 36 [unconnected-(J4-Pin_36-Pad36)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 122.4475,
+                        "y": 76.84
+                    },
+                    "uuid": "c66e3e97-e223-498a-9e12-14007aa9680d"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 122.4475,
+                        "y": 78.37
+                    },
+                    "uuid": "a0db9020-045f-477b-b738-b396c73a8ae5"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 34 [GND]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 119.9075,
+                        "y": 76.84
+                    },
+                    "uuid": "e6d490a5-df06-420e-a623-24adb355410d"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 119.9075,
+                        "y": 78.37
+                    },
+                    "uuid": "c800047e-138c-4729-b534-c856623129c8"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 32 [unconnected-(J4-Pin_32-Pad32)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 117.3675,
+                        "y": 76.84
+                    },
+                    "uuid": "dbf54315-9ed7-4e5e-a04f-bddb0381fb56"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 117.3675,
+                        "y": 78.37
+                    },
+                    "uuid": "85c3ac51-f7a0-407d-a2be-37b277658fc7"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 30 [GND]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 114.8275,
+                        "y": 76.84
+                    },
+                    "uuid": "f4392c17-de8c-4039-9a32-5725d5590d1a"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 114.8275,
+                        "y": 78.37
+                    },
+                    "uuid": "3f8064db-0fe5-4cd9-b47a-a7dcd1b3ad65"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 28 [/Schematic/Audio/I2C4_SCL_M0_P28]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 112.2875,
+                        "y": 76.84
+                    },
+                    "uuid": "0904ff6a-9ed3-460f-91d1-4405273fa7c9"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 112.2875,
+                        "y": 78.37
+                    },
+                    "uuid": "27237066-38e4-459d-a1a8-a0de43ed9023"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 26 [unconnected-(J4-Pin_26-Pad26)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 109.7475,
+                        "y": 76.84
+                    },
+                    "uuid": "06c8a576-8e6b-41cd-a555-660e8c864bde"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 109.7475,
+                        "y": 78.37
+                    },
+                    "uuid": "a2a8a0a3-e5f6-499a-8d6a-129dca51da60"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 24 [/Schematic/Audio/GPIO4_C6_P24]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 107.2075,
+                        "y": 76.84
+                    },
+                    "uuid": "e4af8342-bb8c-4a64-86e7-fbb67db61ea8"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 107.2075,
+                        "y": 78.37
+                    },
+                    "uuid": "a52d3145-04ab-4983-aed9-01084c833706"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 22 [unconnected-(J4-Pin_22-Pad22)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 104.6675,
+                        "y": 76.84
+                    },
+                    "uuid": "efe68bbf-3d40-41c7-9382-db32a19ea72d"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 104.6675,
+                        "y": 78.37
+                    },
+                    "uuid": "c731d458-466d-40ad-b848-da93d7440ea3"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 20 [GND]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 102.1275,
+                        "y": 76.84
+                    },
+                    "uuid": "3efab342-8d6a-4c88-8a8d-551b73ba47ad"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 102.1275,
+                        "y": 78.37
+                    },
+                    "uuid": "1421b16f-c9f8-4917-bd26-383a26f8ee74"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 18 [unconnected-(J4-Pin_18-Pad18)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 99.5875,
+                        "y": 76.84
+                    },
+                    "uuid": "f3149e28-1901-4604-8306-2da9112e51e1"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 99.5875,
+                        "y": 78.37
+                    },
+                    "uuid": "711a2283-6b97-4668-be6f-f631484842ba"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 16 [unconnected-(J4-Pin_16-Pad16)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 97.0475,
+                        "y": 76.84
+                    },
+                    "uuid": "e4865448-666f-43b3-9a28-0d5ba3d2dd55"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 97.0475,
+                        "y": 78.37
+                    },
+                    "uuid": "2a9617e1-b114-4d89-89e1-878d70baa368"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 14 [GND]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 94.5075,
+                        "y": 76.84
+                    },
+                    "uuid": "a050192c-a92b-43fe-87c8-b539134c7427"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 94.5075,
+                        "y": 78.37
+                    },
+                    "uuid": "99148ad3-cc8a-4c12-8690-c56e2596a519"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 12 [/Schematic/Audio/I2S3_SCLK_M0]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 91.9675,
+                        "y": 76.84
+                    },
+                    "uuid": "384ecfba-3f6f-4086-a7aa-cdc5c8e6df1f"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 91.9675,
+                        "y": 78.37
+                    },
+                    "uuid": "b1488b30-178d-4ede-a2ac-9aef912ddb22"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 10 [/Schematic/Audio/UART2_RX_M0]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 89.4275,
+                        "y": 76.84
+                    },
+                    "uuid": "27ac2288-5d72-440c-bf9e-874ee084fe1b"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 89.4275,
+                        "y": 78.37
+                    },
+                    "uuid": "5259f7c5-c8e8-441e-8865-fbb475114e26"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 8 [/Schematic/Audio/UART2_TX_M0]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 86.8875,
+                        "y": 76.84
+                    },
+                    "uuid": "c64b2046-cce7-490a-a5ac-34ade45bfdbf"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 86.8875,
+                        "y": 78.37
+                    },
+                    "uuid": "7e260604-2c9d-4491-bbb1-083e329b2587"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 6 [GND]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 84.3475,
+                        "y": 76.84
+                    },
+                    "uuid": "192e3fde-4b2b-4a04-873a-5a2271cbffb2"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 84.3475,
+                        "y": 78.37
+                    },
+                    "uuid": "9e5658fb-fcd2-4cad-96df-587d95441902"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 4 [+5V]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 81.8075,
+                        "y": 76.84
+                    },
+                    "uuid": "c9a20a68-56bb-4a34-be5d-8ce97c3f9429"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 81.8075,
+                        "y": 78.37
+                    },
+                    "uuid": "432d4197-aea9-4aab-8133-c7f2174ae105"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 2 [+5V]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 79.2675,
+                        "y": 76.84
+                    },
+                    "uuid": "9da675df-a381-4706-a22d-3f00b3c42182"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 79.2675,
+                        "y": 78.37
+                    },
+                    "uuid": "0ba2cb87-c196-4a12-bb43-589b2686d063"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 39 [GND]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 127.5275,
+                        "y": 82.44
+                    },
+                    "uuid": "6563c395-a706-4391-baef-a1f19888f31c"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 127.5275,
+                        "y": 80.91
+                    },
+                    "uuid": "1e1d174e-0342-408d-a856-bcfc3ede4538"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 37 [unconnected-(J4-Pin_37-Pad37)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 124.9875,
+                        "y": 82.44
+                    },
+                    "uuid": "425307e8-be29-43e7-9860-4ad3857b178c"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 124.9875,
+                        "y": 80.91
+                    },
+                    "uuid": "2fbe5dd8-d0ee-456e-8bf5-eeb5af9fc465"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 35 [/Schematic/Audio/I2S3_LRCK_M0]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 122.4475,
+                        "y": 82.44
+                    },
+                    "uuid": "79a781e4-6ec6-4850-8879-d5879b48add6"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 122.4475,
+                        "y": 80.91
+                    },
+                    "uuid": "bf442122-c468-401b-b8da-357aacdd4a24"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 33 [unconnected-(J4-Pin_33-Pad33)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 119.9075,
+                        "y": 82.44
+                    },
+                    "uuid": "7903622d-2257-414d-906f-a2ca2b74c984"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 119.9075,
+                        "y": 80.91
+                    },
+                    "uuid": "e928bccc-6640-4496-9101-ce738cbc65c7"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 31 [/Schematic/Audio/GPIO3_B4_P31]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 117.3675,
+                        "y": 82.44
+                    },
+                    "uuid": "195d423c-eaa0-4702-8438-c74387fb2f91"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 117.3675,
+                        "y": 80.91
+                    },
+                    "uuid": "5a1700da-74bb-4232-a1f2-8b9554b9fc18"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 29 [/Schematic/Audio/GPIO3_B3_P29]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 114.8275,
+                        "y": 82.44
+                    },
+                    "uuid": "3b2bf113-eab5-41f0-a3f0-05f286bcd8e4"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 114.8275,
+                        "y": 80.91
+                    },
+                    "uuid": "1bdd3d47-2f3f-401f-a825-cde71e8dc193"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 27 [/Schematic/Audio/I2C4_SDA_M0_P27]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 112.2875,
+                        "y": 82.44
+                    },
+                    "uuid": "5ca2a5ae-ab0a-4d1c-b8d6-3595146cd239"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 112.2875,
+                        "y": 80.91
+                    },
+                    "uuid": "bfa57fb9-6407-4038-9360-fbf600b4682e"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 25 [GND]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 109.7475,
+                        "y": 82.44
+                    },
+                    "uuid": "77662bb8-153c-4687-9c40-2e355fe52e25"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 109.7475,
+                        "y": 80.91
+                    },
+                    "uuid": "4d1e456f-de81-4614-97fd-c4ca11c6d48b"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 23 [/Schematic/Audio/GPIO4_C2_P23]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 107.2075,
+                        "y": 82.44
+                    },
+                    "uuid": "bef9862b-07ec-4b57-b1ca-f9370fe4e554"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 107.2075,
+                        "y": 80.91
+                    },
+                    "uuid": "3340b77d-ae44-4265-8db4-43e62b3a1315"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 21 [/Schematic/Audio/GPIO4_C5_P21]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 104.6675,
+                        "y": 82.44
+                    },
+                    "uuid": "ba0c9bc7-779b-4c73-981e-40570adcd718"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 104.6675,
+                        "y": 80.91
+                    },
+                    "uuid": "6221dfab-8209-46e0-9cc7-e8fd9e929cab"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 19 [/Schematic/Audio/GPIO4_C3_P19]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 102.1275,
+                        "y": 82.44
+                    },
+                    "uuid": "c1a14493-0b50-486c-9b67-17aa372c1fce"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 102.1275,
+                        "y": 80.91
+                    },
+                    "uuid": "ed8f242b-2d80-44da-a70d-47eeaad9e5ca"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 17 [+3V3]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 99.5875,
+                        "y": 82.44
+                    },
+                    "uuid": "593ee63b-d547-4bda-871f-5fc2f395759d"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 99.5875,
+                        "y": 80.91
+                    },
+                    "uuid": "1a563617-ed1a-422b-ba44-e92388bfc8ea"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 15 [/Schematic/Audio/GPIO3_B0_P15]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 97.0475,
+                        "y": 82.44
+                    },
+                    "uuid": "a2148fab-d388-4269-a736-d577bf2a809d"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 97.0475,
+                        "y": 80.91
+                    },
+                    "uuid": "6c65cbfd-ad46-4659-b521-0859add34522"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 13 [unconnected-(J4-Pin_13-Pad13)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 94.5075,
+                        "y": 82.44
+                    },
+                    "uuid": "e293b8e0-1d8e-443e-9c64-9a37053f2fec"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 94.5075,
+                        "y": 80.91
+                    },
+                    "uuid": "810aba3e-3711-467c-b045-a5299d5505f6"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 11 [unconnected-(J4-Pin_11-Pad11)]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 91.9675,
+                        "y": 82.44
+                    },
+                    "uuid": "3306535f-1808-46e5-9763-d835463e98b2"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 91.9675,
+                        "y": 80.91
+                    },
+                    "uuid": "055ac266-dc36-4d6c-9377-3bbdf1b37ecf"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 9 [GND]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 89.4275,
+                        "y": 82.44
+                    },
+                    "uuid": "bec35321-a274-445d-b186-bc61390bfe88"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 89.4275,
+                        "y": 80.91
+                    },
+                    "uuid": "6ef30484-18e5-4f05-a0c1-2b5c6e77ea9a"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 3 [/Schematic/Audio/I2C3_SDA_M0]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 81.8075,
+                        "y": 82.44
+                    },
+                    "uuid": "b945dcf6-8848-4714-a32a-8a36cf4f45da"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 81.8075,
+                        "y": 80.91
+                    },
+                    "uuid": "a0b1e646-3d91-434b-933b-a5573ed4bc08"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 1 [+3V3]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 79.2675,
+                        "y": 82.44
+                    },
+                    "uuid": "498e09da-37af-4461-bbbc-b8530a2b81ce"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 79.2675,
+                        "y": 80.91
+                    },
+                    "uuid": "ccdca99a-e831-45ce-bc59-ea4ef98ee100"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 5 [/Schematic/Audio/I2C3_SCL_M0]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 84.3475,
+                        "y": 82.44
+                    },
+                    "uuid": "ea28a8d2-6cf9-46f3-9f12-250e2e4a89c0"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 84.3475,
+                        "y": 80.91
+                    },
+                    "uuid": "6b746d02-a614-44a9-ace7-16a693d8889f"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 7 [/Schematic/Audio/GPIO3_C4_P7]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 86.8875,
+                        "y": 82.44
+                    },
+                    "uuid": "1a8b9d6c-4212-4954-9507-26b96fe8314c"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 86.8875,
+                        "y": 80.91
+                    },
+                    "uuid": "c594ca12-b44f-4d1a-935b-b3bdcf7581e4"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+            "items": [
+                {
+                    "description": "풋프린트 J1",
+                    "pos": {
+                        "x": 111.154881,
+                        "y": 101.340001
+                    },
+                    "uuid": "05aa95d3-d856-4481-8e80-c174c46dcf74"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+            "items": [
+                {
+                    "description": "풋프린트 J9",
+                    "pos": {
+                        "x": 126.897501,
+                        "y": 101.293146
+                    },
+                    "uuid": "422ebc0b-c456-487d-b171-217454965e3f"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "현재 구성에 풋프린트 라이브러리 'Library_Pollen'이(가) 포함되어 있지 않습니다",
+            "items": [
+                {
+                    "description": "풋프린트 H3",
+                    "pos": {
+                        "x": 118.994899,
+                        "y": 90.245192
+                    },
+                    "uuid": "556f155c-8174-4fe5-8d97-177c4803ec06"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+            "items": [
+                {
+                    "description": "풋프린트 MK1",
+                    "pos": {
+                        "x": 134.254881,
+                        "y": 91.340001
+                    },
+                    "uuid": "aa982b9d-9979-4c5a-a434-e0876d017a71"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "현재 구성에 풋프린트 라이브러리 'Library_Pollen'이(가) 포함되어 있지 않습니다",
+            "items": [
+                {
+                    "description": "풋프린트 H2",
+                    "pos": {
+                        "x": 119.056666,
+                        "y": 88.438566
+                    },
+                    "uuid": "d5c16ce7-df73-4070-bda1-cb0f8e6867a0"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+            "items": [
+                {
+                    "description": "풋프린트 J2",
+                    "pos": {
+                        "x": 120.497501,
+                        "y": 101.293146
+                    },
+                    "uuid": "f4f60177-15b5-46a8-ae4e-3977a7815015"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "현재 구성에 풋프린트 라이브러리 'Library_Pollen'이(가) 포함되어 있지 않습니다",
+            "items": [
+                {
+                    "description": "풋프린트 J4",
+                    "pos": {
+                        "x": 103.3975,
+                        "y": 79.64
+                    },
+                    "uuid": "1a2c60f8-aeea-470f-946a-686c70f86d9c"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "풋프린트 'SOT-323_SC-70'이(가) 라이브러리 'Package_TO_SOT_SMD'의 사본과 일치하지 않습니다",
+            "items": [
+                {
+                    "description": "풋프린트 D1",
+                    "pos": {
+                        "x": 99.047501,
+                        "y": 101.040001
+                    },
+                    "uuid": "239dc608-5232-4e1f-a94f-39b334913e9c"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+            "items": [
+                {
+                    "description": "풋프린트 U4",
+                    "pos": {
+                        "x": 118.697501,
+                        "y": 87.015001
+                    },
+                    "uuid": "cc558248-dee7-4f66-951b-10c29d1ae288"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        }
+    ]
+}

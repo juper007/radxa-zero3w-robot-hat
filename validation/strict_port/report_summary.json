@@ -1,0 +1,65 @@
+{
+  "revision": "v0.19-strict-port",
+  "classification": "strict single-board port",
+  "upstream": {
+    "repository": "https://github.com/pollen-robotics/elec_RPI_Robot_HAT",
+    "commit": "23eab11927f95ceca0dfa35bf182caeb7db39ea0"
+  },
+  "architecture": {
+    "board_count": 1,
+    "daughterboard": false,
+    "outline_mm": [65.05, 30.95],
+    "copper_layers": 4
+  },
+  "schematic": {
+    "components": 128,
+    "nets": 95
+  },
+  "erc_baseline": {
+    "total": 55,
+    "warning": 55,
+    "types": {
+      "lib_symbol_mismatch": 42,
+      "footprint_link_issues": 8,
+      "lib_symbol_issues": 5
+    },
+    "new_vs_upstream": 0
+  },
+  "pcb": {
+    "footprints": 127,
+    "net_table_entries_including_empty": 96,
+    "tracks": 1021,
+    "zones": 1,
+    "unconnected_items": 0
+  },
+  "drc_baseline": {
+    "total": 49,
+    "error": 40,
+    "warning": 9,
+    "types": {
+      "hole_clearance": 40,
+      "lib_footprint_issues": 8,
+      "lib_footprint_mismatch": 1
+    },
+    "new_vs_upstream": 0
+  },
+  "schematic_parity_baseline": {
+    "total": 111,
+    "warning": 111,
+    "types": {
+      "footprint_symbol_field_mismatch": 111
+    },
+    "new_vs_upstream": 0
+  },
+  "host_mapping": {
+    "3": "I2C3_SDA_M0",
+    "5": "I2C3_SCL_M0",
+    "8": "UART2_TX_M0",
+    "10": "UART2_RX_M0",
+    "12": "I2S3_SCLK_M0",
+    "35": "I2S3_LRCK_M0",
+    "38": "I2S3_SDI_M0",
+    "40": "I2S3_SDO_M0"
+  },
+  "fabrication_ready": false
+}

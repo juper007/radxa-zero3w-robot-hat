@@ -63,23 +63,21 @@ The upstream HAT provides both input and output audio and an integrated MEMS mic
 
 The upstream main schematic includes HAT identification at I2C address `0x50` for Raspberry Pi HAT identification.
 
-For a Radxa-specific board this is not required for normal operation. V1 policy:
-
-- omit it, or
-- leave footprint DNP if upstream compatibility becomes useful later.
+For the strict Radxa port this is not required for normal operation. The upstream
+U4 circuit and routed footprint are preserved, with U4 remaining DNP as released
+upstream.
 
 This also avoids unnecessary I2C-address occupancy and Raspberry Pi-specific assumptions.
 
-## What can be reused conceptually
+## What is preserved from upstream
 
-- Power-tree topology and protection ideas
-- Dynamixel physical connector architecture
-- Half-duplex UART concept
-- RS-485 optional channel
-- IMU block
-- I2S codec / microphone / speaker architecture
-- Qwiic expansion philosophy
-- Hierarchical KiCad project organization
+- Single-PCB power tree and protection circuit
+- Dynamixel physical connectors and half-duplex implementation
+- TTL and RS-485 channels
+- BMI088 IMU block
+- I2S codec / microphone / speaker implementation
+- Main Qwiic expansion connector
+- Hierarchical KiCad project organization and routed PCB
 
 ## What must NOT be copied blindly
 
@@ -111,19 +109,20 @@ Even though the boards share the 40-pin ecosystem, all hole locations and connec
 
 ## Upstream-to-Radxa adaptation strategy
 
-Rather than redraw everything from scratch without reference, the project will use a controlled block-by-block adaptation:
+The project imports the complete upstream source and applies a controlled,
+host-facing adaptation:
 
 ```text
-Upstream block
+Upstream single-board source
      |
-     +--> understand schematic intent
-     +--> identify Raspberry-Pi-specific assumptions
-     +--> map required interface to RK3566
-     +--> update component/rating choices
-     +--> recreate as Radxa-specific KiCad sheet
-     +--> review independently
+     +--> preserve schematic, connector topology and routed PCB
+     +--> map physical 40-pin functions to RK3566 names
+     +--> DNP only unsupported Raspberry Pi-specific options
+     +--> verify mechanics, power behavior and device tree
 ```
 
 ## Licensing note
 
-Before directly copying schematic/PCB source content into this repository, the upstream hardware license and attribution requirements must be checked. Until that review is completed, this repository will clearly document upstream references and independently create the Radxa-specific implementation.
+The upstream repository is Apache-2.0 licensed. The active derivative records the
+source repository and exact imported commit, preserves upstream authorship, and
+documents modifications in `09_STRICT_PORT_CHANGE_MATRIX.md`.

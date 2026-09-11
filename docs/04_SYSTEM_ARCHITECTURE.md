@@ -128,19 +128,21 @@ Audio design must explicitly document:
 - microphone bias where applicable
 - output load / amplifier requirement
 
-## Proposed KiCad hierarchy
+## Active KiCad hierarchy
 
 ```text
 radxa_zero3w_robot_hat.kicad_sch
   |
-  +-- host_interface.kicad_sch
-  +-- power.kicad_sch
-  +-- dynamixel.kicad_sch
-  +-- sensors.kicad_sch
-  +-- audio.kicad_sch
+  +-- main.kicad_sch
+        +-- power.kicad_sch
+              +-- pwr_supply_charge.kicad_sch
+        +-- dynamixel.kicad_sch
+        +-- sensors.kicad_sch
+        +-- audio.kicad_sch
 ```
 
-This mirrors the useful functional separation of the upstream Pollen design while making host assumptions explicitly Radxa-specific.
+This is the imported upstream hierarchy. The strict port changes host-facing net
+names and DNP policy without changing board count or functional ownership.
 
 ## PCB floor-plan concept
 

@@ -1,85 +1,49 @@
 # Radxa ZERO 3W Robot HAT
 
-A custom robot HAT for **Radxa ZERO 3W**, derived in part from Pollen Robotics' Apache-2.0 [`elec_RPI_Robot_HAT`](https://github.com/pollen-robotics/elec_RPI_Robot_HAT) and intended for MicroDuck-style robots.
+A **strict single-board port** of Pollen Robotics' Apache-2.0 [`elec_RPI_Robot_HAT`](https://github.com/pollen-robotics/elec_RPI_Robot_HAT) for the Radxa ZERO 3W.
 
-## V1 goals
+## Scope
 
-- Direct 40-pin connection to Radxa ZERO 3W
-- DYNAMIXEL TTL bus for 15 × XL330-series actuators
-- Connector for current MicroDuck `imu_to_dxl` node on the same TTL bus
-- Optional/DNP RS-485 compatibility path
-- I2C/Qwiic sensor expansion
-- Optional auxiliary on-board IMU compatibility footprint/design
-- I2S audio codec
-- MEMS microphone input
-- Speaker output
-- External **regulated 5 V high-current** robot supply
-- Independently protected/backfeed-blocked 5 V Radxa branch
-- Compact PCB targeting the Radxa ZERO 3W footprint
+The active design preserves the upstream product architecture:
 
-## Frozen V1 power architecture
+- one 65 × 31 mm four-layer HAT PCB;
+- the upstream 5–28 V power-input and 5 V conversion concept;
+- on-board Dynamixel TTL/RS-485 circuitry and connectors;
+- on-board BMI088 IMU, audio codec, MEMS microphone, speaker and expansion connectors;
+- the original routed PCB as the layout baseline.
 
-```text
-External regulated 5 V high-current supply
-                 |
-               XT60
-                 |
-             20 A fuse
-                 |
-       LM74700-Q1 + N-FET
-                 |
-              +5V_SYS
-        __________|____________________
-       |           |          |        |
-       v           v          v        v
- SERVO_A      SERVO_B     SERVO_C   TPS259470A
- 5 motors      5 motors    5 motors      |
-                                      +5V_RADXA
-                                         |
-                                  Radxa pins 2/4
-```
+There is **no power daughterboard** in this branch. The earlier split-power redesign is preserved separately on `archive/v027-split-hat` at commit `2f2afd8`.
 
-There is **no 12–28 V to 5 V high-power buck converter in V1**. The 5 V source must already be regulated and sized for the robot load.
+## Radxa-specific changes
 
-## Main host interfaces
+Only host-facing compatibility changes are active:
 
-```text
-Radxa ZERO 3W 40-pin header
-       |
-       +---- UART2 pins 8/10 --> hardware half-duplex logic --> DXL_DATA
-       |                              |--> 15 XL330
-       |                              `--> imu_to_dxl ID 200
-       +---- I2C3 pins 3/5 ----> codec control / Qwiic / optional sensors
-       +---- I2S3 -------------> audio codec <-> microphone / speaker
-       +---- +3V3 -------------> HAT logic supply
-```
+| Physical pins | Upstream use | Radxa ZERO 3W use |
+|---|---|---|
+| 3 / 5 | Raspberry Pi I2C1 (`GPIO2/3`) | RK3566 `I2C3_SDA/SCL_M0` |
+| 8 / 10 | Raspberry Pi UART (`GPIO14/15`) | RK3566 `UART2_TX/RX_M0` |
+| 12 / 35 / 38 / 40 | Raspberry Pi PCM/I2S | RK3566 `I2S3_SCLK/LRCK/SDI/SDO_M0` |
+| 2 / 4 | 5 V host rail | Radxa 5 V input pins |
+| 1 / 17 | 3.3 V | Radxa 3.3 V rail |
 
-Current MicroDuck software uses `/dev/ttyS2` at 1 Mbps and reads the `imu_to_dxl` board together with all 15 servos. The legacy HAT BMI088 is therefore not a mandatory sensor for the current control loop.
+The schematic and PCB net names identify these Radxa functions instead of Raspberry Pi BCM names. The physical routes are retained because the required interfaces occupy the same header pins.
 
-## Repository structure
+The Raspberry Pi HAT EEPROM is retained as upstream DNP. Extra Qwiic connectors J6/J7/J8 are marked DNP because their Raspberry Pi auxiliary-I2C pin choices are not direct Radxa equivalents. Main Qwiic J5 remains on pins 3/5 with the codec and IMU.
 
-```text
-docs/                 Design and execution documents
-hardware/kicad/       KiCad schematic and PCB files + connectivity checks
-hardware/libraries/   Project symbols and footprints
-hardware/mechanical/  Board outline and mechanical references
-production/gerber/    Manufacturing Gerbers
-production/bom/       BOM exports
-production/assembly/  Assembly documentation
-software/overlays/    Radxa device-tree overlays
-software/setup/       OS/interface setup scripts
-software/test/        Hardware bring-up test utilities
-reference/            Reference notes and source links
-```
+## Software requirement
 
-## Current status
+Using hardware I2C3 M0 on pins 3/5 requires the Radxa device-tree configuration to select `i2c3m0_xfer`. On vendor device trees this can conflict with the FUSB302 USB-C PD controller on I2C3 M1; the software overlay and resulting USB-C behavior must be reviewed before release.
 
-Active development. See [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) for the exact phase and fabrication blockers.
+## Source and validation
 
-## Design rule
+- Upstream source revision: `23eab11927f95ceca0dfa35bf182caeb7db39ea0`
+- KiCad sources: [`hardware/kicad/`](hardware/kicad/)
+- Change matrix: [`docs/09_STRICT_PORT_CHANGE_MATRIX.md`](docs/09_STRICT_PORT_CHANGE_MATRIX.md)
+- Current status: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md)
+- Validation evidence: [`validation/strict_port/`](validation/strict_port/)
 
-No PCB is fabrication-approved until power-path review, exact footprint/pad verification, Radxa GPIO electrical review, schematic ERC, PCB DRC, connector polarity/orientation review, high-current layout review and the dedicated pre-fabrication checklist are complete.
+The imported board is fully routed but is **not yet approved for fabrication**. Native KiCad checks reproduce the upstream baseline findings; mechanical clearance against the Radxa ZERO 3W, power/backfeed behavior, optional connector policy and all inherited DRC findings still require sign-off.
 
-## Upstream attribution
+## License and attribution
 
-Portions of the architecture and planned DYNAMIXEL/audio implementation are derived from or informed by Pollen Robotics' `elec_RPI_Robot_HAT`, distributed under Apache License 2.0. Modified derivative files will carry an explicit modification notice and preserve applicable attribution.
+The active KiCad design is a modified derivative of Pollen Robotics' `elec_RPI_Robot_HAT`, licensed under Apache License 2.0. Upstream authorship and the exact source revision are preserved in the project documentation.

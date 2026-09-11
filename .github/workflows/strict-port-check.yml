@@ -1,0 +1,36 @@
+name: Strict Radxa port check
+
+on:
+  push:
+    paths:
+      - 'hardware/kicad/*.kicad_sch'
+      - 'hardware/kicad/*.kicad_pcb'
+      - 'hardware/kicad/*.kicad_pro'
+      - 'hardware/kicad/check_strict_port.py'
+      - 'validation/strict_port/**'
+      - '.github/workflows/strict-port-check.yml'
+  pull_request:
+    paths:
+      - 'hardware/kicad/*.kicad_sch'
+      - 'hardware/kicad/*.kicad_pcb'
+      - 'hardware/kicad/*.kicad_pro'
+      - 'hardware/kicad/check_strict_port.py'
+      - 'validation/strict_port/**'
+      - '.github/workflows/strict-port-check.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install KiCad 10 CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends software-properties-common
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends kicad
+          kicad-cli --version
+      - name: Regenerate and compare strict-port evidence
+        run: python3 hardware/kicad/check_strict_port.py

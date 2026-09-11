@@ -1,0 +1,888 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-11T14:50:27",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.6",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/bc05f5da-608c-4912-90e4-36b13d989976",
+            "violations": [
+                {
+                    "description": "현재 설정에 심볼 라이브러리 'Library_Pollen'가 포함되어 있지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 H1 [PCB]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.51765
+                            },
+                            "uuid": "7d2f196e-827d-42b9-a370-6aaba9a2f4b1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "현재 구성에 풋프린트 라이브러리 'Library_Pollen'이(가) 포함되어 있지 않습니다",
+                    "items": [
+                        {
+                            "description": "심볼 H2 [Logo HF 2025]",
+                            "pos": {
+                                "x": 0.4953,
+                                "y": 1.6002
+                            },
+                            "uuid": "e8f2ab0f-6624-45f8-b8e5-c599d24045f9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "현재 설정에 심볼 라이브러리 'Library_Pollen'가 포함되어 있지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 H2 [Logo HF 2025]",
+                            "pos": {
+                                "x": 0.4953,
+                                "y": 1.6002
+                            },
+                            "uuid": "e8f2ab0f-6624-45f8-b8e5-c599d24045f9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "현재 구성에 풋프린트 라이브러리 'Library_Pollen'이(가) 포함되어 있지 않습니다",
+                    "items": [
+                        {
+                            "description": "심볼 H3 [Logo Pollen 2021]",
+                            "pos": {
+                                "x": 0.4953,
+                                "y": 1.6256
+                            },
+                            "uuid": "27295418-94b8-4760-ba2d-314b58e4124d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "현재 설정에 심볼 라이브러리 'Library_Pollen'가 포함되어 있지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 H3 [Logo Pollen 2021]",
+                            "pos": {
+                                "x": 0.4953,
+                                "y": 1.6256
+                            },
+                            "uuid": "27295418-94b8-4760-ba2d-314b58e4124d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+                    "items": [
+                        {
+                            "description": "심볼 U4 [CAT24C128]",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 1.4478
+                            },
+                            "uuid": "4272467a-c618-4ba9-a9ac-40f7dfa4511f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C25 [C_Small]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.3081
+                            },
+                            "uuid": "f3333eb3-aff7-439c-bd60-3c9216537e09"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "현재 구성에 풋프린트 라이브러리 'Library_Pollen'이(가) 포함되어 있지 않습니다",
+                    "items": [
+                        {
+                            "description": "심볼 J4 [Conn_02x20_Odd_Even_MountingPin]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.8001
+                            },
+                            "uuid": "68e70e04-921e-4925-a994-1754f39c95c0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C20 [C_Small]",
+                            "pos": {
+                                "x": 1.2954,
+                                "y": 0.7493
+                            },
+                            "uuid": "e3e559d1-04cb-4f82-aa15-43858a9e1fd3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C44 [C_Small]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 1.3335
+                            },
+                            "uuid": "83de0746-7080-4b65-880c-ee46add55893"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C39 [C_Small]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 0.9906
+                            },
+                            "uuid": "3e3db670-f199-408c-b66a-1108b7a1fd96"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'PWR_FLAG'가 라이브러리 'power'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 #FLG04 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.2352,
+                                "y": 0.6985
+                            },
+                            "uuid": "1cd45147-b75f-4513-86b9-e05dacc80cf4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C16 [C_Small]",
+                            "pos": {
+                                "x": 1.4859,
+                                "y": 2.4003
+                            },
+                            "uuid": "815de337-41b2-4106-b247-6f4ca886c7eb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C17 [C_Small]",
+                            "pos": {
+                                "x": 1.5748,
+                                "y": 2.4003
+                            },
+                            "uuid": "a51aa9b9-78a1-4413-80a6-ddaa6c782e97"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C15 [C_Small]",
+                            "pos": {
+                                "x": 1.6383,
+                                "y": 2.9845
+                            },
+                            "uuid": "8b53efb4-9898-4be7-8675-ff62d6f7be20"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C18 [C_Small]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 2.4003
+                            },
+                            "uuid": "4c8454ed-23a8-4000-9f3d-53c74895bb01"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C23 [C_Small]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 0.762
+                            },
+                            "uuid": "c7a31015-29b9-41ae-97ab-1410b73c25b7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C24 [C_Small]",
+                            "pos": {
+                                "x": 2.1082,
+                                "y": 0.762
+                            },
+                            "uuid": "7026eec6-4c87-47cf-81c8-0ceca6487de9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C14 [C_Small]",
+                            "pos": {
+                                "x": 0.2921,
+                                "y": 0.7493
+                            },
+                            "uuid": "232a9048-ee77-40bb-bfb3-1bd03f38d280"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C13 [C_Small]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.7145
+                            },
+                            "uuid": "f8a52e04-9b52-453f-857f-2ed86f261c87"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C37 [C_Small]",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 1.27
+                            },
+                            "uuid": "ed16607b-6b15-419b-9440-29816e83b7b3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C29 [C_Small]",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 1.0795
+                            },
+                            "uuid": "b96a6dc6-c63f-4fa0-bbab-197e6f00c767"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C35 [C_Small]",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 1.2065
+                            },
+                            "uuid": "8df2fca0-f980-41ea-a89b-06238c9cab20"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C31 [C_Small]",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 1.3335
+                            },
+                            "uuid": "18ff5505-4b14-445e-a672-fd0902336d6c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C27 [C_Small]",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 1.4732
+                            },
+                            "uuid": "ec8f9f9f-1f30-41b0-8bac-883594101911"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C12 [C_Small]",
+                            "pos": {
+                                "x": 0.6223,
+                                "y": 1.7145
+                            },
+                            "uuid": "d23fd1f6-d80c-4191-9290-81f43aa1c775"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C30 [C_Small]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.0795
+                            },
+                            "uuid": "a2f489e0-eb25-4bae-9361-9f1995e138f9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C36 [C_Small]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.2065
+                            },
+                            "uuid": "f430e9fc-7c7e-483e-998b-6b5f8230d98f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C32 [C_Small]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.3335
+                            },
+                            "uuid": "97c7b6fe-32be-49e1-a879-0ea15d22da01"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C28 [C_Small]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.4732
+                            },
+                            "uuid": "7e5cd8a0-a4e7-4666-a280-2857a01fff5f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C26 [C_Small]",
+                            "pos": {
+                                "x": 0.6731,
+                                "y": 1.7145
+                            },
+                            "uuid": "d2c28d67-c8cf-444e-a366-f42323776e25"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C38 [C_Small]",
+                            "pos": {
+                                "x": 0.8382,
+                                "y": 1.0033
+                            },
+                            "uuid": "fd626182-b8ea-4c5d-b9fc-e8b3ffcec636"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "현재 설정에 심볼 라이브러리 'Library_Pollen'가 포함되어 있지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 U2 [TLV320AIC3104IRHBR]",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.6096
+                            },
+                            "uuid": "b0ce8674-0f60-49e2-b14e-2116dfaed6a7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C1 [C_Small]",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.7874
+                            },
+                            "uuid": "0f1998aa-8239-4f1e-b147-a5c28a229b61"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C2 [C_Small]",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.8382
+                            },
+                            "uuid": "f8769317-ae92-41c8-9fc1-f501cdef84f7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C33 [C_Small]",
+                            "pos": {
+                                "x": 1.9431,
+                                "y": 0.5842
+                            },
+                            "uuid": "690168d4-e4a8-4740-a3e3-0057ae92cfbd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C3 [C_Small]",
+                            "pos": {
+                                "x": 1.9685,
+                                "y": 1.0287
+                            },
+                            "uuid": "b186c20f-82c6-4d45-82f8-ef2955249afa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C34 [C_Small]",
+                            "pos": {
+                                "x": 1.9939,
+                                "y": 0.5842
+                            },
+                            "uuid": "c9d790a3-fe7a-4ca8-b0d0-933921ea8c9d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C41 [C_Small]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 0.2921
+                            },
+                            "uuid": "6cc04f14-91e6-4dcf-a740-b5815ee85e80"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C40 [C_Small]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 0.3556
+                            },
+                            "uuid": "6ff91568-fab9-431f-a2b4-4020c032f06f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C4 [C_Small]",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 0.5969
+                            },
+                            "uuid": "fe2d3101-b4e5-48a2-8759-a4d83cb28242"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C5 [C_Small]",
+                            "pos": {
+                                "x": 2.2225,
+                                "y": 0.5969
+                            },
+                            "uuid": "47ec4bc5-b2e1-4d3e-a251-fda6e7b69cc2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C43 [C_Small]",
+                            "pos": {
+                                "x": 2.2479,
+                                "y": 0.2159
+                            },
+                            "uuid": "abab8773-4e7c-48c5-83af-792754968101"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C42 [C_Small]",
+                            "pos": {
+                                "x": 2.286,
+                                "y": 0.2159
+                            },
+                            "uuid": "570770ac-25c5-4498-81bb-f45463d64012"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C6 [C_Small]",
+                            "pos": {
+                                "x": 2.3495,
+                                "y": 0.5969
+                            },
+                            "uuid": "43cfe4d3-29c4-4796-85c4-71e0b2836b3a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C7 [C_Small]",
+                            "pos": {
+                                "x": 2.3876,
+                                "y": 0.5969
+                            },
+                            "uuid": "3164ffcb-fb12-447c-876d-a88707afbbdf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C8 [C_Small]",
+                            "pos": {
+                                "x": 2.4257,
+                                "y": 1.016
+                            },
+                            "uuid": "c69760c7-481d-4942-bcfd-74c5e63fedef"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C10 [C_Small]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 1.3843
+                            },
+                            "uuid": "2abc5551-df07-416c-b459-ab11ced553bc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C9 [C_Small]",
+                            "pos": {
+                                "x": 2.5273,
+                                "y": 1.016
+                            },
+                            "uuid": "c7e474c8-b082-4c6a-a854-b8a92045a532"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 C11 [C_Small]",
+                            "pos": {
+                                "x": 2.5908,
+                                "y": 1.2827
+                            },
+                            "uuid": "28503a38-db04-491f-a3a5-4cde800e7012"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+                    "items": [
+                        {
+                            "description": "심볼 J2 [Conn_01x02]",
+                            "pos": {
+                                "x": 2.6416,
+                                "y": 0.3175
+                            },
+                            "uuid": "3d00266c-3f64-4937-80cd-44c8f67d80b5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+                    "items": [
+                        {
+                            "description": "심볼 J9 [Conn_01x02]",
+                            "pos": {
+                                "x": 2.6416,
+                                "y": 0.381
+                            },
+                            "uuid": "da5d53e1-7d76-415d-8830-6796a8ec1ed5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+                    "items": [
+                        {
+                            "description": "심볼 J1 [Conn_01x02]",
+                            "pos": {
+                                "x": 2.6416,
+                                "y": 0.9652
+                            },
+                            "uuid": "156dd9ee-c8e6-409a-8a7d-797bf4d043af"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
+                    "items": [
+                        {
+                            "description": "심볼 MK1 [Microphone_MEMS]",
+                            "pos": {
+                                "x": 2.6543,
+                                "y": 1.3843
+                            },
+                            "uuid": "e4bb35b2-4e8d-4df9-ae4f-dc3afbdc42c3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "현재 설정에 심볼 라이브러리 'Library_Pollen'가 포함되어 있지 않음",
+                    "items": [
+                        {
+                            "description": "심볼 MK1 [Microphone_MEMS]",
+                            "pos": {
+                                "x": 2.6543,
+                                "y": 1.3843
+                            },
+                            "uuid": "e4bb35b2-4e8d-4df9-ae4f-dc3afbdc42c3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        },
+        {
+            "path": "/Schematic/",
+            "uuid_path": "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749",
+            "violations": []
+        },
+        {
+            "path": "/Schematic/Power/",
+            "uuid_path": "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05",
+            "violations": []
+        },
+        {
+            "path": "/Schematic/Dynamixel/",
+            "uuid_path": "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/dd8df41a-ac53-4462-a3fb-30e558be4c8a",
+            "violations": []
+        },
+        {
+            "path": "/Schematic/Sensors/",
+            "uuid_path": "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469",
+            "violations": []
+        },
+        {
+            "path": "/Schematic/Audio/",
+            "uuid_path": "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d",
+            "violations": []
+        }
+    ],
+    "source": "radxa_zero3w_robot_hat.kicad_sch"
+}
