@@ -90,7 +90,7 @@ Requirements:
 - multiple physical connectors may share the same logical bus
 - clear polarity/orientation markings
 
-Optional RS-485 transceiver is a secondary block and may be DNP in V1.
+The upstream RS-485 transceiver path remains populated in the strict-port assembly. A DNP RS-485 option would be a separate reviewed BOM variant, not the default V1 policy.
 
 ### D. Sensor subsystem
 

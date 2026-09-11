@@ -7,7 +7,9 @@ on:
       - 'hardware/kicad/*.kicad_pcb'
       - 'hardware/kicad/*.kicad_pro'
       - 'hardware/kicad/check_strict_port.py'
+      - 'hardware/kicad/test_strict_port_guards.py'
       - 'validation/strict_port/**'
+      - '.gitattributes'
       - '.github/workflows/strict-port-check.yml'
   pull_request:
     paths:
@@ -15,7 +17,9 @@ on:
       - 'hardware/kicad/*.kicad_pcb'
       - 'hardware/kicad/*.kicad_pro'
       - 'hardware/kicad/check_strict_port.py'
+      - 'hardware/kicad/test_strict_port_guards.py'
       - 'validation/strict_port/**'
+      - '.gitattributes'
       - '.github/workflows/strict-port-check.yml'
 
 jobs:
@@ -23,14 +27,29 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - name: Install KiCad 10 CLI
+      - name: Check out port source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Check out pinned Pollen upstream
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: pollen-robotics/elec_RPI_Robot_HAT
+          ref: 23eab11927f95ceca0dfa35bf182caeb7db39ea0
+          path: .upstream/pollen
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Install KiCad 10.0.6 CLI
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends software-properties-common
           sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends kicad
-          kicad-cli --version
+          sudo apt-get install -y --no-install-recommends 'kicad=10.0.6~ubuntu24.04.1'
+          test "$(kicad-cli --version)" = '10.0.6'
       - name: Regenerate and compare strict-port evidence
-        run: python3 hardware/kicad/check_strict_port.py
+        env:
+          UPSTREAM_SOURCE_DIR: ${{ github.workspace }}/.upstream/pollen
+        run: |
+          python3 hardware/kicad/check_strict_port.py
+          python3 hardware/kicad/test_strict_port_guards.py

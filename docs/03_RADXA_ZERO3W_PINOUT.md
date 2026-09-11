@@ -22,22 +22,32 @@ Do not rely on Raspberry Pi BCM numbering.
 | 4 | 5 V | Host 5 V supply |
 | 5 | I2C3 SCL M0 | Main I2C clock |
 | 6 | GND | Ground |
+| 7 | GPIO3_C4 | Auxiliary option; isolated by DNP R18/R20 and J6 |
 | 8 | UART2 TX M0 | Dynamixel UART TX |
 | 9 | GND | Ground |
 | 10 | UART2 RX M0 | Dynamixel UART RX |
 | 12 | I2S3 SCLK/BCLK M0 | Audio bit clock |
 | 14 | GND | Ground |
+| 15 | GPIO3_B0 | Preserved Radxa GPIO identity |
 | 17 | 3.3 V | Logic / sensor rail reference |
+| 19 | GPIO4_C3 | Auxiliary option; isolated by DNP R38 and J8 |
 | 20 | GND | Ground |
+| 21 | GPIO4_C5 | Auxiliary option; isolated by DNP R35 and J7 |
+| 23 | GPIO4_C2 | Auxiliary option; isolated by DNP R39 and J8 |
+| 24 | GPIO4_C6 | Auxiliary option; isolated by DNP R34 and J7 |
 | 25 | GND | Ground |
+| 27 | I2C4 SDA M0 | HAT-ID path; U4 DNP |
+| 28 | I2C4 SCL M0 | HAT-ID path; U4 DNP |
+| 29 | GPIO3_B3 | Auxiliary option; isolated by DNP R19/R21 and J6 |
 | 30 | GND | Ground |
+| 31 | GPIO3_B4 | Preserved Radxa GPIO identity |
 | 34 | GND | Ground |
 | 35 | I2S3 LRCK M0 | Audio frame/LR clock |
 | 38 | I2S3 SDI M0 | Codec/mic data to host |
 | 39 | GND | Ground |
 | 40 | I2S3 SDO M0 | Host audio data to codec |
 
-Unused pins remain uncommitted until the detailed schematic assigns enable, interrupt, status or expansion functions.
+Physical pins 11, 13, 16, 18, 22, 26, 32, 33, 36 and 37 remain explicitly unconnected. Named auxiliary nets retain trace identity for strict-port continuity but are isolated from unqualified Qwiic pull-ups and connectors by the stated DNP population policy.
 
 ## I2C3
 

@@ -1,0 +1,5 @@
+/.gitattributes text eol=lf
+validation/strict_port/*.json text eol=lf
+validation/strict_port/*.xml text eol=lf
+hardware/kicad/*.py text eol=lf
+.github/workflows/*.yml text eol=lf

@@ -28,7 +28,7 @@ Only host-facing compatibility changes are active:
 
 The schematic and PCB net names identify these Radxa functions instead of Raspberry Pi BCM names. The physical routes are retained because the required interfaces occupy the same header pins.
 
-The Raspberry Pi HAT EEPROM is retained as upstream DNP. Extra Qwiic connectors J6/J7/J8 are marked DNP because their Raspberry Pi auxiliary-I2C pin choices are not direct Radxa equivalents. Main Qwiic J5 remains on pins 3/5 with the codec and IMU.
+The Raspberry Pi HAT EEPROM is retained as upstream DNP. Extra Qwiic connectors J6/J7/J8 and their isolation/pull-up resistors R18/R19/R20/R21/R34/R35/R38/R39 are DNP because their Raspberry Pi auxiliary-I2C pin choices are not direct Radxa equivalents. Main Qwiic J5 remains on pins 3/5 with the codec and IMU.
 
 ## Software requirement
 
@@ -42,7 +42,7 @@ Using hardware I2C3 M0 on pins 3/5 requires the Radxa device-tree configuration 
 - Current status: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md)
 - Validation evidence: [`validation/strict_port/`](validation/strict_port/)
 
-The imported board is fully routed but is **not yet approved for fabrication**. Native KiCad checks reproduce the upstream baseline findings; mechanical clearance against the Radxa ZERO 3W, power/backfeed behavior, optional connector policy and all inherited DRC findings still require sign-off.
+The imported board is fully routed but is **not yet approved for fabrication**. KiCad 10.0.6 CI regenerates reports from both the port and pinned upstream commit and locks the imported rule/ignored-check policy. Mechanical clearance against the Radxa ZERO 3W, AP63205 2 A power/thermal margin, USB-C backfeed behavior and all inherited DRC findings still require sign-off.
 
 ## License and attribution
 

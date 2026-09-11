@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>C:\Users\juper\OneDrive\Documents\ChatGPT\Microduck_DIY\radxa-zero3w-robot-hat\hardware\kicad\radxa_zero3w_robot_hat.kicad_sch</source>
-    <date>2026-09-11T14:51:36</date>
+    <source>upstream@23eab11927f95ceca0dfa35bf182caeb7db39ea0/elec_RPI_Robot_HAT.kicad_sch</source>
+    <date>2026-09-11T15:59:52</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -10,7 +10,7 @@
         <company>Pollen Robotics / Hugging Face</company>
         <rev>B1</rev>
         <date>2026-05-06</date>
-        <source>radxa_zero3w_robot_hat.kicad_sch</source>
+        <source>elec_RPI_Robot_HAT.kicad_sch</source>
         <comment number="1" value=""/>
         <comment number="2" value=""/>
         <comment number="3" value=""/>
@@ -150,8 +150,8 @@
       <property name="Voltage Rating" value=""/>
       <property name="Width" value=""/>
       <property name="FT Position Offset" value=""/>
-      <property name="Sheetname" value="radxa_zero3w_robot_hat"/>
-      <property name="Sheetfile" value="radxa_zero3w_robot_hat.kicad_sch"/>
+      <property name="Sheetname" value="elec_RPI_Robot_HAT"/>
+      <property name="Sheetfile" value="elec_RPI_Robot_HAT.kicad_sch"/>
       <property name="exclude_from_bom"/>
       <property name="ki_keywords" value="fiducial marker"/>
       <property name="ki_fp_filters" value="Fiducial*"/>
@@ -199,8 +199,8 @@
       <property name="Voltage Rating" value=""/>
       <property name="Width" value=""/>
       <property name="FT Position Offset" value=""/>
-      <property name="Sheetname" value="radxa_zero3w_robot_hat"/>
-      <property name="Sheetfile" value="radxa_zero3w_robot_hat.kicad_sch"/>
+      <property name="Sheetname" value="elec_RPI_Robot_HAT"/>
+      <property name="Sheetfile" value="elec_RPI_Robot_HAT.kicad_sch"/>
       <property name="exclude_from_bom"/>
       <property name="ki_keywords" value="fiducial marker"/>
       <property name="ki_fp_filters" value="Fiducial*"/>
@@ -248,8 +248,8 @@
       <property name="Voltage Rating" value=""/>
       <property name="Width" value=""/>
       <property name="FT Position Offset" value=""/>
-      <property name="Sheetname" value="radxa_zero3w_robot_hat"/>
-      <property name="Sheetfile" value="radxa_zero3w_robot_hat.kicad_sch"/>
+      <property name="Sheetname" value="elec_RPI_Robot_HAT"/>
+      <property name="Sheetfile" value="elec_RPI_Robot_HAT.kicad_sch"/>
       <property name="exclude_from_bom"/>
       <property name="ki_keywords" value="fiducial marker"/>
       <property name="ki_fp_filters" value="Fiducial*"/>
@@ -296,8 +296,8 @@
       <property name="Voltage Rating" value=""/>
       <property name="Width" value=""/>
       <property name="FT Position Offset" value=""/>
-      <property name="Sheetname" value="radxa_zero3w_robot_hat"/>
-      <property name="Sheetfile" value="radxa_zero3w_robot_hat.kicad_sch"/>
+      <property name="Sheetname" value="elec_RPI_Robot_HAT"/>
+      <property name="Sheetfile" value="elec_RPI_Robot_HAT.kicad_sch"/>
       <property name="exclude_from_bom"/>
       <property name="exclude_from_board"/>
       <sheetpath names="/" tstamps="/"/>
@@ -340,8 +340,8 @@
       <property name="Voltage Rating" value=""/>
       <property name="Width" value=""/>
       <property name="FT Position Offset" value=""/>
-      <property name="Sheetname" value="radxa_zero3w_robot_hat"/>
-      <property name="Sheetfile" value="radxa_zero3w_robot_hat.kicad_sch"/>
+      <property name="Sheetname" value="elec_RPI_Robot_HAT"/>
+      <property name="Sheetfile" value="elec_RPI_Robot_HAT.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e8f2ab0f-6624-45f8-b8e5-c599d24045f9</tstamps>
       <units>
@@ -386,8 +386,8 @@
       <property name="Voltage Rating" value=""/>
       <property name="Width" value=""/>
       <property name="FT Position Offset" value=""/>
-      <property name="Sheetname" value="radxa_zero3w_robot_hat"/>
-      <property name="Sheetfile" value="radxa_zero3w_robot_hat.kicad_sch"/>
+      <property name="Sheetname" value="elec_RPI_Robot_HAT"/>
+      <property name="Sheetfile" value="elec_RPI_Robot_HAT.kicad_sch"/>
       <property name="exclude_from_bom"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>27295418-94b8-4760-ba2d-314b58e4124d</tstamps>

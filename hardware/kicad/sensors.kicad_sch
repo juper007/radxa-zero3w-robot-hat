@@ -4856,7 +4856,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "022a8062-999d-4f05-8a01-5695d3422355")
 		(property "Reference" "R19"
 			(at 88.646 101.6 90)
@@ -4866,7 +4866,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "DNP-0R"
 			(at 95.758 101.346 90)
 			(effects
 				(font
@@ -5126,7 +5126,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "1cbe8f42-456b-41a8-8983-a4df075d0bae")
 		(property "Reference" "R34"
 			(at 105.918 134.62 0)
@@ -5136,7 +5136,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "DNP-10k"
 			(at 105.918 132.334 0)
 			(effects
 				(font
@@ -5364,7 +5364,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "1e406d39-6bdd-4e1f-860f-d69efa8c1db5")
 		(property "Reference" "R18"
 			(at 88.646 93.98 90)
@@ -5374,7 +5374,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "DNP-0R"
 			(at 95.758 94.234 90)
 			(effects
 				(font
@@ -5980,7 +5980,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "3f203e13-709a-4e2d-8472-e190bd849877")
 		(property "Reference" "R21"
 			(at 115.316 104.902 0)
@@ -5990,7 +5990,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "DNP-10k"
 			(at 108.458 103.124 0)
 			(effects
 				(font
@@ -6823,7 +6823,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "55907f36-ce7e-4fb3-80c4-1892fd73f2a8")
 		(property "Reference" "R39"
 			(at 105.918 170.688 0)
@@ -6833,7 +6833,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "DNP-10k"
 			(at 108.458 169.164 0)
 			(effects
 				(font
@@ -8174,7 +8174,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "890f00ce-d519-4943-9e26-5232d2fb2c7a")
 		(property "Reference" "R20"
 			(at 115.316 103.124 0)
@@ -8184,7 +8184,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "DNP-10k"
 			(at 115.316 100.838 0)
 			(effects
 				(font
@@ -8479,7 +8479,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "8b7a10d6-75d9-450e-a4c2-093964028f5e")
 		(property "Reference" "R38"
 			(at 105.918 168.91 0)
@@ -8489,7 +8489,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "DNP-10k"
 			(at 105.918 166.624 0)
 			(effects
 				(font
@@ -8717,7 +8717,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "8c458d8d-1c5d-409e-9128-c4472a00faad")
 		(property "Reference" "R35"
 			(at 105.918 136.398 0)
@@ -8727,7 +8727,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "DNP-10k"
 			(at 108.458 134.874 0)
 			(effects
 				(font

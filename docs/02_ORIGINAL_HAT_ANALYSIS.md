@@ -41,7 +41,7 @@ Based on the upstream repository, the board combines:
 
 The upstream Dynamixel schematic includes an **SP3485-class RS-485 transceiver** for differential communication as well as TTL-oriented motor communication circuitry.
 
-For this project, Dynamixel TTL is the primary path because the target MicroDuck-style actuator set is XL330-class TTL. RS-485 will be retained only if routing/space/cost permit, or made DNP-capable.
+For this strict port, both upstream Dynamixel TTL and RS-485 circuitry remain populated according to the upstream assembly intent. TTL is the primary expected path for the target XL330-class actuator set; changing RS-485 population is outside this port and requires a separate reviewed BOM variant.
 
 ### Sensors
 

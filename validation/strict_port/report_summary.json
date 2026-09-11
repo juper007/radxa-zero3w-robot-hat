@@ -8,7 +8,7 @@
   "architecture": {
     "board_count": 1,
     "daughterboard": false,
-    "outline_mm": [65.05, 30.95],
+    "outline_mm": [65.0, 30.9],
     "copper_layers": 4
   },
   "schematic": {
@@ -51,6 +51,28 @@
     },
     "new_vs_upstream": 0
   },
+  "validation_policy": {
+    "kicad_version": "10.0.6",
+    "erc_ignored_checks": [
+      "footprint_filter",
+      "four_way_junction",
+      "simulation_model_issue",
+      "single_global_label"
+    ],
+    "drc_ignored_checks": [
+      "footprint_filters_mismatch",
+      "footprint_type_mismatch",
+      "missing_courtyard",
+      "npth_inside_courtyard",
+      "pth_inside_courtyard",
+      "track_not_centered_on_via",
+      "tuning_profile_track_geometries"
+    ],
+    "baseline_regenerated_from_upstream_commit": true
+  },
+  "dnp_auxiliary_options": [
+    "U4", "J6", "J7", "J8", "R18", "R19", "R20", "R21", "R34", "R35", "R38", "R39"
+  ],
   "host_mapping": {
     "3": "I2C3_SDA_M0",
     "5": "I2C3_SCL_M0",
@@ -71,5 +93,12 @@
     "38": "I2S3_SDI_M0",
     "40": "I2S3_SDO_M0"
   },
+  "fabrication_blockers": [
+    "40 inherited J4 hole-clearance errors",
+    "AP63205 2 A Radxa-plus-HAT load and thermal margin unverified",
+    "Radxa mechanical and antenna keepout overlay pending",
+    "USB-C simultaneous-power and backfeed validation pending",
+    "derivative manufacturing package and library review pending"
+  ],
   "fabrication_ready": false
 }

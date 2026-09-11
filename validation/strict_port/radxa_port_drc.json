@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-09-11T15:19:11",
+    "date": "2026-09-11T16:08:29",
     "ignored_checks": [
         {
             "description": "Footprint has no courtyard defined",
@@ -2540,43 +2540,20 @@
             "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
             "items": [
                 {
-                    "description": "패드 3 [/Schematic/Audio/I2C3_SDA_M0]의 J4 위B.Cu",
+                    "description": "패드 7 [/Schematic/Audio/GPIO3_C4_P7]의 J4 위B.Cu",
                     "pos": {
-                        "x": 81.8075,
+                        "x": 86.8875,
                         "y": 82.44
                     },
-                    "uuid": "b945dcf6-8848-4714-a32a-8a36cf4f45da"
+                    "uuid": "1a8b9d6c-4212-4954-9507-26b96fe8314c"
                 },
                 {
                     "description": "J4의 NPTH 패드",
                     "pos": {
-                        "x": 81.8075,
+                        "x": 86.8875,
                         "y": 80.91
                     },
-                    "uuid": "a0b1e646-3d91-434b-933b-a5573ed4bc08"
-                }
-            ],
-            "severity": "error",
-            "type": "hole_clearance"
-        },
-        {
-            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
-            "items": [
-                {
-                    "description": "패드 1 [+3V3]의 J4 위B.Cu",
-                    "pos": {
-                        "x": 79.2675,
-                        "y": 82.44
-                    },
-                    "uuid": "498e09da-37af-4461-bbbc-b8530a2b81ce"
-                },
-                {
-                    "description": "J4의 NPTH 패드",
-                    "pos": {
-                        "x": 79.2675,
-                        "y": 80.91
-                    },
-                    "uuid": "ccdca99a-e831-45ce-bc59-ea4ef98ee100"
+                    "uuid": "c594ca12-b44f-4d1a-935b-b3bdcf7581e4"
                 }
             ],
             "severity": "error",
@@ -2609,20 +2586,43 @@
             "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
             "items": [
                 {
-                    "description": "패드 7 [/Schematic/Audio/GPIO3_C4_P7]의 J4 위B.Cu",
+                    "description": "패드 1 [+3V3]의 J4 위B.Cu",
                     "pos": {
-                        "x": 86.8875,
+                        "x": 79.2675,
                         "y": 82.44
                     },
-                    "uuid": "1a8b9d6c-4212-4954-9507-26b96fe8314c"
+                    "uuid": "498e09da-37af-4461-bbbc-b8530a2b81ce"
                 },
                 {
                     "description": "J4의 NPTH 패드",
                     "pos": {
-                        "x": 86.8875,
+                        "x": 79.2675,
                         "y": 80.91
                     },
-                    "uuid": "c594ca12-b44f-4d1a-935b-b3bdcf7581e4"
+                    "uuid": "ccdca99a-e831-45ce-bc59-ea4ef98ee100"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "홀 공간거리 위반 (기판의 홀 제약조건 설정 공간거리 0.2000 mm; 실제값 0.0200 mm)",
+            "items": [
+                {
+                    "description": "패드 3 [/Schematic/Audio/I2C3_SDA_M0]의 J4 위B.Cu",
+                    "pos": {
+                        "x": 81.8075,
+                        "y": 82.44
+                    },
+                    "uuid": "b945dcf6-8848-4714-a32a-8a36cf4f45da"
+                },
+                {
+                    "description": "J4의 NPTH 패드",
+                    "pos": {
+                        "x": 81.8075,
+                        "y": 80.91
+                    },
+                    "uuid": "a0b1e646-3d91-434b-933b-a5573ed4bc08"
                 }
             ],
             "severity": "error",
