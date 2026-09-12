@@ -126,6 +126,72 @@ def test_bom_guard() -> None:
         run_checker(repository, "component value or footprint drift versus upstream")
 
 
+def test_j4_geometry_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-j4-geometry-") as directory:
+        repository = copy_repository(Path(directory))
+        board = repository / "hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb"
+        text = board.read_text(encoding="utf-8")
+        start, end = sexpr_block(text, "footprint", "J4")
+        block = text[start:end]
+        old = "(size 1.02 1.8)"
+        if block.count(old) != 40:
+            raise ValueError("unexpected J4 DRC-clean candidate pad geometry")
+        block = block.replace(old, "(size 1.02 2)", 1)
+        board.write_text(text[:start] + block + text[end:], encoding="utf-8")
+        run_checker(repository, "J4 footprint differs from the qualified DRC-clean candidate")
+
+
+def test_j4_placement_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-j4-placement-") as directory:
+        repository = copy_repository(Path(directory))
+        board = repository / "hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb"
+        text = board.read_text(encoding="utf-8")
+        original = '(footprint "Library_Pollen:PinHeader_2x20_P2.54mm_Vertical_with_rasp_HAT_zero_SMD_connector"\n\t\t(layer "B.Cu")'
+        replacement = original.replace('"B.Cu"', '"F.Cu"')
+        if text.count(original) != 1:
+            raise SystemExit("J4 placement negative test could not locate exactly one footprint")
+        board.write_text(text.replace(original, replacement, 1), encoding="utf-8")
+        run_checker(repository, "J4 footprint differs from the qualified DRC-clean candidate")
+
+
+def test_j4_pad_attribute_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-j4-pad-attribute-") as directory:
+        repository = copy_repository(Path(directory))
+        board = repository / "hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb"
+        text = board.read_text(encoding="utf-8")
+        start = text.index('\t\t(pad "1" smd rect', text.index('(property "Reference" "J4"'))
+        uuid_pos = text.index('\n\t\t\t(uuid ', start)
+        text = text[:uuid_pos] + '\n\t\t\t(solder_paste_margin -0.89)' + text[uuid_pos:]
+        board.write_text(text, encoding="utf-8")
+        run_checker(repository, "J4 footprint differs from the qualified DRC-clean candidate")
+
+
+def test_j4_quoted_property_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-j4-quoted-property-") as directory:
+        repository = copy_repository(Path(directory))
+        board = repository / "hardware" / "kicad" / "radxa_zero3w_robot_hat.kicad_pcb"
+        text = board.read_text(encoding="utf-8")
+        old = '2x20 2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs'
+        new = '2x20  2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs'
+        if text.count(old) != 2:
+            raise ValueError("unexpected J4 description inventory")
+        board.write_text(text.replace(old, new, 1), encoding="utf-8")
+        run_checker(repository, "J4 footprint differs from the qualified DRC-clean candidate")
+
+
+def test_j4_identity_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-j4-identity-") as directory:
+        repository = copy_repository(Path(directory))
+        schematic = repository / "hardware" / "kicad" / "main.kicad_sch"
+        text = schematic.read_text(encoding="utf-8")
+        old = '(property "Manufacturer_Part_Number" "REF-182665-01"'
+        new = '(property "Manufacturer_Part_Number" "C2685112"'
+        if text.count(old) != 1:
+            raise ValueError("unexpected J4 manufacturer-part property inventory")
+        schematic.write_text(text.replace(old, new, 1), encoding="utf-8")
+        run_checker(repository, "J4 manufacturing identity changed")
+
+
 def test_unconnected_evidence_guard() -> None:
     with tempfile.TemporaryDirectory(prefix="strict-unconnected-") as directory:
         repository = copy_repository(Path(directory))
@@ -147,6 +213,11 @@ def main() -> None:
     test_erc_pin_map_guard()
     test_baseline_hash_guard()
     test_bom_guard()
+    test_j4_geometry_guard()
+    test_j4_placement_guard()
+    test_j4_pad_attribute_guard()
+    test_j4_quoted_property_guard()
+    test_j4_identity_guard()
     test_unconnected_evidence_guard()
     print("STRICT PORT NEGATIVE TESTS: PASS")
 

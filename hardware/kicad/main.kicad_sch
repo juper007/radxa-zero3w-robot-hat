@@ -5882,7 +5882,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.toby.co.uk/board-to-board-pcb-connectors/254mm-sockets/ref-raspberry-pi-rpi-hat-specification-connector-surface-mount-sockets/REF-182665-01"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -5891,7 +5891,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Generic connectable mounting pin connector, double row, 02x20, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "2x20 2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -5900,7 +5900,7 @@
 				(hide yes)
 			)
 		)
-		(property "Field4" "Toby"
+		(property "Field4" "Toby Electronics"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -5909,7 +5909,7 @@
 				(hide yes)
 			)
 		)
-		(property "Field5" "THD-20-R"
+		(property "Field5" "REF-182665-01"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -5918,7 +5918,7 @@
 				(hide yes)
 			)
 		)
-		(property "Field6" "THD-20-R"
+		(property "Field6" "REF-182665-01"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -5927,7 +5927,7 @@
 				(hide yes)
 			)
 		)
-		(property "Field7" "Toby"
+		(property "Field7" "Toby Electronics"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -5936,7 +5936,7 @@
 				(hide yes)
 			)
 		)
-		(property "Field8" "UCON00511"
+		(property "Field8" "REF-182665-01"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -5945,7 +5945,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Description" "PinHeader_2x20_P2.54mm_Vertical"
+		(property "Part Description" "2x20 2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -6071,7 +6071,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Name" ""
+		(property "Manufacturer_Name" "Toby Electronics"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -6080,7 +6080,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "REF-182665-01"
 			(at 198.12 80.01 0)
 			(effects
 				(font
@@ -6107,7 +6107,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C2685112"
+		(property "LCSC Part" ""
 			(at 198.12 80.01 0)
 			(effects
 				(font

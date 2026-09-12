@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>hardware/kicad/radxa_zero3w_robot_hat.kicad_sch</source>
-    <date>2026-09-11T16:08:02</date>
+    <source>C:\Users\juper\OneDrive\Documents\ChatGPT\Microduck_DIY\radxa-zero3w-robot-hat\hardware\kicad\radxa_zero3w_robot_hat.kicad_sch</source>
+    <date>2026-09-11T17:44:16</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -466,14 +466,15 @@
     <comp ref="J4">
       <value>Radxa ZERO 3W 2x20 HAT Header</value>
       <footprint>Library_Pollen:PinHeader_2x20_P2.54mm_Vertical_with_rasp_HAT_zero_SMD_connector</footprint>
-      <description>Generic connectable mounting pin connector, double row, 02x20, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <datasheet>https://www.toby.co.uk/board-to-board-pcb-connectors/254mm-sockets/ref-raspberry-pi-rpi-hat-specification-connector-surface-mount-sockets/REF-182665-01</datasheet>
+      <description>2x20 2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs</description>
       <fields>
-        <field name="Field4">Toby</field>
-        <field name="Field5">THD-20-R</field>
-        <field name="Field6">THD-20-R</field>
-        <field name="Field7">Toby</field>
-        <field name="Field8">UCON00511</field>
-        <field name="Part Description">PinHeader_2x20_P2.54mm_Vertical</field>
+        <field name="Field4">Toby Electronics</field>
+        <field name="Field5">REF-182665-01</field>
+        <field name="Field6">REF-182665-01</field>
+        <field name="Field7">Toby Electronics</field>
+        <field name="Field8">REF-182665-01</field>
+        <field name="Part Description">2x20 2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs</field>
         <field name="FT Position Offset"/>
         <field name="FT Rotation Offset">90</field>
         <field name="Sim.Pin"/>
@@ -487,22 +488,22 @@
         <field name="Arrow Part Number"/>
         <field name="Arrow Price/Stock"/>
         <field name="Height"/>
-        <field name="Manufacturer_Name"/>
-        <field name="Manufacturer_Part_Number"/>
+        <field name="Manufacturer_Name">Toby Electronics</field>
+        <field name="Manufacturer_Part_Number">REF-182665-01</field>
         <field name="Mouser Part Number"/>
         <field name="Mouser Price/Stock"/>
-        <field name="LCSC Part">C2685112</field>
+        <field name="LCSC Part"/>
         <field name="Footprint">Library_Pollen:PinHeader_2x20_P2.54mm_Vertical_with_rasp_HAT_zero_SMD_connector</field>
-        <field name="Datasheet"/>
-        <field name="Description">Generic connectable mounting pin connector, double row, 02x20, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)</field>
+        <field name="Datasheet">https://www.toby.co.uk/board-to-board-pcb-connectors/254mm-sockets/ref-raspberry-pi-rpi-hat-specification-connector-surface-mount-sockets/REF-182665-01</field>
+        <field name="Description">2x20 2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs</field>
       </fields>
       <libsource lib="Connector_Generic_MountingPin" part="Conn_02x20_Odd_Even_MountingPin" description="Generic connectable mounting pin connector, double row, 02x20, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"/>
-      <property name="Field4" value="Toby"/>
-      <property name="Field5" value="THD-20-R"/>
-      <property name="Field6" value="THD-20-R"/>
-      <property name="Field7" value="Toby"/>
-      <property name="Field8" value="UCON00511"/>
-      <property name="Part Description" value="PinHeader_2x20_P2.54mm_Vertical"/>
+      <property name="Field4" value="Toby Electronics"/>
+      <property name="Field5" value="REF-182665-01"/>
+      <property name="Field6" value="REF-182665-01"/>
+      <property name="Field7" value="Toby Electronics"/>
+      <property name="Field8" value="REF-182665-01"/>
+      <property name="Part Description" value="2x20 2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs"/>
       <property name="FT Position Offset" value=""/>
       <property name="FT Rotation Offset" value="90"/>
       <property name="Sim.Pin" value=""/>
@@ -516,11 +517,11 @@
       <property name="Arrow Part Number" value=""/>
       <property name="Arrow Price/Stock" value=""/>
       <property name="Height" value=""/>
-      <property name="Manufacturer_Name" value=""/>
-      <property name="Manufacturer_Part_Number" value=""/>
+      <property name="Manufacturer_Name" value="Toby Electronics"/>
+      <property name="Manufacturer_Part_Number" value="REF-182665-01"/>
       <property name="Mouser Part Number" value=""/>
       <property name="Mouser Price/Stock" value=""/>
-      <property name="LCSC Part" value="C2685112"/>
+      <property name="LCSC Part" value=""/>
       <property name="Sheetname" value="Schematic"/>
       <property name="Sheetfile" value="main.kicad_sch"/>
       <property name="ki_keywords" value="connector"/>

@@ -22155,7 +22155,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.toby.co.uk/board-to-board-pcb-connectors/254mm-sockets/ref-raspberry-pi-rpi-hat-specification-connector-surface-mount-sockets/REF-182665-01"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -22168,7 +22168,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "Generic connectable mounting pin connector, double row, 02x20, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "2x20 2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -22181,7 +22181,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Field4" "Toby"
+		(property "Field4" "Toby Electronics"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -22195,7 +22195,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Field5" "THD-20-R"
+		(property "Field5" "REF-182665-01"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -22209,7 +22209,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Field6" "THD-20-R"
+		(property "Field6" "REF-182665-01"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -22223,7 +22223,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Field7" "Toby"
+		(property "Field7" "Toby Electronics"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -22237,7 +22237,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Field8" "UCON00511"
+		(property "Field8" "REF-182665-01"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -22251,7 +22251,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Part Description" "PinHeader_2x20_P2.54mm_Vertical"
+		(property "Part Description" "2x20 2.54 mm surface-mount bottom-entry pass-through socket with PCB pegs"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -22447,7 +22447,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Manufacturer_Name" ""
+		(property "Manufacturer_Name" "Toby Electronics"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -22461,7 +22461,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "REF-182665-01"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -22503,7 +22503,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC Part" "C2685112"
+		(property "LCSC Part" ""
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -23931,8 +23931,8 @@
 			(uuid "ccdca99a-e831-45ce-bc59-ea4ef98ee100")
 		)
 		(pad "1" smd rect
-			(at 2.8 24.13)
-			(size 1.02 2)
+			(at 2.9 24.13)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 2 "+3V3")
 			(pinfunction "Pin_1")
@@ -23940,8 +23940,8 @@
 			(uuid "498e09da-37af-4461-bbbc-b8530a2b81ce")
 		)
 		(pad "2" smd rect
-			(at -2.8 24.13)
-			(size 1.02 2)
+			(at -2.9 24.13)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 6 "+5V")
 			(pinfunction "Pin_2")
@@ -23949,8 +23949,8 @@
 			(uuid "9da675df-a381-4706-a22d-3f00b3c42182")
 		)
 		(pad "3" smd rect
-			(at 2.8 21.59 180)
-			(size 1.02 2)
+			(at 2.9 21.59 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 24 "/Schematic/Audio/I2C3_SDA_M0")
 			(pinfunction "Pin_3")
@@ -23958,8 +23958,8 @@
 			(uuid "b945dcf6-8848-4714-a32a-8a36cf4f45da")
 		)
 		(pad "4" smd rect
-			(at -2.8 21.59 180)
-			(size 1.02 2)
+			(at -2.9 21.59 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 6 "+5V")
 			(pinfunction "Pin_4")
@@ -23967,8 +23967,8 @@
 			(uuid "c9a20a68-56bb-4a34-be5d-8ce97c3f9429")
 		)
 		(pad "5" smd rect
-			(at 2.8 19.05 180)
-			(size 1.02 2)
+			(at 2.9 19.05 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 33 "/Schematic/Audio/I2C3_SCL_M0")
 			(pinfunction "Pin_5")
@@ -23976,8 +23976,8 @@
 			(uuid "ea28a8d2-6cf9-46f3-9f12-250e2e4a89c0")
 		)
 		(pad "6" smd rect
-			(at -2.8 19.05 180)
-			(size 1.02 2)
+			(at -2.9 19.05 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 1 "GND")
 			(pinfunction "Pin_6")
@@ -23985,8 +23985,8 @@
 			(uuid "192e3fde-4b2b-4a04-873a-5a2271cbffb2")
 		)
 		(pad "7" smd rect
-			(at 2.8 16.51 180)
-			(size 1.02 2)
+			(at 2.9 16.51 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 12 "/Schematic/Audio/GPIO3_C4_P7")
 			(pinfunction "Pin_7")
@@ -23994,8 +23994,8 @@
 			(uuid "1a8b9d6c-4212-4954-9507-26b96fe8314c")
 		)
 		(pad "8" smd rect
-			(at -2.8 16.51 180)
-			(size 1.02 2)
+			(at -2.9 16.51 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 31 "/Schematic/Audio/UART2_TX_M0")
 			(pinfunction "Pin_8")
@@ -24003,8 +24003,8 @@
 			(uuid "c64b2046-cce7-490a-a5ac-34ade45bfdbf")
 		)
 		(pad "9" smd rect
-			(at 2.8 13.97 180)
-			(size 1.02 2)
+			(at 2.9 13.97 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 1 "GND")
 			(pinfunction "Pin_9")
@@ -24012,8 +24012,8 @@
 			(uuid "bec35321-a274-445d-b186-bc61390bfe88")
 		)
 		(pad "10" smd rect
-			(at -2.8 13.97 180)
-			(size 1.02 2)
+			(at -2.9 13.97 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 14 "/Schematic/Audio/UART2_RX_M0")
 			(pinfunction "Pin_10")
@@ -24021,8 +24021,8 @@
 			(uuid "27ac2288-5d72-440c-bf9e-874ee084fe1b")
 		)
 		(pad "11" smd rect
-			(at 2.8 11.43 180)
-			(size 1.02 2)
+			(at 2.9 11.43 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 28 "unconnected-(J4-Pin_11-Pad11)")
 			(pinfunction "Pin_11")
@@ -24030,8 +24030,8 @@
 			(uuid "3306535f-1808-46e5-9763-d835463e98b2")
 		)
 		(pad "12" smd rect
-			(at -2.8 11.43 180)
-			(size 1.02 2)
+			(at -2.9 11.43 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 15 "/Schematic/Audio/I2S3_SCLK_M0")
 			(pinfunction "Pin_12")
@@ -24039,8 +24039,8 @@
 			(uuid "384ecfba-3f6f-4086-a7aa-cdc5c8e6df1f")
 		)
 		(pad "13" smd rect
-			(at 2.8 8.89 180)
-			(size 1.02 2)
+			(at 2.9 8.89 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 41 "unconnected-(J4-Pin_13-Pad13)")
 			(pinfunction "Pin_13")
@@ -24048,8 +24048,8 @@
 			(uuid "e293b8e0-1d8e-443e-9c64-9a37053f2fec")
 		)
 		(pad "14" smd rect
-			(at -2.8 8.89 180)
-			(size 1.02 2)
+			(at -2.9 8.89 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 1 "GND")
 			(pinfunction "Pin_14")
@@ -24057,8 +24057,8 @@
 			(uuid "a050192c-a92b-43fe-87c8-b539134c7427")
 		)
 		(pad "15" smd rect
-			(at 2.8 6.35 180)
-			(size 1.02 2)
+			(at 2.9 6.35 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 22 "/Schematic/Audio/GPIO3_B0_P15")
 			(pinfunction "Pin_15")
@@ -24066,8 +24066,8 @@
 			(uuid "a2148fab-d388-4269-a736-d577bf2a809d")
 		)
 		(pad "16" smd rect
-			(at -2.8 6.35 180)
-			(size 1.02 2)
+			(at -2.9 6.35 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 42 "unconnected-(J4-Pin_16-Pad16)")
 			(pinfunction "Pin_16")
@@ -24075,8 +24075,8 @@
 			(uuid "e4865448-666f-43b3-9a28-0d5ba3d2dd55")
 		)
 		(pad "17" smd rect
-			(at 2.8 3.81 180)
-			(size 1.02 2)
+			(at 2.9 3.81 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 2 "+3V3")
 			(pinfunction "Pin_17")
@@ -24084,8 +24084,8 @@
 			(uuid "593ee63b-d547-4bda-871f-5fc2f395759d")
 		)
 		(pad "18" smd rect
-			(at -2.8 3.81 180)
-			(size 1.02 2)
+			(at -2.9 3.81 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 52 "unconnected-(J4-Pin_18-Pad18)")
 			(pinfunction "Pin_18")
@@ -24093,8 +24093,8 @@
 			(uuid "f3149e28-1901-4604-8306-2da9112e51e1")
 		)
 		(pad "19" smd rect
-			(at 2.8 1.27 180)
-			(size 1.02 2)
+			(at 2.9 1.27 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 27 "/Schematic/Audio/GPIO4_C3_P19")
 			(pinfunction "Pin_19")
@@ -24102,8 +24102,8 @@
 			(uuid "c1a14493-0b50-486c-9b67-17aa372c1fce")
 		)
 		(pad "20" smd rect
-			(at -2.8 1.27 180)
-			(size 1.02 2)
+			(at -2.9 1.27 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 1 "GND")
 			(pinfunction "Pin_20")
@@ -24111,8 +24111,8 @@
 			(uuid "3efab342-8d6a-4c88-8a8d-551b73ba47ad")
 		)
 		(pad "21" smd rect
-			(at 2.8 -1.27 180)
-			(size 1.02 2)
+			(at 2.9 -1.27 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 25 "/Schematic/Audio/GPIO4_C5_P21")
 			(pinfunction "Pin_21")
@@ -24120,8 +24120,8 @@
 			(uuid "ba0c9bc7-779b-4c73-981e-40570adcd718")
 		)
 		(pad "22" smd rect
-			(at -2.8 -1.27 180)
-			(size 1.02 2)
+			(at -2.9 -1.27 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 47 "unconnected-(J4-Pin_22-Pad22)")
 			(pinfunction "Pin_22")
@@ -24129,8 +24129,8 @@
 			(uuid "efe68bbf-3d40-41c7-9382-db32a19ea72d")
 		)
 		(pad "23" smd rect
-			(at 2.8 -3.81 180)
-			(size 1.02 2)
+			(at 2.9 -3.81 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 26 "/Schematic/Audio/GPIO4_C2_P23")
 			(pinfunction "Pin_23")
@@ -24138,8 +24138,8 @@
 			(uuid "bef9862b-07ec-4b57-b1ca-f9370fe4e554")
 		)
 		(pad "24" smd rect
-			(at -2.8 -3.81 180)
-			(size 1.02 2)
+			(at -2.9 -3.81 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 32 "/Schematic/Audio/GPIO4_C6_P24")
 			(pinfunction "Pin_24")
@@ -24147,8 +24147,8 @@
 			(uuid "e4af8342-bb8c-4a64-86e7-fbb67db61ea8")
 		)
 		(pad "25" smd rect
-			(at 2.8 -6.35 180)
-			(size 1.02 2)
+			(at 2.9 -6.35 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 1 "GND")
 			(pinfunction "Pin_25")
@@ -24156,8 +24156,8 @@
 			(uuid "77662bb8-153c-4687-9c40-2e355fe52e25")
 		)
 		(pad "26" smd rect
-			(at -2.8 -6.35 180)
-			(size 1.02 2)
+			(at -2.9 -6.35 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 18 "unconnected-(J4-Pin_26-Pad26)")
 			(pinfunction "Pin_26")
@@ -24165,8 +24165,8 @@
 			(uuid "06c8a576-8e6b-41cd-a555-660e8c864bde")
 		)
 		(pad "27" smd rect
-			(at 2.8 -8.89 180)
-			(size 1.02 2)
+			(at 2.9 -8.89 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 19 "/Schematic/Audio/I2C4_SDA_M0_P27")
 			(pinfunction "Pin_27")
@@ -24174,8 +24174,8 @@
 			(uuid "5ca2a5ae-ab0a-4d1c-b8d6-3595146cd239")
 		)
 		(pad "28" smd rect
-			(at -2.8 -8.89 180)
-			(size 1.02 2)
+			(at -2.9 -8.89 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 11 "/Schematic/Audio/I2C4_SCL_M0_P28")
 			(pinfunction "Pin_28")
@@ -24183,8 +24183,8 @@
 			(uuid "0904ff6a-9ed3-460f-91d1-4405273fa7c9")
 		)
 		(pad "29" smd rect
-			(at 2.8 -11.43 180)
-			(size 1.02 2)
+			(at 2.9 -11.43 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 17 "/Schematic/Audio/GPIO3_B3_P29")
 			(pinfunction "Pin_29")
@@ -24192,8 +24192,8 @@
 			(uuid "3b2bf113-eab5-41f0-a3f0-05f286bcd8e4")
 		)
 		(pad "30" smd rect
-			(at -2.8 -11.43 180)
-			(size 1.02 2)
+			(at -2.9 -11.43 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 1 "GND")
 			(pinfunction "Pin_30")
@@ -24201,8 +24201,8 @@
 			(uuid "f4392c17-de8c-4039-9a32-5725d5590d1a")
 		)
 		(pad "31" smd rect
-			(at 2.8 -13.97 180)
-			(size 1.02 2)
+			(at 2.9 -13.97 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 9 "/Schematic/Audio/GPIO3_B4_P31")
 			(pinfunction "Pin_31")
@@ -24210,8 +24210,8 @@
 			(uuid "195d423c-eaa0-4702-8438-c74387fb2f91")
 		)
 		(pad "32" smd rect
-			(at -2.8 -13.97 180)
-			(size 1.02 2)
+			(at -2.9 -13.97 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 35 "unconnected-(J4-Pin_32-Pad32)")
 			(pinfunction "Pin_32")
@@ -24219,8 +24219,8 @@
 			(uuid "dbf54315-9ed7-4e5e-a04f-bddb0381fb56")
 		)
 		(pad "33" smd rect
-			(at 2.8 -16.51 180)
-			(size 1.02 2)
+			(at 2.9 -16.51 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 30 "unconnected-(J4-Pin_33-Pad33)")
 			(pinfunction "Pin_33")
@@ -24228,8 +24228,8 @@
 			(uuid "7903622d-2257-414d-906f-a2ca2b74c984")
 		)
 		(pad "34" smd rect
-			(at -2.8 -16.51 180)
-			(size 1.02 2)
+			(at -2.9 -16.51 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 1 "GND")
 			(pinfunction "Pin_34")
@@ -24237,8 +24237,8 @@
 			(uuid "e6d490a5-df06-420e-a623-24adb355410d")
 		)
 		(pad "35" smd rect
-			(at 2.8 -19.05 180)
-			(size 1.02 2)
+			(at 2.9 -19.05 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 20 "/Schematic/Audio/I2S3_LRCK_M0")
 			(pinfunction "Pin_35")
@@ -24246,8 +24246,8 @@
 			(uuid "79a781e4-6ec6-4850-8879-d5879b48add6")
 		)
 		(pad "36" smd rect
-			(at -2.8 -19.05 180)
-			(size 1.02 2)
+			(at -2.9 -19.05 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 34 "unconnected-(J4-Pin_36-Pad36)")
 			(pinfunction "Pin_36")
@@ -24255,8 +24255,8 @@
 			(uuid "c66e3e97-e223-498a-9e12-14007aa9680d")
 		)
 		(pad "37" smd rect
-			(at 2.8 -21.59)
-			(size 1.02 2)
+			(at 2.9 -21.59)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 29 "unconnected-(J4-Pin_37-Pad37)")
 			(pinfunction "Pin_37")
@@ -24264,8 +24264,8 @@
 			(uuid "425307e8-be29-43e7-9860-4ad3857b178c")
 		)
 		(pad "38" smd rect
-			(at -2.8 -21.59)
-			(size 1.02 2)
+			(at -2.9 -21.59)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 21 "/Schematic/Audio/I2S3_SDI_M0")
 			(pinfunction "Pin_38")
@@ -24273,8 +24273,8 @@
 			(uuid "86759cb5-cd58-42dc-b58d-313c7ce63aad")
 		)
 		(pad "39" smd rect
-			(at 2.8 -24.13 180)
-			(size 1.02 2)
+			(at 2.9 -24.13 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 1 "GND")
 			(pinfunction "Pin_39")
@@ -24282,8 +24282,8 @@
 			(uuid "6563c395-a706-4391-baef-a1f19888f31c")
 		)
 		(pad "40" smd rect
-			(at -2.8 -24.13 180)
-			(size 1.02 2)
+			(at -2.9 -24.13 180)
+			(size 1.02 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net 23 "/Schematic/Audio/I2S3_SDO_M0")
 			(pinfunction "Pin_40")

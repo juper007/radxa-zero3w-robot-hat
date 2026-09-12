@@ -33,6 +33,7 @@ BASELINE_SHA256 = {
 }
 PROJECT_POLICY_SHA256 = "4adff66c71b09e7c04e35641b1ac3bcad518250f7eb9362f8f85f625805de698"
 EDGE_CUTS_SHA256 = "69787bc712e9b43c4ff232a5ceb72b5bce5a73ea0f5e7b6548bc5b64c4cb33bf"
+J4_FOOTPRINT_SHA256 = "653abbdf65d2e09a9d4f49745931e88c6ff32736958e08071b72692091ac2039"
 EXPECTED_DRC_IGNORES = {
     "footprint_filters_mismatch",
     "footprint_type_mismatch",
@@ -133,6 +134,13 @@ def symbol_block(text: str, ref: str) -> str:
     return ""
 
 
+def property_value(block: str, name: str) -> str:
+    match = re.search(rf'\(property "{re.escape(name)}" "([^"]*)"', block)
+    if not match:
+        fail(f"missing {name} property")
+    return match.group(1)
+
+
 def footprint_block(text: str, ref: str) -> str:
     marker = f'(property "Reference" "{ref}"'
     pos = text.find(marker)
@@ -151,6 +159,63 @@ def footprint_block(text: str, ref: str) -> str:
                 return text[start:index + 1]
     fail(f"unterminated footprint block for {ref}")
     return ""
+
+
+def child_blocks(text: str, kind: str) -> list[str]:
+    blocks = []
+    cursor = 0
+    marker = f"({kind} "
+    while True:
+        start = text.find(marker, cursor)
+        if start < 0:
+            return blocks
+        depth = 0
+        for index in range(start, len(text)):
+            if text[index] == "(":
+                depth += 1
+            elif text[index] == ")":
+                depth -= 1
+                if depth == 0:
+                    blocks.append(text[start:index + 1])
+                    cursor = index + 1
+                    break
+        else:
+            fail(f"unterminated {kind} block")
+
+
+def j4_pad_geometry(footprint: str) -> tuple[str, set[str]]:
+    footprint_layer = re.search(r'^\s*\(footprint "[^"]+"\s+\(layer "([^"]+)"\)', footprint)
+    footprint_at = re.search(r'^\s*\(footprint "[^"]+".*?\n\s*\(at ([^)]+)\)', footprint, re.DOTALL)
+    if not footprint_layer or not footprint_at:
+        fail("malformed J4 footprint placement")
+
+    rows = []
+    uuids = set()
+    for block in child_blocks(footprint, "pad"):
+        header = re.match(r'\(pad "([^"]*)" (\S+) (\S+)', block)
+        if not header:
+            fail("malformed J4 pad block")
+
+        def values(key: str) -> list[str]:
+            match = re.search(rf"\({key} ([^)]+)\)", block)
+            return match.group(1).split() if match else []
+
+        rows.append([
+            header.group(1),
+            header.group(2),
+            header.group(3),
+            values("at"),
+            values("size"),
+            values("drill"),
+            values("layers"),
+        ])
+        uuid = re.search(r'\(uuid "([^"]+)"\)', block)
+        if not uuid:
+            fail("J4 pad UUID is missing")
+        uuids.add(uuid.group(1))
+    if len(rows) != 86 or len(uuids) != 86:
+        fail("unexpected J4 pad inventory")
+    return hashlib.sha256(footprint.lstrip().encode()).hexdigest(), uuids
 
 
 def load_json(path: Path) -> dict:
@@ -437,6 +502,7 @@ if any(ROOT.glob("*daughterboard*")):
 
 sch_text = SCH.read_text(encoding="utf-8")
 pcb_text = PCB.read_text(encoding="utf-8")
+main_text = (ROOT / "main.kicad_sch").read_text(encoding="utf-8")
 all_schematic_text = "\n".join(
     path.read_text(encoding="utf-8")
     for path in [
@@ -452,6 +518,30 @@ if "Radxa ZERO 3W Robot HAT" not in sch_text:
     fail("Radxa project identity missing from top-level schematic")
 if "Radxa_Z3W_HAT\\nASE01187-C1" not in pcb_text:
     fail("Radxa derivative identity missing from PCB silkscreen")
+
+j4_footprint = footprint_block(pcb_text, "J4")
+j4_symbol = symbol_block(main_text, "J4")
+j4_footprint_uuid_match = re.search(r'\n\t\t\(uuid "([^"]+)"\)', j4_footprint)
+if not j4_footprint_uuid_match:
+    fail("J4 footprint UUID missing")
+j4_footprint_uuid = j4_footprint_uuid_match.group(1)
+j4_geometry_digest, j4_pad_uuids = j4_pad_geometry(j4_footprint)
+if j4_geometry_digest != J4_FOOTPRINT_SHA256:
+    fail("J4 footprint differs from the qualified DRC-clean candidate")
+j4_manufacturing_identity = {
+    "Datasheet": "https://www.toby.co.uk/board-to-board-pcb-connectors/254mm-sockets/ref-raspberry-pi-rpi-hat-specification-connector-surface-mount-sockets/REF-182665-01",
+    "Field4": "Toby Electronics",
+    "Field5": "REF-182665-01",
+    "Field6": "REF-182665-01",
+    "Field7": "Toby Electronics",
+    "Field8": "REF-182665-01",
+    "Manufacturer_Name": "Toby Electronics",
+    "Manufacturer_Part_Number": "REF-182665-01",
+    "LCSC Part": "",
+}
+for field, expected in j4_manufacturing_identity.items():
+    if property_value(j4_symbol, field) != expected or property_value(j4_footprint, field) != expected:
+        fail(f"J4 manufacturing identity changed: {field}")
 
 required_nets = {
     "I2C3_SDA_M0",
@@ -628,10 +718,23 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     validate_report_contract(base_drc, kind="drc", source="elec_RPI_Robot_HAT.kicad_pcb", ignored=EXPECTED_DRC_IGNORES)
     validate_report_contract(committed_drc, kind="drc", source=PCB.name, ignored=EXPECTED_DRC_IGNORES)
     validate_report_contract(fresh_drc, kind="drc", source=PCB.name, ignored=EXPECTED_DRC_IGNORES)
-    base_drc_findings = finding_counter(base_drc.get("violations", []))
+    base_drc_rows = base_drc.get("violations", [])
+    resolved_j4_clearance = [
+        finding
+        for finding in base_drc_rows
+        if finding.get("type") == "hole_clearance"
+        and finding.get("severity") == "error"
+        and len(finding.get("items", [])) == 2
+        and {item.get("uuid") for item in finding["items"]}.issubset(j4_pad_uuids)
+    ]
+    if len(resolved_j4_clearance) != 40:
+        fail("upstream J4 hole-clearance baseline is not the expected 40 findings")
+    resolved_identities = Counter(finding_identity(row) for row in resolved_j4_clearance)
+    base_drc_findings = finding_counter(base_drc_rows)
+    expected_fresh_drc = base_drc_findings - resolved_identities
     fresh_drc_findings = finding_counter(fresh_drc.get("violations", []))
-    if fresh_drc_findings != base_drc_findings:
-        fail("fresh DRC findings differ from the normalized upstream baseline")
+    if fresh_drc_findings != expected_fresh_drc:
+        fail("fresh DRC findings differ from upstream minus the approved J4 clearance resolution")
     if finding_counter(committed_drc.get("violations", [])) != fresh_drc_findings:
         fail("committed Radxa DRC report is stale relative to the current PCB")
     if fresh_drc.get("unconnected_items"):
@@ -644,10 +747,23 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     if committed_unconnected != fresh_unconnected:
         fail("committed DRC unconnected items are stale")
 
-    base_parity = finding_counter(base_drc.get("schematic_parity", []))
+    base_parity_rows = base_drc.get("schematic_parity", [])
+    resolved_j4_parity = [
+        finding
+        for finding in base_parity_rows
+        if finding.get("type") == "footprint_symbol_field_mismatch"
+        and finding.get("severity") == "warning"
+        and len(finding.get("items", [])) == 1
+        and finding["items"][0].get("uuid") == j4_footprint_uuid
+    ]
+    if len(resolved_j4_parity) != 1:
+        fail("pinned upstream J4 parity-resolution set changed")
+    expected_port_parity = finding_counter(base_parity_rows)
+    expected_port_parity.subtract(finding_counter(resolved_j4_parity))
+    expected_port_parity = +expected_port_parity
     fresh_parity = finding_counter(fresh_drc.get("schematic_parity", []))
-    if fresh_parity != base_parity:
-        fail("fresh schematic-parity findings differ from the normalized upstream baseline")
+    if fresh_parity != expected_port_parity:
+        fail("fresh schematic-parity findings differ after the approved J4 metadata correction")
     if finding_counter(committed_drc.get("schematic_parity", [])) != fresh_parity:
         fail("committed schematic-parity report is stale relative to the current design")
 
@@ -685,8 +801,12 @@ fresh_drc_rows = fresh_drc["violations"]
 fresh_parity_rows = fresh_drc["schematic_parity"]
 if summary["erc_baseline"]["types"] != type_counts(fresh_erc_rows):
     fail("summary ERC type counts are stale")
+if summary["drc_baseline"].get("resolved_vs_upstream") != len(resolved_j4_clearance):
+    fail("summary resolved DRC count is stale")
 if summary["drc_baseline"]["types"] != type_counts(fresh_drc_rows):
     fail("summary DRC type counts are stale")
+if summary["schematic_parity_baseline"].get("resolved_vs_upstream") != len(resolved_j4_parity):
+    fail("summary resolved parity count is stale")
 if summary["schematic_parity_baseline"]["types"] != type_counts(fresh_parity_rows):
     fail("summary parity type counts are stale")
 if summary["erc_baseline"]["warning"] != severity_counts(fresh_erc_rows)["warning"]:
@@ -704,10 +824,12 @@ expected_summary = {
     "tracks": 1021,
     "erc_total": 55,
     "erc_new": 0,
-    "drc_total": 49,
+    "drc_total": 9,
     "drc_new": 0,
-    "parity_total": 111,
+    "drc_resolved": 40,
+    "parity_total": 110,
     "parity_new": 0,
+    "parity_resolved": 1,
 }
 actual_summary = {
     "board_count": len(board_files),
@@ -718,8 +840,10 @@ actual_summary = {
     "erc_new": summary["erc_baseline"]["new_vs_upstream"],
     "drc_total": summary["drc_baseline"]["total"],
     "drc_new": summary["drc_baseline"]["new_vs_upstream"],
+    "drc_resolved": summary["drc_baseline"].get("resolved_vs_upstream"),
     "parity_total": summary["schematic_parity_baseline"]["total"],
     "parity_new": summary["schematic_parity_baseline"]["new_vs_upstream"],
+    "parity_resolved": summary["schematic_parity_baseline"].get("resolved_vs_upstream"),
 }
 if actual_summary != expected_summary or summary.get("fabrication_ready") is not False:
     fail(f"summary mismatch: {actual_summary}")

@@ -14,6 +14,7 @@
 | Board count | One HAT | One HAT | Preserved invariant | Applied |
 | Outline | 65.00 × 30.90 mm Edge.Cuts centerline | Same routed outline | Preserved invariant | Applied; Radxa collision review pending |
 | Header | Raspberry Pi Zero 2×20 physical layout | Radxa ZERO 3W 2×20 on the same physical grid | Host compatibility | Applied |
+| J4 SMT/NPTH geometry | 40 pin-passages have 0.02 mm nominal copper clearance | Passage holes and pad outer edges retained; inner land edge relieved 0.20 mm for 0.22 mm nominal clearance | Fabrication correction | DRC-clean candidate; routing unchanged; exact-part/vendor or prototype signoff pending |
 | I2C | Pi I2C1 on pins 3/5, BCM `IO_02/03` | RK3566 I2C3 M0 on pins 3/5 | Host compatibility | Net names applied; DT/USB-C PD conflict review pending |
 | Dynamixel UART | Pi UART on pins 8/10, BCM `IO_14/15` | RK3566 UART2 M0 on pins 8/10 | Host compatibility | Net names applied; OS console release pending |
 | Audio I2S | Pi PCM pins 12/35/38/40 | RK3566 I2S3 M0 on the same pins | Host compatibility | Net names applied; codec clock test pending |
