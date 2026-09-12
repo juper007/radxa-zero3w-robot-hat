@@ -193,6 +193,18 @@ def test_j4_identity_guard() -> None:
         run_checker(repository, "J4 manufacturing identity changed")
 
 
+def test_stackup_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-stackup-") as directory:
+        repository = copy_repository(Path(directory))
+        board = repository / "hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb"
+        text = board.read_text(encoding="utf-8")
+        old = '(copper_finish "ENIG")'
+        if text.count(old) != 1:
+            raise ValueError("unexpected ENIG stackup inventory")
+        board.write_text(text.replace(old, '(copper_finish "None")', 1), encoding="utf-8")
+        run_checker(repository, "PCB 1.0 mm / 2-1-1-2 oz ENIG stackup changed")
+
+
 def test_power_region_guard() -> None:
     with tempfile.TemporaryDirectory(prefix="strict-power-region-") as directory:
         repository = copy_repository(Path(directory))
@@ -290,6 +302,7 @@ def main() -> None:
     test_j4_pad_attribute_guard()
     test_j4_quoted_property_guard()
     test_j4_identity_guard()
+    test_stackup_guard()
     test_power_region_guard()
     test_filled_zone_guard()
     test_output_capacitor_identity_guard()

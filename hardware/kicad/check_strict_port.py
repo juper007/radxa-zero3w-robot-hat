@@ -38,6 +38,7 @@ J4_FOOTPRINT_SHA256 = "653abbdf65d2e09a9d4f49745931e88c6ff32736958e08071b7269209
 POWER_REGION_SHA256 = "b3cdfb6456a747281ee42a346d4d0420079616a3159b70a3f8aa6cb9b3f7f079"
 FILLED_ZONE_SHA256 = "e97175d477adf4ce9c3c16561b6130983807780dbf025033157494f3d8ffe8ec"
 VENDORED_MANIFEST_SHA256 = "7d7751af8e81f80c2ffa553f555a4e1eecb841819e3488ccec394000a155fe31"
+STACKUP_SHA256 = "a4b0affb9de794daff5e090fa4778559bac95a151b8528a11fcdac733e54fdae"
 EXPECTED_DRC_IGNORES = {
     "footprint_filters_mismatch",
     "footprint_type_mismatch",
@@ -493,6 +494,27 @@ def top_level_blocks(text: str, keyword: str) -> list[str]:
     return blocks
 
 
+def stackup_digest(text: str) -> str:
+    start = text.find("\n\t\t(stackup")
+    if start < 0:
+        fail("PCB stackup block missing")
+    depth = 0
+    end = None
+    for index in range(start + 1, len(text)):
+        if text[index] == "(":
+            depth += 1
+        elif text[index] == ")":
+            depth -= 1
+            if depth == 0:
+                end = index + 1
+                break
+    thickness = re.search(r"\(general\s+\(thickness ([^)]+)\)", text, re.DOTALL)
+    if end is None or not thickness:
+        fail("PCB stackup or board thickness is malformed")
+    payload = thickness.group(1) + "\n" + text[start:end]
+    return hashlib.sha256(payload.encode()).hexdigest()
+
+
 def board_metrics(text: str) -> dict:
     edge_blocks = [
         block
@@ -611,6 +633,8 @@ if "Radxa ZERO 3W Robot HAT" not in sch_text:
     fail("Radxa project identity missing from top-level schematic")
 if "Radxa_Z3W_HAT\\nASE01187-C1" not in pcb_text:
     fail("Radxa derivative identity missing from PCB silkscreen")
+if stackup_digest(pcb_text) != STACKUP_SHA256:
+    fail("PCB 1.0 mm / 2-1-1-2 oz ENIG stackup changed")
 
 j4_footprint = footprint_block(pcb_text, "J4")
 j4_symbol = symbol_block(main_text, "J4")
@@ -1057,6 +1081,14 @@ if summary["architecture"]["board_count"] != len(board_files):
     fail("summary board count is stale")
 if summary["architecture"]["outline_mm"] != current_board["outline_mm"]:
     fail("summary outline is stale")
+expected_manufacturing_stackup = {
+    "copper_layers": 4,
+    "thickness_mm": 1.0,
+    "copper_um": [70, 35, 35, 70],
+    "surface_finish": "ENIG",
+}
+if any(summary["architecture"].get(key) != value for key, value in expected_manufacturing_stackup.items()):
+    fail("summary manufacturing stackup is stale")
 if summary["pcb"]["footprints"] != current_board["footprints"]:
     fail("summary footprint count is stale")
 if summary["pcb"]["tracks"] != current_board["tracks"]:

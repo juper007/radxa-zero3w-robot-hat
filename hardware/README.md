@@ -7,6 +7,7 @@ The active KiCad project is a single-board derivative of Pollen Robotics' `elec_
 - `kicad/radxa_zero3w_robot_hat.kicad_pro` — project
 - `kicad/radxa_zero3w_robot_hat.kicad_sch` — top-level schematic
 - `kicad/radxa_zero3w_robot_hat.kicad_pcb` — routed 65.00 × 30.90 mm Edge.Cuts-centerline PCB (approximately 65 × 31 mm)
+- Fixed order stackup — 4-layer FR-4, 1.0 mm, 70/35/35/70 µm copper, ENIG
 - `kicad/main.kicad_sch` — 40-pin header and board integration
 - `kicad/power.kicad_sch` / `pwr_supply_charge.kicad_sch` — upstream single-board power concept with local C45 input-bypass correction
 - `kicad/dynamixel.kicad_sch` — upstream TTL/RS-485 interface and connectors

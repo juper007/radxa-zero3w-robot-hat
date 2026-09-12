@@ -1,10 +1,10 @@
 # Project status
 
-Last updated: 2026-09-11
+Last updated: 2026-09-12
 
 ## Current phase
 
-**v0.21-vendored-libraries — single-board strict port with J4/C45 corrections and project-local footprint libraries; manufacturing package and release signoff pending**
+**v0.22-manufacturing-export — ENIG/stackup and deterministic manufacturing-package generation fixed; physical/EVT signoff pending**
 
 ## Architecture
 
@@ -35,6 +35,8 @@ Last updated: 2026-09-11
 - [x] Added a bottom-silkscreen one-source warning prohibiting simultaneous USB-C and HAT battery power.
 - [x] Overlaid the HAT against official Radxa V1.11 DXF/STEP/placement resources; electrical alignment is established and remaining physical/RF gates are documented.[4][5][6]
 - [x] Vendored 12 exact project-local footprints and `fp-lib-table` without changing the PCB; current native DRC has zero findings and ERC footprint-link warnings are eliminated.
+- [x] Fixed the order stackup at 1.0 mm, 70/35/35/70 µm copper and ENIG, with a fail-closed stackup hash.
+- [x] Added and test-executed a deterministic manufacturing-package generator with DNP/BOM/PnP/Gerber/drill/PDF/hash validation.
 - [x] Captured upstream and adapted ERC/DRC/netlist reports under `validation/strict_port/`.
 
 ## Native KiCad baseline

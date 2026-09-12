@@ -1,5 +1,5 @@
 {
-  "revision": "v0.21-vendored-libraries",
+  "revision": "v0.22-manufacturing-export",
   "classification": "strict single-board port",
   "upstream": {
     "repository": "https://github.com/pollen-robotics/elec_RPI_Robot_HAT",
@@ -9,7 +9,10 @@
     "board_count": 1,
     "daughterboard": false,
     "outline_mm": [65.0, 30.9],
-    "copper_layers": 4
+    "copper_layers": 4,
+    "thickness_mm": 1.0,
+    "copper_um": [70, 35, 35, 70],
+    "surface_finish": "ENIG"
   },
   "schematic": {
     "components": 129,

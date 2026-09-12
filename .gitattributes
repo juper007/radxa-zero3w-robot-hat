@@ -5,4 +5,5 @@ hardware/kicad/*.py text eol=lf
 hardware/kicad/fp-lib-table text eol=lf
 hardware/kicad/*.pretty/*.kicad_mod text eol=lf
 hardware/kicad/vendored_footprints_manifest.json text eol=lf
+production/*.py text eol=lf
 .github/workflows/*.yml text eol=lf
