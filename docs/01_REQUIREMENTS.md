@@ -8,7 +8,7 @@
 | SR-002 | Preserve the upstream 65 × 31 mm form factor and mounting concept | Must |
 | SR-003 | Preserve the upstream routed PCB as the starting point | Must |
 | SR-004 | Preserve the upstream power-flow concept unless a verified incompatibility blocks it | Must |
-| SR-005 | Preserve Dynamixel TTL/RS-485, IMU, audio and main Qwiic functions | Must |
+| SR-005 | Preserve Dynamixel TTL/RS-485, IMU, audio and all four upstream Qwiic connectors | Must |
 
 ## Host interface
 
@@ -30,8 +30,9 @@
 ## Upstream options
 
 - U4, the Raspberry Pi HAT identification EEPROM, remains DNP.
-- J6/J7/J8 auxiliary Qwiic connectors remain physically present but shall be DNP until a Radxa-compatible reassignment is explicitly designed and routed.
-- J5 remains the primary Qwiic connector on I2C3 pins 3/5.
+- J5 remains on hardware I2C3 M0 pins 3/5.
+- J6/J7/J8 and their 0 Ω/pull-up networks shall be populated and exposed as independent Radxa `i2c-gpio` buses using the preserved routed GPIO pairs.
+- The release shall include a compilable device-tree overlay and runtime enumeration/transfer test instructions for all four ports.
 
 ## Mechanical and power gates
 

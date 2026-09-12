@@ -4,7 +4,7 @@ Last updated: 2026-09-12
 
 ## Current phase
 
-**v0.22-manufacturing-export — ENIG/stackup and deterministic manufacturing-package generation fixed; physical/EVT signoff pending**
+**v0.23-qwiic-functional-parity — all upstream Qwiic ports restored with Radxa GPIO-I2C overlay; runtime/physical/EVT signoff pending**
 
 ## Architecture
 
@@ -29,7 +29,8 @@ Last updated: 2026-09-12
   - pins 12/35/38/40: I2S3 M0
 - [x] Retained the upstream single-board power, Dynamixel, sensor and audio architecture.
 - [x] Kept the upstream HAT EEPROM DNP.
-- [x] Marked auxiliary Pi-specific Qwiic connectors J6/J7/J8 and isolation/pull-up resistors R18/R19/R20/R21/R34/R35/R38/R39 DNP.
+- [x] Restored J6/J7/J8 and R18/R19/R20/R21/R34/R35/R38/R39 to the upstream populated state.
+- [x] Added a compilable Radxa device-tree overlay exposing J6/J7/J8 as independent open-drain `i2c-gpio` aliases 10/11/12 while J5 remains on hardware I2C3 M0.
 - [x] Produced a DRC-clean J4 candidate without moving the connector grid or routed tracks; current DRC has zero errors.
 - [x] Added C45 10 µF / 50 V X7R input bypass, corrected C21/C22 to their actual 10 V MPN rating, rerouted only the local U9/D1/C22 region, and regenerated the GND zone with zero new DRC/parity findings.
 - [x] Added a bottom-silkscreen one-source warning prohibiting simultaneous USB-C and HAT battery power.
@@ -62,6 +63,7 @@ The checker pins the exact J4 footprint S-expression after platform newline and 
 - [ ] Obtain connector-vendor/assembly-house approval for the J4 1.02 × 1.80 mm DRC-clean land pattern, or validate it on a representative assembled prototype.
 - [ ] Independently verify every critical J4 pin against the exact Radxa ZERO 3W hardware revision.
 - [ ] Validate the `i2c3m0_xfer` overlay and document the effect of disabling/reassigning the FUSB302 I2C3 M1 device.
+- [ ] On the intended OS image, verify `CONFIG_I2C_GPIO`, enumerate J6/J7/J8 as I2C buses 10/11/12, and complete an address scan plus read/write transfer on each port.
 - [ ] Disable UART2 console/getty and validate 1 Mbps Dynamixel traffic.
 - [ ] Validate I2S3 codec capture/playback and clocking.
 - [ ] Validate the documented 2 A operating envelope: 8 Ω speakers, muted boot, measured audio limit, startup/load-step voltage and 30-minute U9/L4/Q2 thermal test.
@@ -70,7 +72,7 @@ The checker pins the exact J4 footprint S-expression after platform newline and 
 - [ ] Use the external U.FL antenna or complete OTA validation; the full-size copper HAT has no approved onboard-antenna keepout.[7]
 - [ ] Verify USB-C, micro-HDMI, microSD and CSI access with nominated cables/FPC and the controlled spacer stack; optional heatsinks remain unsupported until overlaid.
 
-- [ ] Reconcile the derivative BOM/position outputs with the upstream production release.
+- [x] Reconciled candidate BOM/position outputs with the upstream production release: the exact upstream DNP set remains `C25/R10/R11/R16/R17/R36/R37/R41/U4`, with 115 populated BOM references and 110 populated PnP references. A final commit-keyed package must still be generated after approval.
 - [ ] Perform an independent schematic, polarity, footprint and connector review.
 
 ## Release status

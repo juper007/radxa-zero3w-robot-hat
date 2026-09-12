@@ -26,7 +26,7 @@
 | IMU | On-board BMI088 | Unchanged | Preserved invariant | Applied |
 | Audio | On-board codec, microphone and speaker output | Unchanged | Preserved invariant | Applied |
 | Main Qwiic | J5 on pins 3/5 I2C | J5 on I2C3 M0 pins 3/5 | Host compatibility | Applied |
-| Auxiliary Qwiic | J6/J7/J8 use Pi-specific auxiliary I2C/GPIO selections | J6/J7/J8 and R18/R19/R20/R21/R34/R35/R38/R39 DNP | Verified incompatibility containment | Applied; auxiliary pull-ups isolated from host GPIO |
+| Auxiliary Qwiic | J6/J7/J8 use software-I2C-capable GPIO pairs with 10 kΩ pull-ups | Same routed connectors, 0 Ω links and pull-ups populated; GPIO pairs exposed as `i2c-gpio` aliases 10/11/12 | Functional-parity host adaptation | Hardware and DTBO compile applied; runtime transfer validation pending |
 | HAT EEPROM | Pi HAT identification EEPROM | Retained DNP | Raspberry Pi-only feature | Preserved DNP |
 | PCB routing | Production-routed upstream board, 1,021 track/via items | Host routes retained; only local U9/D1/C22 power copper changed for C45, producing 1,013 current track/via items | Preserved host routing plus reviewed power correction | Applied; local geometry and filled zone hash-locked |
 | Footprint libraries | External/missing `Library_Pollen` and `LCSC_parts_lib`; installed-library D1 mismatch | 12 exact embedded definitions vendored in three project-local `.pretty` libraries with `fp-lib-table` | Manufacturing provenance correction | Applied; PCB byte-identical, DRC 0, manifest/hash guarded |
@@ -51,16 +51,16 @@ unchanged.
 | 35 | `IO_19` | `I2S3_LRCK_M0` | Active audio frame clock |
 | 38 | `IO_20` | `I2S3_SDI_M0` | Active audio input |
 | 40 | `IO_21` | `I2S3_SDO_M0` | Active audio output |
-| 7 | `IO_04` | `GPIO3_C4_P7` | Radxa GPIO identity; auxiliary option DNP |
+| 7 | `IO_04` | `GPIO3_C4_P7` | J6 software-I2C SDA |
 | 15 | `IO_22` | `GPIO3_B0_P15` | Radxa GPIO identity |
-| 19 | `IO_10` | `GPIO4_C3_P19` | Radxa GPIO identity; auxiliary option DNP |
-| 21 | `IO_09` | `GPIO4_C5_P21` | Radxa GPIO identity; auxiliary option DNP |
-| 23 | `IO_11` | `GPIO4_C2_P23` | Radxa GPIO identity; auxiliary option DNP |
-| 24 | `IO_08` | `GPIO4_C6_P24` | Radxa GPIO identity; auxiliary option DNP |
+| 19 | `IO_10` | `GPIO4_C3_P19` | J8 software-I2C SDA |
+| 21 | `IO_09` | `GPIO4_C5_P21` | J7 software-I2C SCL |
+| 23 | `IO_11` | `GPIO4_C2_P23` | J8 software-I2C SCL |
+| 24 | `IO_08` | `GPIO4_C6_P24` | J7 software-I2C SDA |
 | 27 | `ID_SD` | `I2C4_SDA_M0_P27` | Upstream HAT-ID path; U4 DNP |
 | 28 | `ID_SC` | `I2C4_SCL_M0_P28` | Upstream HAT-ID path; U4 DNP |
-| 29 | `IO_05` | `GPIO3_B3_P29` | Radxa GPIO identity; auxiliary option DNP |
-| 31 | `IO_06` | `GPIO3_B4_P31` | Radxa GPIO identity; auxiliary option DNP |
+| 29 | `IO_05` | `GPIO3_B3_P29` | J6 software-I2C SCL |
+| 31 | `IO_06` | `GPIO3_B4_P31` | Radxa GPIO identity; unused optional upstream path remains DNP |
 
 ## Explicitly excluded from this port
 

@@ -6288,7 +6288,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/23a8f7f0-740a-4059-bd31-408dbde8d762")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start 3.11 1.11)
 			(end 2.06 1.11)
@@ -7870,7 +7870,7 @@
 				)
 			)
 		)
-		(property "Value" "DNP-0R"
+		(property "Value" "0R"
 			(at 0 1.17 0)
 			(layer "F.Fab")
 			(uuid "c747c328-6d0b-49f0-be8b-ae2c3269a631")
@@ -8104,7 +8104,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/022a8062-999d-4f05-8a01-5695d3422355")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start -0.153641 0.38)
 			(end 0.153641 0.38)
@@ -14090,7 +14090,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/f7f41d04-84be-4bab-a0fd-316370733019")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start 3.11 1.11)
 			(end 2.06 1.11)
@@ -16437,7 +16437,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/942646c7-5860-460d-bf2b-2d34f2f87547")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start 3.11 1.11)
 			(end 2.06 1.11)
@@ -21196,7 +21196,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "DNP-10k"
+		(property "Value" "10k"
 			(at 0 -1.17 90)
 			(layer "B.Fab")
 			(uuid "d5f60224-3b91-4ab9-81c9-8ef7ad8b8ee4")
@@ -21504,7 +21504,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/890f00ce-d519-4943-9e26-5232d2fb2c7a")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
 			(end 0.153641 -0.38)
@@ -24884,7 +24884,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "DNP-10k"
+		(property "Value" "10k"
 			(at 0 -1.17 90)
 			(layer "B.Fab")
 			(uuid "46f92681-c0e2-4357-a194-2ee1f2c2d4f1")
@@ -25192,7 +25192,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/8b7a10d6-75d9-450e-a4c2-093964028f5e")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
 			(end 0.153641 -0.38)
@@ -27606,7 +27606,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "DNP-10k"
+		(property "Value" "10k"
 			(at 0 -1.17 90)
 			(layer "B.Fab")
 			(uuid "69fd56ea-9c83-4dc9-8bf5-1a9a5199dc0d")
@@ -27914,7 +27914,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/1cbe8f42-456b-41a8-8983-a4df075d0bae")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
 			(end 0.153641 -0.38)
@@ -32824,7 +32824,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "DNP-10k"
+		(property "Value" "10k"
 			(at 0 -1.17 90)
 			(layer "B.Fab")
 			(uuid "33de70e6-b2b9-45fa-a7a2-88a68d6b3f96")
@@ -33132,7 +33132,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/3f203e13-709a-4e2d-8472-e190bd849877")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
 			(end 0.153641 -0.38)
@@ -34200,7 +34200,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "DNP-0R"
+		(property "Value" "0R"
 			(at 0 -1.17 0)
 			(layer "B.Fab")
 			(uuid "2db8f246-f0f2-4bcc-8ecd-05000f460749")
@@ -34452,7 +34452,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/1e406d39-6bdd-4e1f-860f-d69efa8c1db5")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start -0.153641 0.38)
 			(end 0.153641 0.38)
@@ -37076,7 +37076,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "DNP-10k"
+		(property "Value" "10k"
 			(at 0 -1.17 90)
 			(layer "B.Fab")
 			(uuid "077af1ef-db64-4071-8080-b0c1d9a2e904")
@@ -37384,7 +37384,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/55907f36-ce7e-4fb3-80c4-1892fd73f2a8")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
 			(end 0.153641 -0.38)
@@ -47605,7 +47605,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "DNP-10k"
+		(property "Value" "10k"
 			(at 0 -1.17 90)
 			(layer "B.Fab")
 			(uuid "c7099b2f-8616-4b6a-8c42-5495599f934e")
@@ -47913,7 +47913,7 @@
 		(path "/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/8c458d8d-1c5d-409e-9128-c4472a00faad")
 		(sheetname "/Schematic/Sensors/")
 		(sheetfile "sensors.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
 			(end 0.153641 -0.38)

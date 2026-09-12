@@ -8,6 +8,8 @@ on:
       - 'hardware/kicad/*.kicad_pro'
       - 'hardware/kicad/check_strict_port.py'
       - 'hardware/kicad/test_strict_port_guards.py'
+      - 'hardware/kicad/test_qwiic_functional_parity.py'
+      - 'software/overlays/**'
       - 'production/*.py'
       - 'validation/strict_port/**'
       - '.gitattributes'
@@ -19,6 +21,8 @@ on:
       - 'hardware/kicad/*.kicad_pro'
       - 'hardware/kicad/check_strict_port.py'
       - 'hardware/kicad/test_strict_port_guards.py'
+      - 'hardware/kicad/test_qwiic_functional_parity.py'
+      - 'software/overlays/**'
       - 'production/*.py'
       - 'validation/strict_port/**'
       - '.gitattributes'
@@ -47,8 +51,9 @@ jobs:
           sudo apt-get install -y --no-install-recommends software-properties-common
           sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends 'kicad=10.0.6~ubuntu24.04.1'
+          sudo apt-get install -y --no-install-recommends 'kicad=10.0.6~ubuntu24.04.1' device-tree-compiler gcc
           test "$(kicad-cli --version)" = '10.0.6'
+          test "$(dtc --version)" = 'Version: DTC 1.7.0'
       - name: Regenerate and compare strict-port evidence
         env:
           UPSTREAM_SOURCE_DIR: ${{ github.workspace }}/.upstream/pollen
@@ -56,4 +61,23 @@ jobs:
         run: |
           python3 hardware/kicad/check_strict_port.py
           python3 hardware/kicad/test_strict_port_guards.py
+          python3 hardware/kicad/test_qwiic_functional_parity.py
+          cpp -nostdinc -I software/overlays/include -undef -x assembler-with-cpp \
+            software/overlays/radxa-zero3w-robot-hat-qwiic.dts /tmp/radxa-zero3w-robot-hat-qwiic.pp.dts
+          dtc -Wno-alias_paths -@ -I dts -O dtb -o /tmp/radxa-zero3w-robot-hat-qwiic.dtbo \
+            /tmp/radxa-zero3w-robot-hat-qwiic.pp.dts
+          dtc -@ -I dts -O dtb -o /tmp/rk3566-symbols-base.dtb \
+            software/overlays/test/rk3566-symbols-base.dts
+          fdtoverlay -i /tmp/rk3566-symbols-base.dtb \
+            -o /tmp/radxa-zero3w-robot-hat-qwiic-merged.dtb \
+            /tmp/radxa-zero3w-robot-hat-qwiic.dtbo
+          dtc -E alias_paths -I dtb -O dts -o /tmp/radxa-zero3w-robot-hat-qwiic-merged.dts \
+            /tmp/radxa-zero3w-robot-hat-qwiic-merged.dtb
+          test -s /tmp/radxa-zero3w-robot-hat-qwiic.dtbo
+          test "$(fdtget -t s /tmp/radxa-zero3w-robot-hat-qwiic-merged.dtb /i2c-gpio-j6 compatible)" = 'i2c-gpio'
+          test "$(fdtget -t s /tmp/radxa-zero3w-robot-hat-qwiic-merged.dtb /i2c-gpio-j7 compatible)" = 'i2c-gpio'
+          test "$(fdtget -t s /tmp/radxa-zero3w-robot-hat-qwiic-merged.dtb /i2c-gpio-j8 compatible)" = 'i2c-gpio'
+          test "$(fdtget -t s /tmp/radxa-zero3w-robot-hat-qwiic-merged.dtb /aliases i2c10)" = '/i2c-gpio-j6'
+          test "$(fdtget -t s /tmp/radxa-zero3w-robot-hat-qwiic-merged.dtb /aliases i2c11)" = '/i2c-gpio-j7'
+          test "$(fdtget -t s /tmp/radxa-zero3w-robot-hat-qwiic-merged.dtb /aliases i2c12)" = '/i2c-gpio-j8'
           python3 production/test_generate_manufacturing_package.py

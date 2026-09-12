@@ -36,6 +36,8 @@ The solder-mask and silkscreen colors are ordering choices; the electrical/geome
 
 ## Mandatory assembly and operating notes
 
+- Populate J5/J6/J7/J8 and R18/R19/R20/R21/R34/R35/R38/R39. Omitting the auxiliary connectors or their 0 Ω/pull-up networks breaks upstream functional parity.
+- Install and validate `../software/overlays/radxa-zero3w-robot-hat-qwiic.dts` on the intended Radxa OS image before accepting J6/J7/J8 operation.
 - Populate C45 as Murata `GRM32ER71H106KA12L` / LCSC `C77102` only after the assembled stack proves at least 4.0 mm PCB-surface gap and 0.5 mm residual clearance at the Radxa U1 overlap.
 - Use controlled M2.5 spacers; connector friction must not define the board gap.
 - Use 8 Ω speakers only and keep audio muted during host boot. The final audio limit comes from EVT current and undervoltage measurements.

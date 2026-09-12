@@ -22,7 +22,7 @@ Do not rely on Raspberry Pi BCM numbering.
 | 4 | 5 V | Host 5 V supply |
 | 5 | I2C3 SCL M0 | Main I2C clock |
 | 6 | GND | Ground |
-| 7 | GPIO3_C4 | Auxiliary option; isolated by DNP R18/R20 and J6 |
+| 7 | GPIO3_C4 | J6 SDA through populated R18; R20 pull-up; `i2c10` |
 | 8 | UART2 TX M0 | Dynamixel UART TX |
 | 9 | GND | Ground |
 | 10 | UART2 RX M0 | Dynamixel UART RX |
@@ -30,15 +30,15 @@ Do not rely on Raspberry Pi BCM numbering.
 | 14 | GND | Ground |
 | 15 | GPIO3_B0 | Preserved Radxa GPIO identity |
 | 17 | 3.3 V | Logic / sensor rail reference |
-| 19 | GPIO4_C3 | Auxiliary option; isolated by DNP R38 and J8 |
+| 19 | GPIO4_C3 | J8 SDA; R38 pull-up; `i2c12` |
 | 20 | GND | Ground |
-| 21 | GPIO4_C5 | Auxiliary option; isolated by DNP R35 and J7 |
-| 23 | GPIO4_C2 | Auxiliary option; isolated by DNP R39 and J8 |
-| 24 | GPIO4_C6 | Auxiliary option; isolated by DNP R34 and J7 |
+| 21 | GPIO4_C5 | J7 SCL; R35 pull-up; `i2c11` |
+| 23 | GPIO4_C2 | J8 SCL; R39 pull-up; `i2c12` |
+| 24 | GPIO4_C6 | J7 SDA; R34 pull-up; `i2c11` |
 | 25 | GND | Ground |
 | 27 | I2C4 SDA M0 | HAT-ID path; U4 DNP |
 | 28 | I2C4 SCL M0 | HAT-ID path; U4 DNP |
-| 29 | GPIO3_B3 | Auxiliary option; isolated by DNP R19/R21 and J6 |
+| 29 | GPIO3_B3 | J6 SCL through populated R19; R21 pull-up; `i2c10` |
 | 30 | GND | Ground |
 | 31 | GPIO3_B4 | Preserved Radxa GPIO identity |
 | 34 | GND | Ground |
@@ -47,7 +47,7 @@ Do not rely on Raspberry Pi BCM numbering.
 | 39 | GND | Ground |
 | 40 | I2S3 SDO M0 | Host audio data to codec |
 
-Physical pins 11, 13, 16, 18, 22, 26, 32, 33, 36 and 37 remain explicitly unconnected. Named auxiliary nets retain trace identity for strict-port continuity but are isolated from unqualified Qwiic pull-ups and connectors by the stated DNP population policy.
+Physical pins 11, 13, 16, 18, 22, 26, 32, 33, 36 and 37 remain explicitly unconnected. The preserved Qwiic nets on pins 7/29, 24/21 and 19/23 are populated and claimed as the independent `i2c10`, `i2c11` and `i2c12` GPIO-I2C buses.
 
 ## I2C3
 
@@ -61,7 +61,7 @@ Expected loads may include:
 
 - IMU
 - audio codec control interface
-- Qwiic connector(s)
+- Qwiic connector J5
 - optional ToF or other external sensors
 
 ### I2C design checks
@@ -147,4 +147,4 @@ Before schematic freeze, verify all of the following against the current Radxa Z
 ## References
 
 - Radxa ZERO 3W hardware documentation: https://docs.radxa.com/en/zero/zero3/hardware-design/hardware-interface
-- Pollen MicroDuck I2C3 HAT overlay reference: https://github.com/pollen-robotics/microduck/blob/main/deploy/audio/i2c3-pihat.dts
+- Pollen MicroDuck I2C3 HAT overlay reference: https://github.com/pollen-robotics/microduck/blob/6507d2e960417aaa4ecd38eccf59b2dcf586ecd2/deploy/audio/i2c3-pihat.dts

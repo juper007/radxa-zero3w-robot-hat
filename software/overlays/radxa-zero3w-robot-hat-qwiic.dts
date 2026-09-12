@@ -1,0 +1,74 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/rockchip.h>
+
+&{/} {
+	compatible = "radxa,zero-3w", "rockchip,rk3566";
+
+	aliases {
+		i2c10 = "/i2c-gpio-j6";
+		i2c11 = "/i2c-gpio-j7";
+		i2c12 = "/i2c-gpio-j8";
+	};
+
+	qwiic_j6: i2c-gpio-j6 {
+		compatible = "i2c-gpio";
+		pinctrl-names = "default";
+		pinctrl-0 = <&qwiic_j6_pins>;
+		sda-gpios = <&gpio3 RK_PC4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+		scl-gpios = <&gpio3 RK_PB3 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+		i2c-gpio,delay-us = <5>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "okay";
+	};
+
+	qwiic_j7: i2c-gpio-j7 {
+		compatible = "i2c-gpio";
+		pinctrl-names = "default";
+		pinctrl-0 = <&qwiic_j7_pins>;
+		sda-gpios = <&gpio4 RK_PC6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+		scl-gpios = <&gpio4 RK_PC5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+		i2c-gpio,delay-us = <5>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "okay";
+	};
+
+	qwiic_j8: i2c-gpio-j8 {
+		compatible = "i2c-gpio";
+		pinctrl-names = "default";
+		pinctrl-0 = <&qwiic_j8_pins>;
+		sda-gpios = <&gpio4 RK_PC3 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+		scl-gpios = <&gpio4 RK_PC2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+		i2c-gpio,delay-us = <5>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		status = "okay";
+	};
+};
+
+&pinctrl {
+	robot-hat-qwiic {
+		qwiic_j6_pins: qwiic-j6-pins {
+			rockchip,pins =
+				<3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>,
+				<3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+
+		qwiic_j7_pins: qwiic-j7-pins {
+			rockchip,pins =
+				<4 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>,
+				<4 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+
+		qwiic_j8_pins: qwiic-j8-pins {
+			rockchip,pins =
+				<4 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>,
+				<4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+};

@@ -3222,7 +3222,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="connector"/>
       <property name="ki_fp_filters" value="Connector*:*_1x??-1MP*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -3281,7 +3280,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="connector"/>
       <property name="ki_fp_filters" value="Connector*:*_1x??-1MP*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -3340,7 +3338,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="connector"/>
       <property name="ki_fp_filters" value="Connector*:*_1x??-1MP*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -3761,7 +3758,7 @@
       </units>
     </comp>
     <comp ref="R18">
-      <value>DNP-0R</value>
+      <value>0R</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
@@ -3802,7 +3799,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="R resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -3817,7 +3813,7 @@
       </units>
     </comp>
     <comp ref="R19">
-      <value>DNP-0R</value>
+      <value>0R</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
@@ -3858,7 +3854,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="R resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -3873,7 +3868,7 @@
       </units>
     </comp>
     <comp ref="R20">
-      <value>DNP-10k</value>
+      <value>10k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
@@ -3922,7 +3917,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="R resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -3937,7 +3931,7 @@
       </units>
     </comp>
     <comp ref="R21">
-      <value>DNP-10k</value>
+      <value>10k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
@@ -3986,7 +3980,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="R resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -4056,7 +4049,7 @@
       </units>
     </comp>
     <comp ref="R34">
-      <value>DNP-10k</value>
+      <value>10k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
@@ -4105,7 +4098,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="R resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -4120,7 +4112,7 @@
       </units>
     </comp>
     <comp ref="R35">
-      <value>DNP-10k</value>
+      <value>10k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
@@ -4169,7 +4161,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="R resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -4184,7 +4175,7 @@
       </units>
     </comp>
     <comp ref="R38">
-      <value>DNP-10k</value>
+      <value>10k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
@@ -4233,7 +4224,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="R resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>
@@ -4248,7 +4238,7 @@
       </units>
     </comp>
     <comp ref="R39">
-      <value>DNP-10k</value>
+      <value>10k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
@@ -4297,7 +4287,6 @@
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Sensors"/>
       <property name="Sheetfile" value="sensors.kicad_sch"/>
-      <property name="dnp"/>
       <property name="ki_keywords" value="R resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Sensors/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/7c72b1ef-1385-4d18-a22c-ca8fe94f1469/"/>

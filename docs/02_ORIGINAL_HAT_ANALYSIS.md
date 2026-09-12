@@ -76,7 +76,7 @@ This also avoids unnecessary I2C-address occupancy and Raspberry Pi-specific ass
 - TTL and RS-485 channels
 - BMI088 IMU block
 - I2S codec / microphone / speaker implementation
-- Main Qwiic expansion connector
+- All four Qwiic expansion connectors (J5 hardware I2C plus J6/J7/J8 software-I2C GPIO pairs)
 - Hierarchical KiCad project organization and routed PCB
 
 ## What must NOT be copied blindly

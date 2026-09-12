@@ -61,14 +61,6 @@ ALLOWED_COMPONENT_VALUES = {
     "C21": ("22u 6V3", "22u 10V"),
     "C22": ("22u 6V3", "22u 10V"),
     "J4": ("Female Header 2x20 SMD", "Radxa ZERO 3W 2x20 HAT Header"),
-    "R18": ("0R", "DNP-0R"),
-    "R19": ("0R", "DNP-0R"),
-    "R20": ("10k", "DNP-10k"),
-    "R21": ("10k", "DNP-10k"),
-    "R34": ("10k", "DNP-10k"),
-    "R35": ("10k", "DNP-10k"),
-    "R38": ("10k", "DNP-10k"),
-    "R39": ("10k", "DNP-10k"),
 }
 
 
@@ -729,8 +721,17 @@ missing = sorted(
 if missing:
     fail(f"critical Radxa nets missing from schematic or PCB: {missing}")
 
+u4_source = ROOT / "main.kicad_sch"
+if "(dnp yes)" not in symbol_block(u4_source.read_text(encoding="utf-8"), "U4"):
+    fail("U4 must remain DNP")
+u4_footprint = footprint_block(pcb_text, "U4")
+if "(attr smd dnp)" not in u4_footprint and "(attr through_hole dnp)" not in u4_footprint:
+    fail("PCB footprint U4 must remain DNP")
+
 for ref, source in (
-    ("U4", ROOT / "main.kicad_sch"),
+    ("J1", ROOT / "audio.kicad_sch"),
+    ("J2", ROOT / "audio.kicad_sch"),
+    ("J5", ROOT / "sensors.kicad_sch"),
     ("J6", ROOT / "sensors.kicad_sch"),
     ("J7", ROOT / "sensors.kicad_sch"),
     ("J8", ROOT / "sensors.kicad_sch"),
@@ -742,15 +743,7 @@ for ref, source in (
     ("R35", ROOT / "sensors.kicad_sch"),
     ("R38", ROOT / "sensors.kicad_sch"),
     ("R39", ROOT / "sensors.kicad_sch"),
-):
-    if "(dnp yes)" not in symbol_block(source.read_text(encoding="utf-8"), ref):
-        fail(f"{ref} must remain DNP")
-    pcb_block = footprint_block(pcb_text, ref)
-    if "(attr smd dnp)" not in pcb_block and "(attr through_hole dnp)" not in pcb_block:
-        fail(f"PCB footprint {ref} must remain DNP")
-
-for ref, source in (
-    ("J5", ROOT / "sensors.kicad_sch"),
+    ("J9", ROOT / "audio.kicad_sch"),
     ("U8", ROOT / "dynamixel.kicad_sch"),
 ):
     if "(dnp no)" not in symbol_block(source.read_text(encoding="utf-8"), ref):
@@ -1014,9 +1007,16 @@ expected_policy_summary = {
 }
 if summary.get("validation_policy") != expected_policy_summary:
     fail("summary validation policy is incomplete or stale")
-expected_dnp = ["U4", "J6", "J7", "J8", "R18", "R19", "R20", "R21", "R34", "R35", "R38", "R39"]
-if summary.get("dnp_auxiliary_options") != expected_dnp:
-    fail("summary auxiliary DNP policy is incomplete or stale")
+expected_dnp_options = ["C25", "R10", "R11", "R16", "R17", "R36", "R37", "R41", "U4"]
+if summary.get("dnp_options") != expected_dnp_options:
+    fail("summary DNP policy is incomplete or stale")
+expected_qwiic_population = [
+    "J5", "J6", "J7", "J8", "R18", "R19", "R20", "R21", "R34", "R35", "R38", "R39",
+]
+if summary.get("qwiic_functional_parity", {}).get("populated") != expected_qwiic_population:
+    fail("summary Qwiic population policy is incomplete or stale")
+if summary.get("qwiic_functional_parity", {}).get("overlay") != "software/overlays/radxa-zero3w-robot-hat-qwiic.dts":
+    fail("summary Qwiic overlay policy is incomplete or stale")
 
 fresh_erc_rows = erc_findings(fresh_erc)
 fresh_drc_rows = fresh_drc["violations"]

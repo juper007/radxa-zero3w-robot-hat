@@ -22,10 +22,12 @@ PRODUCTION = REPO / "production"
 RELEASES = PRODUCTION / "releases"
 KICAD_VERSION = "10.0.6"
 DNP = {
-    "C25", "J6", "J7", "J8", "R10", "R11", "R16", "R17", "R18", "R19",
-    "R20", "R21", "R34", "R35", "R36", "R37", "R38", "R39", "R41", "U4",
+    "C25", "R10", "R11", "R16", "R17", "R36", "R37", "R41", "U4",
 }
-REQUIRED_POPULATED = {"C45", "J5", "U8"}
+REQUIRED_POPULATED = {
+    "C45", "J1", "J2", "J5", "J6", "J7", "J8", "J9", "R18", "R19", "R20", "R21",
+    "R34", "R35", "R38", "R39", "U8",
+}
 GERBER_LAYERS = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu", "F.Paste", "B.Paste", "F.Silkscreen", "B.Silkscreen", "F.Mask", "B.Mask", "Edge.Cuts"]
 BOARD_NAME = PCB.stem
 GERBER_PATHS = {
@@ -194,6 +196,19 @@ def validate_reference_exports(
         raise SystemExit("unexpected PnP reference inventory")
 
 
+def validate_required_populated(
+    populated_bom_refs: set[str],
+    populated_pos_refs: set[str],
+    required: set[str] = REQUIRED_POPULATED,
+) -> None:
+    missing_bom = sorted(required - populated_bom_refs)
+    if missing_bom:
+        raise SystemExit(f"required populated references missing from BOM: {missing_bom}")
+    missing_pnp = sorted(required - populated_pos_refs)
+    if missing_pnp:
+        raise SystemExit(f"required populated references missing from PnP: {missing_pnp}")
+
+
 def validate_zip(archive_path: Path, root: Path, expected_paths: set[str], source_epoch: int) -> None:
     expected_names = sorted(expected_paths)
     expected_date = zip_date_time(source_epoch)
@@ -276,13 +291,12 @@ def main() -> None:
     populated_refs = refs(populated_bom, "Refs")
     all_pos_refs = refs(all_pos, "Ref")
     populated_pos_refs = refs(populated_pos, "Ref")
-    if (len(full_bom), len(populated_bom)) != (124, 104):
+    if (len(full_bom), len(populated_bom)) != (124, 115):
         raise SystemExit("unexpected BOM row counts")
-    if (len(all_pos), len(populated_pos)) != (119, 99):
+    if (len(all_pos), len(populated_pos)) != (119, 110):
         raise SystemExit("unexpected PnP row counts")
     validate_reference_exports(full_refs, populated_refs, all_pos_refs, populated_pos_refs)
-    if not REQUIRED_POPULATED <= populated_refs or not REQUIRED_POPULATED <= populated_pos_refs:
-        raise SystemExit("required populated references missing from BOM/PnP")
+    validate_required_populated(populated_refs, populated_pos_refs)
 
     pdfs = list((output / "assembly").glob("*.pdf")) + list((output / "drill").glob("*.pdf"))
     if any(not path.read_bytes().startswith(b"%PDF-") for path in pdfs):

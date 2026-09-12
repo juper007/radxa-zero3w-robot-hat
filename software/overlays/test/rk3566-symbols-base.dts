@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+/dts-v1/;
+
+/ {
+	compatible = "radxa,zero-3w", "rockchip,rk3566";
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	aliases {
+	};
+
+	gpio3: gpio@fe760000 {
+		compatible = "test,gpio";
+		reg = <0xfe760000 0x1000>;
+		gpio-controller;
+		#gpio-cells = <2>;
+	};
+
+	gpio4: gpio@fe770000 {
+		compatible = "test,gpio";
+		reg = <0xfe770000 0x1000>;
+		gpio-controller;
+		#gpio-cells = <2>;
+	};
+
+	pinctrl: pinctrl {
+		pcfg_pull_none: pcfg-pull-none {
+		};
+	};
+};

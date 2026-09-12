@@ -24,7 +24,7 @@ Critical nets retain their upstream physical header pins and routed copper while
 - pins 8/10 — `UART2_TX_M0` / `UART2_RX_M0`
 - pins 12/35/38/40 — `I2S3_SCLK_M0` / `I2S3_LRCK_M0` / `I2S3_SDI_M0` / `I2S3_SDO_M0`
 
-U4 remains DNP. J6/J7/J8 and R18/R19/R20/R21/R34/R35/R38/R39 are DNP so that the unqualified Raspberry Pi auxiliary-I2C options do not pull Radxa GPIOs. J5 remains the primary I2C/Qwiic connector.
+U4 remains DNP. J5/J6/J7/J8 are all populated to preserve the upstream Qwiic expansion function. J6 uses R18/R19 0 Ω links plus R20/R21 10 kΩ pull-ups; J7 uses R34/R35 pull-ups; J8 uses R38/R39 pull-ups. The preserved J6/J7/J8 GPIO pairs are configured as three independent software I2C buses by the Radxa overlay under `../software/overlays/`.
 
 ## Validation
 

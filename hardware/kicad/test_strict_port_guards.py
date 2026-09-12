@@ -127,6 +127,33 @@ def test_bom_guard() -> None:
         run_checker(repository, "component value or footprint drift versus upstream")
 
 
+def test_audio_connector_population_guard() -> None:
+    for ref in ("J1", "J2", "J9"):
+        with tempfile.TemporaryDirectory(prefix=f"strict-{ref.lower()}-population-") as directory:
+            repository = copy_repository(Path(directory))
+            schematic = repository / "hardware/kicad/audio.kicad_sch"
+            text = schematic.read_text(encoding="utf-8")
+            start, end = sexpr_block(text, "symbol", ref)
+            block = text[start:end]
+            if block.count("(dnp no)") != 1:
+                raise ValueError(f"unexpected {ref} population state")
+            block = block.replace("(dnp no)", "(dnp yes)", 1)
+            schematic.write_text(text[:start] + block + text[end:], encoding="utf-8")
+            run_checker(repository, f"{ref} must remain populated in the default assembly")
+
+        with tempfile.TemporaryDirectory(prefix=f"strict-{ref.lower()}-pcb-population-") as directory:
+            repository = copy_repository(Path(directory))
+            board = repository / "hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb"
+            text = board.read_text(encoding="utf-8")
+            start, end = sexpr_block(text, "footprint", ref)
+            block = text[start:end]
+            if block.count("(attr smd)") != 1:
+                raise ValueError(f"unexpected {ref} PCB population state")
+            block = block.replace("(attr smd)", "(attr smd dnp)", 1)
+            board.write_text(text[:start] + block + text[end:], encoding="utf-8")
+            run_checker(repository, f"PCB footprint {ref} must remain populated in the default assembly")
+
+
 def test_j4_geometry_guard() -> None:
     with tempfile.TemporaryDirectory(prefix="strict-j4-geometry-") as directory:
         repository = copy_repository(Path(directory))
@@ -297,6 +324,7 @@ def main() -> None:
     test_erc_pin_map_guard()
     test_baseline_hash_guard()
     test_bom_guard()
+    test_audio_connector_population_guard()
     test_j4_geometry_guard()
     test_j4_placement_guard()
     test_j4_pad_attribute_guard()

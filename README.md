@@ -28,11 +28,11 @@ Only host-facing compatibility changes are active:
 
 The schematic and PCB net names identify these Radxa functions instead of Raspberry Pi BCM names. The physical routes are retained because the required interfaces occupy the same header pins.
 
-The Raspberry Pi HAT EEPROM is retained as upstream DNP. Extra Qwiic connectors J6/J7/J8 and their isolation/pull-up resistors R18/R19/R20/R21/R34/R35/R38/R39 are DNP because their Raspberry Pi auxiliary-I2C pin choices are not direct Radxa equivalents. Main Qwiic J5 remains on pins 3/5 with the codec and IMU.
+The Raspberry Pi HAT EEPROM is retained as upstream DNP. All four upstream Qwiic connectors are populated for functional parity. J5 remains on hardware I2C3 M0 pins 3/5 with the codec and IMU. J6/J7/J8 retain the upstream routed GPIO pairs and are exposed as independent open-drain `i2c-gpio` buses by [`software/overlays/radxa-zero3w-robot-hat-qwiic.dts`](software/overlays/radxa-zero3w-robot-hat-qwiic.dts). Their original 0 Ω links and 10 kΩ pull-ups are populated.
 
 ## Software requirement
 
-Using hardware I2C3 M0 on pins 3/5 requires the Radxa device-tree configuration to select `i2c3m0_xfer`. On vendor device trees this can conflict with the FUSB302 USB-C PD controller on I2C3 M1; the software overlay and resulting USB-C behavior must be reviewed before release.
+Using hardware I2C3 M0 on pins 3/5 requires the Radxa device-tree configuration to select `i2c3m0_xfer`. On vendor device trees this can conflict with the FUSB302 USB-C PD controller on I2C3 M1; the software overlay and resulting USB-C behavior must be reviewed before release. The Qwiic parity overlay adds J6/J7/J8 as aliases `i2c10`, `i2c11` and `i2c12`; the intended OS image must enable `CONFIG_I2C_GPIO`, leave those six GPIOs unclaimed, and pass runtime enumeration and transfer tests.
 
 ## Source and validation
 

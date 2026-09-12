@@ -167,10 +167,29 @@ class ExportPolicyTests(unittest.TestCase):
         self.assertEqual(
             generator.DNP,
             {
-                "C25", "J6", "J7", "J8", "R10", "R11", "R16", "R17", "R18", "R19",
-                "R20", "R21", "R34", "R35", "R36", "R37", "R38", "R39", "R41", "U4",
+                "C25", "R10", "R11", "R16", "R17", "R36", "R37", "R41", "U4",
             },
         )
+
+    def test_requires_all_four_qwiic_ports_in_populated_exports(self) -> None:
+        self.assertTrue(
+            {
+                "J5", "J6", "J7", "J8", "R18", "R19", "R20", "R21",
+                "R34", "R35", "R38", "R39",
+            }
+            <= generator.REQUIRED_POPULATED
+        )
+
+    def test_requires_audio_connectors_in_populated_exports(self) -> None:
+        self.assertTrue({"J1", "J2", "J9"} <= generator.REQUIRED_POPULATED)
+
+    def test_rejects_required_reference_missing_from_populated_bom(self) -> None:
+        with self.assertRaisesRegex(SystemExit, "required populated references missing from BOM"):
+            generator.validate_required_populated(set(), {"J1"}, required={"J1"})
+
+    def test_rejects_required_reference_missing_from_populated_pnp(self) -> None:
+        with self.assertRaisesRegex(SystemExit, "required populated references missing from PnP"):
+            generator.validate_required_populated({"J1"}, set(), required={"J1"})
 
     def test_rejects_unexpected_export_omission(self) -> None:
         with self.assertRaisesRegex(SystemExit, "BOM reference inventory"):

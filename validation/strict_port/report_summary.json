@@ -1,5 +1,5 @@
 {
-  "revision": "v0.22-manufacturing-export",
+  "revision": "v0.23-qwiic-functional-parity",
   "classification": "strict single-board port",
   "upstream": {
     "repository": "https://github.com/pollen-robotics/elec_RPI_Robot_HAT",
@@ -72,9 +72,29 @@
     ],
     "baseline_regenerated_from_upstream_commit": true
   },
-  "dnp_auxiliary_options": [
-    "U4", "J6", "J7", "J8", "R18", "R19", "R20", "R21", "R34", "R35", "R38", "R39"
+  "dnp_options": [
+    "C25",
+    "R10",
+    "R11",
+    "R16",
+    "R17",
+    "R36",
+    "R37",
+    "R41",
+    "U4"
   ],
+  "qwiic_functional_parity": {
+    "populated": [
+      "J5", "J6", "J7", "J8", "R18", "R19", "R20", "R21", "R34", "R35", "R38", "R39"
+    ],
+    "overlay": "software/overlays/radxa-zero3w-robot-hat-qwiic.dts",
+    "buses": {
+      "J5": "I2C3_M0 pins 3/5",
+      "J6": "i2c-gpio alias i2c10 on GPIO3_C4/GPIO3_B3",
+      "J7": "i2c-gpio alias i2c11 on GPIO4_C6/GPIO4_C5",
+      "J8": "i2c-gpio alias i2c12 on GPIO4_C3/GPIO4_C2"
+    }
+  },
   "host_mapping": {
     "3": "I2C3_SDA_M0",
     "5": "I2C3_SCL_M0",
@@ -101,6 +121,7 @@
     "C45/Radxa U1 overlap requires at least 4.0 mm measured PCB-surface gap and 0.5 mm residual clearance on every intended SKU",
     "Radxa onboard antenna has no validated HAT copper keepout; external U.FL antenna or OTA validation is required",
     "USB-C and HAT battery input simultaneous operation is prohibited until reverse-current validation passes",
+    "J5 hardware I2C3 M0 and J6/J7/J8 i2c-gpio overlays require runtime bus enumeration and device-transfer validation on the intended OS image",
     "derivative Gerber/drill/BOM/PnP/assembly package generation and review pending"
   ],
   "fabrication_ready": false
