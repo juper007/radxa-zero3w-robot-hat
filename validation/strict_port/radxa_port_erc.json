@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/erc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-09-11T19:05:24",
+    "date": "2026-09-11T21:07:53",
     "ignored_checks": [
         {
             "description": "Global label only appears once in the schematic",
@@ -47,21 +47,6 @@
                     "type": "lib_symbol_issues"
                 },
                 {
-                    "description": "현재 구성에 풋프린트 라이브러리 'Library_Pollen'이(가) 포함되어 있지 않습니다",
-                    "items": [
-                        {
-                            "description": "심볼 H2 [Logo HF 2025]",
-                            "pos": {
-                                "x": 0.4953,
-                                "y": 1.6002
-                            },
-                            "uuid": "e8f2ab0f-6624-45f8-b8e5-c599d24045f9"
-                        }
-                    ],
-                    "severity": "warning",
-                    "type": "footprint_link_issues"
-                },
-                {
                     "description": "현재 설정에 심볼 라이브러리 'Library_Pollen'가 포함되어 있지 않음",
                     "items": [
                         {
@@ -77,21 +62,6 @@
                     "type": "lib_symbol_issues"
                 },
                 {
-                    "description": "현재 구성에 풋프린트 라이브러리 'Library_Pollen'이(가) 포함되어 있지 않습니다",
-                    "items": [
-                        {
-                            "description": "심볼 H3 [Logo Pollen 2021]",
-                            "pos": {
-                                "x": 0.4953,
-                                "y": 1.6256
-                            },
-                            "uuid": "27295418-94b8-4760-ba2d-314b58e4124d"
-                        }
-                    ],
-                    "severity": "warning",
-                    "type": "footprint_link_issues"
-                },
-                {
                     "description": "현재 설정에 심볼 라이브러리 'Library_Pollen'가 포함되어 있지 않음",
                     "items": [
                         {
@@ -105,21 +75,6 @@
                     ],
                     "severity": "warning",
                     "type": "lib_symbol_issues"
-                },
-                {
-                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
-                    "items": [
-                        {
-                            "description": "심볼 U4 [CAT24C128]",
-                            "pos": {
-                                "x": 1.0541,
-                                "y": 1.4478
-                            },
-                            "uuid": "4272467a-c618-4ba9-a9ac-40f7dfa4511f"
-                        }
-                    ],
-                    "severity": "warning",
-                    "type": "footprint_link_issues"
                 },
                 {
                     "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
@@ -135,21 +90,6 @@
                     ],
                     "severity": "warning",
                     "type": "lib_symbol_mismatch"
-                },
-                {
-                    "description": "현재 구성에 풋프린트 라이브러리 'Library_Pollen'이(가) 포함되어 있지 않습니다",
-                    "items": [
-                        {
-                            "description": "심볼 J4 [Conn_02x20_Odd_Even_MountingPin]",
-                            "pos": {
-                                "x": 1.9812,
-                                "y": 0.8001
-                            },
-                            "uuid": "68e70e04-921e-4925-a994-1754f39c95c0"
-                        }
-                    ],
-                    "severity": "warning",
-                    "type": "footprint_link_issues"
                 },
                 {
                     "description": "심볼 'C_Small'가 라이브러리 'Device'의 복사본과 일치하지 않음",
@@ -795,66 +735,6 @@
                     ],
                     "severity": "warning",
                     "type": "lib_symbol_mismatch"
-                },
-                {
-                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
-                    "items": [
-                        {
-                            "description": "심볼 J2 [Conn_01x02]",
-                            "pos": {
-                                "x": 2.6416,
-                                "y": 0.3175
-                            },
-                            "uuid": "3d00266c-3f64-4937-80cd-44c8f67d80b5"
-                        }
-                    ],
-                    "severity": "warning",
-                    "type": "footprint_link_issues"
-                },
-                {
-                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
-                    "items": [
-                        {
-                            "description": "심볼 J9 [Conn_01x02]",
-                            "pos": {
-                                "x": 2.6416,
-                                "y": 0.381
-                            },
-                            "uuid": "da5d53e1-7d76-415d-8830-6796a8ec1ed5"
-                        }
-                    ],
-                    "severity": "warning",
-                    "type": "footprint_link_issues"
-                },
-                {
-                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
-                    "items": [
-                        {
-                            "description": "심볼 J1 [Conn_01x02]",
-                            "pos": {
-                                "x": 2.6416,
-                                "y": 0.9652
-                            },
-                            "uuid": "156dd9ee-c8e6-409a-8a7d-797bf4d043af"
-                        }
-                    ],
-                    "severity": "warning",
-                    "type": "footprint_link_issues"
-                },
-                {
-                    "description": "현재 구성에 풋프린트 라이브러리 'LCSC_parts_lib'이(가) 포함되어 있지 않습니다",
-                    "items": [
-                        {
-                            "description": "심볼 MK1 [Microphone_MEMS]",
-                            "pos": {
-                                "x": 2.6543,
-                                "y": 1.3843
-                            },
-                            "uuid": "e4bb35b2-4e8d-4df9-ae4f-dc3afbdc42c3"
-                        }
-                    ],
-                    "severity": "warning",
-                    "type": "footprint_link_issues"
                 },
                 {
                     "description": "현재 설정에 심볼 라이브러리 'Library_Pollen'가 포함되어 있지 않음",

@@ -1,0 +1,6 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Library_Pollen")(type "KiCad")(uri "${KIPRJMOD}/Library_Pollen.pretty")(options "")(descr "Project-local exact footprints vendored from embedded board instances"))
+  (lib (name "LCSC_parts_lib")(type "KiCad")(uri "${KIPRJMOD}/LCSC_parts_lib.pretty")(options "")(descr "Project-local exact footprints vendored from embedded board instances"))
+  (lib (name "Package_TO_SOT_SMD")(type "KiCad")(uri "${KIPRJMOD}/Package_TO_SOT_SMD.pretty")(options "")(descr "Project-local exact override for all board-used Package_TO_SOT_SMD footprints, including legacy D1"))
+)

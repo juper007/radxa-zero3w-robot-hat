@@ -1,5 +1,5 @@
 {
-  "revision": "v0.20-power-integrity",
+  "revision": "v0.21-vendored-libraries",
   "classification": "strict single-board port",
   "upstream": {
     "repository": "https://github.com/pollen-robotics/elec_RPI_Robot_HAT",
@@ -16,15 +16,15 @@
     "nets": 95
   },
   "erc_baseline": {
-    "total": 56,
-    "warning": 56,
+    "total": 48,
+    "warning": 48,
     "types": {
       "lib_symbol_mismatch": 43,
-      "footprint_link_issues": 8,
       "lib_symbol_issues": 5
     },
     "new_vs_upstream": 1,
-    "approved_additions_vs_upstream": 1
+    "approved_additions_vs_upstream": 1,
+    "resolved_vs_upstream": 8
   },
   "pcb": {
     "footprints": 128,
@@ -34,15 +34,12 @@
     "unconnected_items": 0
   },
   "drc_baseline": {
-    "total": 9,
+    "total": 0,
     "error": 0,
-    "warning": 9,
-    "types": {
-      "lib_footprint_issues": 8,
-      "lib_footprint_mismatch": 1
-    },
+    "warning": 0,
+    "types": {},
     "new_vs_upstream": 0,
-    "resolved_vs_upstream": 40
+    "resolved_vs_upstream": 49
   },
   "schematic_parity_baseline": {
     "total": 110,
@@ -101,7 +98,7 @@
     "C45/Radxa U1 overlap requires at least 4.0 mm measured PCB-surface gap and 0.5 mm residual clearance on every intended SKU",
     "Radxa onboard antenna has no validated HAT copper keepout; external U.FL antenna or OTA validation is required",
     "USB-C and HAT battery input simultaneous operation is prohibited until reverse-current validation passes",
-    "derivative manufacturing package and library review pending"
+    "derivative Gerber/drill/BOM/PnP/assembly package generation and review pending"
   ],
   "fabrication_ready": false
 }

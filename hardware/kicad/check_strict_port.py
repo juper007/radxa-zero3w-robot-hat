@@ -23,7 +23,8 @@ BASE_DRC = REPO / "validation/strict_port/upstream_baseline_drc.json"
 COMMITTED_PORT_DRC = REPO / "validation/strict_port/radxa_port_drc.json"
 BASE_ERC = REPO / "validation/strict_port/upstream_baseline_erc.json"
 COMMITTED_PORT_ERC = REPO / "validation/strict_port/radxa_port_erc.json"
-SUMMARY = REPO / "validation/strict_port/report_summary.json"
+SUMMARY = REPO / "validation" / "strict_port" / "report_summary.json"
+VENDORED_FOOTPRINTS = ROOT / "vendored_footprints_manifest.json"
 KICAD_VERSION = "10.0.6"
 UPSTREAM_COMMIT = "23eab11927f95ceca0dfa35bf182caeb7db39ea0"
 BASELINE_SHA256 = {
@@ -36,6 +37,7 @@ EDGE_CUTS_SHA256 = "69787bc712e9b43c4ff232a5ceb72b5bce5a73ea0f5e7b6548bc5b64c4cb
 J4_FOOTPRINT_SHA256 = "653abbdf65d2e09a9d4f49745931e88c6ff32736958e08071b72692091ac2039"
 POWER_REGION_SHA256 = "b3cdfb6456a747281ee42a346d4d0420079616a3159b70a3f8aa6cb9b3f7f079"
 FILLED_ZONE_SHA256 = "e97175d477adf4ce9c3c16561b6130983807780dbf025033157494f3d8ffe8ec"
+VENDORED_MANIFEST_SHA256 = "7d7751af8e81f80c2ffa553f555a4e1eecb841819e3488ccec394000a155fe31"
 EXPECTED_DRC_IGNORES = {
     "footprint_filters_mismatch",
     "footprint_type_mismatch",
@@ -232,6 +234,33 @@ def load_json(path: Path) -> dict:
 def sha256(path: Path) -> str:
     # Git stores these text artifacts with LF; normalize Windows worktree CRLF.
     return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
+def validate_vendored_footprints() -> None:
+    if sha256(VENDORED_FOOTPRINTS) != VENDORED_MANIFEST_SHA256:
+        fail("vendored-footprint manifest changed")
+    manifest = load_json(VENDORED_FOOTPRINTS)
+    expected_libraries = {
+        "Library_Pollen": "${KIPRJMOD}/Library_Pollen.pretty",
+        "LCSC_parts_lib": "${KIPRJMOD}/LCSC_parts_lib.pretty",
+        "Package_TO_SOT_SMD": "${KIPRJMOD}/Package_TO_SOT_SMD.pretty",
+    }
+    if manifest.get("schema_version") != 1 or manifest.get("kicad_version") != KICAD_VERSION:
+        fail("vendored-footprint manifest schema or KiCad version changed")
+    if manifest.get("libraries") != expected_libraries:
+        fail("vendored-footprint library mapping changed")
+    table = ROOT / "fp-lib-table"
+    if manifest.get("fp_lib_table_sha256") != sha256(table):
+        fail("fp-lib-table changed")
+    manifest_files = {entry.get("path"): entry.get("sha256") for entry in manifest.get("files", [])}
+    disk_files = {path.relative_to(ROOT).as_posix() for path in ROOT.glob("*.pretty/*.kicad_mod")}
+    if len(manifest_files) != 12 or set(manifest_files) != disk_files:
+        fail("vendored-footprint file inventory changed")
+    for relative, expected_hash in manifest_files.items():
+        if sha256(ROOT / relative) != expected_hash:
+            fail(f"vendored footprint changed: {relative}")
+    if manifest.get("expected_drc_violations") != 0 or manifest.get("expected_erc_footprint_link_issues") != 0:
+        fail("vendored-footprint expected finding counts changed")
 
 
 def canonical_sha256(value: object) -> str:
@@ -542,6 +571,8 @@ for path in (
     BASE_ERC,
     COMMITTED_PORT_ERC,
     SUMMARY,
+    VENDORED_FOOTPRINTS,
+    ROOT / "fp-lib-table",
 ):
     if not path.exists():
         fail(f"missing required artifact: {path.relative_to(REPO)}")
@@ -549,6 +580,7 @@ for path in (
 for path, expected_hash in BASELINE_SHA256.items():
     if sha256(path) != expected_hash:
         fail(f"pinned upstream baseline changed: {path.relative_to(REPO)}")
+validate_vendored_footprints()
 
 project = load_json(PRO)
 if canonical_sha256(project_policy(project)) != PROJECT_POLICY_SHA256:
@@ -844,29 +876,22 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     if len(resolved_j4_clearance) != 40:
         fail("upstream J4 hole-clearance baseline is not the expected 40 findings")
     fresh_drc_rows = fresh_drc.get("violations", [])
-    base_d1_library_warning = [
+    resolved_library_warnings = [
         finding for finding in base_drc_rows
-        if finding.get("type") == "lib_footprint_mismatch"
+        if finding.get("type") in {"lib_footprint_issues", "lib_footprint_mismatch"}
         and finding.get("severity") == "warning"
-        and len(finding.get("items", [])) == 1
-        and finding["items"][0].get("uuid") == d1_footprint_uuid
     ]
-    fresh_d1_library_warning = [
-        finding for finding in fresh_drc_rows
-        if finding.get("type") == "lib_footprint_mismatch"
-        and finding.get("severity") == "warning"
-        and len(finding.get("items", [])) == 1
-        and finding["items"][0].get("uuid") == d1_footprint_uuid
-    ]
-    if len(base_d1_library_warning) != 1 or len(fresh_d1_library_warning) != 1:
-        fail("D1 inherited library-warning identity changed")
-    resolved_identities = Counter(finding_identity(row) for row in resolved_j4_clearance + base_d1_library_warning)
+    if len(resolved_library_warnings) != 9:
+        fail("upstream library-warning resolution set is not the expected 9 findings")
+    resolved_identities = Counter(
+        finding_identity(row)
+        for row in resolved_j4_clearance + resolved_library_warnings
+    )
     base_drc_findings = finding_counter(base_drc_rows)
     expected_fresh_drc = base_drc_findings - resolved_identities
-    expected_fresh_drc += finding_counter(fresh_d1_library_warning)
     fresh_drc_findings = finding_counter(fresh_drc_rows)
     if fresh_drc_findings != expected_fresh_drc:
-        fail("fresh DRC findings differ after approved J4 resolution and D1 relocation")
+        fail("fresh DRC findings differ after approved J4 and library resolutions")
     if finding_counter(committed_drc.get("violations", [])) != fresh_drc_findings:
         fail("committed Radxa DRC report is stale relative to the current PCB")
     if fresh_drc.get("unconnected_items"):
@@ -936,10 +961,20 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     ]
     if len(approved_c45_erc) != 1:
         fail("expected exactly one C45 library-symbol warning")
-    expected_erc_findings = finding_counter(base_erc_rows) + finding_counter(approved_c45_erc)
+    resolved_footprint_links = [
+        finding for finding in base_erc_rows
+        if finding.get("type") == "footprint_link_issues"
+        and finding.get("severity") == "warning"
+    ]
+    if len(resolved_footprint_links) != 8:
+        fail("upstream footprint-link resolution set is not the expected 8 findings")
+    expected_erc_findings = finding_counter(base_erc_rows)
+    expected_erc_findings.subtract(finding_counter(resolved_footprint_links))
+    expected_erc_findings = +expected_erc_findings
+    expected_erc_findings += finding_counter(approved_c45_erc)
     fresh_erc_findings = finding_counter(fresh_erc_rows)
     if fresh_erc_findings != expected_erc_findings:
-        fail("fresh ERC findings differ from the normalized upstream baseline plus approved C45 warning")
+        fail("fresh ERC findings differ after approved footprint-link resolutions and C45 warning")
     if finding_counter(erc_findings(committed_erc)) != fresh_erc_findings:
         fail("committed Radxa ERC report is stale relative to the current schematic")
 
@@ -964,7 +999,9 @@ fresh_drc_rows = fresh_drc["violations"]
 fresh_parity_rows = fresh_drc["schematic_parity"]
 if summary["erc_baseline"]["types"] != type_counts(fresh_erc_rows):
     fail("summary ERC type counts are stale")
-if summary["drc_baseline"].get("resolved_vs_upstream") != len(resolved_j4_clearance):
+if summary["erc_baseline"].get("resolved_vs_upstream") != len(resolved_footprint_links):
+    fail("summary resolved ERC count is stale")
+if summary["drc_baseline"].get("resolved_vs_upstream") != len(resolved_j4_clearance) + len(resolved_library_warnings):
     fail("summary resolved DRC count is stale")
 if summary["drc_baseline"]["types"] != type_counts(fresh_drc_rows):
     fail("summary DRC type counts are stale")
@@ -985,12 +1022,13 @@ expected_summary = {
     "outline_mm": [65.0, 30.9],
     "footprints": 128,
     "tracks": 1013,
-    "erc_total": 56,
+    "erc_total": 48,
     "erc_new": 1,
     "erc_approved": 1,
-    "drc_total": 9,
+    "erc_resolved": 8,
+    "drc_total": 0,
     "drc_new": 0,
-    "drc_resolved": 40,
+    "drc_resolved": 49,
     "parity_total": 110,
     "parity_new": 0,
     "parity_resolved": 1,
@@ -1003,6 +1041,7 @@ actual_summary = {
     "erc_total": summary["erc_baseline"]["total"],
     "erc_new": summary["erc_baseline"]["new_vs_upstream"],
     "erc_approved": summary["erc_baseline"].get("approved_additions_vs_upstream"),
+    "erc_resolved": summary["erc_baseline"].get("resolved_vs_upstream"),
     "drc_total": summary["drc_baseline"]["total"],
     "drc_new": summary["drc_baseline"]["new_vs_upstream"],
     "drc_resolved": summary["drc_baseline"].get("resolved_vs_upstream"),
@@ -1033,6 +1072,7 @@ if summary["host_mapping"] != expected_host_mapping:
 print("STRICT PORT CHECK: PASS")
 print(
     "Regenerated KiCad ERC/DRC/parity/netlist evidence and validated one "
-    "65.00 x 30.90 mm centerline-outline routed HAT with no new DRC/parity findings "
-    "and exactly one approved C45 library-symbol ERC warning versus upstream."
+    "65.00 x 30.90 mm centerline-outline routed HAT with zero DRC findings, "
+    "eight resolved footprint-link ERC warnings, and exactly one approved C45 "
+    "library-symbol ERC warning versus upstream."
 )

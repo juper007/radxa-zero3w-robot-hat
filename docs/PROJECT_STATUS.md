@@ -4,7 +4,7 @@ Last updated: 2026-09-11
 
 ## Current phase
 
-**v0.20-power-integrity — single-board strict port with J4 and C45 power-integrity corrections applied; manufacturing-library cleanup and release validation pending**
+**v0.21-vendored-libraries — single-board strict port with J4/C45 corrections and project-local footprint libraries; manufacturing package and release signoff pending**
 
 ## Architecture
 
@@ -34,11 +34,12 @@ Last updated: 2026-09-11
 - [x] Added C45 10 µF / 50 V X7R input bypass, corrected C21/C22 to their actual 10 V MPN rating, rerouted only the local U9/D1/C22 region, and regenerated the GND zone with zero new DRC/parity findings.
 - [x] Added a bottom-silkscreen one-source warning prohibiting simultaneous USB-C and HAT battery power.
 - [x] Overlaid the HAT against official Radxa V1.11 DXF/STEP/placement resources; electrical alignment is established and remaining physical/RF gates are documented.[4][5][6]
+- [x] Vendored 12 exact project-local footprints and `fp-lib-table` without changing the PCB; current native DRC has zero findings and ERC footprint-link warnings are eliminated.
 - [x] Captured upstream and adapted ERC/DRC/netlist reports under `validation/strict_port/`.
 
 ## Native KiCad baseline
 
-The upstream project produces a parseable 128-component / 95-net schematic netlist; the adapted port now has 129 components / 95 nets after adding exact input-bypass capacitor C45. Upstream has 55 ERC warnings. The port has 56: the same baseline plus one explicitly approved `lib_symbol_mismatch` for C45, pending the library-cleanup stage. The upstream PCB baseline has 49 DRC findings: 40 J4 hole-clearance errors and 9 library-footprint warnings. The adapted PCB resolves the 40 J4 errors and retains only the 9 warnings. KiCad's explicit schematic-parity check reports 110 remaining inherited `Datasheet` field mismatches after the J4 manufacturing identity correction resolves one upstream mismatch. None of the remaining findings has been waived or excluded, and no new DRC/parity finding was introduced.
+The upstream project produces a parseable 128-component / 95-net schematic netlist; the adapted port has 129 components / 95 nets after adding exact input-bypass capacitor C45. Upstream has 55 ERC warnings. The port has 48: eight footprint-link warnings are resolved by project-local libraries, while one exact `lib_symbol_mismatch` for C45 remains explicitly approved pending symbol-library cleanup. The upstream PCB baseline has 49 DRC findings: 40 J4 hole-clearance errors and 9 library-footprint warnings. The adapted PCB resolves all 49 and has zero DRC findings. KiCad's explicit schematic-parity check reports 110 remaining inherited `Datasheet` field mismatches after the J4 manufacturing identity correction resolves one upstream mismatch. No finding was waived or excluded.
 
 These totals use a pinned validation policy. Four ERC categories (`footprint_filter`, `four_way_junction`, `simulation_model_issue`, `single_global_label`) and seven DRC categories (`footprint_filters_mismatch`, `footprint_type_mismatch`, `missing_courtyard`, `npth_inside_courtyard`, `pth_inside_courtyard`, `track_not_centered_on_via`, `tuning_profile_track_geometries`) are ignored exactly as in the imported project. CI fails if the ignored list, rule severities, constraints or exclusions change.
 
@@ -66,7 +67,7 @@ The checker pins the exact J4 footprint S-expression after platform newline and 
 - [ ] Measure at least 4.0 mm PCB-surface gap and 0.5 mm residual clearance at C45/Radxa U1 on every intended SKU.[5][6]
 - [ ] Use the external U.FL antenna or complete OTA validation; the full-size copper HAT has no approved onboard-antenna keepout.[7]
 - [ ] Verify USB-C, micro-HDMI, microSD and CSI access with nominated cables/FPC and the controlled spacer stack; optional heatsinks remain unsupported until overlaid.
-- [ ] Resolve or formally disposition the 9 remaining inherited library-footprint DRC warnings.
+
 - [ ] Reconcile the derivative BOM/position outputs with the upstream production release.
 - [ ] Perform an independent schematic, polarity, footprint and connector review.
 

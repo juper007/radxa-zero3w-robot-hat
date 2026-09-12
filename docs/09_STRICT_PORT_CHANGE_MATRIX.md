@@ -29,6 +29,7 @@
 | Auxiliary Qwiic | J6/J7/J8 use Pi-specific auxiliary I2C/GPIO selections | J6/J7/J8 and R18/R19/R20/R21/R34/R35/R38/R39 DNP | Verified incompatibility containment | Applied; auxiliary pull-ups isolated from host GPIO |
 | HAT EEPROM | Pi HAT identification EEPROM | Retained DNP | Raspberry Pi-only feature | Preserved DNP |
 | PCB routing | Production-routed upstream board, 1,021 track/via items | Host routes retained; only local U9/D1/C22 power copper changed for C45, producing 1,013 current track/via items | Preserved host routing plus reviewed power correction | Applied; local geometry and filled zone hash-locked |
+| Footprint libraries | External/missing `Library_Pollen` and `LCSC_parts_lib`; installed-library D1 mismatch | 12 exact embedded definitions vendored in three project-local `.pretty` libraries with `fp-lib-table` | Manufacturing provenance correction | Applied; PCB byte-identical, DRC 0, manifest/hash guarded |
 | Project identity | `elec_RPI_Robot_HAT` | `radxa_zero3w_robot_hat` | Required derivative identity | Applied |
 | Daughterboard | None | None | Preserved invariant | Applied |
 

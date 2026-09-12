@@ -1,0 +1,279 @@
+(footprint "Wago_2059-302_998-403"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(tags "2059-302/998-403 ")
+	(property "Reference" "J1"
+		(at -0.05738 -7.2 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "25828093-4953-4221-adc0-dd2ae2a7a261")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "Wago-2"
+		(at 0 -0.253144 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "f870c7d2-1f72-41df-9b6f-9334411c814f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "~"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "97b94b7a-a2fb-4050-a19b-879c06176454")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "960f0fd6-0b03-4525-b6c2-beb2218fc0a1")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "LCSC Part" "C2765060"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "11e658c8-bf60-4ba4-abe0-f122890953f4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "FT Rotation Offset" "90"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "42dcd917-cf65-497c-92b8-4344c4dec680")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property ki_fp_filters "Connector*:*_1x??_*")
+	(sheetname "/Schematic/Audio/")
+	(sheetfile "audio.kicad_sch")
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -3.077 -3.827)
+		(end -3.077 3.827)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "47123dd4-cdee-4728-888a-b8a4a5e927b3")
+	)
+	(fp_line
+		(start -3.077 3.827)
+		(end -2.531241 3.827)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2450d79d-2f82-41a0-a319-6774390f9fa7")
+	)
+	(fp_line
+		(start -2.531241 -3.827)
+		(end -3.077 -3.827)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "00b63cbd-0efc-44f8-93d0-6f8e5248e5a8")
+	)
+	(fp_line
+		(start -0.468761 3.827)
+		(end 0.468758 3.827)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b6fca5f6-8326-4ab9-b4f1-de6be75a2293")
+	)
+	(fp_line
+		(start 0.468758 -3.827)
+		(end -0.468761 -3.827)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "165078fb-799a-496a-bda2-ecf15e44ba3b")
+	)
+	(fp_line
+		(start 2.531238 3.827)
+		(end 3.076998 3.827)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "134f443f-5114-4880-9716-b31b72de049c")
+	)
+	(fp_line
+		(start 3.076998 -3.827)
+		(end 2.531238 -3.827)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3f42d02d-e3d9-43b1-8ae9-0533a6051123")
+	)
+	(fp_line
+		(start 3.076998 3.827)
+		(end 3.076998 -3.827)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "38c92d95-c94a-4f27-b671-b965a5ae18c9")
+	)
+	(fp_rect
+		(start -2.95 -4.05)
+		(end 2.95 3.85)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "c259f35a-0f49-4927-8ce9-ac14257a4d52")
+	)
+	(fp_line
+		(start -2.95 -3.7)
+		(end -2.95 3.7)
+		(stroke
+			(width 0.0254)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f21edc21-2848-4caf-af6f-ae739bcc1f06")
+	)
+	(fp_line
+		(start -2.95 3.7)
+		(end 2.949998 3.7)
+		(stroke
+			(width 0.0254)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "eaea909f-f128-441a-a5e1-e3f2ec148f1f")
+	)
+	(fp_line
+		(start 2.949998 -3.7)
+		(end -2.95 -3.7)
+		(stroke
+			(width 0.0254)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "39b37596-8db9-4d3d-9a45-603859c33a2c")
+	)
+	(fp_line
+		(start 2.949998 3.7)
+		(end 2.949998 -3.7)
+		(stroke
+			(width 0.0254)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "61610d15-a2a6-47e9-b8f3-12626e0ffefd")
+	)
+	(fp_text user "o"
+		(at -3.3 4.726855 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "61384861-ad14-41bd-b849-a86eaef917e4")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -0.253144 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "b31b043e-0dbf-4407-b517-03a041bb4d41")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -1.500001 -3.353143)
+		(size 1.397 2.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "50916f33-c62d-4405-9957-5a497e44854b")
+	)
+	(pad "1" smd rect
+		(at -1.500001 2.846855)
+		(size 1.397 2.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "6fb48420-43ea-4bd7-a21a-e2a44cbccec1")
+	)
+	(pad "2" smd rect
+		(at 1.499998 -3.353143)
+		(size 1.397 2.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "95cbf2ff-d4f1-4f4d-aee2-47a1f585d813")
+	)
+	(pad "2" smd rect
+		(at 1.499998 2.846855)
+		(size 1.397 2.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "89d80009-47de-4b74-8051-aeb71f72bfc1")
+	)
+	(embedded_fonts no)
+	(model "${KICAD_USER_LIB}/LCSC_parts/easyeda2kicad.3dshapes/Wago_2059-302_998-403.stp"
+		(offset
+			(xyz 3 -3.5 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 90)
+		)
+	)
+)

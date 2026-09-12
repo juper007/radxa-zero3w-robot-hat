@@ -1,0 +1,64 @@
+{
+  "board_sha256_at_vendoring": "687733b427bbe108dd881935adfbb4173dc3d8c7dcb1f8f0eaae5c0c04a7faec",
+  "expected_drc_violations": 0,
+  "expected_erc_footprint_link_issues": 0,
+  "files": [
+    {
+      "path": "LCSC_parts_lib.pretty/MIC-SMD_4P-L2.8-W1.9-P1.84-TL.kicad_mod",
+      "sha256": "992fe5a53da33224608fef096884d99ac8627be92a286c538d4ab47458278cb2"
+    },
+    {
+      "path": "LCSC_parts_lib.pretty/TDFN-8_L3.0-W2.0-P0.50-BL-EP.kicad_mod",
+      "sha256": "8221ef92187097f10be07665332c4edcaa67cf609d95ed6369fbf619441456b5"
+    },
+    {
+      "path": "LCSC_parts_lib.pretty/Wago_2059-302_998-403.kicad_mod",
+      "sha256": "65cae969ccd0c0f0c2b80f41b132546f5bb714bb0b52393c5b8f32281c9431ad"
+    },
+    {
+      "path": "Library_Pollen.pretty/Logo_HF_2025.kicad_mod",
+      "sha256": "096063c5cdd88e201b6a071f46e81d47dcbc4db5e3cc283da02b5807ad186da7"
+    },
+    {
+      "path": "Library_Pollen.pretty/Logo_Pollen_2021_sq.kicad_mod",
+      "sha256": "f047187f31c1538b3b5d7ed5d45749a10988598e633f6ce541803b62e2e43665"
+    },
+    {
+      "path": "Library_Pollen.pretty/PinHeader_2x20_P2.54mm_Vertical_with_rasp_HAT_zero_SMD_connector.kicad_mod",
+      "sha256": "d437a893d4995a823551bb323314e53e717fa7405d4665177f69017f12d4d33a"
+    },
+    {
+      "path": "Package_TO_SOT_SMD.pretty/SOT-23-3.kicad_mod",
+      "sha256": "3ed87bb8dc9445a83c76bc5892e565d233431b056fa2cd00f9f07b0e6060c2ff"
+    },
+    {
+      "path": "Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod",
+      "sha256": "b87a35f030b9eb8ba56fb3e40fb26445e8d96ab4a323ee21bd4e61bf8fb8ee89"
+    },
+    {
+      "path": "Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod",
+      "sha256": "d350a9bca74ec42ab1652c8cb8a2a4f23b3e1a960cff004da623d956a8d3598c"
+    },
+    {
+      "path": "Package_TO_SOT_SMD.pretty/SOT-323_SC-70.kicad_mod",
+      "sha256": "e543d0fb15ec3ea777ba8af8bda2f171ef158e7d89c99b5807e93e927b007829"
+    },
+    {
+      "path": "Package_TO_SOT_SMD.pretty/TSOT-23-6.kicad_mod",
+      "sha256": "5cff5beb8d6990a0f860f25286a2950af0cc2870e287a24a898619efaa062e8c"
+    },
+    {
+      "path": "Package_TO_SOT_SMD.pretty/TSOT-23.kicad_mod",
+      "sha256": "2a0646851e89e7fd9384bceb6c492a9071a81074e19df74dc9d9393c4b0c02ad"
+    }
+  ],
+  "fp_lib_table_sha256": "02293558dd105209cb3095d1bcd8c5651d1e23a3cd8a7284cb04cfd8ec24b088",
+  "kicad_version": "10.0.6",
+  "libraries": {
+    "LCSC_parts_lib": "${KIPRJMOD}/LCSC_parts_lib.pretty",
+    "Library_Pollen": "${KIPRJMOD}/Library_Pollen.pretty",
+    "Package_TO_SOT_SMD": "${KIPRJMOD}/Package_TO_SOT_SMD.pretty"
+  },
+  "method": "Exact project-local footprints exported from embedded board instances with KiCad PCB_IO_KICAD_SEXPR",
+  "schema_version": 1
+}

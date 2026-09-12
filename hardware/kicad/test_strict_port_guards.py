@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -228,6 +229,41 @@ def test_output_capacitor_identity_guard() -> None:
         run_checker(repository, "output-capacitor identity changed")
 
 
+def test_vendored_footprint_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-vendored-footprint-") as directory:
+        repository = copy_repository(Path(directory))
+        footprint = repository / "hardware/kicad/Package_TO_SOT_SMD.pretty/SOT-323_SC-70.kicad_mod"
+        text = footprint.read_text(encoding="utf-8")
+        footprint.write_text(text + "\n", encoding="utf-8")
+        run_checker(repository, "vendored footprint changed")
+
+
+def test_vendored_manifest_comutation_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-vendored-comutation-") as directory:
+        repository = copy_repository(Path(directory))
+        relative = "Package_TO_SOT_SMD.pretty/SOT-323_SC-70.kicad_mod"
+        footprint = repository / "hardware/kicad" / relative
+        footprint.write_text(footprint.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+        manifest_path = repository / "hardware/kicad/vendored_footprints_manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        entry = next(item for item in manifest["files"] if item["path"] == relative)
+        entry["sha256"] = hashlib.sha256(footprint.read_bytes()).hexdigest()
+        manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        run_checker(repository, "vendored-footprint manifest changed")
+
+
+def test_fp_lib_table_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-fp-lib-table-") as directory:
+        repository = copy_repository(Path(directory))
+        table = repository / "hardware/kicad/fp-lib-table"
+        text = table.read_text(encoding="utf-8")
+        old = "${KIPRJMOD}/Library_P_Pollen.pretty"
+        if old in text:
+            raise ValueError("unexpected pre-mutated fp-lib-table")
+        table.write_text(text.replace("${KIPRJMOD}/Library_Pollen.pretty", old, 1), encoding="utf-8")
+        run_checker(repository, "fp-lib-table changed")
+
+
 def test_unconnected_evidence_guard() -> None:
     with tempfile.TemporaryDirectory(prefix="strict-unconnected-") as directory:
         repository = copy_repository(Path(directory))
@@ -257,6 +293,9 @@ def main() -> None:
     test_power_region_guard()
     test_filled_zone_guard()
     test_output_capacitor_identity_guard()
+    test_vendored_footprint_guard()
+    test_vendored_manifest_comutation_guard()
+    test_fp_lib_table_guard()
     test_unconnected_evidence_guard()
     print("STRICT PORT NEGATIVE TESTS: PASS")
 

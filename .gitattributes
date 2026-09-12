@@ -2,4 +2,7 @@
 validation/strict_port/*.json text eol=lf
 validation/strict_port/*.xml text eol=lf
 hardware/kicad/*.py text eol=lf
+hardware/kicad/fp-lib-table text eol=lf
+hardware/kicad/*.pretty/*.kicad_mod text eol=lf
+hardware/kicad/vendored_footprints_manifest.json text eol=lf
 .github/workflows/*.yml text eol=lf
