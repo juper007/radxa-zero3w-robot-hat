@@ -5,6 +5,7 @@
 - Upstream: <https://github.com/pollen-robotics/elec_RPI_Robot_HAT>
 - Upstream commit: `23eab11927f95ceca0dfa35bf182caeb7db39ea0`
 - Upstream board: one 4-layer PCB, 65.00 × 30.90 mm Edge.Cuts-centerline outline (approximately 65 × 31 mm), 127 footprints, 95 electrical nets and 1,021 routed tracks.
+- Current port: one 4-layer PCB, same outline, 128 footprints, 95 electrical nets and 1,013 track/via items after the local C45/U9/D1/C22 power correction.
 - Port classification: **strict port**, not a redesign.
 
 ## Matrix
@@ -19,15 +20,15 @@
 | Dynamixel UART | Pi UART on pins 8/10, BCM `IO_14/15` | RK3566 UART2 M0 on pins 8/10 | Host compatibility | Net names applied; OS console release pending |
 | Audio I2S | Pi PCM pins 12/35/38/40 | RK3566 I2S3 M0 on the same pins | Host compatibility | Net names applied; codec clock test pending |
 | Logic voltage | 3.3 V GPIO | 3.3 V GPIO, 3.63 V absolute maximum per Radxa documentation | Preserved/verified | Schematic review pending |
-| Host 5 V | Header pins 2/4 | Header pins 2/4 | Preserved invariant | Backfeed review pending |
-| Power topology | 5–28 V input, motor connector may feed the board, AP63205 2 A conversion | Unchanged | Preserved invariant | Applied; Radxa + HAT load/transient/thermal margin unverified |
+| Host 5 V | Header pins 2/4 | Header pins 2/4; USB-C and HAT battery sources are mutually exclusive | Preserved invariant plus operating constraint | Warning applied; reverse-current bench test pending |
+| Power topology | 5–28 V input, motor connector may feed the board, AP63205 2 A conversion | Topology retained; C45 10 µF / 50 V X7R local input bypass added; C21/C22 rating metadata corrected | Fabrication/power-integrity correction | DRC-clean; 8 Ω/audio limit/load-step/thermal EVT pending |
 | Dynamixel connectors | On-board TTL and RS-485 connectors | Unchanged | Preserved invariant | Applied |
 | IMU | On-board BMI088 | Unchanged | Preserved invariant | Applied |
 | Audio | On-board codec, microphone and speaker output | Unchanged | Preserved invariant | Applied |
 | Main Qwiic | J5 on pins 3/5 I2C | J5 on I2C3 M0 pins 3/5 | Host compatibility | Applied |
 | Auxiliary Qwiic | J6/J7/J8 use Pi-specific auxiliary I2C/GPIO selections | J6/J7/J8 and R18/R19/R20/R21/R34/R35/R38/R39 DNP | Verified incompatibility containment | Applied; auxiliary pull-ups isolated from host GPIO |
 | HAT EEPROM | Pi HAT identification EEPROM | Retained DNP | Raspberry Pi-only feature | Preserved DNP |
-| PCB routing | Production-routed upstream board | Routing retained; 18 host-facing net labels renamed without connectivity changes | Preserved invariant | Applied |
+| PCB routing | Production-routed upstream board, 1,021 track/via items | Host routes retained; only local U9/D1/C22 power copper changed for C45, producing 1,013 current track/via items | Preserved host routing plus reviewed power correction | Applied; local geometry and filled zone hash-locked |
 | Project identity | `elec_RPI_Robot_HAT` | `radxa_zero3w_robot_hat` | Required derivative identity | Applied |
 | Daughterboard | None | None | Preserved invariant | Applied |
 

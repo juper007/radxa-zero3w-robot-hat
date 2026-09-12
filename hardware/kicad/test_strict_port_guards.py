@@ -192,6 +192,42 @@ def test_j4_identity_guard() -> None:
         run_checker(repository, "J4 manufacturing identity changed")
 
 
+def test_power_region_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-power-region-") as directory:
+        repository = copy_repository(Path(directory))
+        board = repository / "hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb"
+        text = board.read_text(encoding="utf-8")
+        old = '(at 99.05 100.95 90)'
+        if text.count(old) != 1:
+            raise ValueError("unexpected C45 placement inventory")
+        board.write_text(text.replace(old, '(at 99.06 100.95 90)', 1), encoding="utf-8")
+        run_checker(repository, "power-stage footprint or local copper geometry changed")
+
+
+def test_filled_zone_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-filled-zone-") as directory:
+        repository = copy_repository(Path(directory))
+        board = repository / "hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb"
+        text = board.read_text(encoding="utf-8")
+        old = '(xy 135.316335 93.688272)'
+        if text.count(old) != 1:
+            raise ValueError("unexpected filled-zone anchor inventory")
+        board.write_text(text.replace(old, '(xy 135.316336 93.688272)', 1), encoding="utf-8")
+        run_checker(repository, "filled copper zone changed or is stale")
+
+
+def test_output_capacitor_identity_guard() -> None:
+    with tempfile.TemporaryDirectory(prefix="strict-output-cap-identity-") as directory:
+        repository = copy_repository(Path(directory))
+        schematic = repository / "hardware/kicad/power.kicad_sch"
+        text = schematic.read_text(encoding="utf-8")
+        old = '(property "Man. Ref." "GRM188R61A226ME15D"'
+        if text.count(old) != 2:
+            raise ValueError("unexpected C21/C22 manufacturer identity inventory")
+        schematic.write_text(text.replace(old, '(property "Man. Ref." "WRONG-PART"', 1), encoding="utf-8")
+        run_checker(repository, "output-capacitor identity changed")
+
+
 def test_unconnected_evidence_guard() -> None:
     with tempfile.TemporaryDirectory(prefix="strict-unconnected-") as directory:
         repository = copy_repository(Path(directory))
@@ -218,6 +254,9 @@ def main() -> None:
     test_j4_pad_attribute_guard()
     test_j4_quoted_property_guard()
     test_j4_identity_guard()
+    test_power_region_guard()
+    test_filled_zone_guard()
+    test_output_capacitor_identity_guard()
     test_unconnected_evidence_guard()
     print("STRICT PORT NEGATIVE TESTS: PASS")
 

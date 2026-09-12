@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Users\juper\OneDrive\Documents\ChatGPT\Microduck_DIY\radxa-zero3w-robot-hat\hardware\kicad\radxa_zero3w_robot_hat.kicad_sch</source>
-    <date>2026-09-11T17:44:16</date>
+    <date>2026-09-11T19:04:58</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -848,7 +848,7 @@
       </units>
     </comp>
     <comp ref="C21">
-      <value>22u 6V3</value>
+      <value>22u 10V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <description>Capa 0603</description>
       <fields>
@@ -901,7 +901,7 @@
       </units>
     </comp>
     <comp ref="C22">
-      <value>22u 6V3</value>
+      <value>22u 10V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <description>Capa 0603</description>
       <fields>
@@ -1034,6 +1034,70 @@
       <property name="ki_fp_filters" value="C_*"/>
       <sheetpath names="/Schematic/Power/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05/"/>
       <tstamps>83de0746-7080-4b65-880c-ee46add55893</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C45">
+      <value>10uF 50V X7R</value>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-01.pdf</datasheet>
+      <description>10 uF 50 V X7R ceramic capacitor, 1210</description>
+      <fields>
+        <field name="Man.">Murata</field>
+        <field name="Man. Ref.">GRM32ER71H106KA12L</field>
+        <field name="Length"/>
+        <field name="Width"/>
+        <field name="LCSC Part">C77102</field>
+        <field name="Dielectric">X7R</field>
+        <field name="Power Rating"/>
+        <field name="Resistance"/>
+        <field name="Tolerance"/>
+        <field name="Voltage Rating">50V</field>
+        <field name="KLC_S3.3"/>
+        <field name="KLC_S4.1"/>
+        <field name="Arrow Part Number"/>
+        <field name="Arrow Price/Stock"/>
+        <field name="Height"/>
+        <field name="Manufacturer_Name"/>
+        <field name="Manufacturer_Part_Number"/>
+        <field name="Mouser Part Number"/>
+        <field name="Mouser Price/Stock"/>
+        <field name="Footprint">Capacitor_SMD:C_1210_3225Metric</field>
+        <field name="Datasheet">https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-01.pdf</field>
+        <field name="Description">10 uF 50 V X7R ceramic capacitor, 1210</field>
+      </fields>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="Man." value="Murata"/>
+      <property name="Man. Ref." value="GRM32ER71H106KA12L"/>
+      <property name="Length" value=""/>
+      <property name="Width" value=""/>
+      <property name="LCSC Part" value="C77102"/>
+      <property name="Dielectric" value="X7R"/>
+      <property name="Power Rating" value=""/>
+      <property name="Resistance" value=""/>
+      <property name="Tolerance" value=""/>
+      <property name="Voltage Rating" value="50V"/>
+      <property name="KLC_S3.3" value=""/>
+      <property name="KLC_S4.1" value=""/>
+      <property name="Arrow Part Number" value=""/>
+      <property name="Arrow Price/Stock" value=""/>
+      <property name="Height" value=""/>
+      <property name="Manufacturer_Name" value=""/>
+      <property name="Manufacturer_Part_Number" value=""/>
+      <property name="Mouser Part Number" value=""/>
+      <property name="Mouser Price/Stock" value=""/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/Schematic/Power/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05/"/>
+      <tstamps>44ccf5fa-8c6a-4c17-9590-79a0b76f8cd9</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -7379,6 +7443,7 @@
     </net>
     <net code="32" name="+BATT" class="Default">
       <node ref="C19" pin="1" pintype="passive"/>
+      <node ref="C45" pin="1" pintype="passive"/>
       <node ref="J11" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="J13" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="J14" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
@@ -7520,6 +7585,7 @@
       <node ref="C42" pin="1" pintype="passive"/>
       <node ref="C43" pin="1" pintype="passive"/>
       <node ref="C44" pin="2" pintype="passive"/>
+      <node ref="C45" pin="2" pintype="passive"/>
       <node ref="C5" pin="2" pintype="passive"/>
       <node ref="C6" pin="2" pintype="passive"/>
       <node ref="C7" pin="2" pintype="passive"/>

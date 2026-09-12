@@ -4,7 +4,7 @@ Last updated: 2026-09-11
 
 ## Current phase
 
-**v0.19-strict-port — upstream single-board design imported and host-net adaptation applied; review and release validation pending**
+**v0.20-power-integrity — single-board strict port with J4 and C45 power-integrity corrections applied; manufacturing-library cleanup and release validation pending**
 
 ## Architecture
 
@@ -12,8 +12,8 @@ Last updated: 2026-09-11
 - Active PCB: `hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb`
 - Outline: 65.00 × 30.90 mm on the Edge.Cuts centerline (approximately 65 × 31 mm)
 - Copper layers: 4
-- Footprints: 127
-- Routed tracks: 1,021
+- Footprints: 128
+- Routed tracks and vias: 1,013
 - Daughterboard: **none**
 - Archived divergent split design: `archive/v027-split-hat` at `2f2afd8`
 
@@ -31,11 +31,14 @@ Last updated: 2026-09-11
 - [x] Kept the upstream HAT EEPROM DNP.
 - [x] Marked auxiliary Pi-specific Qwiic connectors J6/J7/J8 and isolation/pull-up resistors R18/R19/R20/R21/R34/R35/R38/R39 DNP.
 - [x] Produced a DRC-clean J4 candidate without moving the connector grid or routed tracks; current DRC has zero errors.
+- [x] Added C45 10 µF / 50 V X7R input bypass, corrected C21/C22 to their actual 10 V MPN rating, rerouted only the local U9/D1/C22 region, and regenerated the GND zone with zero new DRC/parity findings.
+- [x] Added a bottom-silkscreen one-source warning prohibiting simultaneous USB-C and HAT battery power.
+- [x] Overlaid the HAT against official Radxa V1.11 DXF/STEP/placement resources; electrical alignment is established and remaining physical/RF gates are documented.[4][5][6]
 - [x] Captured upstream and adapted ERC/DRC/netlist reports under `validation/strict_port/`.
 
 ## Native KiCad baseline
 
-The upstream project and adapted port both produce a parseable 128-component / 95-net schematic netlist. Each has the same 55 inherited ERC warnings: 42 library-symbol mismatches, 8 footprint-link issues and 5 library-symbol issues. The upstream PCB baseline has 49 DRC findings: 40 J4 hole-clearance errors and 9 library-footprint warnings. The adapted PCB resolves the 40 J4 errors and retains only the 9 warnings. KiCad's explicit schematic-parity check reports 110 remaining inherited `Datasheet` field mismatches after the J4 manufacturing identity correction resolves one upstream mismatch. None of the remaining inherited warnings has been waived or excluded, and no new ERC/DRC/parity findings were introduced.
+The upstream project produces a parseable 128-component / 95-net schematic netlist; the adapted port now has 129 components / 95 nets after adding exact input-bypass capacitor C45. Upstream has 55 ERC warnings. The port has 56: the same baseline plus one explicitly approved `lib_symbol_mismatch` for C45, pending the library-cleanup stage. The upstream PCB baseline has 49 DRC findings: 40 J4 hole-clearance errors and 9 library-footprint warnings. The adapted PCB resolves the 40 J4 errors and retains only the 9 warnings. KiCad's explicit schematic-parity check reports 110 remaining inherited `Datasheet` field mismatches after the J4 manufacturing identity correction resolves one upstream mismatch. None of the remaining findings has been waived or excluded, and no new DRC/parity finding was introduced.
 
 These totals use a pinned validation policy. Four ERC categories (`footprint_filter`, `four_way_junction`, `simulation_model_issue`, `single_global_label`) and seven DRC categories (`footprint_filters_mismatch`, `footprint_type_mismatch`, `missing_courtyard`, `npth_inside_courtyard`, `pth_inside_courtyard`, `track_not_centered_on_via`, `tuning_profile_track_geometries`) are ignored exactly as in the imported project. CI fails if the ignored list, rule severities, constraints or exclusions change.
 
@@ -45,7 +48,7 @@ J4 is an SMT bottom-entry, pass-through 2×20 socket family intended for Raspber
 
 The schematic and PCB manufacturing fields now name only `Toby Electronics REF-182665-01`. The stale `THD-20-R` mating-header identity and non-equivalent LCSC `C2685112` socket identifier were removed so BOM export cannot silently select the wrong connector. The modified land still requires vendor/assembler approval or representative prototype validation before fabrication release.
 
-The imported footprint placed each 1.02 mm NPTH pin passage only 0.02 mm from its associated SMD land, below the project's 0.20 mm hole-clearance rule. The DRC-clean candidate keeps all 40 passage holes, the 2.54 mm grid, the pad outer edges, the footprint origin and all 1,021 tracks unchanged. Each 2.00 mm-long land is shortened to 1.80 mm and shifted outward by 0.10 mm, moving only its inner edge by 0.20 mm. KiCad 10.0.6 now measures at least 0.22 mm nominal hole-to-copper clearance and reports zero J4 clearance errors.
+The imported footprint placed each 1.02 mm NPTH pin passage only 0.02 mm from its associated SMD land, below the project's 0.20 mm hole-clearance rule. The DRC-clean J4 correction keeps all 40 passage holes, the 2.54 mm grid, the pad outer edges and the footprint origin unchanged. At the J4 milestone it did not alter any routed copper. Each 2.00 mm-long land is shortened to 1.80 mm and shifted outward by 0.10 mm, moving only its inner edge by 0.20 mm. KiCad 10.0.6 now measures at least 0.22 mm nominal hole-to-copper clearance and reports no J4 hole-clearance violation. The later C45 power-integrity change locally reroutes copper near U9/D1/C22, bringing the current board total to 1,013 track/via items.
 
 The exact REF-182665-01 supplier drawing does not publish a recommended PCB land pattern. The 1.02 × 1.80 mm candidate is plausible relative to related connector patterns but is not claimed as manufacturer-approved. Connector-vendor or assembly-house signoff—or successful prototype assembly—is therefore still required before fabrication release.
 
@@ -58,9 +61,11 @@ The checker pins the exact J4 footprint S-expression after platform newline and 
 - [ ] Validate the `i2c3m0_xfer` overlay and document the effect of disabling/reassigning the FUSB302 I2C3 M1 device.
 - [ ] Disable UART2 console/getty and validate 1 Mbps Dynamixel traffic.
 - [ ] Validate I2S3 codec capture/playback and clocking.
-- [ ] Demonstrate AP63205 2 A worst-case load, startup-transient, voltage-drop and thermal margin for the Radxa host plus HAT loads.
-- [ ] Review simultaneous USB-C/HAT 5 V power and backfeed behavior.
-- [ ] Overlay authoritative Radxa mechanical data and inspect USB-C, HDMI, microSD, CSI and antenna clearances.
+- [ ] Validate the documented 2 A operating envelope: 8 Ω speakers, muted boot, measured audio limit, startup/load-step voltage and 30-minute U9/L4/Q2 thermal test.
+- [ ] Keep USB-C and HAT battery power mutually exclusive; complete both source-order reverse-current tests before changing this restriction.
+- [ ] Measure at least 4.0 mm PCB-surface gap and 0.5 mm residual clearance at C45/Radxa U1 on every intended SKU.[5][6]
+- [ ] Use the external U.FL antenna or complete OTA validation; the full-size copper HAT has no approved onboard-antenna keepout.[7]
+- [ ] Verify USB-C, micro-HDMI, microSD and CSI access with nominated cables/FPC and the controlled spacer stack; optional heatsinks remain unsupported until overlaid.
 - [ ] Resolve or formally disposition the 9 remaining inherited library-footprint DRC warnings.
 - [ ] Reconcile the derivative BOM/position outputs with the upstream production release.
 - [ ] Perform an independent schematic, polarity, footprint and connector review.
@@ -71,6 +76,10 @@ The architecture is now aligned with the original project: a single routed Robot
 
 ## Sources
 
-[1] https://www.toby.co.uk/board-to-board-pcb-connectors/254mm-sockets/ref-raspberry-pi-rpi-hat-specification-connector-surface-mount-sockets — Toby REF Raspberry Pi HAT SMT bottom-entry sockets
-[2] https://www.toby.co.uk/storage/documents/1540.pdf — Samtec/Toby REF-1826xx connector drawing
+[1] https://www.toby.co.uk/board-to-board-pcb-connectors/254mm-sockets/ref-raspberry-pi-rpi-hat-specification-connector-surface-mount-sockets — Toby REF Raspberry Pi HAT SMT sockets
+[2] https://www.toby.co.uk/storage/documents/1540.pdf — Samtec REF-182665-01 drawing package
 [3] https://www.adafruit.com/product/2187 — Adafruit SMT GPIO Header for Raspberry Pi HAT
+[4] https://dl.radxa.com/zero3/docs/hw/3w/radxa_zero_3w_2d_dxf.zip — Radxa ZERO 3W V1.11 DXF
+[5] https://dl.radxa.com/zero3/docs/hw/3w/radxa_zero_3w_3d_stp.zip — Radxa ZERO 3W V1.11 STEP
+[6] https://dl.radxa.com/zero3/docs/hw/3w/radxa_zero_3w_v1110_smb.zip — Radxa ZERO 3W V1.11 placement maps
+[7] https://docs.radxa.com/en/zero/zero3/accessories/zero3w-antenna — Radxa ZERO 3W antenna instructions

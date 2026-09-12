@@ -34,6 +34,8 @@ BASELINE_SHA256 = {
 PROJECT_POLICY_SHA256 = "4adff66c71b09e7c04e35641b1ac3bcad518250f7eb9362f8f85f625805de698"
 EDGE_CUTS_SHA256 = "69787bc712e9b43c4ff232a5ceb72b5bce5a73ea0f5e7b6548bc5b64c4cb33bf"
 J4_FOOTPRINT_SHA256 = "653abbdf65d2e09a9d4f49745931e88c6ff32736958e08071b72692091ac2039"
+POWER_REGION_SHA256 = "b3cdfb6456a747281ee42a346d4d0420079616a3159b70a3f8aa6cb9b3f7f079"
+FILLED_ZONE_SHA256 = "e97175d477adf4ce9c3c16561b6130983807780dbf025033157494f3d8ffe8ec"
 EXPECTED_DRC_IGNORES = {
     "footprint_filters_mismatch",
     "footprint_type_mismatch",
@@ -49,7 +51,12 @@ EXPECTED_ERC_IGNORES = {
     "simulation_model_issue",
     "single_global_label",
 }
+ALLOWED_ADDED_COMPONENTS = {
+    "C45": ("10uF 50V X7R", "Capacitor_SMD:C_1210_3225Metric"),
+}
 ALLOWED_COMPONENT_VALUES = {
+    "C21": ("22u 6V3", "22u 10V"),
+    "C22": ("22u 6V3", "22u 10V"),
     "J4": ("Female Header 2x20 SMD", "Radxa ZERO 3W 2x20 HAT Header"),
     "R18": ("0R", "DNP-0R"),
     "R19": ("0R", "DNP-0R"),
@@ -405,8 +412,13 @@ def net_memberships(path: Path) -> set[tuple[tuple[str, str, str, str], ...]]:
 def validate_upstream_netlist(base: Path, port: Path) -> None:
     base_components = component_map(base)
     port_components = component_map(port)
-    if set(base_components) != set(port_components):
-        fail("component references differ from upstream")
+    added = set(port_components) - set(base_components)
+    removed = set(base_components) - set(port_components)
+    if added != set(ALLOWED_ADDED_COMPONENTS) or removed:
+        fail(f"component references differ from upstream: added={sorted(added)}, removed={sorted(removed)}")
+    for ref, expected_component in ALLOWED_ADDED_COMPONENTS.items():
+        if port_components[ref] != expected_component:
+            fail(f"added component identity changed: {ref}")
     differences = {
         ref: (base_components[ref], port_components[ref])
         for ref in base_components
@@ -418,7 +430,21 @@ def validate_upstream_netlist(base: Path, port: Path) -> None:
     }
     if differences != expected:
         fail(f"component value or footprint drift versus upstream: {differences}")
-    if net_memberships(base) != net_memberships(port):
+    base_memberships = net_memberships(base)
+    port_memberships = net_memberships(port)
+    port_root = ET.parse(port).getroot()
+    c45_nodes = {
+        net.get("name", ""): {(node.get("ref", ""), node.get("pin", "")) for node in net.findall("node") if node.get("ref") == "C45"}
+        for net in port_root.findall("./nets/net")
+        if any(node.get("ref") == "C45" for node in net.findall("node"))
+    }
+    if c45_nodes != {"+BATT": {("C45", "1")}, "GND": {("C45", "2")}}:
+        fail(f"C45 net membership changed: {c45_nodes}")
+    normalized_port_memberships = {
+        tuple(node for node in nodes if node[0] != "C45")
+        for nodes in port_memberships
+    }
+    if base_memberships != normalized_port_memberships:
         fail("electrical net membership differs from upstream")
 
 
@@ -471,6 +497,40 @@ def board_metrics(text: str) -> dict:
     }
 
 
+def power_region_digest(text: str) -> tuple[str, str]:
+    net_names = {
+        int(number): name
+        for number, name in re.findall(r'^\t\(net (\d+) "([^"]+)"\)', text, re.MULTILINE)
+    }
+    wanted_nets = {"+BATT", "GND", "Net-(D1-K)", "Net-(U9-SW)", "Net-(U9-BST)"}
+    copper_blocks = []
+    for keyword in ("segment", "via"):
+        for block in top_level_blocks(text, keyword):
+            net_match = re.search(r"\(net (\d+)\)", block)
+            points = [
+                (float(x), float(y))
+                for x, y in re.findall(r"\((?:start|end|at) ([^ )]+) ([^ )]+)\)", block)
+            ]
+            if (
+                net_match
+                and net_names.get(int(net_match.group(1))) in wanted_nets
+                and any(94.0 <= x <= 105.0 and 98.0 <= y <= 106.0 for x, y in points)
+            ):
+                copper_blocks.append(block)
+    if len(copper_blocks) != 55:
+        fail(f"unexpected power-region copper inventory: {len(copper_blocks)}")
+    payload = "\n".join([
+        footprint_block(text, "C45"),
+        footprint_block(text, "D1"),
+        footprint_block(text, "C22"),
+        *sorted(copper_blocks),
+    ])
+    zones = top_level_blocks(text, "zone")
+    if len(zones) != 1:
+        fail(f"unexpected filled-zone inventory: {len(zones)}")
+    return hashlib.sha256(payload.encode()).hexdigest(), hashlib.sha256(zones[0].encode()).hexdigest()
+
+
 for path in (
     SCH,
     PCB,
@@ -503,6 +563,7 @@ if any(ROOT.glob("*daughterboard*")):
 sch_text = SCH.read_text(encoding="utf-8")
 pcb_text = PCB.read_text(encoding="utf-8")
 main_text = (ROOT / "main.kicad_sch").read_text(encoding="utf-8")
+power_text = (ROOT / "power.kicad_sch").read_text(encoding="utf-8")
 all_schematic_text = "\n".join(
     path.read_text(encoding="utf-8")
     for path in [
@@ -528,6 +589,11 @@ j4_footprint_uuid = j4_footprint_uuid_match.group(1)
 j4_geometry_digest, j4_pad_uuids = j4_pad_geometry(j4_footprint)
 if j4_geometry_digest != J4_FOOTPRINT_SHA256:
     fail("J4 footprint differs from the qualified DRC-clean candidate")
+power_digest, filled_zone_digest = power_region_digest(pcb_text)
+if power_digest != POWER_REGION_SHA256:
+    fail("power-stage footprint or local copper geometry changed")
+if filled_zone_digest != FILLED_ZONE_SHA256:
+    fail("filled copper zone changed or is stale")
 j4_manufacturing_identity = {
     "Datasheet": "https://www.toby.co.uk/board-to-board-pcb-connectors/254mm-sockets/ref-raspberry-pi-rpi-hat-specification-connector-surface-mount-sockets/REF-182665-01",
     "Field4": "Toby Electronics",
@@ -542,6 +608,54 @@ j4_manufacturing_identity = {
 for field, expected in j4_manufacturing_identity.items():
     if property_value(j4_symbol, field) != expected or property_value(j4_footprint, field) != expected:
         fail(f"J4 manufacturing identity changed: {field}")
+
+output_capacitor_identity = {
+    "Value": "22u 10V",
+    "Man. Ref.": "GRM188R61A226ME15D",
+    "LCSC Part": "C84419",
+}
+for ref in ("C21", "C22"):
+    capacitor_symbol = symbol_block(power_text, ref)
+    capacitor_footprint = footprint_block(pcb_text, ref)
+    for field, expected in output_capacitor_identity.items():
+        if property_value(capacitor_symbol, field) != expected or property_value(capacitor_footprint, field) != expected:
+            fail(f"{ref} output-capacitor identity changed: {field}")
+    if property_value(capacitor_symbol, "Footprint") != "Capacitor_SMD:C_0603_1608Metric" or not capacitor_footprint.lstrip().startswith('(footprint "Capacitor_SMD:C_0603_1608Metric"'):
+        fail(f"{ref} output-capacitor footprint changed")
+
+c45_symbol = symbol_block(power_text, "C45")
+c45_footprint = footprint_block(pcb_text, "C45")
+c45_symbol_uuid_match = re.search(r'\n\t\t\(uuid "([^"]+)"\)', c45_symbol)
+if not c45_symbol_uuid_match:
+    fail("C45 symbol UUID missing")
+c45_symbol_uuid = c45_symbol_uuid_match.group(1)
+c45_identity = {
+    "Value": "10uF 50V X7R",
+    "Datasheet": "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-01.pdf",
+    "Description": "10 uF 50 V X7R ceramic capacitor, 1210",
+    "Man.": "Murata",
+    "Man. Ref.": "GRM32ER71H106KA12L",
+    "LCSC Part": "C77102",
+    "Dielectric": "X7R",
+    "Voltage Rating": "50V",
+}
+for field, expected in c45_identity.items():
+    if property_value(c45_symbol, field) != expected or property_value(c45_footprint, field) != expected:
+        fail(f"C45 input-capacitor identity changed: {field}")
+if property_value(c45_symbol, "Footprint") != "Capacitor_SMD:C_1210_3225Metric":
+    fail("C45 footprint assignment changed")
+if '(layer "B.Cu")' not in c45_footprint or '(at 99.05 100.95 90)' not in c45_footprint:
+    fail("C45 placement changed")
+d1_footprint = footprint_block(pcb_text, "D1")
+d1_uuid_match = re.search(r'\n\t\t\(uuid "([^"]+)"\)', d1_footprint)
+if not d1_uuid_match:
+    fail("D1 footprint UUID missing")
+d1_footprint_uuid = d1_uuid_match.group(1)
+c22_footprint = footprint_block(pcb_text, "C22")
+c22_uuid_match = re.search(r'\n\t\t\(uuid "([^"]+)"\)', c22_footprint)
+if not c22_uuid_match:
+    fail("C22 footprint UUID missing")
+c22_footprint_uuid = c22_uuid_match.group(1)
 
 required_nets = {
     "I2C3_SDA_M0",
@@ -658,7 +772,7 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     fresh_root = ET.parse(fresh_netlist_path).getroot()
     components = fresh_root.findall("./components/comp")
     nets = fresh_root.findall("./nets/net")
-    if len(components) != 128 or len(nets) != 95:
+    if len(components) != 129 or len(nets) != 95:
         fail(f"unexpected netlist size: {len(components)} components / {len(nets)} nets")
 
     expected_header = {
@@ -729,12 +843,30 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     ]
     if len(resolved_j4_clearance) != 40:
         fail("upstream J4 hole-clearance baseline is not the expected 40 findings")
-    resolved_identities = Counter(finding_identity(row) for row in resolved_j4_clearance)
+    fresh_drc_rows = fresh_drc.get("violations", [])
+    base_d1_library_warning = [
+        finding for finding in base_drc_rows
+        if finding.get("type") == "lib_footprint_mismatch"
+        and finding.get("severity") == "warning"
+        and len(finding.get("items", [])) == 1
+        and finding["items"][0].get("uuid") == d1_footprint_uuid
+    ]
+    fresh_d1_library_warning = [
+        finding for finding in fresh_drc_rows
+        if finding.get("type") == "lib_footprint_mismatch"
+        and finding.get("severity") == "warning"
+        and len(finding.get("items", [])) == 1
+        and finding["items"][0].get("uuid") == d1_footprint_uuid
+    ]
+    if len(base_d1_library_warning) != 1 or len(fresh_d1_library_warning) != 1:
+        fail("D1 inherited library-warning identity changed")
+    resolved_identities = Counter(finding_identity(row) for row in resolved_j4_clearance + base_d1_library_warning)
     base_drc_findings = finding_counter(base_drc_rows)
     expected_fresh_drc = base_drc_findings - resolved_identities
-    fresh_drc_findings = finding_counter(fresh_drc.get("violations", []))
+    expected_fresh_drc += finding_counter(fresh_d1_library_warning)
+    fresh_drc_findings = finding_counter(fresh_drc_rows)
     if fresh_drc_findings != expected_fresh_drc:
-        fail("fresh DRC findings differ from upstream minus the approved J4 clearance resolution")
+        fail("fresh DRC findings differ after approved J4 resolution and D1 relocation")
     if finding_counter(committed_drc.get("violations", [])) != fresh_drc_findings:
         fail("committed Radxa DRC report is stale relative to the current PCB")
     if fresh_drc.get("unconnected_items"):
@@ -758,12 +890,31 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     ]
     if len(resolved_j4_parity) != 1:
         fail("pinned upstream J4 parity-resolution set changed")
+    fresh_parity_rows = fresh_drc.get("schematic_parity", [])
+    moved_footprint_uuids = {c22_footprint_uuid}
+    base_moved_parity = [
+        finding for finding in base_parity_rows
+        if finding.get("type") == "footprint_symbol_field_mismatch"
+        and finding.get("severity") == "warning"
+        and len(finding.get("items", [])) == 1
+        and finding["items"][0].get("uuid") in moved_footprint_uuids
+    ]
+    fresh_moved_parity = [
+        finding for finding in fresh_parity_rows
+        if finding.get("type") == "footprint_symbol_field_mismatch"
+        and finding.get("severity") == "warning"
+        and len(finding.get("items", [])) == 1
+        and finding["items"][0].get("uuid") in moved_footprint_uuids
+    ]
+    if len(base_moved_parity) != 1 or len(fresh_moved_parity) != 1:
+        fail("moved C22 parity-warning identity changed")
     expected_port_parity = finding_counter(base_parity_rows)
-    expected_port_parity.subtract(finding_counter(resolved_j4_parity))
+    expected_port_parity.subtract(finding_counter(resolved_j4_parity + base_moved_parity))
+    expected_port_parity += finding_counter(fresh_moved_parity)
     expected_port_parity = +expected_port_parity
-    fresh_parity = finding_counter(fresh_drc.get("schematic_parity", []))
+    fresh_parity = finding_counter(fresh_parity_rows)
     if fresh_parity != expected_port_parity:
-        fail("fresh schematic-parity findings differ after the approved J4 metadata correction")
+        fail("fresh schematic-parity findings differ after approved J4 metadata correction and power-component relocation")
     if finding_counter(committed_drc.get("schematic_parity", [])) != fresh_parity:
         fail("committed schematic-parity report is stale relative to the current design")
 
@@ -773,10 +924,22 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     validate_report_contract(base_erc, kind="erc", source="elec_RPI_Robot_HAT.kicad_sch", ignored=EXPECTED_ERC_IGNORES)
     validate_report_contract(committed_erc, kind="erc", source=SCH.name, ignored=EXPECTED_ERC_IGNORES)
     validate_report_contract(fresh_erc, kind="erc", source=SCH.name, ignored=EXPECTED_ERC_IGNORES)
-    base_erc_findings = finding_counter(erc_findings(base_erc))
-    fresh_erc_findings = finding_counter(erc_findings(fresh_erc))
-    if fresh_erc_findings != base_erc_findings:
-        fail("fresh ERC findings differ from the normalized upstream baseline")
+    base_erc_rows = erc_findings(base_erc)
+    fresh_erc_rows = erc_findings(fresh_erc)
+    approved_c45_erc = [
+        finding
+        for finding in fresh_erc_rows
+        if finding.get("type") == "lib_symbol_mismatch"
+        and finding.get("severity") == "warning"
+        and len(finding.get("items", [])) == 1
+        and finding["items"][0].get("uuid") == c45_symbol_uuid
+    ]
+    if len(approved_c45_erc) != 1:
+        fail("expected exactly one C45 library-symbol warning")
+    expected_erc_findings = finding_counter(base_erc_rows) + finding_counter(approved_c45_erc)
+    fresh_erc_findings = finding_counter(fresh_erc_rows)
+    if fresh_erc_findings != expected_erc_findings:
+        fail("fresh ERC findings differ from the normalized upstream baseline plus approved C45 warning")
     if finding_counter(erc_findings(committed_erc)) != fresh_erc_findings:
         fail("committed Radxa ERC report is stale relative to the current schematic")
 
@@ -820,10 +983,11 @@ if summary["pcb"]["unconnected_items"] != len(fresh_drc["unconnected_items"]):
 expected_summary = {
     "board_count": 1,
     "outline_mm": [65.0, 30.9],
-    "footprints": 127,
-    "tracks": 1021,
-    "erc_total": 55,
-    "erc_new": 0,
+    "footprints": 128,
+    "tracks": 1013,
+    "erc_total": 56,
+    "erc_new": 1,
+    "erc_approved": 1,
     "drc_total": 9,
     "drc_new": 0,
     "drc_resolved": 40,
@@ -838,6 +1002,7 @@ actual_summary = {
     "tracks": current_board["tracks"],
     "erc_total": summary["erc_baseline"]["total"],
     "erc_new": summary["erc_baseline"]["new_vs_upstream"],
+    "erc_approved": summary["erc_baseline"].get("approved_additions_vs_upstream"),
     "drc_total": summary["drc_baseline"]["total"],
     "drc_new": summary["drc_baseline"]["new_vs_upstream"],
     "drc_resolved": summary["drc_baseline"].get("resolved_vs_upstream"),
@@ -868,5 +1033,6 @@ if summary["host_mapping"] != expected_host_mapping:
 print("STRICT PORT CHECK: PASS")
 print(
     "Regenerated KiCad ERC/DRC/parity/netlist evidence and validated one "
-    "65.00 x 30.90 mm centerline-outline routed HAT with no new findings versus upstream."
+    "65.00 x 30.90 mm centerline-outline routed HAT with no new DRC/parity findings "
+    "and exactly one approved C45 library-symbol ERC warning versus upstream."
 )

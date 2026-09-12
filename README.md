@@ -40,9 +40,11 @@ Using hardware I2C3 M0 on pins 3/5 requires the Radxa device-tree configuration 
 - KiCad sources: [`hardware/kicad/`](hardware/kicad/)
 - Change matrix: [`docs/09_STRICT_PORT_CHANGE_MATRIX.md`](docs/09_STRICT_PORT_CHANGE_MATRIX.md)
 - Current status: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md)
+- Power review: [`docs/10_POWER_INTEGRITY_REVIEW.md`](docs/10_POWER_INTEGRITY_REVIEW.md)
+- Mechanical/RF review: [`docs/11_RADXA_MECHANICAL_REVIEW.md`](docs/11_RADXA_MECHANICAL_REVIEW.md)
 - Validation evidence: [`validation/strict_port/`](validation/strict_port/)
 
-The imported board is fully routed but is **not yet approved for fabrication**. KiCad 10.0.6 CI regenerates reports from both the port and pinned upstream commit and locks the imported rule/ignored-check policy. Mechanical clearance against the Radxa ZERO 3W, AP63205 2 A power/thermal margin, USB-C backfeed behavior and all inherited DRC findings still require sign-off.
+The routed board is **not yet approved for fabrication**. KiCad 10.0.6 CI regenerates reports from both the port and pinned upstream commit and locks rule policy, J4, the C45/U9 power region and the filled zone. Current DRC has zero errors and 9 inherited library warnings. Remaining gates include J4 supplier/prototype signoff, C45 physical gap, the 2 A load/thermal envelope, single-source backfeed testing, external-antenna/OTA policy, cable access and final manufacturing-library review.
 
 ## License and attribution
 
