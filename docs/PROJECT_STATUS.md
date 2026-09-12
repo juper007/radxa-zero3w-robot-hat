@@ -72,8 +72,8 @@ The checker pins the exact J4 footprint S-expression after platform newline and 
 - [ ] Use the external U.FL antenna or complete OTA validation; the full-size copper HAT has no approved onboard-antenna keepout.[7]
 - [ ] Verify USB-C, micro-HDMI, microSD and CSI access with nominated cables/FPC and the controlled spacer stack; optional heatsinks remain unsupported until overlaid.
 
-- [x] Reconciled candidate BOM/position outputs with the upstream production release: the exact upstream DNP set remains `C25/R10/R11/R16/R17/R36/R37/R41/U4`, with 115 populated BOM references and 110 populated PnP references. A final commit-keyed package must still be generated after approval.
-- [ ] Perform an independent schematic, polarity, footprint and connector review.
+- [x] Reconciled BOM/position outputs with the upstream production release and completed deterministic commit-keyed EVT package generation plus byte-for-byte reproduction: the exact upstream DNP set remains `C25/R10/R11/R16/R17/R36/R37/R41/U4`, with 115 populated BOM references and 110 populated PnP references. Each package manifest records its exact source commit and remains `fabrication_ready=false`.
+- [x] Completed independent fail-closed reviews of the schematic, connector population, device tree, manufacturing policy and regression guards with no unresolved digital blocker. Physical and runtime EVT remains pending as listed above.
 
 ## Release status
 
