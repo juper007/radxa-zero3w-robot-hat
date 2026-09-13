@@ -291,7 +291,7 @@ def main() -> None:
     populated_refs = refs(populated_bom, "Refs")
     all_pos_refs = refs(all_pos, "Ref")
     populated_pos_refs = refs(populated_pos, "Ref")
-    if (len(full_bom), len(populated_bom)) != (124, 115):
+    if (len(full_bom), len(populated_bom)) != (123, 114):
         raise SystemExit("unexpected BOM row counts")
     if (len(all_pos), len(populated_pos)) != (119, 110):
         raise SystemExit("unexpected PnP row counts")

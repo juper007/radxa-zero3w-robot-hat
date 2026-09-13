@@ -9,6 +9,7 @@ on:
       - 'hardware/kicad/check_strict_port.py'
       - 'hardware/kicad/test_strict_port_guards.py'
       - 'hardware/kicad/test_qwiic_functional_parity.py'
+      - 'hardware/kicad/test_board_artwork.py'
       - 'software/overlays/**'
       - 'production/*.py'
       - 'validation/strict_port/**'
@@ -22,6 +23,7 @@ on:
       - 'hardware/kicad/check_strict_port.py'
       - 'hardware/kicad/test_strict_port_guards.py'
       - 'hardware/kicad/test_qwiic_functional_parity.py'
+      - 'hardware/kicad/test_board_artwork.py'
       - 'software/overlays/**'
       - 'production/*.py'
       - 'validation/strict_port/**'
@@ -62,6 +64,7 @@ jobs:
           python3 hardware/kicad/check_strict_port.py
           python3 hardware/kicad/test_strict_port_guards.py
           python3 hardware/kicad/test_qwiic_functional_parity.py
+          python3 hardware/kicad/test_board_artwork.py
           cpp -nostdinc -I software/overlays/include -undef -x assembler-with-cpp \
             software/overlays/radxa-zero3w-robot-hat-qwiic.dts /tmp/radxa-zero3w-robot-hat-qwiic.pp.dts
           dtc -Wno-alias_paths -@ -I dts -O dtb -o /tmp/radxa-zero3w-robot-hat-qwiic.dtbo \

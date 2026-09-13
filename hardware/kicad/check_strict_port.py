@@ -57,10 +57,15 @@ EXPECTED_ERC_IGNORES = {
 ALLOWED_ADDED_COMPONENTS = {
     "C45": ("10uF 50V X7R", "Capacitor_SMD:C_1210_3225Metric"),
 }
+ALLOWED_REMOVED_COMPONENTS = {"H2", "H3"}
 ALLOWED_COMPONENT_VALUES = {
     "C21": ("22u 6V3", "22u 10V"),
     "C22": ("22u 6V3", "22u 10V"),
     "J4": ("Female Header 2x20 SMD", "Radxa ZERO 3W 2x20 HAT Header"),
+}
+REMOVED_LOGO_SYMBOL_UUIDS = {
+    "e8f2ab0f-6624-45f8-b8e5-c599d24045f9",  # H2, Hugging Face
+    "27295418-94b8-4760-ba2d-314b58e4124d",  # H3, Pollen Robotics
 }
 
 
@@ -436,14 +441,14 @@ def validate_upstream_netlist(base: Path, port: Path) -> None:
     port_components = component_map(port)
     added = set(port_components) - set(base_components)
     removed = set(base_components) - set(port_components)
-    if added != set(ALLOWED_ADDED_COMPONENTS) or removed:
+    if added != set(ALLOWED_ADDED_COMPONENTS) or removed != ALLOWED_REMOVED_COMPONENTS:
         fail(f"component references differ from upstream: added={sorted(added)}, removed={sorted(removed)}")
     for ref, expected_component in ALLOWED_ADDED_COMPONENTS.items():
         if port_components[ref] != expected_component:
             fail(f"added component identity changed: {ref}")
     differences = {
         ref: (base_components[ref], port_components[ref])
-        for ref in base_components
+        for ref in set(base_components) & set(port_components)
         if base_components[ref] != port_components[ref]
     }
     expected = {
@@ -821,7 +826,7 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     fresh_root = ET.parse(fresh_netlist_path).getroot()
     components = fresh_root.findall("./components/comp")
     nets = fresh_root.findall("./nets/net")
-    if len(components) != 129 or len(nets) != 95:
+    if len(components) != 127 or len(nets) != 95:
         fail(f"unexpected netlist size: {len(components)} components / {len(nets)} nets")
 
     expected_header = {
@@ -985,8 +990,19 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     ]
     if len(resolved_footprint_links) != 8:
         fail("upstream footprint-link resolution set is not the expected 8 findings")
+    resolved_logo_symbol_warnings = [
+        finding for finding in base_erc_rows
+        if finding.get("type") == "lib_symbol_issues"
+        and finding.get("severity") == "warning"
+        and len(finding.get("items", [])) == 1
+        and finding["items"][0].get("uuid") in REMOVED_LOGO_SYMBOL_UUIDS
+    ]
+    if len(resolved_logo_symbol_warnings) != 2:
+        fail("upstream removed-logo ERC resolution set is not the expected 2 findings")
     expected_erc_findings = finding_counter(base_erc_rows)
-    expected_erc_findings.subtract(finding_counter(resolved_footprint_links))
+    expected_erc_findings.subtract(
+        finding_counter(resolved_footprint_links + resolved_logo_symbol_warnings)
+    )
     expected_erc_findings = +expected_erc_findings
     expected_erc_findings += finding_counter(approved_c45_erc)
     fresh_erc_findings = finding_counter(fresh_erc_rows)
@@ -1023,7 +1039,7 @@ fresh_drc_rows = fresh_drc["violations"]
 fresh_parity_rows = fresh_drc["schematic_parity"]
 if summary["erc_baseline"]["types"] != type_counts(fresh_erc_rows):
     fail("summary ERC type counts are stale")
-if summary["erc_baseline"].get("resolved_vs_upstream") != len(resolved_footprint_links):
+if summary["erc_baseline"].get("resolved_vs_upstream") != len(resolved_footprint_links) + len(resolved_logo_symbol_warnings):
     fail("summary resolved ERC count is stale")
 if summary["drc_baseline"].get("resolved_vs_upstream") != len(resolved_j4_clearance) + len(resolved_library_warnings):
     fail("summary resolved DRC count is stale")
@@ -1044,12 +1060,12 @@ if summary["pcb"]["unconnected_items"] != len(fresh_drc["unconnected_items"]):
 expected_summary = {
     "board_count": 1,
     "outline_mm": [65.0, 30.9],
-    "footprints": 128,
+    "footprints": 126,
     "tracks": 1013,
-    "erc_total": 48,
+    "erc_total": 46,
     "erc_new": 1,
     "erc_approved": 1,
-    "erc_resolved": 8,
+    "erc_resolved": 10,
     "drc_total": 0,
     "drc_new": 0,
     "drc_resolved": 49,
@@ -1105,6 +1121,6 @@ print("STRICT PORT CHECK: PASS")
 print(
     "Regenerated KiCad ERC/DRC/parity/netlist evidence and validated one "
     "65.00 x 30.90 mm centerline-outline routed HAT with zero DRC findings, "
-    "eight resolved footprint-link ERC warnings, and exactly one approved C45 "
-    "library-symbol ERC warning versus upstream."
+    "ten resolved ERC warnings including the removed H2/H3 logo symbols, and "
+    "exactly one approved C45 library-symbol ERC warning versus upstream."
 )

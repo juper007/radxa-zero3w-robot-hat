@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Users\juper\OneDrive\Documents\ChatGPT\Microduck_DIY\radxa-zero3w-robot-hat\hardware\kicad\radxa_zero3w_robot_hat.kicad_sch</source>
-    <date>2026-09-11T21:07:28</date>
+    <date>2026-09-13T06:33:49</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -302,95 +302,6 @@
       <property name="exclude_from_board"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>7d2f196e-827d-42b9-a370-6aaba9a2f4b1</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="H2">
-      <value>Logo HF 2025</value>
-      <footprint>Library_Pollen:Logo_HF_2025</footprint>
-      <description>Logo HF</description>
-      <fields>
-        <field name="Dielectric"/>
-        <field name="Field7"/>
-        <field name="KLC_S3.3"/>
-        <field name="KLC_S4.1"/>
-        <field name="Length"/>
-        <field name="Power Rating"/>
-        <field name="Resistance"/>
-        <field name="Tolerance"/>
-        <field name="Voltage Rating"/>
-        <field name="Width"/>
-        <field name="FT Position Offset"/>
-        <field name="Footprint">Library_Pollen:Logo_HF_2025</field>
-        <field name="Datasheet"/>
-        <field name="Description">Logo HF</field>
-      </fields>
-      <libsource lib="Library_Pollen" part="Logo HF 2025" description=""/>
-      <property name="Dielectric" value=""/>
-      <property name="Field7" value=""/>
-      <property name="KLC_S3.3" value=""/>
-      <property name="KLC_S4.1" value=""/>
-      <property name="Length" value=""/>
-      <property name="Power Rating" value=""/>
-      <property name="Resistance" value=""/>
-      <property name="Tolerance" value=""/>
-      <property name="Voltage Rating" value=""/>
-      <property name="Width" value=""/>
-      <property name="FT Position Offset" value=""/>
-      <property name="Sheetname" value="radxa_zero3w_robot_hat"/>
-      <property name="Sheetfile" value="radxa_zero3w_robot_hat.kicad_sch"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>e8f2ab0f-6624-45f8-b8e5-c599d24045f9</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="H3">
-      <value>DNP Logo Pollen 2021</value>
-      <footprint>Library_Pollen:Logo_Pollen_2021_sq</footprint>
-      <description>Logo Pollen</description>
-      <fields>
-        <field name="Man."/>
-        <field name="Man. Ref."/>
-        <field name="Dielectric"/>
-        <field name="Field7"/>
-        <field name="KLC_S3.3"/>
-        <field name="KLC_S4.1"/>
-        <field name="Length"/>
-        <field name="Power Rating"/>
-        <field name="Resistance"/>
-        <field name="Tolerance"/>
-        <field name="Voltage Rating"/>
-        <field name="Width"/>
-        <field name="FT Position Offset"/>
-        <field name="Footprint">Library_Pollen:Logo_Pollen_2021_sq</field>
-        <field name="Datasheet"/>
-        <field name="Description">Logo Pollen</field>
-      </fields>
-      <libsource lib="Library_Pollen" part="Logo Pollen 2021" description=""/>
-      <property name="Man." value=""/>
-      <property name="Man. Ref." value=""/>
-      <property name="Dielectric" value=""/>
-      <property name="Field7" value=""/>
-      <property name="KLC_S3.3" value=""/>
-      <property name="KLC_S4.1" value=""/>
-      <property name="Length" value=""/>
-      <property name="Power Rating" value=""/>
-      <property name="Resistance" value=""/>
-      <property name="Tolerance" value=""/>
-      <property name="Voltage Rating" value=""/>
-      <property name="Width" value=""/>
-      <property name="FT Position Offset" value=""/>
-      <property name="Sheetname" value="radxa_zero3w_robot_hat"/>
-      <property name="Sheetfile" value="radxa_zero3w_robot_hat.kicad_sch"/>
-      <property name="exclude_from_bom"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>27295418-94b8-4760-ba2d-314b58e4124d</tstamps>
       <units>
         <unit name="A">
           <pins/>
@@ -7010,24 +6921,6 @@
         <pin num="7" name="B" type="bidirectional"/>
         <pin num="8" name="VCC" type="power_in"/>
       </pins>
-    </libpart>
-    <libpart lib="Library_Pollen" part="Logo HF 2025">
-      <fields>
-        <field name="Reference">H</field>
-        <field name="Value">Logo HF 2025</field>
-        <field name="Footprint">Library_Pollen:Logo_HF_2025</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-    </libpart>
-    <libpart lib="Library_Pollen" part="Logo Pollen 2021">
-      <fields>
-        <field name="Reference">H</field>
-        <field name="Value">Logo Pollen 2021</field>
-        <field name="Footprint"/>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
     </libpart>
     <libpart lib="Library_Pollen" part="Microphone_MEMS">
       <description>Microphone</description>

@@ -1,5 +1,5 @@
 {
-  "revision": "v0.23-qwiic-functional-parity",
+  "revision": "v0.24-logo-free-artwork",
   "classification": "strict single-board port",
   "upstream": {
     "repository": "https://github.com/pollen-robotics/elec_RPI_Robot_HAT",
@@ -15,22 +15,22 @@
     "surface_finish": "ENIG"
   },
   "schematic": {
-    "components": 129,
+    "components": 127,
     "nets": 95
   },
   "erc_baseline": {
-    "total": 48,
-    "warning": 48,
+    "total": 46,
+    "warning": 46,
     "types": {
       "lib_symbol_mismatch": 43,
-      "lib_symbol_issues": 5
+      "lib_symbol_issues": 3
     },
     "new_vs_upstream": 1,
     "approved_additions_vs_upstream": 1,
-    "resolved_vs_upstream": 8
+    "resolved_vs_upstream": 10
   },
   "pcb": {
-    "footprints": 128,
+    "footprints": 126,
     "net_table_entries_including_empty": 96,
     "tracks": 1013,
     "zones": 1,
