@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>C:\Users\juper\OneDrive\Documents\ChatGPT\Microduck_DIY\radxa-zero3w-robot-hat\hardware\kicad\radxa_zero3w_robot_hat.kicad_sch</source>
-    <date>2026-09-13T06:33:49</date>
+    <source>C:\Users\juper\AppData\Local\Temp\robot-hat-stage2-integration-rsosv2e1\hardware\kicad\radxa_zero3w_robot_hat.kicad_sch</source>
+    <date>2026-09-13T11:00:24</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -865,51 +865,52 @@
       </units>
     </comp>
     <comp ref="C39">
-      <value>100n 6V3</value>
+      <value>100nF 50V X7R</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
-      <description>Capa 0402</description>
+      <datasheet>https://product.samsungsem.com/mlcc/CL05B104KB5NNN.do</datasheet>
+      <description>100nF 50V X7R 10% 0402; Samsung CL05B104KB5NNNC</description>
       <fields>
-        <field name="Man."/>
-        <field name="Man. Ref."/>
+        <field name="Man.">Samsung Electro-Mechanics</field>
+        <field name="Man. Ref.">CL05B104KB5NNNC</field>
         <field name="Length"/>
         <field name="Width"/>
-        <field name="LCSC Part">C1525</field>
-        <field name="Dielectric"/>
+        <field name="LCSC Part"/>
+        <field name="Dielectric">X7R</field>
         <field name="Power Rating"/>
         <field name="Resistance"/>
-        <field name="Tolerance"/>
-        <field name="Voltage Rating"/>
+        <field name="Tolerance">10%</field>
+        <field name="Voltage Rating">50V</field>
         <field name="KLC_S3.3"/>
         <field name="KLC_S4.1"/>
         <field name="Arrow Part Number"/>
         <field name="Arrow Price/Stock"/>
         <field name="Height"/>
-        <field name="Manufacturer_Name"/>
-        <field name="Manufacturer_Part_Number"/>
+        <field name="Manufacturer_Name">Samsung Electro-Mechanics</field>
+        <field name="Manufacturer_Part_Number">CL05B104KB5NNNC</field>
         <field name="Mouser Part Number"/>
         <field name="Mouser Price/Stock"/>
         <field name="Footprint">Capacitor_SMD:C_0402_1005Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description">Capa 0402</field>
+        <field name="Datasheet">https://product.samsungsem.com/mlcc/CL05B104KB5NNN.do</field>
+        <field name="Description">100nF 50V X7R 10% 0402; Samsung CL05B104KB5NNNC</field>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="Man." value=""/>
-      <property name="Man. Ref." value=""/>
+      <property name="Man." value="Samsung Electro-Mechanics"/>
+      <property name="Man. Ref." value="CL05B104KB5NNNC"/>
       <property name="Length" value=""/>
       <property name="Width" value=""/>
-      <property name="LCSC Part" value="C1525"/>
-      <property name="Dielectric" value=""/>
+      <property name="LCSC Part" value=""/>
+      <property name="Dielectric" value="X7R"/>
       <property name="Power Rating" value=""/>
       <property name="Resistance" value=""/>
-      <property name="Tolerance" value=""/>
-      <property name="Voltage Rating" value=""/>
+      <property name="Tolerance" value="10%"/>
+      <property name="Voltage Rating" value="50V"/>
       <property name="KLC_S3.3" value=""/>
       <property name="KLC_S4.1" value=""/>
       <property name="Arrow Part Number" value=""/>
       <property name="Arrow Price/Stock" value=""/>
       <property name="Height" value=""/>
-      <property name="Manufacturer_Name" value=""/>
-      <property name="Manufacturer_Part_Number" value=""/>
+      <property name="Manufacturer_Name" value="Samsung Electro-Mechanics"/>
+      <property name="Manufacturer_Part_Number" value="CL05B104KB5NNNC"/>
       <property name="Mouser Part Number" value=""/>
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Power"/>
@@ -1053,33 +1054,6 @@
         </unit>
       </units>
     </comp>
-    <comp ref="D2">
-      <value>3V3 Zener Diode</value>
-      <footprint>Diode_SMD:D_SOD-123</footprint>
-      <description>Zener diode</description>
-      <fields>
-        <field name="LCSC Part">C19077392</field>
-        <field name="Footprint">Diode_SMD:D_SOD-123</field>
-        <field name="Datasheet"/>
-        <field name="Description">Zener diode</field>
-      </fields>
-      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
-      <property name="LCSC Part" value="C19077392"/>
-      <property name="Sheetname" value="Power"/>
-      <property name="Sheetfile" value="power.kicad_sch"/>
-      <property name="ki_keywords" value="diode"/>
-      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
-      <sheetpath names="/Schematic/Power/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05/"/>
-      <tstamps>4ebc154c-2991-4938-adec-d5cd56d0f93a</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
     <comp ref="L4">
       <value>6,8u 2A</value>
       <footprint>Inductor_SMD:L_Bourns_SRN6045TA</footprint>
@@ -1134,22 +1108,57 @@
       </units>
     </comp>
     <comp ref="Q2">
-      <value>SI2312CDS-T1-GE3</value>
-      <footprint>Package_TO_SOT_SMD:TSOT-23</footprint>
-      <description>Depletion-mode N-channel MOSFET gate/source/drain</description>
+      <value>DMN3023L-7</value>
+      <footprint>Package_TO_SOT_SMD:DMN3023L_SOT23_Diodes</footprint>
+      <datasheet>https://www.diodes.com/assets/Datasheets/DMN3023L.pdf</datasheet>
+      <description>Enhancement-mode N-channel MOSFET; 30V VDS; +/-20V VGS; G/S/D=1/2/3</description>
       <fields>
-        <field name="LCSC Part">C142518</field>
-        <field name="Footprint">Package_TO_SOT_SMD:TSOT-23</field>
-        <field name="Datasheet"/>
-        <field name="Description">Depletion-mode N-channel MOSFET gate/source/drain</field>
+        <field name="LCSC Part">C443825</field>
+        <field name="Manufacturer_Name">Diodes Incorporated</field>
+        <field name="Manufacturer_Part_Number">DMN3023L-7</field>
+        <field name="Footprint">Package_TO_SOT_SMD:DMN3023L_SOT23_Diodes</field>
+        <field name="Datasheet">https://www.diodes.com/assets/Datasheets/DMN3023L.pdf</field>
+        <field name="Description">Enhancement-mode N-channel MOSFET; 30V VDS; +/-20V VGS; G/S/D=1/2/3</field>
       </fields>
-      <libsource lib="Transistor_FET_Other" part="Q_NMOS_Depletion_GSD" description="Depletion-mode N-channel MOSFET gate/source/drain"/>
-      <property name="LCSC Part" value="C142518"/>
+      <libsource lib="Transistor_FET" part="Q_NMOS_GSD" description="N-MOSFET transistor, gate/source/drain"/>
+      <property name="LCSC Part" value="C443825"/>
+      <property name="Manufacturer_Name" value="Diodes Incorporated"/>
+      <property name="Manufacturer_Part_Number" value="DMN3023L-7"/>
       <property name="Sheetname" value="Power"/>
       <property name="Sheetfile" value="power.kicad_sch"/>
-      <property name="ki_keywords" value="NMOS"/>
+      <property name="ki_keywords" value="transistor NMOS N-MOS N-MOSFET"/>
       <sheetpath names="/Schematic/Power/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05/"/>
       <tstamps>988dc998-a0db-43a1-8867-b61a4cf99d49</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Q3">
+      <value>BC847B</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf</datasheet>
+      <description>45V 100mA NPN; 1=B 2=E 3=C</description>
+      <fields>
+        <field name="Manufacturer_Name">Nexperia</field>
+        <field name="Manufacturer_Part_Number">BC847B,215</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet">https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf</field>
+        <field name="Description">45V 100mA NPN; 1=B 2=E 3=C</field>
+      </fields>
+      <libsource lib="Transistor_BJT" part="Q_NPN_BEC" description="NPN transistor, base/emitter/collector"/>
+      <property name="Manufacturer_Name" value="Nexperia"/>
+      <property name="Manufacturer_Part_Number" value="BC847B,215"/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_keywords" value="BJT"/>
+      <sheetpath names="/Schematic/Power/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05/"/>
+      <tstamps>79399c55-9b35-439b-b1bf-0e584112480a</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1188,30 +1197,30 @@
       </units>
     </comp>
     <comp ref="R24">
-      <value>10k</value>
+      <value>100k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
         <field name="Man."/>
         <field name="Man. Ref."/>
-        <field name="Length">1.6</field>
-        <field name="Width">0.9</field>
+        <field name="Length"/>
+        <field name="Width"/>
         <field name="LCSC"/>
         <field name="'FT Position Offset"/>
         <field name="Field7"/>
-        <field name="LCSC Part">C25744</field>
+        <field name="LCSC Part"/>
         <field name="Dielectric"/>
-        <field name="Power Rating"/>
+        <field name="Power Rating">0.063W</field>
         <field name="Resistance"/>
-        <field name="Tolerance"/>
-        <field name="Voltage Rating"/>
+        <field name="Tolerance">1%</field>
+        <field name="Voltage Rating">50V</field>
         <field name="KLC_S3.3"/>
         <field name="KLC_S4.1"/>
         <field name="Arrow Part Number"/>
         <field name="Arrow Price/Stock"/>
         <field name="Height"/>
-        <field name="Manufacturer_Name"/>
-        <field name="Manufacturer_Part_Number"/>
+        <field name="Manufacturer_Name">Yageo</field>
+        <field name="Manufacturer_Part_Number">RC0402FR-07100KL</field>
         <field name="Mouser Part Number"/>
         <field name="Mouser Price/Stock"/>
         <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
@@ -1221,24 +1230,24 @@
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
       <property name="Man." value=""/>
       <property name="Man. Ref." value=""/>
-      <property name="Length" value="1.6"/>
-      <property name="Width" value="0.9"/>
+      <property name="Length" value=""/>
+      <property name="Width" value=""/>
       <property name="LCSC" value=""/>
       <property name="'FT Position Offset" value=""/>
       <property name="Field7" value=""/>
-      <property name="LCSC Part" value="C25744"/>
+      <property name="LCSC Part" value=""/>
       <property name="Dielectric" value=""/>
-      <property name="Power Rating" value=""/>
+      <property name="Power Rating" value="0.063W"/>
       <property name="Resistance" value=""/>
-      <property name="Tolerance" value=""/>
-      <property name="Voltage Rating" value=""/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Voltage Rating" value="50V"/>
       <property name="KLC_S3.3" value=""/>
       <property name="KLC_S4.1" value=""/>
       <property name="Arrow Part Number" value=""/>
       <property name="Arrow Price/Stock" value=""/>
       <property name="Height" value=""/>
-      <property name="Manufacturer_Name" value=""/>
-      <property name="Manufacturer_Part_Number" value=""/>
+      <property name="Manufacturer_Name" value="Yageo"/>
+      <property name="Manufacturer_Part_Number" value="RC0402FR-07100KL"/>
       <property name="Mouser Part Number" value=""/>
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Power"/>
@@ -1247,6 +1256,144 @@
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Power/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05/"/>
       <tstamps>bb5449eb-0127-4b2a-bba9-1f86ed380c81</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R42">
+      <value>100k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Resistor, small symbol</description>
+      <fields>
+        <field name="Man."/>
+        <field name="Man. Ref."/>
+        <field name="Length"/>
+        <field name="Width"/>
+        <field name="LCSC"/>
+        <field name="'FT Position Offset"/>
+        <field name="Field7"/>
+        <field name="LCSC Part"/>
+        <field name="Dielectric"/>
+        <field name="Power Rating">0.063W</field>
+        <field name="Resistance"/>
+        <field name="Tolerance">1%</field>
+        <field name="Voltage Rating">50V</field>
+        <field name="KLC_S3.3"/>
+        <field name="KLC_S4.1"/>
+        <field name="Arrow Part Number"/>
+        <field name="Arrow Price/Stock"/>
+        <field name="Height"/>
+        <field name="Manufacturer_Name">Yageo</field>
+        <field name="Manufacturer_Part_Number">RC0402FR-07100KL</field>
+        <field name="Mouser Part Number"/>
+        <field name="Mouser Price/Stock"/>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor, small symbol</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <property name="Man." value=""/>
+      <property name="Man. Ref." value=""/>
+      <property name="Length" value=""/>
+      <property name="Width" value=""/>
+      <property name="LCSC" value=""/>
+      <property name="'FT Position Offset" value=""/>
+      <property name="Field7" value=""/>
+      <property name="LCSC Part" value=""/>
+      <property name="Dielectric" value=""/>
+      <property name="Power Rating" value="0.063W"/>
+      <property name="Resistance" value=""/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Voltage Rating" value="50V"/>
+      <property name="KLC_S3.3" value=""/>
+      <property name="KLC_S4.1" value=""/>
+      <property name="Arrow Part Number" value=""/>
+      <property name="Arrow Price/Stock" value=""/>
+      <property name="Height" value=""/>
+      <property name="Manufacturer_Name" value="Yageo"/>
+      <property name="Manufacturer_Part_Number" value="RC0402FR-07100KL"/>
+      <property name="Mouser Part Number" value=""/>
+      <property name="Mouser Price/Stock" value=""/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_keywords" value="R resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Schematic/Power/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05/"/>
+      <tstamps>f864d9c2-da07-4c38-be5b-4f9fb5a22863</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R43">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Resistor, small symbol</description>
+      <fields>
+        <field name="Man."/>
+        <field name="Man. Ref."/>
+        <field name="Length"/>
+        <field name="Width"/>
+        <field name="LCSC"/>
+        <field name="'FT Position Offset"/>
+        <field name="Field7"/>
+        <field name="LCSC Part"/>
+        <field name="Dielectric"/>
+        <field name="Power Rating">0.063W</field>
+        <field name="Resistance"/>
+        <field name="Tolerance">1%</field>
+        <field name="Voltage Rating">50V</field>
+        <field name="KLC_S3.3"/>
+        <field name="KLC_S4.1"/>
+        <field name="Arrow Part Number"/>
+        <field name="Arrow Price/Stock"/>
+        <field name="Height"/>
+        <field name="Manufacturer_Name">Yageo</field>
+        <field name="Manufacturer_Part_Number">RC0402FR-0710KL</field>
+        <field name="Mouser Part Number"/>
+        <field name="Mouser Price/Stock"/>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor, small symbol</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <property name="Man." value=""/>
+      <property name="Man. Ref." value=""/>
+      <property name="Length" value=""/>
+      <property name="Width" value=""/>
+      <property name="LCSC" value=""/>
+      <property name="'FT Position Offset" value=""/>
+      <property name="Field7" value=""/>
+      <property name="LCSC Part" value=""/>
+      <property name="Dielectric" value=""/>
+      <property name="Power Rating" value="0.063W"/>
+      <property name="Resistance" value=""/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Voltage Rating" value="50V"/>
+      <property name="KLC_S3.3" value=""/>
+      <property name="KLC_S4.1" value=""/>
+      <property name="Arrow Part Number" value=""/>
+      <property name="Arrow Price/Stock" value=""/>
+      <property name="Height" value=""/>
+      <property name="Manufacturer_Name" value="Yageo"/>
+      <property name="Manufacturer_Part_Number" value="RC0402FR-0710KL"/>
+      <property name="Mouser Part Number" value=""/>
+      <property name="Mouser Price/Stock" value=""/>
+      <property name="Sheetname" value="Power"/>
+      <property name="Sheetfile" value="power.kicad_sch"/>
+      <property name="ki_keywords" value="R resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Schematic/Power/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05/"/>
+      <tstamps>6c7d2c31-e552-448c-960d-2fcf0feebe00</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -5594,6 +5741,66 @@
         </unit>
       </units>
     </comp>
+    <comp ref="Q4">
+      <value>BC847B</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf</datasheet>
+      <description>45V 100mA NPN; 1=B 2=E 3=C</description>
+      <fields>
+        <field name="Manufacturer_Name">Nexperia</field>
+        <field name="Manufacturer_Part_Number">BC847B,215</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet">https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf</field>
+        <field name="Description">45V 100mA NPN; 1=B 2=E 3=C</field>
+      </fields>
+      <libsource lib="Transistor_BJT" part="Q_NPN_BEC" description="NPN transistor, base/emitter/collector"/>
+      <property name="Manufacturer_Name" value="Nexperia"/>
+      <property name="Manufacturer_Part_Number" value="BC847B,215"/>
+      <property name="Sheetname" value="Audio"/>
+      <property name="Sheetfile" value="audio.kicad_sch"/>
+      <property name="ki_keywords" value="BJT"/>
+      <sheetpath names="/Schematic/Audio/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d/"/>
+      <tstamps>55a28f18-6142-4d98-baf6-bea438f47d64</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Q5">
+      <value>BC847B</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf</datasheet>
+      <description>45V 100mA NPN; 1=B 2=E 3=C</description>
+      <fields>
+        <field name="Manufacturer_Name">Nexperia</field>
+        <field name="Manufacturer_Part_Number">BC847B,215</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet">https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf</field>
+        <field name="Description">45V 100mA NPN; 1=B 2=E 3=C</field>
+      </fields>
+      <libsource lib="Transistor_BJT" part="Q_NPN_BEC" description="NPN transistor, base/emitter/collector"/>
+      <property name="Manufacturer_Name" value="Nexperia"/>
+      <property name="Manufacturer_Part_Number" value="BC847B,215"/>
+      <property name="Sheetname" value="Audio"/>
+      <property name="Sheetfile" value="audio.kicad_sch"/>
+      <property name="ki_keywords" value="BJT"/>
+      <sheetpath names="/Schematic/Audio/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d/"/>
+      <tstamps>3caceeee-1a65-4661-9bb5-4d85aac0b495</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
     <comp ref="R1">
       <value>10k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
@@ -5733,23 +5940,23 @@
       </units>
     </comp>
     <comp ref="R3">
-      <value>0R</value>
+      <value>10k</value>
       <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
       <description>Resistor, small symbol</description>
       <fields>
-        <field name="LCSC Part">C17168</field>
+        <field name="LCSC Part"/>
         <field name="Dielectric"/>
-        <field name="Power Rating"/>
+        <field name="Power Rating">0.063W</field>
         <field name="Resistance"/>
-        <field name="Tolerance"/>
-        <field name="Voltage Rating"/>
+        <field name="Tolerance">1%</field>
+        <field name="Voltage Rating">50V</field>
         <field name="KLC_S3.3"/>
         <field name="KLC_S4.1"/>
         <field name="Arrow Part Number"/>
         <field name="Arrow Price/Stock"/>
         <field name="Height"/>
-        <field name="Manufacturer_Name"/>
-        <field name="Manufacturer_Part_Number"/>
+        <field name="Manufacturer_Name">Yageo</field>
+        <field name="Manufacturer_Part_Number">RC0402FR-0710KL</field>
         <field name="Mouser Part Number"/>
         <field name="Mouser Price/Stock"/>
         <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
@@ -5757,19 +5964,19 @@
         <field name="Description">Resistor, small symbol</field>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <property name="LCSC Part" value="C17168"/>
+      <property name="LCSC Part" value=""/>
       <property name="Dielectric" value=""/>
-      <property name="Power Rating" value=""/>
+      <property name="Power Rating" value="0.063W"/>
       <property name="Resistance" value=""/>
-      <property name="Tolerance" value=""/>
-      <property name="Voltage Rating" value=""/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Voltage Rating" value="50V"/>
       <property name="KLC_S3.3" value=""/>
       <property name="KLC_S4.1" value=""/>
       <property name="Arrow Part Number" value=""/>
       <property name="Arrow Price/Stock" value=""/>
       <property name="Height" value=""/>
-      <property name="Manufacturer_Name" value=""/>
-      <property name="Manufacturer_Part_Number" value=""/>
+      <property name="Manufacturer_Name" value="Yageo"/>
+      <property name="Manufacturer_Part_Number" value="RC0402FR-0710KL"/>
       <property name="Mouser Part Number" value=""/>
       <property name="Mouser Price/Stock" value=""/>
       <property name="Sheetname" value="Audio"/>
@@ -6256,6 +6463,171 @@
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/Schematic/Audio/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d/"/>
       <tstamps>eee1827b-0656-425c-9ae9-c99b89434898</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R44">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Resistor, small symbol</description>
+      <fields>
+        <field name="LCSC Part"/>
+        <field name="Dielectric"/>
+        <field name="Power Rating">0.063W</field>
+        <field name="Resistance"/>
+        <field name="Tolerance">1%</field>
+        <field name="Voltage Rating">50V</field>
+        <field name="KLC_S3.3"/>
+        <field name="KLC_S4.1"/>
+        <field name="Arrow Part Number"/>
+        <field name="Arrow Price/Stock"/>
+        <field name="Height"/>
+        <field name="Manufacturer_Name">Yageo</field>
+        <field name="Manufacturer_Part_Number">RC0402FR-0710KL</field>
+        <field name="Mouser Part Number"/>
+        <field name="Mouser Price/Stock"/>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor, small symbol</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <property name="LCSC Part" value=""/>
+      <property name="Dielectric" value=""/>
+      <property name="Power Rating" value="0.063W"/>
+      <property name="Resistance" value=""/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Voltage Rating" value="50V"/>
+      <property name="KLC_S3.3" value=""/>
+      <property name="KLC_S4.1" value=""/>
+      <property name="Arrow Part Number" value=""/>
+      <property name="Arrow Price/Stock" value=""/>
+      <property name="Height" value=""/>
+      <property name="Manufacturer_Name" value="Yageo"/>
+      <property name="Manufacturer_Part_Number" value="RC0402FR-0710KL"/>
+      <property name="Mouser Part Number" value=""/>
+      <property name="Mouser Price/Stock" value=""/>
+      <property name="Sheetname" value="Audio"/>
+      <property name="Sheetfile" value="audio.kicad_sch"/>
+      <property name="ki_keywords" value="R resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Schematic/Audio/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d/"/>
+      <tstamps>ff8ba1dd-7525-4939-8f6b-0e24006fba98</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R45">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Resistor, small symbol</description>
+      <fields>
+        <field name="LCSC Part"/>
+        <field name="Dielectric"/>
+        <field name="Power Rating">0.063W</field>
+        <field name="Resistance"/>
+        <field name="Tolerance">1%</field>
+        <field name="Voltage Rating">50V</field>
+        <field name="KLC_S3.3"/>
+        <field name="KLC_S4.1"/>
+        <field name="Arrow Part Number"/>
+        <field name="Arrow Price/Stock"/>
+        <field name="Height"/>
+        <field name="Manufacturer_Name">Yageo</field>
+        <field name="Manufacturer_Part_Number">RC0402FR-0710KL</field>
+        <field name="Mouser Part Number"/>
+        <field name="Mouser Price/Stock"/>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor, small symbol</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <property name="LCSC Part" value=""/>
+      <property name="Dielectric" value=""/>
+      <property name="Power Rating" value="0.063W"/>
+      <property name="Resistance" value=""/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Voltage Rating" value="50V"/>
+      <property name="KLC_S3.3" value=""/>
+      <property name="KLC_S4.1" value=""/>
+      <property name="Arrow Part Number" value=""/>
+      <property name="Arrow Price/Stock" value=""/>
+      <property name="Height" value=""/>
+      <property name="Manufacturer_Name" value="Yageo"/>
+      <property name="Manufacturer_Part_Number" value="RC0402FR-0710KL"/>
+      <property name="Mouser Part Number" value=""/>
+      <property name="Mouser Price/Stock" value=""/>
+      <property name="Sheetname" value="Audio"/>
+      <property name="Sheetfile" value="audio.kicad_sch"/>
+      <property name="ki_keywords" value="R resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Schematic/Audio/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d/"/>
+      <tstamps>4f7cb25a-43d5-464e-b571-e0328f3ea010</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R46">
+      <value>100k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Resistor, small symbol</description>
+      <fields>
+        <field name="LCSC Part"/>
+        <field name="Dielectric"/>
+        <field name="Power Rating">0.063W</field>
+        <field name="Resistance"/>
+        <field name="Tolerance">1%</field>
+        <field name="Voltage Rating">50V</field>
+        <field name="KLC_S3.3"/>
+        <field name="KLC_S4.1"/>
+        <field name="Arrow Part Number"/>
+        <field name="Arrow Price/Stock"/>
+        <field name="Height"/>
+        <field name="Manufacturer_Name">Yageo</field>
+        <field name="Manufacturer_Part_Number">RC0402FR-07100KL</field>
+        <field name="Mouser Part Number"/>
+        <field name="Mouser Price/Stock"/>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor, small symbol</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <property name="LCSC Part" value=""/>
+      <property name="Dielectric" value=""/>
+      <property name="Power Rating" value="0.063W"/>
+      <property name="Resistance" value=""/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Voltage Rating" value="50V"/>
+      <property name="KLC_S3.3" value=""/>
+      <property name="KLC_S4.1" value=""/>
+      <property name="Arrow Part Number" value=""/>
+      <property name="Arrow Price/Stock" value=""/>
+      <property name="Height" value=""/>
+      <property name="Manufacturer_Name" value="Yageo"/>
+      <property name="Manufacturer_Part_Number" value="RC0402FR-07100KL"/>
+      <property name="Mouser Part Number" value=""/>
+      <property name="Mouser Price/Stock" value=""/>
+      <property name="Sheetname" value="Audio"/>
+      <property name="Sheetfile" value="audio.kicad_sch"/>
+      <property name="ki_keywords" value="R resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Schematic/Audio/" tstamps="/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d/"/>
+      <tstamps>9e9a9bad-0680-4d76-91f7-34f44807758e</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -7169,14 +7541,31 @@
         <pin num="3" name="C" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Transistor_FET_Other" part="Q_NMOS_Depletion_GSD">
-      <description>Depletion-mode N-channel MOSFET gate/source/drain</description>
+    <libpart lib="Transistor_BJT" part="Q_NPN_BEC">
+      <description>NPN transistor, base/emitter/collector</description>
       <fields>
         <field name="Reference">Q</field>
-        <field name="Value">Q_NMOS_Depletion_GSD</field>
+        <field name="Value">Q_NPN_BEC</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
-        <field name="Description">Depletion-mode N-channel MOSFET gate/source/drain</field>
+        <field name="Description">NPN transistor, base/emitter/collector</field>
+        <field name="Sim.Device">NPN</field>
+        <field name="Sim.Pins">1=B 2=E 3=C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="B" type="input"/>
+        <pin num="2" name="E" type="passive"/>
+        <pin num="3" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Transistor_FET" part="Q_NMOS_GSD">
+      <description>N-MOSFET transistor, gate/source/drain</description>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NMOS_GSD</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">N-MOSFET transistor, gate/source/drain</field>
       </fields>
       <pins>
         <pin num="1" name="G" type="input"/>
@@ -7234,8 +7623,8 @@
     <library logical="Transistor_BJT">
       <uri>${KICAD10_SYMBOL_DIR}/Transistor_BJT.kicad_sym</uri>
     </library>
-    <library logical="Transistor_FET_Other">
-      <uri>${KICAD10_SYMBOL_DIR}/Transistor_FET_Other.kicad_sym</uri>
+    <library logical="Transistor_FET">
+      <uri>${KICAD10_SYMBOL_DIR}/Transistor_FET.kicad_sym</uri>
     </library>
   </libraries>
   <nets>
@@ -7286,6 +7675,7 @@
       <node ref="R35" pin="1" pintype="passive"/>
       <node ref="R38" pin="1" pintype="passive"/>
       <node ref="R39" pin="1" pintype="passive"/>
+      <node ref="R43" pin="2" pintype="passive"/>
       <node ref="R6" pin="1" pintype="passive"/>
       <node ref="R9" pin="2" pintype="passive"/>
       <node ref="U11" pin="7" pinfunction="PS_7" pintype="input"/>
@@ -7317,8 +7707,8 @@
       <node ref="R23" pin="2" pintype="passive"/>
       <node ref="R3" pin="2" pintype="passive"/>
       <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="R44" pin="2" pintype="passive"/>
       <node ref="R5" pin="2" pintype="passive"/>
-      <node ref="R8" pin="1" pintype="passive"/>
       <node ref="U1" pin="13" pinfunction="PVDDR_13" pintype="power_in"/>
       <node ref="U1" pin="4" pinfunction="PVDDL_4" pintype="power_in"/>
       <node ref="U10" pin="6" pinfunction="OUT_6" pintype="input"/>
@@ -7331,6 +7721,7 @@
       <node ref="J14" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="J3" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="R24" pin="2" pintype="passive"/>
+      <node ref="R8" pin="1" pintype="passive"/>
       <node ref="U9" pin="2" pinfunction="EN_2" pintype="input"/>
       <node ref="U9" pin="3" pinfunction="IN_3" pintype="power_in"/>
     </net>
@@ -7344,9 +7735,9 @@
     </net>
     <net code="35" name="/Schematic/Audio/GPIO3_B4_P31" class="Default">
       <node ref="C44" pin="1" pintype="passive"/>
-      <node ref="D2" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="J4" pin="31" pinfunction="Pin_31_31" pintype="passive"/>
-      <node ref="R24" pin="1" pintype="passive"/>
+      <node ref="Q3" pin="3" pinfunction="C_3" pintype="passive"/>
+      <node ref="R43" pin="1" pintype="passive"/>
     </net>
     <net code="36" name="/Schematic/Audio/GPIO3_C4_P7" class="Default">
       <node ref="J4" pin="7" pinfunction="Pin_7_7" pintype="passive"/>
@@ -7433,7 +7824,31 @@
       <node ref="U7" pin="1" pintype="input"/>
       <node ref="U8" pin="3" pinfunction="DE_3" pintype="input"/>
     </net>
-    <net code="53" name="GND" class="Default">
+    <net code="53" name="AMP_BASE" class="Default">
+      <node ref="Q5" pin="1" pinfunction="B_1" pintype="input"/>
+      <node ref="R45" pin="1" pintype="passive"/>
+      <node ref="R46" pin="1" pintype="passive"/>
+    </net>
+    <net code="54" name="AMP_ENABLE" class="Default">
+      <node ref="J4" pin="11" pinfunction="Pin_11_11" pintype="passive"/>
+      <node ref="R45" pin="2" pintype="passive"/>
+    </net>
+    <net code="55" name="AMP_INHIBIT" class="Default">
+      <node ref="Q4" pin="1" pinfunction="B_1" pintype="input"/>
+      <node ref="Q5" pin="3" pinfunction="C_3" pintype="passive"/>
+      <node ref="R44" pin="1" pintype="passive"/>
+    </net>
+    <net code="56" name="AMP_SHDN" class="Default">
+      <node ref="Q4" pin="3" pinfunction="C_3" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="U1" pin="12" pinfunction="~{SHND}_12" pintype="input"/>
+    </net>
+    <net code="57" name="BAT_BASE" class="Default">
+      <node ref="Q3" pin="1" pinfunction="B_1" pintype="input"/>
+      <node ref="R24" pin="1" pintype="passive"/>
+      <node ref="R42" pin="1" pintype="passive"/>
+    </net>
+    <net code="58" name="GND" class="Default">
       <node ref="C11" pin="1" pintype="passive"/>
       <node ref="C12" pin="2" pintype="passive"/>
       <node ref="C13" pin="2" pintype="passive"/>
@@ -7474,7 +7889,6 @@
       <node ref="C8" pin="2" pintype="passive"/>
       <node ref="C9" pin="2" pintype="passive"/>
       <node ref="D1" pin="1" pinfunction="A_1" pintype="passive"/>
-      <node ref="D2" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="D4" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="J11" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
       <node ref="J13" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
@@ -7501,11 +7915,16 @@
       <node ref="J9" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
       <node ref="MK1" pin="2" pinfunction="-_2" pintype="passive"/>
       <node ref="MK1" pin="3" pinfunction="-_3" pintype="passive"/>
+      <node ref="Q3" pin="2" pinfunction="E_2" pintype="passive"/>
+      <node ref="Q4" pin="2" pinfunction="E_2" pintype="passive"/>
+      <node ref="Q5" pin="2" pinfunction="E_2" pintype="passive"/>
       <node ref="R15" pin="1" pintype="passive"/>
       <node ref="R28" pin="1" pintype="passive"/>
       <node ref="R36" pin="1" pintype="passive"/>
       <node ref="R37" pin="1" pintype="passive"/>
       <node ref="R41" pin="1" pintype="passive"/>
+      <node ref="R42" pin="2" pintype="passive"/>
+      <node ref="R46" pin="2" pintype="passive"/>
       <node ref="R7" pin="1" pintype="passive"/>
       <node ref="U1" pin="11" pinfunction="GND_11" pintype="power_in"/>
       <node ref="U1" pin="15" pinfunction="PGNDR_15" pintype="power_in"/>
@@ -7533,19 +7952,19 @@
       <node ref="U9" pin="4" pinfunction="GND_4" pintype="power_in"/>
       <node ref="Y1" pin="2" pinfunction="GND_2" pintype="power_in"/>
     </net>
-    <net code="54" name="Net-(C1-Pad2)" class="Default">
+    <net code="59" name="Net-(C1-Pad2)" class="Default">
       <node ref="C1" pin="2" pintype="passive"/>
       <node ref="R1" pin="1" pintype="passive"/>
     </net>
-    <net code="55" name="Net-(C2-Pad2)" class="Default">
+    <net code="60" name="Net-(C2-Pad2)" class="Default">
       <node ref="C2" pin="2" pintype="passive"/>
       <node ref="R2" pin="1" pintype="passive"/>
     </net>
-    <net code="56" name="Net-(C10-Pad1)" class="Default">
+    <net code="61" name="Net-(C10-Pad1)" class="Default">
       <node ref="C10" pin="1" pintype="passive"/>
       <node ref="MK1" pin="1" pinfunction="-_1" pintype="output"/>
     </net>
-    <net code="57" name="Net-(D1-K)" class="Default">
+    <net code="62" name="Net-(D1-K)" class="Default">
       <node ref="C21" pin="1" pintype="passive"/>
       <node ref="C22" pin="1" pintype="passive"/>
       <node ref="D1" pin="3" pinfunction="K_3" pintype="passive"/>
@@ -7554,275 +7973,268 @@
       <node ref="U10" pin="4" pinfunction="IN_4" pintype="input"/>
       <node ref="U9" pin="1" pinfunction="FB_1" pintype="input"/>
     </net>
-    <net code="58" name="Net-(D4-K)" class="Default">
+    <net code="63" name="Net-(D4-K)" class="Default">
       <node ref="D4" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="R33" pin="2" pintype="passive"/>
       <node ref="TH1" pin="1" pintype="passive"/>
     </net>
-    <net code="59" name="Net-(J1-Pin_1)" class="Default">
+    <net code="64" name="Net-(J1-Pin_1)" class="Default">
       <node ref="C9" pin="1" pintype="passive"/>
       <node ref="FB3" pin="2" pintype="passive"/>
       <node ref="J1" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
     </net>
-    <net code="60" name="Net-(J1-Pin_2)" class="Default">
+    <net code="65" name="Net-(J1-Pin_2)" class="Default">
       <node ref="C8" pin="1" pintype="passive"/>
       <node ref="FB2" pin="2" pintype="passive"/>
       <node ref="J1" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
     </net>
-    <net code="61" name="Net-(J2-Pin_2)" class="Default">
+    <net code="66" name="Net-(J2-Pin_2)" class="Default">
       <node ref="C41" pin="2" pintype="passive"/>
       <node ref="J2" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="R22" pin="1" pintype="passive"/>
       <node ref="R36" pin="2" pintype="passive"/>
     </net>
-    <net code="62" name="Net-(J6-Pin_3)" class="Default">
+    <net code="67" name="Net-(J6-Pin_3)" class="Default">
       <node ref="J6" pin="3" pinfunction="Pin_3_3" pintype="passive"/>
       <node ref="R17" pin="2" pintype="passive"/>
       <node ref="R18" pin="2" pintype="passive"/>
       <node ref="R20" pin="2" pintype="passive"/>
     </net>
-    <net code="63" name="Net-(J6-Pin_4)" class="Default">
+    <net code="68" name="Net-(J6-Pin_4)" class="Default">
       <node ref="J6" pin="4" pinfunction="Pin_4_4" pintype="passive"/>
       <node ref="R16" pin="2" pintype="passive"/>
       <node ref="R19" pin="2" pintype="passive"/>
       <node ref="R21" pin="2" pintype="passive"/>
     </net>
-    <net code="64" name="Net-(J9-Pin_2)" class="Default">
+    <net code="69" name="Net-(J9-Pin_2)" class="Default">
       <node ref="C40" pin="2" pintype="passive"/>
       <node ref="J9" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="R23" pin="1" pintype="passive"/>
       <node ref="R37" pin="2" pintype="passive"/>
     </net>
-    <net code="65" name="Net-(J11-Pin_3)" class="Default">
+    <net code="70" name="Net-(J11-Pin_3)" class="Default">
       <node ref="J11" pin="3" pinfunction="Pin_3_3" pintype="passive"/>
       <node ref="J3" pin="3" pinfunction="Pin_3_3" pintype="passive"/>
       <node ref="U8" pin="6" pinfunction="A_6" pintype="bidirectional"/>
     </net>
-    <net code="66" name="Net-(J11-Pin_4)" class="Default">
+    <net code="71" name="Net-(J11-Pin_4)" class="Default">
       <node ref="J11" pin="4" pinfunction="Pin_4_4" pintype="passive"/>
       <node ref="J3" pin="4" pinfunction="Pin_4_4" pintype="passive"/>
       <node ref="U8" pin="7" pinfunction="B_7" pintype="bidirectional"/>
     </net>
-    <net code="67" name="Net-(J13-Pin_3)" class="Default">
+    <net code="72" name="Net-(J13-Pin_3)" class="Default">
       <node ref="J13" pin="3" pinfunction="Pin_3_3" pintype="passive"/>
       <node ref="J14" pin="3" pinfunction="Pin_3_3" pintype="passive"/>
       <node ref="TH1" pin="2" pintype="passive"/>
     </net>
-    <net code="68" name="Net-(Q1-B)" class="Default">
+    <net code="73" name="Net-(Q1-B)" class="Default">
       <node ref="Q1" pin="1" pinfunction="B_1" pintype="input"/>
       <node ref="R27" pin="2" pintype="passive"/>
     </net>
-    <net code="69" name="Net-(Q2-G)" class="Default">
+    <net code="74" name="Net-(Q2-G)" class="Default">
       <node ref="Q2" pin="1" pinfunction="G_1" pintype="input"/>
       <node ref="U10" pin="5" pinfunction="GATE_5" pintype="output"/>
     </net>
-    <net code="70" name="Net-(R31-Pad2)" class="Default">
+    <net code="75" name="Net-(R31-Pad2)" class="Default">
       <node ref="R31" pin="2" pintype="passive"/>
       <node ref="U5" pin="1" pintype="input"/>
       <node ref="U6" pin="4" pintype="tri_state"/>
     </net>
-    <net code="71" name="Net-(R32-Pad2)" class="Default">
+    <net code="76" name="Net-(R32-Pad2)" class="Default">
       <node ref="R32" pin="2" pintype="passive"/>
       <node ref="R33" pin="1" pintype="passive"/>
       <node ref="U6" pin="2" pintype="input"/>
       <node ref="U7" pin="4" pintype="tri_state"/>
     </net>
-    <net code="72" name="Net-(U1-+OUT_L)" class="Default">
+    <net code="77" name="Net-(U1-+OUT_L)" class="Default">
       <node ref="TP3" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U1" pin="1" pinfunction="+OUT_L_1" pintype="output"/>
     </net>
-    <net code="73" name="Net-(U1-+OUT_R)" class="Default">
+    <net code="78" name="Net-(U1-+OUT_R)" class="Default">
       <node ref="FB3" pin="1" pintype="passive"/>
       <node ref="U1" pin="16" pinfunction="+OUT_R_16" pintype="output"/>
     </net>
-    <net code="74" name="Net-(U1--OUT_L)" class="Default">
+    <net code="79" name="Net-(U1--OUT_L)" class="Default">
       <node ref="TP4" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U1" pin="3" pinfunction="-OUT_L_3" pintype="output"/>
     </net>
-    <net code="75" name="Net-(U1--OUT_R)" class="Default">
+    <net code="80" name="Net-(U1--OUT_R)" class="Default">
       <node ref="FB2" pin="1" pintype="passive"/>
       <node ref="U1" pin="14" pinfunction="-OUT_R_14" pintype="output"/>
     </net>
-    <net code="76" name="Net-(U1-INL)" class="Default">
+    <net code="81" name="Net-(U1-INL)" class="Default">
       <node ref="R1" pin="2" pintype="passive"/>
       <node ref="U1" pin="7" pinfunction="INL_7" pintype="input"/>
     </net>
-    <net code="77" name="Net-(U1-INR)" class="Default">
+    <net code="82" name="Net-(U1-INR)" class="Default">
       <node ref="R2" pin="2" pintype="passive"/>
       <node ref="U1" pin="10" pinfunction="INR_10" pintype="input"/>
     </net>
-    <net code="78" name="Net-(U1-MODE)" class="Default">
+    <net code="83" name="Net-(U1-MODE)" class="Default">
       <node ref="R5" pin="1" pintype="passive"/>
       <node ref="U1" pin="9" pinfunction="MODE_9" pintype="input"/>
     </net>
-    <net code="79" name="Net-(U1-VDD)" class="Default">
+    <net code="84" name="Net-(U1-VDD)" class="Default">
       <node ref="C33" pin="1" pintype="passive"/>
       <node ref="C34" pin="1" pintype="passive"/>
       <node ref="FB1" pin="1" pintype="passive"/>
       <node ref="U1" pin="6" pinfunction="VDD_6" pintype="power_in"/>
     </net>
-    <net code="80" name="Net-(U1-VREF)" class="Default">
+    <net code="85" name="Net-(U1-VREF)" class="Default">
       <node ref="C3" pin="2" pintype="passive"/>
       <node ref="U1" pin="8" pinfunction="VREF_8" pintype="passive"/>
     </net>
-    <net code="81" name="Net-(U1-~{MUTE})" class="Default">
+    <net code="86" name="Net-(U1-~{MUTE})" class="Default">
       <node ref="R4" pin="1" pintype="passive"/>
       <node ref="U1" pin="5" pinfunction="~{MUTE}_5" pintype="input"/>
     </net>
-    <net code="82" name="Net-(U1-~{SHND})" class="Default">
-      <node ref="R3" pin="1" pintype="passive"/>
-      <node ref="U1" pin="12" pinfunction="~{SHND}_12" pintype="input"/>
-    </net>
-    <net code="83" name="Net-(U2-LEFT_LOP)" class="Default">
+    <net code="87" name="Net-(U2-LEFT_LOP)" class="Default">
       <node ref="C1" pin="1" pintype="passive"/>
       <node ref="U2" pin="27" pinfunction="LEFT_LOP_27" pintype="output"/>
     </net>
-    <net code="84" name="Net-(U2-MCLK)" class="Default">
+    <net code="88" name="Net-(U2-MCLK)" class="Default">
       <node ref="U2" pin="1" pinfunction="MCLK_1" pintype="input"/>
       <node ref="Y1" pin="3" pinfunction="OUT_3" pintype="output"/>
     </net>
-    <net code="85" name="Net-(U2-MIC1LP/LINE1LP)" class="Default">
+    <net code="89" name="Net-(U2-MIC1LP/LINE1LP)" class="Default">
       <node ref="C41" pin="1" pintype="passive"/>
       <node ref="U2" pin="10" pinfunction="MIC1LP/LINE1LP_10" pintype="input"/>
     </net>
-    <net code="86" name="Net-(U2-MIC1RP/LINE1RP)" class="Default">
+    <net code="90" name="Net-(U2-MIC1RP/LINE1RP)" class="Default">
       <node ref="C40" pin="1" pintype="passive"/>
       <node ref="U2" pin="12" pinfunction="MIC1RP/LINE1RP_12" pintype="input"/>
     </net>
-    <net code="87" name="Net-(U2-MIC2L/LINE2L/MICDET)" class="Default">
+    <net code="91" name="Net-(U2-MIC2L/LINE2L/MICDET)" class="Default">
       <node ref="R7" pin="2" pintype="passive"/>
       <node ref="U2" pin="14" pinfunction="MIC2L/LINE2L/MICDET_14" pintype="input"/>
     </net>
-    <net code="88" name="Net-(U2-MIC2R/LINE2R)" class="Default">
+    <net code="92" name="Net-(U2-MIC2R/LINE2R)" class="Default">
       <node ref="C10" pin="2" pintype="passive"/>
       <node ref="U2" pin="16" pinfunction="MIC2R/LINE2R_16" pintype="input"/>
     </net>
-    <net code="89" name="Net-(U2-MICBIAS)" class="Default">
+    <net code="93" name="Net-(U2-MICBIAS)" class="Default">
       <node ref="TP2" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U2" pin="15" pinfunction="MICBIAS_15" pintype="output"/>
     </net>
-    <net code="90" name="Net-(U2-RIGHT_LOP)" class="Default">
+    <net code="94" name="Net-(U2-RIGHT_LOP)" class="Default">
       <node ref="C2" pin="1" pintype="passive"/>
       <node ref="U2" pin="29" pinfunction="RIGHT_LOP_29" pintype="output"/>
     </net>
-    <net code="91" name="Net-(U2-~{RESET})" class="Default">
+    <net code="95" name="Net-(U2-~{RESET})" class="Default">
       <node ref="C38" pin="2" pintype="passive"/>
       <node ref="R6" pin="2" pintype="passive"/>
       <node ref="U2" pin="31" pinfunction="~{RESET}_31" pintype="input"/>
     </net>
-    <net code="92" name="Net-(U8-RO)" class="Default">
+    <net code="96" name="Net-(U8-RO)" class="Default">
       <node ref="R29" pin="2" pintype="passive"/>
       <node ref="U5" pin="2" pintype="input"/>
       <node ref="U8" pin="1" pinfunction="RO_1" pintype="output"/>
     </net>
-    <net code="93" name="Net-(U8-~{RE})" class="Default">
+    <net code="97" name="Net-(U8-~{RE})" class="Default">
       <node ref="R40" pin="2" pintype="passive"/>
       <node ref="R41" pin="2" pintype="passive"/>
       <node ref="U8" pin="2" pinfunction="~{RE}_2" pintype="input"/>
     </net>
-    <net code="94" name="Net-(U9-BST)" class="Default">
+    <net code="98" name="Net-(U9-BST)" class="Default">
       <node ref="C20" pin="1" pintype="passive"/>
       <node ref="U9" pin="6" pinfunction="BST_6" pintype="passive"/>
     </net>
-    <net code="95" name="Net-(U9-SW)" class="Default">
+    <net code="99" name="Net-(U9-SW)" class="Default">
       <node ref="C20" pin="2" pintype="passive"/>
       <node ref="L4" pin="2" pintype="passive"/>
       <node ref="U9" pin="5" pinfunction="SW_5" pintype="output"/>
     </net>
-    <net code="96" name="Net-(U10-VS)" class="Default">
+    <net code="100" name="Net-(U10-VS)" class="Default">
       <node ref="C39" pin="1" pintype="passive"/>
       <node ref="R8" pin="2" pintype="passive"/>
       <node ref="U10" pin="1" pinfunction="VS_1" pintype="passive"/>
     </net>
-    <net code="97" name="Net-(U11-INT1)" class="Default">
+    <net code="101" name="Net-(U11-INT1)" class="Default">
       <node ref="R25" pin="2" pintype="passive"/>
       <node ref="U11" pin="16" pinfunction="INT1_16" pintype="bidirectional"/>
     </net>
-    <net code="98" name="Net-(U11-SDO1)" class="Default">
+    <net code="102" name="Net-(U11-SDO1)" class="Default">
       <node ref="R14" pin="2" pintype="passive"/>
       <node ref="U11" pin="15" pinfunction="SDO1_15" pintype="output"/>
     </net>
-    <net code="99" name="Net-(U11-SDO2)" class="Default">
+    <net code="103" name="Net-(U11-SDO2)" class="Default">
       <node ref="R15" pin="2" pintype="passive"/>
       <node ref="U11" pin="10" pinfunction="SDO2_10" pintype="output"/>
     </net>
-    <net code="100" name="Net-(U11-VDD)" class="Default">
+    <net code="104" name="Net-(U11-VDD)" class="Default">
       <node ref="C23" pin="1" pintype="passive"/>
       <node ref="C24" pin="2" pintype="passive"/>
       <node ref="R9" pin="1" pintype="passive"/>
       <node ref="U11" pin="11" pinfunction="VDDIO_11" pintype="power_in"/>
       <node ref="U11" pin="3" pinfunction="VDD_3" pintype="power_in"/>
     </net>
-    <net code="101" name="unconnected-(D1-NC-Pad2)" class="Default">
+    <net code="105" name="unconnected-(D1-NC-Pad2)" class="Default">
       <node ref="D1" pin="2" pinfunction="NC_2" pintype="no_connect"/>
     </net>
-    <net code="102" name="unconnected-(J4-Pin_11-Pad11)" class="Default">
-      <node ref="J4" pin="11" pinfunction="Pin_11_11" pintype="passive+no_connect"/>
-    </net>
-    <net code="103" name="unconnected-(J4-Pin_13-Pad13)" class="Default">
+    <net code="106" name="unconnected-(J4-Pin_13-Pad13)" class="Default">
       <node ref="J4" pin="13" pinfunction="Pin_13_13" pintype="passive+no_connect"/>
     </net>
-    <net code="104" name="unconnected-(J4-Pin_16-Pad16)" class="Default">
+    <net code="107" name="unconnected-(J4-Pin_16-Pad16)" class="Default">
       <node ref="J4" pin="16" pinfunction="Pin_16_16" pintype="passive+no_connect"/>
     </net>
-    <net code="105" name="unconnected-(J4-Pin_18-Pad18)" class="Default">
+    <net code="108" name="unconnected-(J4-Pin_18-Pad18)" class="Default">
       <node ref="J4" pin="18" pinfunction="Pin_18_18" pintype="passive+no_connect"/>
     </net>
-    <net code="106" name="unconnected-(J4-Pin_22-Pad22)" class="Default">
+    <net code="109" name="unconnected-(J4-Pin_22-Pad22)" class="Default">
       <node ref="J4" pin="22" pinfunction="Pin_22_22" pintype="passive+no_connect"/>
     </net>
-    <net code="107" name="unconnected-(J4-Pin_26-Pad26)" class="Default">
+    <net code="110" name="unconnected-(J4-Pin_26-Pad26)" class="Default">
       <node ref="J4" pin="26" pinfunction="Pin_26_26" pintype="passive+no_connect"/>
     </net>
-    <net code="108" name="unconnected-(J4-Pin_32-Pad32)" class="Default">
+    <net code="111" name="unconnected-(J4-Pin_32-Pad32)" class="Default">
       <node ref="J4" pin="32" pinfunction="Pin_32_32" pintype="passive+no_connect"/>
     </net>
-    <net code="109" name="unconnected-(J4-Pin_33-Pad33)" class="Default">
+    <net code="112" name="unconnected-(J4-Pin_33-Pad33)" class="Default">
       <node ref="J4" pin="33" pinfunction="Pin_33_33" pintype="passive+no_connect"/>
     </net>
-    <net code="110" name="unconnected-(J4-Pin_36-Pad36)" class="Default">
+    <net code="113" name="unconnected-(J4-Pin_36-Pad36)" class="Default">
       <node ref="J4" pin="36" pinfunction="Pin_36_36" pintype="passive+no_connect"/>
     </net>
-    <net code="111" name="unconnected-(J4-Pin_37-Pad37)" class="Default">
+    <net code="114" name="unconnected-(J4-Pin_37-Pad37)" class="Default">
       <node ref="J4" pin="37" pinfunction="Pin_37_37" pintype="passive+no_connect"/>
     </net>
-    <net code="112" name="unconnected-(U2-HPLCOM-Pad20)" class="Default">
+    <net code="115" name="unconnected-(U2-HPLCOM-Pad20)" class="Default">
       <node ref="U2" pin="20" pinfunction="HPLCOM_20" pintype="output+no_connect"/>
     </net>
-    <net code="113" name="unconnected-(U2-HPLOUT-Pad19)" class="Default">
+    <net code="116" name="unconnected-(U2-HPLOUT-Pad19)" class="Default">
       <node ref="U2" pin="19" pinfunction="HPLOUT_19" pintype="output+no_connect"/>
     </net>
-    <net code="114" name="unconnected-(U2-HPRCOM-Pad22)" class="Default">
+    <net code="117" name="unconnected-(U2-HPRCOM-Pad22)" class="Default">
       <node ref="U2" pin="22" pinfunction="HPRCOM_22" pintype="output+no_connect"/>
     </net>
-    <net code="115" name="unconnected-(U2-HPROUT-Pad23)" class="Default">
+    <net code="118" name="unconnected-(U2-HPROUT-Pad23)" class="Default">
       <node ref="U2" pin="23" pinfunction="HPROUT_23" pintype="output+no_connect"/>
     </net>
-    <net code="116" name="unconnected-(U2-LEFT_LOM-Pad28)" class="Default">
+    <net code="119" name="unconnected-(U2-LEFT_LOM-Pad28)" class="Default">
       <node ref="U2" pin="28" pinfunction="LEFT_LOM_28" pintype="output+no_connect"/>
     </net>
-    <net code="117" name="unconnected-(U2-RIGHT_LOM-Pad30)" class="Default">
+    <net code="120" name="unconnected-(U2-RIGHT_LOM-Pad30)" class="Default">
       <node ref="U2" pin="30" pinfunction="RIGHT_LOM_30" pintype="output+no_connect"/>
     </net>
-    <net code="118" name="unconnected-(U4-WP-Pad7)" class="Default">
+    <net code="121" name="unconnected-(U4-WP-Pad7)" class="Default">
       <node ref="U4" pin="7" pinfunction="WP_7" pintype="input+no_connect"/>
     </net>
-    <net code="119" name="unconnected-(U10-OFF-Pad3)" class="Default">
+    <net code="122" name="unconnected-(U10-OFF-Pad3)" class="Default">
       <node ref="U10" pin="3" pinfunction="OFF_3" pintype="input+no_connect"/>
     </net>
-    <net code="120" name="unconnected-(U11-INT2-Pad1)" class="Default">
+    <net code="123" name="unconnected-(U11-INT2-Pad1)" class="Default">
       <node ref="U11" pin="1" pinfunction="INT2_1" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="121" name="unconnected-(U11-INT3-Pad12)" class="Default">
+    <net code="124" name="unconnected-(U11-INT3-Pad12)" class="Default">
       <node ref="U11" pin="12" pinfunction="INT3_12" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="122" name="unconnected-(U11-INT4-Pad13)" class="Default">
+    <net code="125" name="unconnected-(U11-INT4-Pad13)" class="Default">
       <node ref="U11" pin="13" pinfunction="INT4_13" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="123" name="unconnected-(U11-~{CSB1}-Pad14)" class="Default">
+    <net code="126" name="unconnected-(U11-~{CSB1}-Pad14)" class="Default">
       <node ref="U11" pin="14" pinfunction="~{CSB1}_14" pintype="input+no_connect"/>
     </net>
-    <net code="124" name="unconnected-(U11-~{CSB2}-Pad5)" class="Default">
+    <net code="127" name="unconnected-(U11-~{CSB2}-Pad5)" class="Default">
       <node ref="U11" pin="5" pinfunction="~{CSB2}_5" pintype="input+no_connect"/>
     </net>
   </nets>

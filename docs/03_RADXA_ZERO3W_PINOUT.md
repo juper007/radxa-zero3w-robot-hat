@@ -26,6 +26,7 @@ Do not rely on Raspberry Pi BCM numbering.
 | 8 | UART2 TX M0 | Dynamixel UART TX |
 | 9 | GND | Ground |
 | 10 | UART2 RX M0 | Dynamixel UART RX |
+| 11 | GPIO3_A1 | AMP_ENABLE, active HIGH; LOW/unclaimed requests hardware shutdown |
 | 12 | I2S3 SCLK/BCLK M0 | Audio bit clock |
 | 14 | GND | Ground |
 | 15 | GPIO3_B0 | Preserved Radxa GPIO identity |
@@ -40,14 +41,14 @@ Do not rely on Raspberry Pi BCM numbering.
 | 28 | I2C4 SCL M0 | HAT-ID path; U4 DNP |
 | 29 | GPIO3_B3 | J6 SCL through populated R19; R21 pull-up; `i2c10` |
 | 30 | GND | Ground |
-| 31 | GPIO3_B4 | Preserved Radxa GPIO identity |
+| 31 | GPIO3_B4 | Battery presence input: connected=LOW; Q3 collector with R43 pull-up to host 3.3 V; not an ADC |
 | 34 | GND | Ground |
 | 35 | I2S3 LRCK M0 | Audio frame/LR clock |
 | 38 | I2S3 SDI M0 | Codec/mic data to host |
 | 39 | GND | Ground |
 | 40 | I2S3 SDO M0 | Host audio data to codec |
 
-Physical pins 11, 13, 16, 18, 22, 26, 32, 33, 36 and 37 remain explicitly unconnected. The preserved Qwiic nets on pins 7/29, 24/21 and 19/23 are populated and claimed as the independent `i2c10`, `i2c11` and `i2c12` GPIO-I2C buses.
+Physical pins 13, 16, 18, 22, 26, 32, 33, 36 and 37 remain explicitly unconnected. Stage 2 assigns pin 11 to AMP_ENABLE; do not assign a second GPIO owner. Pin 31 was already a populated battery-sense path, not an unused/DNP option; its active-LOW replacement separates the battery resistor/base node from the host-referenced collector. The preserved Qwiic nets on pins 7/29, 24/21 and 19/23 are populated and claimed as the independent `i2c10`, `i2c11` and `i2c12` GPIO-I2C buses.
 
 ## I2C3
 

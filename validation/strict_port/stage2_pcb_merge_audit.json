@@ -1,0 +1,2426 @@
+[
+  {
+    "uuid": "00c73db6-b9ab-4c50-b81e-523bf85b7b41",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "01e92abe-bb7e-43d0-987d-72db47352f24",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "02279527-1eb8-4fb9-a0b2-e3b2b8a233f3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "024b04cc-2a3a-4789-b1c7-62aeb0fea462",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "028d9aa5-0e7b-48ed-83bf-561fd05a8993",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "02a51365-a49b-4847-9952-8e9a98912dd9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "03d01226-f51c-4a99-8003-fefa18045de5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "045ef376-638a-4481-8418-808ebfe7e75c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "048f21df-9f1c-40ca-bcaa-ef2197702a86",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "04993010-ec96-4e97-a932-250e073488f9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "0542ae62-0f42-427b-ad67-93153589f17a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "057e8ff7-b1cf-4086-97b4-f52050b578ac",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "05aa95d3-d856-4481-8e80-c174c46dcf74",
+    "kind": "footprint",
+    "ref": "J1",
+    "operation": "change"
+  },
+  {
+    "uuid": "068a5117-11a7-4ff7-87d3-44f58cea20d1",
+    "kind": "gr_text",
+    "ref": null,
+    "operation": "change"
+  },
+  {
+    "uuid": "06a9ee6d-b3b3-4d9d-9f37-6cd963986653",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "06d77e71-d80f-4fe4-adf0-ca3b507e0868",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "078842dc-fbf1-4875-9918-1181a94a0ecb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "0893b9cc-e422-4068-b5ba-a01ec1279243",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "08ad1515-4804-4dc8-b150-5d02f3d83805",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "09b4977a-6455-4d66-8826-aff80c908a9c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "0a405fb1-a28f-4907-9f2a-0f1133fa08fa",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "0ba5aa9f-9548-4641-bd19-7a135c43cf12",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "0bfba58c-5c8f-4f9e-b35c-34b6a3e736a5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "0c14ab3e-5290-4608-9d2e-b747634265b0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "0c6db5aa-f759-44d1-b6e5-ce300c1f5359",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "0d6853f4-1400-4398-a43e-4b3fc124395c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "0d7e771b-46ac-48a4-bbbb-a7bc619d0cf6",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "10c51f36-bc35-4fac-8c17-2c3d3bb69345",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "11fc88b6-b94f-418f-9097-225928c7ce32",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "121380a3-800b-4556-8dfa-7b1613b370a8",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "123c31e0-8e6a-4774-8643-72975ee443d9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "138d591b-f6ac-483e-b137-ed140dbc54d0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "13c2f2a0-defd-45ab-b9bd-6eff3d2aac17",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "14c9b6df-8d29-473e-a76c-2b2f3ab36bce",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "14cc7c97-0fc6-4ac4-a462-878487fe0128",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "14e66d51-4f37-4852-b66c-a70e320afd42",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "14fdba6f-714b-431a-a6d0-4faa19c883b4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "161f0bb7-f313-4656-ad14-b25e2d342af2",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "178c38f4-d333-4ef4-bd89-3e52a4c2925e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "19f07bce-f957-4ec5-abb3-84ae6ba78811",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "1a2c60f8-aeea-470f-946a-686c70f86d9c",
+    "kind": "footprint",
+    "ref": "J4",
+    "operation": "change"
+  },
+  {
+    "uuid": "1a5148e7-a929-435d-9c57-58e5f36a074d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "1b37ce2d-ba6e-45a1-b6d6-684a6b45c58e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "1b923751-62ec-4743-a6c5-0d90b62a9b57",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "1c44d0e2-c514-4b51-b689-bc8ccb3debc0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "1d544de5-fa34-418a-a737-f18021ed4b56",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "1d691c17-ab84-48a7-af5a-681c5442db3a",
+    "kind": "footprint",
+    "ref": "R46",
+    "operation": "add"
+  },
+  {
+    "uuid": "1e35aaea-dc75-47fd-84cc-0842cddb8e35",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "1f947f72-ac94-4695-af43-52969584b5a1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "1fb718f2-6e78-4105-9587-716a7863c3e0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "1fd492db-d65f-4d5b-8e76-13bdff4fdacd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "203b5a46-0241-4c68-816e-0556674286bf",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "204b9d57-32f6-4267-9b14-171e7362817d",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "21801965-7f63-4b87-ab25-70a77eeeae9c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "224abe58-d4fd-4e3b-81cf-fc407e4aaebc",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "2260fd40-970f-444d-8d50-0eae8b2604d4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "23f5db81-355e-4a0d-8103-0ea05f3befb1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "241e4b2a-aed8-4210-9651-487a1b0b0db3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "24929854-d530-4fef-b171-1d90eefdd6c7",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "25af28c8-5625-403d-a7f1-b45d168f906b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "26667747-a8ec-416f-8d9d-99065bea5880",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "266cdb37-a929-4a66-a82e-1f1a7264df10",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "26d7bed5-37c0-41f1-bf9b-3c1b42dc028e",
+    "kind": "footprint",
+    "ref": "Q3",
+    "operation": "add"
+  },
+  {
+    "uuid": "28f929bc-9cc9-4f76-a93b-f56a8fb3d406",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "2a0d2149-3c74-47e2-943c-a220a4b7dc38",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "2a3610f8-6620-4518-89c7-60e03a883f4e",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "2aa072f9-deed-4cc9-b1a5-d8e90642e8a9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "2aabc2fc-96cc-4006-8370-29c0aa8488b4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "2ae40246-2e8c-4426-8191-7708ac883a09",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "2b4bd809-dfec-4a4c-b3de-dfbea906b40e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "2c99498f-0539-4d92-a923-4f70a2b14063",
+    "kind": "footprint",
+    "ref": "R44",
+    "operation": "add"
+  },
+  {
+    "uuid": "2cd1b5cf-ac49-4a72-8335-3511ca49698b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "30583c1a-e5c1-46ff-9ba3-e9bac7ec26d0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "30aca6e7-8ab9-4337-a874-1f734c1ff5cd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "30b0032e-04d7-4fc0-a29c-0b67a80eeca1",
+    "kind": "footprint",
+    "ref": "U1",
+    "operation": "change"
+  },
+  {
+    "uuid": "30bae42c-4d2f-4a81-9562-3386899d7f95",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3166d04c-dda3-4431-a6de-3c55bf021a2d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "316e34ac-a1b8-41f9-9fd6-5846429f36c2",
+    "kind": "segment",
+    "ref": null,
+    "operation": "change"
+  },
+  {
+    "uuid": "3173e4b8-973f-4b78-9d53-2bf6bf0d56a4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3179b6d7-6560-474e-a698-a121f578fb2b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "32035f86-02a9-4ea8-bc39-3cae779b5acc",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "32363289-8252-48ac-8f23-6b90a4064e33",
+    "kind": "footprint",
+    "ref": "Q5",
+    "operation": "add"
+  },
+  {
+    "uuid": "33535f4f-822f-4872-94f2-62d25eabd3f4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "33b28afe-df3a-43b4-bcd1-d54fca9b5e37",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "34762ba1-ae0e-47e3-8d1e-c5e47198a3b1",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "34950a0d-bd53-47df-952c-34c133fff149",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "350574ad-b47f-4e50-9da5-e3f44dd6e881",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "360f16cb-04f9-4cf1-a526-dd761d72b011",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "368f3eaa-9753-400d-9431-2e493cb18f26",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "371fc28a-13c1-49a3-8e86-b502887e8c2a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "379663ad-d8d6-4d66-b3bc-34d3a0f858ba",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "37bc0449-1c1f-4555-9d09-4f1380f320e6",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "380627e4-c6fa-4f30-a3b8-fdeb6ef26e46",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3806e224-087b-4f76-b607-62e666f269a2",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "381f0679-b320-4c71-8ae9-eb66af157e04",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "38261463-bc7a-4cf1-a89e-7757c12cb698",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "38c52de2-08f1-46b7-a872-4bcf656280eb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3949e351-cedd-4d05-9261-a64d5cd34afb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3a13f1e9-ebd6-4c07-97d8-b036aa078086",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3a27466f-71a6-4de5-afbe-7e6885b466af",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3b2f0e66-5113-4737-8f8e-d84ccc33daba",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3b85219a-36b4-45bc-97c1-728679b326d5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3b8f23f3-9b6b-458c-8f72-2116d68d57bb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3b9e4c33-ad9a-4718-b40d-b0fa52059d9f",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3c8fb380-45e9-4b44-91c1-27e15d6f1de0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3cd1775e-2025-4709-b8bc-eb32bac52919",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3d14c709-ff00-44ae-bbab-4e3b39276b95",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3d68585d-29b4-4ee8-99b5-7155bc8ceb6b",
+    "kind": "footprint",
+    "ref": "D2",
+    "operation": "remove"
+  },
+  {
+    "uuid": "3e4eecbe-790c-44dd-b843-4e76c0a875b9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3eb5e13e-983d-468b-a9e2-0349d0e2238a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3f162899-4f90-45f2-b826-ee4d574220fe",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "3f853e43-f6ba-41ad-83cc-86e7a88ff9af",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "400fc6a7-b982-4a44-8e11-25d40c19bc23",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4078112b-743f-4912-bea3-8c9659288fbc",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "41b33226-d558-434f-85ad-1ec15b0b24d0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "41ba9f4f-5180-4bce-84a4-e05375e2ef9b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "420606f5-b874-414f-bf1d-45c4cefb7aab",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "424ba329-7bb5-44b9-afb0-2d4bef3cc01a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4282fd28-7a5f-40ca-b035-cffa2b0aee87",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "428e08a7-7eb7-491d-87d8-178bffa4c90e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "430cd32e-18c3-4ded-af4b-f608f212072d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "444679a6-63ac-40b9-984c-8ad7e2b54ff2",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "44ffb60b-8704-4286-80e9-3a6b6426c567",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "45ad2175-a6f8-4367-a486-54b050927aa7",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4745e950-3926-44b3-b756-adde36f14db7",
+    "kind": "via",
+    "ref": null,
+    "operation": "remove"
+  },
+  {
+    "uuid": "47babd6c-28f8-4b6a-a500-2ecf5322b44b",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "47e5cd71-5ab5-4b0e-9b45-b3a96f698d0b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4a9f3dd6-7136-41c9-8007-4c7ad9c900e9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4aa161a3-303d-49c2-920e-73b0d51e0f37",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4ae30cc1-9b34-4007-9280-64254c8b4239",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4d220d94-de8a-46bb-8966-4b0ce9df09eb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4e1f12fe-d306-45b6-992c-f3218a000fb3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4ea62b20-3516-49be-b0a7-935c53950bdb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "remove"
+  },
+  {
+    "uuid": "4ed5e7be-edbb-42f5-a3a0-37761d72dacd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4f573b0a-1701-4a7a-8bb3-2818cb4ffa50",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4f6f6340-111a-4551-b745-19b380f20d7b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "4f869e87-7596-4b17-97cc-0447866fe71e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "50e96b77-47f9-44fc-b711-069d30147ce3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "51b732c3-ebdf-4ea3-b14f-1f038a2fa168",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "52ebf5cd-bd2c-4397-8583-106b72769f48",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "530d131f-4a7f-428b-a2c4-e1f9867aba3d",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5311b8f2-2f05-4eaf-8a31-135def24fed0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5312872d-c46a-48dc-b0ec-b01c7f50344d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5374b98e-1144-4db1-93a4-bb057ead91e9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "54213147-ca92-4fce-9315-5eb2270d02e8",
+    "kind": "gr_text",
+    "ref": null,
+    "operation": "change"
+  },
+  {
+    "uuid": "542e1a46-b5c1-439b-94a7-61582d7e8712",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "547a2241-8d60-4911-8c5c-9276b709488f",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "547e7228-8ddc-48a9-b3aa-e31be8fb1065",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "54f6a7c9-df60-4e20-8834-48f4fe641993",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5505ad51-f5e5-4d77-ba98-9878a349a55d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5545b12a-c024-4b4a-a07f-cd27e41af27a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "556a05b2-b310-4c2c-b878-f05d0a797afb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5583d047-56a6-4e9c-9cf5-6bc1ec0c93b7",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "55d6f184-f498-4583-887a-42c30610b4a0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "56efec65-68b8-4376-9d3d-d4a2e6641e76",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "570504a2-5301-48e5-92eb-cf9e0bc1b204",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "57d9a7a9-2ca8-4f1d-b5a3-700bf1221feb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "58e21142-0b1b-49be-a7ab-22118f5ab975",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5919528d-e2b6-458e-a3ee-65365edd8224",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "593598d5-faa7-44ae-b55a-4b7cd20eda99",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "59785071-ea92-43fd-8771-067f7d863889",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "59d879ac-1ea0-4964-9350-969c053ff67d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5b1b1db4-c851-4424-ae81-851fb21f5e7c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5b42f96d-5362-40b7-92f9-105a47f82ee5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5bcc9065-3271-4441-805d-0c98044e2564",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5d7f60a1-e6b9-4dd2-9b50-6a1d34a7b76d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "5f90fd3f-c0c1-4d71-aad2-f0ff79b481e7",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "61535670-8d7d-4481-ae36-8678d912abf4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "61831279-28c8-4106-a132-4a0131c5f730",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "61b21997-3774-4cae-99f1-355a5ed0c062",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6260a88a-1a6d-41c0-ad24-cd455cc1d635",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "64dad4a7-6219-402e-b8e3-fe077406e988",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "66171e0d-ebba-45e1-bece-61e02f6ac8d3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "671f4323-2125-40f1-a95c-a85997cd2186",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6803ff24-3701-4c84-b412-bb3046a7169f",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "69aa3b0c-610b-4112-b7ae-4350df3faa49",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "69aecb43-bc9a-4eed-a2f6-550ed51c915b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6a01caa4-35ce-4210-b368-ecff80e7b132",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6a772eb3-254b-4362-b2b9-33f02bede271",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6b0feaa4-0179-4d33-8ed2-cf5f1acf5ebd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6b102cf1-336b-469b-9881-7fd3b4728400",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6cc6343a-bdcb-496b-8759-1cee9cfcc552",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6d9e3ca8-d3a9-4ce2-bbf0-4cb043f1f2c0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6dd1e656-84b4-4cdf-b606-053e485d496b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6e17124f-e16a-4967-84d5-8c9a1e3f4d62",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6f009129-19a2-4087-a439-949ecba389c8",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6f09b17f-d17a-4b03-a1cc-a88e392baefe",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6f1380bd-6c49-475f-858b-bc132e0a1b4c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6f46c3ab-da10-4ddd-925e-741f935a3eeb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6f4dba34-6813-4ad7-8197-e21a1a193202",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "6fb9fc90-e77b-4ffe-beab-c31a31f66d51",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "703c364b-56f7-4182-af7d-69dbd9d038da",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "7143583b-f2e1-44e0-a2c8-7395cd1b9134",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "71859783-00ea-4509-9734-7e2e7c0b849c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "720e4f45-4491-40c8-9e4f-1656fa8f9fd2",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "72db98d4-14cb-416b-a678-1419b837c9e4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "72f513ed-6763-408e-801f-baadcfa15d26",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "75c80ae3-36e7-4161-95ea-bb98f5371376",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "76a47aaa-3a96-413f-a606-3726b0bdeaab",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "76c94475-9b9c-4124-bfda-193dd5a875f5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "7a58ea6e-3dd3-42d4-87ff-0a50e915647e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "7a71403d-9264-4173-81b2-94d36af04f34",
+    "kind": "segment",
+    "ref": null,
+    "operation": "remove"
+  },
+  {
+    "uuid": "7b2fc917-95b8-46f9-b867-fd401c207a48",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "7bc47e61-58d9-45b6-b260-b0f37556325a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "7d221e36-727f-4c9f-af28-9f1fdc472e5a",
+    "kind": "footprint",
+    "ref": "R42",
+    "operation": "add"
+  },
+  {
+    "uuid": "7d3e9292-c7d2-4b36-ba14-21248ef4522a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "7d428810-0edc-42b7-be20-692f120870c0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "7d4f13ff-ecb0-4a96-a9e2-27c8e770b3ec",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "7fb558e1-7ecd-4462-abaa-5ba0e6c9d599",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8096e62d-3e22-4664-9e5c-904cec73d069",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "809b7693-f42d-443a-9a8a-89d36384af73",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "82051613-b636-4771-bb69-b9304c71787f",
+    "kind": "segment",
+    "ref": null,
+    "operation": "change"
+  },
+  {
+    "uuid": "8523ae09-ffc5-4075-ae0d-1d24f79e4be2",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8526ca15-4b5f-4f4f-bf62-c9e8ec9e9f14",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "86001170-6431-4c1e-86b4-e6c30cdd32c4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "86001363-9e46-4681-aaa5-ff8cdc93cb95",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "865a4e64-0f04-45c4-8f20-bed2105e0b4e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8997d027-7ba0-4c2e-80be-cebf4ac0b192",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "89aee9ad-cde8-4f7b-bd93-5c27ff81e16f",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "89f530f6-2567-4caa-980f-3d59affe8091",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8a310784-d78d-4636-ab57-ac0e7a171f58",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8a98f5f2-e346-4e9e-b1c7-7235fc9338d5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8aa38b7a-d084-40e6-a792-b041b201536c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8c52ea22-08b7-47e1-b521-faaa39f99282",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8c599360-66e2-410f-a11c-94f3efb59d67",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8d79f638-736b-48cc-8e2f-d86025ead4b0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8e683eef-6db3-4ba1-8280-7863653a1c8c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "8f8db508-0ac9-4947-a1b0-5ca70c28d0e1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "901ad6ff-d71a-482e-89a5-2b9fada75f35",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "903d264b-c600-4cee-86fb-2931548acb53",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "90bfba60-d9e5-49b1-95de-2dceec7c82e3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "90cbd216-3e91-45f2-a449-91f7adf80dc4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9251b8f8-45d3-4cf8-82f9-9068eb9ec4b1",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "93aa5b40-71e1-4f5d-9995-5ad7310c0a33",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "93b2ec46-2d9a-46b3-9fe9-e861184d2c6c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "941bad7a-b0da-495f-b3b6-50ab685df273",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9495dcf5-3e28-4653-adaa-5b688018b3d9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9575076e-c9ff-47eb-97fe-29960d6313e0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "96453615-8876-4147-98e5-0aa49edffad1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "978a0e95-b3e1-484e-908d-12ae4324cf0b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "97fde095-d6c7-4887-b75d-aed83ab4f3d3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9817ecfd-e96d-40ac-abb1-f22d6b83b10e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "98515abf-9a2e-41b5-9cb6-c92f1228f022",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "99620b56-11cb-47e7-9a4b-593e32d9a080",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9a7804cd-947b-46af-9e36-b084b415b2d0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9ab1d6e3-e000-4245-aa23-7da828748306",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9bcac62d-e0b3-4020-aa29-c76f822c2b4a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9d208ddb-8edd-4730-af41-756e8f5922fd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9d3444d0-ee78-4c06-b98f-443836a24ee7",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9d677433-fb64-44ce-8559-86f86764f04e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9dd90606-4a75-47e7-87b1-9ed48a8bd0c4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9e3d0ee5-8290-473f-8b16-78abbc6119c9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9e50c47e-0b37-4fa8-a61c-2c3953e8cc8d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "9f7e5072-c946-44ff-bbff-d6cc6ee748e1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a032879b-b32d-4321-849b-174034bb907b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a045f24d-f8f1-4017-88f9-36a357045380",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a05894b6-be28-4ca5-87ec-a97a3767afeb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a13c7928-409b-4f0f-9c87-7bf15864a390",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a2079a6c-97a7-46e5-9ffa-395a4b3e313b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a30ec5d1-d731-4f09-8583-1d3fffe74984",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a3be279d-63c1-4edc-908e-c3f3144d49e5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a3c8b91b-c2ef-49da-907c-486dbc910c21",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a3faa649-ac14-4425-ab7a-7fb55c7c6ecd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a5880af6-9dcf-43a2-a9fb-17a5bc1c7690",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a6e917a3-5e52-470a-a419-b57765aacf62",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a840f70f-ea47-4609-889d-3defeec82028",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a8acd2b1-c70b-4e4d-989f-f0ac59e3f2e3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "a9434698-1d8e-4594-b3ba-543451636197",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "abb3431b-b719-464a-a170-8ad72b87b9e6",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ad80087e-80fb-48db-8330-057efca6e1a6",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ada48bc7-ad0b-4c90-b008-68f61d235d9d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ada9fefa-9c96-4adc-a797-c2e74d9e9bc3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "adcfa724-02a7-48c8-8374-b49cca0fc5e5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ae018bd0-e46c-4079-bb5f-eb24c1a601c9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "aede0498-0aed-49ad-8559-bcdec9ddccec",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "af1b2356-28d7-4f0d-9502-4d014c4c2eb7",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "af6890c6-fc4d-4ead-921d-220b2ce22792",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "af7626d5-0350-4e66-b60e-a3cb84680dfc",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "afe82f2a-46c5-4d18-9707-edc2bd005a8c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "afeb9551-ef37-4567-a5fe-0b2f3676e6fd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b06153c2-d67e-4b7e-aaec-19b97fdf71ac",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b17ce187-4ae4-4f05-a331-c7ef715833cf",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b1e8167e-faac-437a-9d2e-a5d5bc14329f",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b226e3bf-9f75-455d-bf51-4ac0062eb5df",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b25d9bb8-ed2b-4c48-8473-a648a90c4e49",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b379a916-ab84-441d-8a88-7657a7f3cf85",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b3f619c7-8165-4355-b4f5-38c8da2b3e76",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b4128e97-7ec5-4084-a003-a5a48d62a511",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b49660c4-67a3-41c9-876e-2f8e327b3194",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b56ea463-6792-4457-98ab-aa64a5635f45",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b5f2146a-03bc-4080-818d-ca979812739c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b61c07df-3b7c-4b23-a1a2-41c2c57a8b42",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b661e3ea-20aa-444c-8f55-5aaea558ebe1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b7a39965-4bd4-4952-ab8b-ac9b54e55281",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b7f002ce-c083-47f8-9189-27a3775edda6",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b810375c-aaec-4e3b-8da4-fd2ba729b51b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b86b3a56-2b4e-4123-984a-4e07eaa2b028",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b87ad8d9-4237-4b12-86f8-a1dafb7bd3b3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b8b37373-3e20-4dad-9b6e-55be060b7977",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b8dc09d9-5b50-4d83-a059-697f5300a6cd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b9033282-f6ef-447a-9796-911924d3cec1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b95bbfef-db86-4f71-b31a-55cb2cc8acb4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b9d9a6bc-37d1-4d1c-b54e-1aa816aa73cb",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "b9f5d936-1573-435f-9e59-f1bd4de38816",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "bacd76a1-4be0-453d-af6c-620be988789d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "bb1484ba-2f18-444e-8a32-ae9d30992a08",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "bb276936-18e5-4c32-8b01-8c929451083d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "bb7fb2ae-68c5-48ac-8a32-d8d493f28611",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "bb96a180-92cc-4bf1-a286-a5330ad1543f",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "bc0503eb-f7a3-42db-85c9-86c8dc25645a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "be7a687d-ebfa-4688-ac2b-81afdc5bbf43",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "bfe38fba-25ad-418d-8769-d489e6779ba9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "bff2a17f-2fdd-4d1f-970d-4287cf06235e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c1fcfb0d-fb65-4e94-adae-7942bfc86a33",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c24bf534-02bd-427d-9192-630f53d8e94c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c26d3c41-f373-4ef0-8a07-0543f5848ebf",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c3a363d2-1725-4588-9cfa-309ef3b452b4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c4012fe4-8e12-4b06-89f7-b08dcd286813",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c650e43e-4a84-4ae3-8599-038f5e898013",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c654bc49-5cc3-4628-a3f7-0678166dd858",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c75bced4-5600-4c64-8cee-66d629796fa9",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c7cd6f33-520b-4656-9093-bd93f8569118",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c90f7597-76f3-4534-846c-5c3333ac4537",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "c97cf392-5c0c-45b6-a342-c823b486a30b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ce82445a-f586-4fee-b637-9a2f424da84d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ce92483a-712d-4852-ba03-ad90dd50df9c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ce94c133-d4e2-451c-bcab-3fba02917294",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ceab5268-9495-4a2b-9b52-171b84abf1b1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d01790c4-eb61-4e45-9e74-f425200392ee",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d2753d2f-f430-4824-8338-15989527e220",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d2cb497c-350c-48dc-9026-3dd5f0d43db3",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d34c91b7-5376-4e26-a2e4-bf144464f78f",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d5e64312-ba4a-498d-b366-b3fe4c130c88",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d67896f6-6178-4801-91fd-56096a181cb2",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d689e606-0608-4e8f-ad3c-9d6f2f42e281",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d6e66819-bc8a-47a5-a46b-69d7fad0ac82",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d8030553-0307-4d6d-a1cd-759269d75310",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "d9a4160b-1556-4a05-8180-4258c61f10b5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "da1e2968-3898-46d3-8f09-49f562ec5242",
+    "kind": "footprint",
+    "ref": "R3",
+    "operation": "change"
+  },
+  {
+    "uuid": "da7ad600-e57e-4b96-a8a1-75df79e4e0b0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "db944777-4fca-42a4-a03f-4b4e51ab56fd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "dbb6651b-9579-4dbd-b2fb-9617abb16906",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "dc7c8d08-b301-4ca5-9c77-ed4ce1cc9d4d",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "dd97454d-20aa-4c89-a8a9-15718f2c96f4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ddd38987-6bfa-45aa-8a9f-b195520667d0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "remove"
+  },
+  {
+    "uuid": "de286221-4081-4513-a6f3-fffd94f508ca",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "deba1d24-1fe2-4e06-a28f-6c7ed233f035",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "defbe401-4c4b-4063-9b87-8ba5135da716",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "df485e67-3cbd-42ae-8548-e313978bc38b",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "dfebed74-557e-4e27-a484-5a56beebaff6",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e09fcc84-b920-4e34-a3ca-ac67ecd57baf",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e1419e18-52bb-4dd4-841c-daafb6c680c8",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e17f17c7-4c98-4113-aacf-9ba378e34996",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e1de9f17-828b-45bb-8f36-2bbbb01586e4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e382fb19-522c-4cb0-951f-97e7daaeed4e",
+    "kind": "footprint",
+    "ref": "Q4",
+    "operation": "add"
+  },
+  {
+    "uuid": "e3ade723-95f6-47e9-9b10-84e1617d7f3a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e40f9e8b-ed8f-4c8d-ac72-a1c340a3d60a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e435c93a-289c-42b9-b5d5-b11c8dfe22c1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e48afbf1-3fff-49f1-bc71-99435ab9f72e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e565e09d-0457-4e77-adb4-cd1e88d9724c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e761ebe5-a724-4ee2-ab15-70f7e0b7bafd",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e79daa19-4435-4e76-93ea-396e9fd9b38f",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e824e044-9469-4a79-9d7d-9bafc19126e7",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e85025b8-aa89-4d7b-96d2-2a882e5a3148",
+    "kind": "footprint",
+    "ref": "R24",
+    "operation": "change"
+  },
+  {
+    "uuid": "e8ba8f3f-96d1-4844-9402-507be04fe745",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e8e859ef-7167-4e47-b6b0-346a8a2ba370",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e927f383-e09d-4ad2-b8eb-5508cfca05a6",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "e9509cdc-c7d1-49db-8677-859500e62bd8",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ea7d25b9-260e-4b55-b085-f0187a5edffb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "eaf3a897-414e-4d1c-a112-ed970c320cf1",
+    "kind": "footprint",
+    "ref": "R45",
+    "operation": "add"
+  },
+  {
+    "uuid": "ed4139fe-3dc3-4347-827d-38cadf047f42",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ed84378e-ce8b-4fe7-9f41-ecd696fe521e",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ee97f486-443d-4eff-a844-5b10c691a8f9",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "eeb9f77f-b1bd-4fe3-a473-2b186b7241f0",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ef13aa1a-0702-4ab9-a774-785da870c912",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ef6034a0-d62a-4c77-9b35-988150a18c99",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f0886b6d-749b-4dca-8f15-6ec78bf7a1e1",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f0926e38-141f-4437-8ae5-7d167f288eeb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f2006b0c-7456-4379-951d-81fa33b71de8",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f3d4904f-1627-44d0-91e5-c3f91fb7f42f",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f48bd531-9f81-4717-b153-fffe41052217",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f4d7cdab-10e2-4f60-b809-cdfdfd1e9528",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f4f60177-15b5-46a8-ae4e-3977a7815015",
+    "kind": "footprint",
+    "ref": "J2",
+    "operation": "change"
+  },
+  {
+    "uuid": "f51c7584-9c97-4821-8ea7-b312e24d6de6",
+    "kind": "via",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f5bf47b6-19b6-4048-9ee8-172128a1dc40",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f5e98526-4431-4f80-9a39-6efe32b4e97a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f60240fb-62b9-4de4-8e81-ef6da55e239f",
+    "kind": "footprint",
+    "ref": "R43",
+    "operation": "add"
+  },
+  {
+    "uuid": "f61b90be-cc9b-4478-a24a-fd822f0c67a6",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f628f4e4-a1ea-4053-a80f-7b6b4afde177",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f684c218-80ec-4ff0-9c8b-4d07937012a4",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f77cea26-436c-4ca0-a6c7-1267349a47fb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f7cb518c-7392-4f03-b8a4-dc4ec907f360",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f7f58b9f-c220-40a0-a3e2-7bef49c0affb",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "f97645c7-4132-4a2f-8569-a43d1dd39300",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "faa68ae6-5e3f-4bb8-929b-1b2a91cc74a5",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "faf4f042-161c-418f-9ff3-3b1b42fef61c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "fb0cb47f-bb0f-420f-adfb-692a61a2b326",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "fb56ff5b-0870-4bd7-9b6c-6fe52b0453af",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "fb92ee6b-6303-433d-9cc3-60212d0fd60c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "fc84d584-28ad-4ffa-84de-1d25814e3c3c",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "fcf341dc-77e6-4e87-9060-a96d5d9ae189",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "fddebfa6-f44d-4623-aceb-49bb54cfb076",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "fe9166bf-4232-4fe3-99ea-6f108cd63b9a",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  },
+  {
+    "uuid": "ff2b3f22-4009-4828-9a3c-d41099afdc59",
+    "kind": "segment",
+    "ref": null,
+    "operation": "add"
+  }
+]

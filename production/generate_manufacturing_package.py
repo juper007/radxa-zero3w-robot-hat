@@ -21,12 +21,15 @@ SCH = REPO / "hardware/kicad/radxa_zero3w_robot_hat.kicad_sch"
 PRODUCTION = REPO / "production"
 RELEASES = PRODUCTION / "releases"
 KICAD_VERSION = "10.0.6"
+EXPECTED_DRILL_COUNTS = {"plated": 150, "unplated": 42}
 DNP = {
     "C25", "R10", "R11", "R16", "R17", "R36", "R37", "R41", "U4",
 }
 REQUIRED_POPULATED = {
-    "C45", "J1", "J2", "J5", "J6", "J7", "J8", "J9", "R18", "R19", "R20", "R21",
+    "J3", "J11", "J13", "J14",
+    "C45", "J1", "J2", "J4", "J5", "J6", "J7", "J8", "J9", "R18", "R19", "R20", "R21",
     "R34", "R35", "R38", "R39", "U8",
+    "Q3", "Q4", "Q5", "R3", "R24", "R42", "R43", "R44", "R45", "R46", "C44",
 }
 GERBER_LAYERS = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu", "F.Paste", "B.Paste", "F.Silkscreen", "B.Silkscreen", "F.Mask", "B.Mask", "Edge.Cuts"]
 BOARD_NAME = PCB.stem
@@ -104,6 +107,41 @@ def find_kicad() -> str:
 def csv_rows(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def normalize_bom_identity(row: dict[str, str]) -> dict[str, str]:
+    result = dict(row)
+    for target, alias in (
+        ("Manufacturer", "Manufacturer_Name"),
+        ("Manufacturer Part", "Manufacturer_Part_Number"),
+    ):
+        alternate = result.pop(alias, "")
+        primary = result.get(target, "")
+        if primary and alternate and primary != alternate:
+            raise SystemExit(f"conflicting {target} fields for {row.get('Refs', '?')}")
+        result[target] = primary or alternate
+    return result
+
+
+def validate_purchasing_identity(rows: list[dict[str, str]]) -> None:
+    matches = [row for row in rows if "J4" in refs([row], "Refs")]
+    expected = {"Manufacturer": "Toby Electronics", "Manufacturer Part": "REF-182665-01", "LCSC Part": ""}
+    if len(matches) != 1 or any(matches[0].get(key) != value for key, value in expected.items()):
+        raise SystemExit("J4 purchasing identity must be Toby Electronics / REF-182665-01 with no substitute LCSC part")
+
+
+def export_bom(kicad: str, output: Path, *, populated: bool) -> None:
+    fields = "Reference,Value,Footprint,QUANTITY,DNP,Man.,Man. Ref.,LCSC Part,Datasheet,Manufacturer_Name,Manufacturer_Part_Number"
+    labels = "Refs,Value,Footprint,Qty,DNP,Manufacturer,Manufacturer Part,LCSC Part,Datasheet,Manufacturer_Name,Manufacturer_Part_Number"
+    options = ["--exclude-dnp"] if populated else []
+    run(kicad, "sch", "export", "bom", "--output", str(output), "--fields", fields,
+        "--labels", labels, "--sort-field", "Reference", *options, str(SCH))
+    rows = [normalize_bom_identity(row) for row in csv_rows(output)]
+    validate_purchasing_identity(rows)
+    with output.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=labels.split(",")[:-2], lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
 
 
 def refs(rows: list[dict[str, str]], key: str) -> set[str]:
@@ -252,12 +290,12 @@ def main() -> None:
     kicad = find_kicad()
     run(kicad, "pcb", "export", "gerbers", "--output", str(output / "gerber"), "--layers", ",".join(GERBER_LAYERS), "--precision", "6", "--check-zones", str(PCB))
     run(kicad, "pcb", "export", "drill", "--output", str(output / "drill"), "--format", "excellon", "--drill-origin", "absolute", "--excellon-zeros-format", "decimal", "--excellon-oval-format", "route", "--excellon-units", "mm", "--excellon-separate-th", "--generate-map", "--map-format", "pdf", "--generate-report", "--report-path", str(output / "drill/drill_report.txt"), str(PCB))
-    run(kicad, "pcb", "export", "pos", "--output", str(output / "pnp/positions_populated.csv"), "--side", "both", "--format", "csv", "--units", "mm", "--smd-only", "--exclude-dnp", str(PCB))
-    run(kicad, "pcb", "export", "pos", "--output", str(output / "pnp/positions_all.csv"), "--side", "both", "--format", "csv", "--units", "mm", "--smd-only", str(PCB))
-    fields = "Reference,Value,Footprint,QUANTITY,DNP,Man.,Man. Ref.,LCSC Part,Datasheet"
-    labels = "Refs,Value,Footprint,Qty,DNP,Manufacturer,Manufacturer Part,LCSC Part,Datasheet"
-    run(kicad, "sch", "export", "bom", "--output", str(output / "bom/bom_full.csv"), "--fields", fields, "--labels", labels, "--sort-field", "Reference", str(SCH))
-    run(kicad, "sch", "export", "bom", "--output", str(output / "bom/bom_populated.csv"), "--fields", fields, "--labels", labels, "--sort-field", "Reference", "--exclude-dnp", str(SCH))
+    # Complete board-position inventory, including THT connectors/test features.
+    # The assembler must derive its machine-specific SMT feed from this + BOM.
+    run(kicad, "pcb", "export", "pos", "--output", str(output / "pnp/positions_populated.csv"), "--side", "both", "--format", "csv", "--units", "mm", "--exclude-dnp", str(PCB))
+    run(kicad, "pcb", "export", "pos", "--output", str(output / "pnp/positions_all.csv"), "--side", "both", "--format", "csv", "--units", "mm", str(PCB))
+    export_bom(kicad, output / "bom/bom_full.csv", populated=False)
+    export_bom(kicad, output / "bom/bom_populated.csv", populated=True)
     run(kicad, "pcb", "export", "pdf", "--output", str(output / "assembly/assembly_top.pdf"), "--mode-single", "--layers", "F.Fab,F.Silkscreen,Edge.Cuts", "--sketch-pads-on-fab-layers", "--crossout-DNP-footprints-on-fab-layers", "--black-and-white", "--check-zones", str(PCB))
     run(kicad, "pcb", "export", "pdf", "--output", str(output / "assembly/assembly_bottom.pdf"), "--mode-single", "--layers", "B.Fab,B.Silkscreen,Edge.Cuts", "--mirror", "--sketch-pads-on-fab-layers", "--crossout-DNP-footprints-on-fab-layers", "--black-and-white", "--check-zones", str(PCB))
     run(kicad, "sch", "export", "pdf", "--output", str(output / "assembly/schematic.pdf"), str(SCH))
@@ -280,20 +318,22 @@ def main() -> None:
     report = (output / "drill/drill_report.txt").read_text(encoding="utf-8", errors="replace")
     plated = re.search(r"Total plated holes count (\d+)", report)
     unplated = re.search(r"Total unplated holes count (\d+)", report)
-    if not plated or not unplated or int(plated.group(1)) != 131 or int(unplated.group(1)) != 42:
+    if not plated or not unplated or {"plated": int(plated.group(1)), "unplated": int(unplated.group(1))} != EXPECTED_DRILL_COUNTS:
         raise SystemExit("unexpected drill counts")
 
     full_bom = csv_rows(output / "bom/bom_full.csv")
     populated_bom = csv_rows(output / "bom/bom_populated.csv")
+    validate_purchasing_identity(full_bom)
+    validate_purchasing_identity(populated_bom)
     all_pos = csv_rows(output / "pnp/positions_all.csv")
     populated_pos = csv_rows(output / "pnp/positions_populated.csv")
     full_refs = refs(full_bom, "Refs")
     populated_refs = refs(populated_bom, "Refs")
     all_pos_refs = refs(all_pos, "Ref")
     populated_pos_refs = refs(populated_pos, "Ref")
-    if (len(full_bom), len(populated_bom)) != (123, 114):
+    if (len(full_bom), len(populated_bom)) != (130, 121):
         raise SystemExit("unexpected BOM row counts")
-    if (len(all_pos), len(populated_pos)) != (119, 110):
+    if (len(all_pos), len(populated_pos)) != (133, 124):
         raise SystemExit("unexpected PnP row counts")
     validate_reference_exports(full_refs, populated_refs, all_pos_refs, populated_pos_refs)
     validate_required_populated(populated_refs, populated_pos_refs)
@@ -306,7 +346,8 @@ def main() -> None:
     write_deterministic_zip(output / "fabrication_gerber_drill.zip", output, archive_paths, source_epoch)
     validate_zip(output / "fabrication_gerber_drill.zip", output, EXPECTED_ARCHIVE_PATHS, source_epoch)
 
-    readme = f"""# Manufacturing release candidate {short}\n\n> **NOT ORDER-APPROVED.** `fabrication_ready=false` until the physical and EVT gates in `docs/PROJECT_STATUS.md` are closed.\n\n- Source commit: `{commit}`\n- KiCad: `{KICAD_VERSION}`\n- Board: one 65.00 × 30.90 mm, 4-layer FR-4 PCB\n- Thickness: 1.0 mm\n- Copper: 70/35/35/70 µm (approximately 2/1/1/2 oz)\n- Finish: ENIG\n- Drill: 131 PTH, 42 NPTH\n- Assembly: both sides\n- DNP excluded from populated BOM/PnP: `{', '.join(sorted(DNP))}`\n\nUse `fabrication_gerber_drill.zip` for PCB quotation only. Do not place a production or assembled-board order until the J4, C45 gap, cable, antenna, backfeed, audio-current and thermal gates are signed off.\n"""
+    readme = f"""# Manufacturing release candidate {short}\n\n> **NOT ORDER-APPROVED.** `fabrication_ready=false` until the physical and EVT gates in `docs/PROJECT_STATUS.md` are closed.\n\n- Source commit: `{commit}`\n- KiCad: `{KICAD_VERSION}`\n- Board: one 65.00 × 30.90 mm, 4-layer FR-4 PCB\n- Thickness: 1.0 mm\n- Copper: 70/35/35/70 µm (approximately 2/1/1/2 oz)\n- Finish: ENIG\n- Drill: {EXPECTED_DRILL_COUNTS['plated']} PTH, {EXPECTED_DRILL_COUNTS['unplated']} NPTH\n- Assembly: both sides\n- DNP excluded from populated BOM/PnP: `{', '.join(sorted(DNP))}`\n\nUse `fabrication_gerber_drill.zip` for PCB quotation only. Do not place a production or assembled-board order until the J4, C45 gap, cable, antenna, backfeed, audio-current and thermal gates are signed off.\n"""
+    readme += "\nPosition CSVs contain the complete board inventory, including THT connectors, test points and fiducials. They are not a ready-to-run SMT machine feed. The assembler must select actual fitted parts and SMT/THT processes using the BOM and footprint/assembly drawings.\n"
     (output / "README.md").write_text(readme, encoding="utf-8", newline="\n")
 
     manifested_paths = EXPECTED_PACKAGE_PATHS - {"manifest.json"}
@@ -318,7 +359,7 @@ def main() -> None:
         "kicad_version": KICAD_VERSION,
         "fabrication_ready": False,
         "board": {"count": 1, "outline_mm": [65.0, 30.9], "layers": 4, "thickness_mm": 1.0, "finish": "ENIG", "copper_um": [70, 35, 35, 70]},
-        "drill": {"plated": 131, "unplated": 42},
+        "drill": dict(EXPECTED_DRILL_COUNTS),
         "bom": {"full_rows": len(full_bom), "populated_rows": len(populated_bom)},
         "pnp": {"all_rows": len(all_pos), "populated_rows": len(populated_pos)},
         "dnp": sorted(DNP),
@@ -335,7 +376,7 @@ def main() -> None:
         path = output / entry["path"]
         if entry.get("size") != path.stat().st_size or entry.get("sha256") != sha256(path):
             raise SystemExit("manifest size or hash validation failed")
-    print(json.dumps({"output": str(output), "commit": commit, "files": len(files) + 1, "gerber_layers": 11, "pth": 131, "npth": 42, "bom_populated_rows": len(populated_bom), "pnp_populated_rows": len(populated_pos), "fabrication_ready": False}, indent=2))
+    print(json.dumps({"output": str(output), "commit": commit, "files": len(files) + 1, "gerber_layers": 11, "pth": EXPECTED_DRILL_COUNTS["plated"], "npth": EXPECTED_DRILL_COUNTS["unplated"], "bom_populated_rows": len(populated_bom), "pnp_populated_rows": len(populated_pos), "fabrication_ready": False}, indent=2))
 
 
 if __name__ == "__main__":

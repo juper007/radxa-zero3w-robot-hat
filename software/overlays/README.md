@@ -77,3 +77,49 @@ Then connect a known 3.3 V Qwiic device to one connector at a time and perform a
 5. J5, USB-C, Dynamixel UART and audio continue to operate with all required overlays enabled.
 
 DTBO compilation proves syntax and fixup generation only. Runtime bus ownership, signal integrity and attached-device transfers remain EVT requirements.
+
+## Opt-in amplifier enable overlay (corrected hardware only)
+
+Stage 2 hardware implements the enable circuit and active-LOW battery-presence
+input; original/Stage 1 boards do not. Identify the actual assembled revision
+before applying this overlay. The battery input is J4.31 / GPIO3_B4:
+LOW means battery present; HIGH with the host rail alive means absent. It is not
+a voltage reading or a low-battery threshold. Do not assume `/dev/gpiochipN`
+numbering without checking the target's gpiochip labels and line ownership.
+
+`radxa-zero3w-robot-hat-amp.dts` is for the **default-OFF transistor circuit**
+using J4 pin 11 / GPIO3_A1 as active-high `AMP_ENABLE`. It is not automatically
+installed, is not part of the original board configuration, and must not be
+used as evidence that the hardware correction is already present. See
+`../../docs/12_CORRECTIVE_REVIEW.md` for hardware promotion status.
+
+Apply it only after the pinned `aic3104-i2c3` overlay has created
+`/sound-aic3104`. The kernel must include `CONFIG_SND_SOC_SIMPLE_AMPLIFIER`,
+the simple audio card, GPIO and fixed regulator support. Do not add a GPIO hog
+or a userspace GPIO owner on the same pin.
+
+The Linux simple-amplifier driver initially requests the GPIO output LOW,
+asserts it in DAPM POST_PMU, and clears it in PRE_PMD. The routes connect codec
+`LLOUT` / `RLOUT` to the stereo amplifier, matching U2 LEFT_LOP/RIGHT_LOP on
+the schematic. This controls amplifier shutdown rather than the hardwired
+PAM8406 MUTE input. The fixed 5 V regulator node describes the physical rail;
+it does not add an electrical supply switch.
+
+Compile and apply the overlay against a synthetic symbol-bearing fixture:
+
+```sh
+python3 software/overlays/test/test_amp_enable_overlay.py
+```
+
+This test also rejects applying the overlay without the existing audio card.
+It does not prove target-kernel driver binding, DAPM routing or boot silence.
+Before playback, validate conservative mixer settings and the 8 Ω/current
+limit. Scope J4.11 and PAM8406 SHDN from power-on through codec initialization,
+playback, stop, suspend and shutdown. Check bootloader pin ownership and both
+normal and failed codec initialization. Do not enable boot chimes or automatic
+playback before this sequence is qualified. No final volume limit is implied
+by this overlay, and sudden power-loss behavior remains a hardware test.
+
+References:
+- [Linux v6.1 simple-amplifier driver](https://github.com/torvalds/linux/blob/v6.1/sound/soc/codecs/simple-amplifier.c)
+- [simple-audio-amplifier binding](https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/sound/simple-audio-amplifier.yaml)

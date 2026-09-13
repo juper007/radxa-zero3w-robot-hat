@@ -38,7 +38,7 @@
 
 - Radxa ZERO 3W mounting holes and the 40-pin mating orientation must be checked against an authoritative mechanical drawing.
 - USB-C, HDMI, microSD, camera and antenna clearances must be reviewed with the actual stack orientation.
-- The upstream 5–28 V input and on-board converter are retained for the strict port.
+- Retain the AP63205 2 A converter and power-flow concept. The selected supply is an NP-F550-style 7.2–7.4 V nominal lithium-ion pack; Stage 1 uses an assumed 6.0–8.4 V design envelope pending the exact battery SKU and EVT. Do not claim the historical 5–28 V range as qualified operation. See `12_CORRECTIVE_REVIEW.md` and `validation/strict_port/stage1_power_integrity.json`.
 - Simultaneous USB-C and HAT 5 V power is prohibited until backfeed behavior is verified.
 - Motor connector polarity and power-input use must retain upstream behavior unless explicitly changed.
 

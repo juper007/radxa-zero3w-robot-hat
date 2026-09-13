@@ -1,0 +1,161 @@
+{
+  "stage": 1,
+  "status": "promoted to active design and independently digitally revalidated; fabrication not approved",
+  "fabrication_ready": false,
+  "scope": "Retain AP63205 2A, LM5050-1, one PCB, original outline/connectors/power flow; no audio or battery-management circuitry added.",
+  "baseline_commit": "7f1aef0",
+  "baseline_board_lf_sha256": "faeb6339f7e947dd8ff56dda2df7d57fda416c70b5b786934135e4e950806550",
+  "candidate_board_lf_sha256": "0288f9f3f6d8bc1d9b72a702fefb57621ca0bcb49cd0cb0cdb9bf998c74b55db",
+  "q2": {
+    "before": "SI2312CDS-T1-GE3",
+    "after": "DMN3023L-7",
+    "manufacturer": "Diodes Incorporated",
+    "purchasing_id": "LCSC C443825",
+    "vds_absolute_max_v": 30,
+    "vgs_absolute_max_v": [
+      -20,
+      20
+    ],
+    "symbol": "Transistor_FET:Q_NMOS_GSD",
+    "pin_numbers": {
+      "1": "G",
+      "2": "S",
+      "3": "D"
+    },
+    "pin_positions_lengths_verified_unchanged": true,
+    "footprint": "Package_TO_SOT_SMD:DMN3023L_SOT23_Diodes",
+    "suggested_pad_mm": [
+      0.9,
+      0.8
+    ],
+    "local_centers_mm": {
+      "1": [
+        -1.0,
+        -0.95
+      ],
+      "2": [
+        -1.0,
+        0.95
+      ],
+      "3": [
+        1.0,
+        0.0
+      ]
+    },
+    "land_source": "https://www.diodes.com/assets/Datasheets/DMN3023L.pdf",
+    "land_source_page": 6,
+    "land_source_revision": "DS37248 Rev 2-2",
+    "land_interpretation": "Rotated X=0.8, Y=0.9, C=2.0; E=1.35 reaches outer pad edge, so lower-pair centers are +/-0.95 and pitch is 1.90 mm.",
+    "qualification": "Exact suggested copper land and G/S/D net direction digitally checked; solder process/height/thermal/SOA not physically qualified."
+  },
+  "r8": {
+    "value": "100R",
+    "footprint": "Resistor_SMD:R_0402_1005Metric",
+    "only_electrical_membership_change": {
+      "pin": "R8.1",
+      "before": "+5V",
+      "after": "+BATT"
+    },
+    "preserved": "R8.2=C39.1=U10.VS; C39.2=GND; Q2 and U10 sensing/gate power direction unchanged.",
+    "source": "https://www.ti.com/lit/ds/symlink/lm5050-1.pdf",
+    "source_sections": [
+      "5 Pin Functions",
+      "7.3.2",
+      "7.4.2"
+    ],
+    "routing": "Remove only two R8 terminal-branch +5V segments; add one through-via, 0.2mm bias route on B.Cu/In2.Cu. Local source copper keeps 0.5mm width and is rerouted to clear Q2 vendor land."
+  },
+  "c39": {
+    "before_display": "100n 6V3",
+    "before_purchasing_id": "C1525",
+    "after": "CL05B104KB5NNNC",
+    "manufacturer": "Samsung Electro-Mechanics",
+    "capacitance_f": 1e-07,
+    "voltage_v": 50,
+    "dielectric": "X7R",
+    "tolerance_percent": 10,
+    "package": "0402/1005",
+    "body_mm": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "source": "https://product.samsungsem.com/mlcc/CL05B104KB5NNN.do",
+    "supplier_identity_correction": "C1525 identifies CL05B104KO5NNNC 16V, not 50V. Removed that purchasing ID; do not order C1525 as the new exact MPN.",
+    "supplier_source": "https://www.lcsc.com/product-detail/C1525.html",
+    "land_change": false,
+    "aliases": "Manufacturer_Name/Manufacturer_Part_Number and Man./Man. Ref. agree exactly."
+  },
+  "battery_assumptions": {
+    "style": "NP-F550-style 2S Li-ion camera battery",
+    "nominal_v": [
+      7.2,
+      7.4
+    ],
+    "operating_envelope_assumed_v": [
+      6.0,
+      8.4
+    ],
+    "exact_sku_confirmed": false,
+    "bms_and_charging_qualified": false,
+    "interpretation": "6.0V is a design-envelope assumption, not a guaranteed pack cutoff. Must maintain measured LM5050 VS >=5V after R8 under operating conditions. No 5V battery-input operation claim. Removed legacy 7S/21-29V, 24V and 5A annotations."
+  },
+  "usb_only_and_removal": "With battery absent, the new VS bias is absent and LM5050 is outside its recommended operating range. Q2 body diode orientation opposes passive reverse current from +5V to the buck, but this does not qualify stored gate charge, controller leakage, power sequencing or reverse-current behavior. Do not claim safe isolation for all USB-only/removal modes. Simultaneous USB-C/HAT power remains prohibited until bench validation.",
+  "ideal_reference_calculations_not_qualification": {
+    "r8_initial_power_w_at_8p4v_step": 0.7056,
+    "r8_c39_time_constant_s": 9.999999999999999e-06,
+    "c39_energy_j_at_8p4v": 3.528e-06,
+    "q2_loss_w_at_2a_68milliohm_25c": 0.272,
+    "q2_drop_v_at_2a_68milliohm_25c": 0.136,
+    "notes": "68mOhm is the datasheet maximum at VGS=2.5V, 25C, not a guaranteed hot-board value. Verify actual mixed VS/IN gate drive. R8 pulse model is ideal and does not establish resistor pulse/working-voltage qualification."
+  },
+  "native_validation": {
+    "tool": "KiCad 10.0.6 native CLI + bundled Python pcbnew",
+    "drc_violations": 0,
+    "unconnected_items": 0,
+    "erc_warnings": 46,
+    "erc_new_vs_pre_stage1": 0,
+    "new_electrical_errors": 0,
+    "parity_warnings_before": 110,
+    "parity_warnings_after": 108,
+    "only_resolved_parity_refs": [
+      "Q2",
+      "C39"
+    ],
+    "board_footprints": 126,
+    "netlist_components": 127,
+    "netlist_nets": 95,
+    "tracks_including_vias": 1019,
+    "outline_mm": [
+      65.0,
+      30.9
+    ],
+    "policy_version_constraints_or_ignores_changed": false,
+    "native_serialization_equivalence": "All native tracks/pads compared identical before/after preserving unchanged original-format board blocks."
+  },
+  "exact_copper_audit": {
+    "file": "stage1_copper_changes.json",
+    "coordinate_units": "nm",
+    "changed_uuid_records": 13,
+    "note": "Includes added/removed and edited records; this is not thirteen additional tracks."
+  },
+  "physical_gates": [
+    "Exact NP-F550 SKU/polarity/protection/cutoff and charger compatibility",
+    "R8 hot-plug pulse capability and VS filter behavior",
+    "VS and VGS measurements during startup, load steps, battery removal and USB-only operation",
+    "Q2 body-diode inrush/SOA, 2A hot-load voltage loss and thermal rise on actual copper",
+    "Q2 solder/stencil/assembly quality and actual stack-height clearance",
+    "Existing J4/C45/Radxa mechanics, RF, runtime and audio load-limit gates remain open"
+  ],
+  "tdd_observed": {
+    "acceptance_before_edits": "5 tests: 4 intended failures (Q2 identity, enhancement symbol, R8 net, C39 identity), 1 preserved-pin-direction control passed",
+    "guard_before_implementation": "5 tests failed because validate_stage1_power did not exist",
+    "battery_annotation_negative": "1 mutation test failed because 5.0V minimum was not rejected; exact 6.0V assertion then added",
+    "final_commands": [
+      "KiCad bundled python hardware/kicad/test_stage1_power_integrity.py",
+      "python hardware/kicad/test_stage1_guards.py",
+      "python hardware/kicad/test_strict_port_guards.py",
+      "python hardware/kicad/check_strict_port.py"
+    ]
+  }
+}

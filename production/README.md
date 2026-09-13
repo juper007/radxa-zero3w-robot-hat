@@ -10,6 +10,23 @@ Planned outputs:
 
 Every manufacturing package must state the exact design revision and commit used to generate it.
 
+Purchasing identity is resolved from both `Man.` / `Man. Ref.` and
+`Manufacturer_Name` / `Manufacturer_Part_Number`. Conflicting non-empty fields
+fail export rather than silently choosing one. Both full and populated BOMs
+must identify J4 as **Toby Electronics / REF-182665-01**, without an unrelated
+LCSC substitute. J4 is also mandatory in populated BOM and PnP inventories.
+
+Run the native BOM regression without generating an order package:
+
+```bash
+RUN_BOM_INTEGRATION=1 python production/test_generate_manufacturing_package.py
+```
+
+Historical packages, including `releases/7f1aef08/`, predate this purchasing-field
+correction and contain blank J4 manufacturer/MPN columns. Do not use them for
+assembly ordering. Regenerate only after review and an approved clean commit;
+do not edit old packages or their manifests in place.
+
 Generate a release candidate only from a clean tracked worktree:
 
 ```bash
@@ -35,6 +52,10 @@ The default output is `production/releases/<commit-prefix>/`. The generator emit
 The solder-mask and silkscreen colors are ordering choices; the electrical/geometry release is defined by the committed KiCad source and generated hashes.
 
 ## Mandatory assembly and operating notes
+
+- Stage 2 requires Q3/Q4/Q5, R42–R46 and the revised R24/R3 values; D2 is replaced, not an optional DNP shortcut. Every connector is mandatory in both BOM and the position inventory.
+- Position CSVs now include SMT and THT connectors, test points and fiducials. The assembler must select actual fitted parts and SMT/THT operations using the BOM and footprint drawings; do not load this complete inventory directly into an SMT placement machine.
+- Current full/populated BOM rows: 130/121. Full/populated position rows: 133/124. Drill totals: 150 PTH and 42 NPTH. Older SMD-only counts and release packages are historical, not current assembly inputs.
 
 - Populate J5/J6/J7/J8 and R18/R19/R20/R21/R34/R35/R38/R39. Omitting the auxiliary connectors or their 0 Ω/pull-up networks breaks upstream functional parity.
 - Install and validate `../software/overlays/radxa-zero3w-robot-hat-qwiic.dts` on the intended Radxa OS image before accepting J6/J7/J8 operation.

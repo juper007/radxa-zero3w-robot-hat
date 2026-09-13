@@ -1,10 +1,10 @@
 # Project status
 
-Last updated: 2026-09-12
+Last updated: 2026-09-13
 
 ## Current phase
 
-**v0.23-qwiic-functional-parity — all upstream Qwiic ports restored with Radxa GPIO-I2C overlay; runtime/physical/EVT signoff pending**
+**Stage 2 integrated — battery-presence LOW and default-OFF amplifier routed with zero physical DRC/unconnected findings; Stage 1 and Qwiic parity preserved; fabrication approval pending**
 
 ## Architecture
 
@@ -12,8 +12,8 @@ Last updated: 2026-09-12
 - Active PCB: `hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb`
 - Outline: 65.00 × 30.90 mm on the Edge.Cuts centerline (approximately 65 × 31 mm)
 - Copper layers: 4
-- Footprints: 128
-- Routed tracks and vias: 1,013
+- Footprints: 133
+- Routed tracks and vias: 1,396
 - Daughterboard: **none**
 - Archived divergent split design: `archive/v027-split-hat` at `2f2afd8`
 
@@ -39,8 +39,22 @@ Last updated: 2026-09-12
 - [x] Fixed the order stackup at 1.0 mm, 70/35/35/70 µm copper and ENIG, with a fail-closed stackup hash.
 - [x] Added and test-executed a deterministic manufacturing-package generator with DNP/BOM/PnP/Gerber/drill/PDF/hash validation.
 - [x] Captured upstream and adapted ERC/DRC/netlist reports under `validation/strict_port/`.
+- [x] Applied Stage 1: Q2 DMN3023L-7 with exact suggested land, R8.1 battery bias for U10 VS, and C39 CL05B104KB5NNNC 100 nF/50 V. Added a thirteenth vendored footprint and exact topology/identity/geometry regression tests; active native DRC and existing functional-parity tests pass.
 
 ## Native KiCad baseline
+
+**Current Stage 2:** 134 components / 98 nets, 133 footprints / 1,396 tracks and
+vias, 0 DRC violations / 0 unconnected, 46 inherited ERC warnings and 105
+Datasheet parity warnings. Full/populated BOM rows are 130/121; complete
+full/populated board-position rows are 133/124, including THT connectors and
+test features (not a direct SMT machine feed). Drill totals are 150 PTH / 42 NPTH.
+See `13_STAGE2_GPIO_AUDIO_CLOSURE.md`; paragraphs below retain milestone history.
+
+The following baseline paragraph describes the pre-Stage-1 milestone. Current
+Stage 1 has the same component/net/ERC/DRC totals, but **108** inherited
+Datasheet parity warnings after correcting Q2/C39 metadata, and **1,019**
+tracks/vias. The later J4/C45 history below likewise records 1,013 at that older
+milestone. Current machine-checked totals are in `validation/strict_port/report_summary.json`.
 
 The upstream project produces a parseable 128-component / 95-net schematic netlist; the adapted port has 127 components / 95 nets after adding exact input-bypass capacitor C45 and removing the non-electrical H2/H3 Pollen Robotics and Hugging Face logo symbols. Upstream has 55 ERC warnings. The port has 46: eight footprint-link warnings and two logo-symbol library warnings are resolved, while one exact `lib_symbol_mismatch` for C45 remains explicitly approved pending symbol-library cleanup. The upstream PCB baseline has 49 DRC findings: 40 J4 hole-clearance errors and 9 library-footprint warnings. The adapted PCB resolves all 49 and has zero DRC findings. KiCad's explicit schematic-parity check reports 110 remaining inherited `Datasheet` field mismatches after the J4 manufacturing identity correction resolves one upstream mismatch. No finding was waived or excluded.
 
@@ -60,6 +74,12 @@ The checker pins the exact J4 footprint S-expression after platform newline and 
 
 ## Release blockers
 
+- [x] Corrected the gate-drive rating mismatch: Q2 is now DMN3023L-7, rated ±20 V VGS, with manufacturer-suggested pads and unchanged numbered G/S/D connections. Actual VGS, hot-load loss and SOA remain physical gates.
+- [x] Moved R8.1 to +BATT for U10 VS and qualified C39's exact 50 V MPN digitally. Assumed battery envelope is 6.0–8.4 V, not a verified pack specification. Measure VS, hot-plug pulse, battery-removal and USB-only behavior before electrical signoff.
+- [x] Replaced the raw-battery/Zener GPIO31 path with Q3 host-referenced active-LOW presence sensing; exact part/net/population checks pass. Powered-off leakage/voltage still needs measurement.
+- [x] Implemented Q4/Q5 default-OFF SHDN control from J4.11 and the opt-in amplifier overlay. Scope bootloader/codec/power sequencing and verify actual silence before accepting boot-time behavior.
+- [ ] Measure battery-input leakage and amplifier enable/shutdown behavior on the actual assembled board and OS image; digital topology is not a physical safety/noise qualification.
+- [ ] Restore exact, portable 3D models for J1/J2/J9/J4 and remove the stale Raspberry Pi host-model reference before using a render for mechanical signoff. J4 supplier CAD download requires account access.
 - [ ] Obtain connector-vendor/assembly-house approval for the J4 1.02 × 1.80 mm DRC-clean land pattern, or validate it on a representative assembled prototype.
 - [ ] Independently verify every critical J4 pin against the exact Radxa ZERO 3W hardware revision.
 - [ ] Validate the `i2c3m0_xfer` overlay and document the effect of disabling/reassigning the FUSB302 I2C3 M1 device.
@@ -73,7 +93,9 @@ The checker pins the exact J4 footprint S-expression after platform newline and 
 - [ ] Verify USB-C, micro-HDMI, microSD and CSI access with nominated cables/FPC and the controlled spacer stack; optional heatsinks remain unsupported until overlaid.
 
 - [x] Reconciled BOM/position outputs with the upstream production release: the exact upstream DNP set remains `C25/R10/R11/R16/R17/R36/R37/R41/U4`, with 114 populated BOM rows and 110 populated PnP rows after removing the H2/H3 logo artifacts. A clean-snapshot candidate passes deterministic package reproduction. The older `production/releases/89a7d5a2/` package still contains the removed front-silkscreen artwork and must not be used; only a verified commit-keyed package generated from the logo-free source commit may be ordered. Every package remains `fabrication_ready=false`.
-- [x] Completed independent fail-closed reviews of the schematic, connector population, device tree, manufacturing policy and regression guards with no unresolved digital blocker. Physical and runtime EVT remains pending as listed above.
+- [x] Corrected the BOM exporter's mixed manufacturer-field handling and added exact J4 purchasing-identity and population guards. Fresh native full/populated BOM regression passes. Historical `production/releases/7f1aef08/` BOMs still have blank J4 purchasing columns and are not assembly-order inputs.
+- [x] Closed the former candidate's 3 unconnected items and 14 physical warnings, merged with Stage 1, and retained all connectors. The older unintegrated temporary candidate and previous release packages are superseded; see `13_STAGE2_GPIO_AUDIO_CLOSURE.md`.
+- [ ] Close the remaining electrical and 3D digital-review blockers above. Prior functional-parity and ERC/DRC passes remain valid within their scope, but do not constitute complete electrical or mechanical approval.
 
 ## Release status
 

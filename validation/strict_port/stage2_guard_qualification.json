@@ -1,0 +1,47 @@
+{
+  "baseline_zip": "active-before-stage2.zip",
+  "stage1_q2_r8_c39_raw_blocks_exact": true,
+  "stackup_edges_local_power_original_raw_digests_match": true,
+  "j4_all_86_pad_geometry_and_other_pin_nets_unchanged": true,
+  "j4_only_changes": [
+    "pad11 net28 unconnected to net97 AMP_ENABLE",
+    "duplicate_pad_numbers_are_jumpers no default"
+  ],
+  "digests": {
+    "J4_FOOTPRINT_SHA256": "633187a7522dce641146996db62ad33a2ad83803a51cf92812ee3c11c5cfc07e",
+    "EDGE_CUTS_SHA256": "69787bc712e9b43c4ff232a5ceb72b5bce5a73ea0f5e7b6548bc5b64c4cb33bf",
+    "STACKUP_SHA256": "a4b0affb9de794daff5e090fa4778559bac95a151b8528a11fcdac733e54fdae",
+    "POWER_REGION_SHA256": "2f1e45f5384c540af41b758fa840bc456297d2d848594cdb04fde4d87418826b",
+    "FILLED_ZONE_SHA256": "2bc6aafd6fdacda83edd15b80fea1cfb9daba9127781ba1794de99af1fec9071"
+  },
+  "pcb_metrics": {
+    "outline_mm": [
+      65.0,
+      30.9
+    ],
+    "edge_cuts_sha256": "69787bc712e9b43c4ff232a5ceb72b5bce5a73ea0f5e7b6548bc5b64c4cb33bf",
+    "footprints": 133,
+    "tracks": 1396,
+    "zones": 1
+  },
+  "additional_resolved_parity_uuids": {
+    "D2": "3d68585d-29b4-4ee8-99b5-7155bc8ceb6b",
+    "R24": "e85025b8-aa89-4d7b-96d2-2a882e5a3148",
+    "R3": "da1e2968-3898-46d3-8f09-49f562ec5242"
+  },
+  "verified_results": {
+    "strict_checker": "PASS",
+    "stage2_guards_stage2_gpio_stage1_guards": "20 tests PASS",
+    "stage1_native_acceptance": "5 tests PASS (KiCad bundled Python)",
+    "strict_port_negative_tests": "PASS",
+    "board_artwork_policy_tests": "PASS",
+    "qwiic_functional_parity_tests": "PASS",
+    "native_erc_warnings": 46,
+    "native_drc_violations": 0,
+    "native_unconnected_items": 0,
+    "native_parity_warnings": 105,
+    "schematic_components": 134,
+    "schematic_nets": 98,
+    "policy_version_and_original_stage1_geometry_guards_preserved": true
+  }
+}

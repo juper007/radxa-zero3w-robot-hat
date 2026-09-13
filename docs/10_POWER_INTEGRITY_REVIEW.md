@@ -2,7 +2,7 @@
 
 ## Decision
 
-The Radxa port retains the upstream AP63205 2 A buck and LM5050-1/SI2312CDS ideal-diode topology. A 4–5 A redesign is out of scope for the strict port because it would also require a new regulator footprint, inductor, MOSFET, copper geometry and thermal qualification.
+The Radxa port retains the AP63205 2 A buck and LM5050-1 external-MOSFET ideal-diode topology. Stage 1 replaces SI2312CDS with Diodes DMN3023L-7 and biases LM5050 VS from the battery through R8; see the implemented correction below. A 4–5 A redesign is out of scope for the strict port because it would also require a new regulator footprint, inductor, MOSFET, copper geometry and thermal qualification.
 
 The supported configuration is therefore conditional:
 
@@ -25,11 +25,25 @@ Current schematic topology, derived from the committed KiCad netlist:
 
 ```text
 +BATT -> U9 AP63205 -> L4 -> Net-(D1-K)
-Net-(D1-K) -> U10 LM5050-1 + Q2 SI2312CDS -> +5V
+Net-(D1-K) -> U10 LM5050-1 + Q2 DMN3023L-7 -> +5V
 +5V -> J4 pins 2/4, PAM8406, LEDs and small support loads
++BATT -> R8 100R -> U10 VS, bypassed by C39 100nF/50V to GND
 ```
 
-The LM5050-1 is intended to drive an external N-channel MOSFET as a low-loss ideal diode and turns it off during reverse-current conditions.[4] This protects the HAT buck path from reverse current at Q2. It does not by itself prove that a powered HAT cannot drive the Radxa USB-C VBUS through the Radxa board; the Radxa schematic and bench measurements remain the authority for that path.[2]
+The LM5050-1 is intended to drive an external N-channel MOSFET as a low-loss ideal diode and turn it off during reverse-current conditions within its specified operating conditions.[4] With battery absent, the new VS bias is absent: stored gate charge, controller leakage and battery-removal/USB-only behavior still require verification. Neither the body-diode orientation nor the controller's intended operation establishes all-mode reverse-current safety. A powered HAT may also reach the Radxa USB-C VBUS through the Radxa board; the Radxa schematic and bench measurements remain the authority for that path.[2]
+
+### Stage 1 implemented correction
+
+- Q2: `DMN3023L-7`, 30 V VDS / ±20 V VGS; G/S/D pins 1/2/3 unchanged. The exact manufacturer-suggested land uses 0.9 × 0.8 mm pads at local centers (-1, -0.95), (-1, 0.95), (1, 0) mm. Local power traces were adjusted without reducing the retained 0.5 mm source-trace width.
+- R8.1 moved from post-Q2 +5 V to +BATT; R8.2/C39.1/U10.VS connectivity is unchanged.
+- C39: Samsung `CL05B104KB5NNNC`, 100 nF / 50 V / X7R / ±10% / 0402. The former `C1525` purchasing ID is not this 50 V part and was removed.
+- Intended pack: NP-F550-style 7.2–7.4 V nominal, with assumed 6.0–8.4 V design envelope. Exact SKU, cutoff and charger limits are unqualified. Verify VS remains at least 5 V after R8; no 5 V battery-input operation is claimed.
+- Active native checks: DRC 0, unconnected 0, ERC 0 errors / 46 inherited library warnings. Exact topology/MPN/pad regression tests pass. These are digital results, not thermal, hot-plug pulse or SOA qualification.
+
+Full source references, copper UUID changes, calculations and remaining physical
+gates are recorded in `validation/strict_port/stage1_power_integrity.json` and
+`stage1_copper_changes.json`. R8 pulse capability, startup body-diode stress,
+hot-board Q2 losses and all source-removal cases remain EVT gates.
 
 The existing L4 MPN is `SRN6045TA-6R8M`. Its manufacturer rating is higher than the schematic display text “6.8uH/2A”, so the display text must not be used as the component limit; the exact saturation, RMS-current and temperature-rise limits come from the Bourns datasheet.[5]
 
@@ -50,6 +64,10 @@ Implemented layout:
 - native KiCad 10.0.6 DRC reports no new error or warning from the change.
 
 The selected part is 2.5 mm nominal high. Hole-aligned overlay against Radxa's official V1.11 STEP and placement resources maps C45 to approximately Radxa `(28.15, 5.19)` mm, overlapping the host U1/RK3566 package region.[9][10][11] Release therefore requires a measured PCB-surface gap of at least 4.0 mm and at least 0.5 mm residual part-to-part clearance in every intended Radxa SKU. Controlled spacers, not connector friction, must set the gap. If this gate fails, C45 must not be populated on B.Cu.
+
+If C45 clearance fails, hold assembly and qualify a lower-height or relocated
+input bypass before proceeding. Simply leaving C45 unpopulated is not an
+approved production workaround; the input-decoupling function must be retained.
 
 This power change does not approve operation over Radxa's onboard antenna; use the external U.FL mode or complete OTA validation before release.[12]
 
@@ -80,7 +98,7 @@ No simultaneous-source claim may be made until reverse-current measurements are 
 
 ### 4. Audio startup behavior
 
-The current `R3` and `R4` ties keep PAM8406 SHDN and MUTE asserted high, so the amplifier is enabled at startup. Before production release, firmware or a hardware delay must guarantee muted audio during Radxa boot. If firmware ownership cannot be guaranteed, add a default-off hardware enable network in a separately reviewed change.
+Stage 2 changes R3 to 10 kΩ and adds Q4/Q5: with AMP_ENABLE LOW or high-impedance, Q4 clamps SHDN LOW; J4.11 HIGH releases shutdown. R4 remains the MUTE-high link. The integrated circuit is fully routed and digitally checked, but actual boot-time silence, GPIO ownership and power-ramp behavior remain measured gates. Codec volume alone is not the hardware safeguard. See `13_STAGE2_GPIO_AUDIO_CLOSURE.md` and the opt-in overlay restrictions.
 
 ## EVT acceptance gates
 

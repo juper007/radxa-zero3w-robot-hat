@@ -1,0 +1,63 @@
+{
+  "status": "promoted_and_active_native_verified",
+  "backup_path": "C:\\Users\\juper\\AppData\\Local\\Temp\\robot-hat-stage1-promotion-backup-uhg_ru1j",
+  "candidate_path": "C:\\Users\\juper\\AppData\\Local\\Temp\\robot-hat-stage1-candidate-rfc105hq",
+  "promoted_files": [
+    "hardware/kicad/power.kicad_sch",
+    "hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb",
+    "hardware/kicad/check_strict_port.py",
+    "hardware/kicad/vendored_footprints_manifest.json",
+    "hardware/kicad/Package_TO_SOT_SMD.pretty/DMN3023L_SOT23_Diodes.kicad_mod",
+    "hardware/kicad/test_stage1_guards.py",
+    "hardware/kicad/test_stage1_power_integrity.py",
+    "validation/strict_port/radxa_port_netlist.xml",
+    "validation/strict_port/radxa_port_erc.json",
+    "validation/strict_port/radxa_port_drc.json",
+    "validation/strict_port/report_summary.json",
+    "validation/strict_port/stage1_copper_changes.json",
+    "validation/strict_port/stage1_power_integrity.json",
+    "validation/strict_port/stage1_test_results.json"
+  ],
+  "checks": {
+    "active_native_netlist": {
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "07:58:09: Font 'Liberation Mono' not found; substituting 'Courier New Bold'.\n"
+    },
+    "active_native_erc": {
+      "returncode": 0,
+      "stdout": "46 \uac1c\uc758 \uc704\ubc18 \ubc1c\uacac\nERC \ubcf4\uace0\uc11c\ub97c C:/Users/juper/OneDrive/Documents/ChatGPT/Microduck_DIY/radxa-zero3w-robot-hat/validation/strict_port/radxa_port_erc.json\uc5d0 \uc800\uc7a5\ud568.\n",
+      "stderr": "07:58:09: Font 'Liberation Mono' not found; substituting 'Courier New Bold'.\n"
+    },
+    "active_native_drc": {
+      "returncode": 0,
+      "stdout": "0 \uac1c\uc758 \uc704\ubc18 \ubc1c\uacac\n0\uac1c\uc758 \ubbf8\uc5f0\uacb0 \ud56d\ubaa9 \ubc1c\uacac\n108 \ud68c\ub85c\ub3c4 \ud328\ub9ac\ud2f0 \ubb38\uc81c \ubc1c\uacac\nDRC \ubcf4\uace0\uc11c\ub97c C:/Users/juper/OneDrive/Documents/ChatGPT/Microduck_DIY/radxa-zero3w-robot-hat/validation/strict_port/radxa_port_drc.json\uc5d0 \uc800\uc7a5\ud568\n",
+      "stderr": "7:58:11 AM: \uae00\uaf34 'Liberation Mono'\ub97c \ucc3e\uc744 \uc218 \uc5c6\uc74c; 'Courier New Bold'\ub85c \ub300\uccb4\ud569\ub2c8\ub2e4.\n"
+    },
+    "check_strict_port.py": {
+      "returncode": 0,
+      "stdout": "STRICT PORT CHECK: PASS\nRegenerated KiCad ERC/DRC/parity/netlist evidence and validated one 65.00 x 30.90 mm centerline-outline routed HAT with zero DRC findings, ten resolved ERC warnings including the removed H2/H3 logo symbols, and exactly one approved C45 library-symbol ERC warning versus upstream.\n",
+      "stderr": ""
+    },
+    "test_stage1_guards.py": {
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_battery_envelope_annotation_cannot_claim_5v_input (__main__.Stage1GuardMutations.test_battery_envelope_annotation_cannot_claim_5v_input) ... ok\ntest_native_netlist_identity_and_r8_bias_mutations (__main__.Stage1GuardMutations.test_native_netlist_identity_and_r8_bias_mutations) ... ok\ntest_pcb_identity_and_geometry_mutations (__main__.Stage1GuardMutations.test_pcb_identity_and_geometry_mutations) ... ok\ntest_q2_symbol_regression (__main__.Stage1GuardMutations.test_q2_symbol_regression) ... ok\ntest_qualified_candidate (__main__.Stage1GuardMutations.test_qualified_candidate) ... ok\ntest_schematic_purchasing_identity_mutations (__main__.Stage1GuardMutations.test_schematic_purchasing_identity_mutations) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.311s\n\nOK\n"
+    },
+    "test_stage1_power_integrity.py": {
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_c39_exact_manufacturer_verified_50v_identity (__main__.Stage1Acceptance.test_c39_exact_manufacturer_verified_50v_identity) ... ok\ntest_control_preserved_power_pin_directions (__main__.Stage1Acceptance.test_control_preserved_power_pin_directions) ... ok\ntest_q2_enhancement_symbol (__main__.Stage1Acceptance.test_q2_enhancement_symbol) ... ok\ntest_q2_exact_identity (__main__.Stage1Acceptance.test_q2_exact_identity) ... ok\ntest_r8_battery_bias_both_native_sources (__main__.Stage1Acceptance.test_r8_battery_bias_both_native_sources) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.239s\n\nOK\n"
+    },
+    "test_board_artwork.py": {
+      "returncode": 0,
+      "stdout": "PCB ARTWORK POLICY TESTS: PASS\n",
+      "stderr": ""
+    },
+    "test_qwiic_functional_parity.py": {
+      "returncode": 0,
+      "stdout": "QWIIC FUNCTIONAL PARITY TESTS: PASS\n",
+      "stderr": ""
+    }
+  }
+}

@@ -16,6 +16,64 @@ import zipfile
 import generate_manufacturing_package as generator
 
 
+class PurchasingIdentityTests(unittest.TestCase):
+    def test_preserves_alternate_manufacturer_fields(self) -> None:
+        normalize = getattr(generator, "normalize_bom_identity", None)
+        self.assertTrue(callable(normalize), "BOM identity normalization is missing")
+        row = {
+            "Refs": "J4", "Manufacturer": "", "Manufacturer Part": "",
+            "Manufacturer_Name": "Toby Electronics",
+            "Manufacturer_Part_Number": "REF-182665-01",
+        }
+        normalized = normalize(row)
+        self.assertEqual(normalized["Manufacturer"], "Toby Electronics")
+        self.assertEqual(normalized["Manufacturer Part"], "REF-182665-01")
+        self.assertNotIn("Manufacturer_Name", normalized)
+        self.assertEqual(row["Manufacturer"], "")
+
+    def test_rejects_conflicting_identity_fields(self) -> None:
+        for primary, alias in (
+            ("Manufacturer", "Manufacturer_Name"),
+            ("Manufacturer Part", "Manufacturer_Part_Number"),
+        ):
+            with self.subTest(field=primary), self.assertRaisesRegex(SystemExit, "J4"):
+                generator.normalize_bom_identity({"Refs": "J4", primary: "A", alias: "B"})
+
+    def test_critical_identity_validation_rejects_missing_or_wrong_part(self) -> None:
+        validate = getattr(generator, "validate_purchasing_identity", None)
+        self.assertTrue(callable(validate), "critical purchasing identity gate is missing")
+        correct = {"Refs": "J4", "Manufacturer": "Toby Electronics",
+                   "Manufacturer Part": "REF-182665-01", "LCSC Part": ""}
+        validate([correct])
+        invalid_rows = [[], [correct, correct]]
+        for field in ("Manufacturer", "Manufacturer Part"):
+            for value in ("", "wrong"):
+                invalid_rows.append([dict(correct, **{field: value})])
+        invalid_rows.append([dict(correct, **{"LCSC Part": "C2685112"})])
+        for rows in invalid_rows:
+            with self.subTest(rows=rows), self.assertRaisesRegex(SystemExit, "J4"):
+                validate(rows)
+
+    @unittest.skipUnless(
+        os.environ.get("RUN_KICAD_INTEGRATION") == "1" or os.environ.get("RUN_BOM_INTEGRATION") == "1",
+        "requires native KiCad BOM export",
+    )
+    def test_native_bom_preserves_j4_purchasing_identity(self) -> None:
+        export = getattr(generator, "export_bom", None)
+        self.assertTrue(callable(export), "validated BOM exporter is missing")
+        with tempfile.TemporaryDirectory() as directory:
+            for populated in (False, True):
+                path = Path(directory) / f"bom-{populated}.csv"
+                export(generator.find_kicad(), path, populated=populated)
+                rows = generator.csv_rows(path)
+                self.assertEqual(len(rows), 121 if populated else 130)
+                j4 = next(row for row in rows if row["Refs"] == "J4")
+                self.assertEqual(j4["Manufacturer"], "Toby Electronics")
+                self.assertEqual(j4["Manufacturer Part"], "REF-182665-01")
+                self.assertEqual(j4["LCSC Part"], "")
+                self.assertNotIn("Manufacturer_Name", j4)
+
+
 class OutputPathTests(unittest.TestCase):
     def test_accepts_child_of_release_directory(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -163,6 +221,37 @@ class ReproducibilityTests(unittest.TestCase):
 
 
 class ExportPolicyTests(unittest.TestCase):
+    def test_all_connectors_are_required_in_both_exports(self) -> None:
+        connectors = {'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9', 'J11', 'J13', 'J14'}
+        self.assertTrue(connectors <= generator.REQUIRED_POPULATED)
+        full = generator.REQUIRED_POPULATED
+        for ref in connectors:
+            for bom, pnp in ((full - {ref}, full), (full, full - {ref})):
+                with self.subTest(ref=ref, bom=bom, pnp=pnp):
+                    with self.assertRaisesRegex(SystemExit, ref):
+                        generator.validate_required_populated(bom, pnp)
+
+    def test_stage2_drill_contract(self) -> None:
+        self.assertTrue(hasattr(generator, 'EXPECTED_DRILL_COUNTS'))
+        self.assertEqual(generator.EXPECTED_DRILL_COUNTS, {'plated': 150, 'unplated': 42})
+
+    def test_requires_gpio_safety_parts_in_each_export(self) -> None:
+        required = {'Q3', 'Q4', 'Q5', 'R3', 'R24', 'R42', 'R43', 'R44', 'R45', 'R46', 'C44'}
+        self.assertTrue(required <= generator.REQUIRED_POPULATED)
+        full = generator.REQUIRED_POPULATED
+        for ref in required:
+            for bom, pnp in ((full - {ref}, full), (full, full - {ref})):
+                with self.subTest(ref=ref, bom=bom, pnp=pnp):
+                    with self.assertRaisesRegex(SystemExit, ref):
+                        generator.validate_required_populated(bom, pnp)
+
+    def test_requires_host_connector_in_populated_exports(self) -> None:
+        full = generator.REQUIRED_POPULATED
+        for bom, pnp in ((full - {"J4"}, full), (full, full - {"J4"})):
+            with self.subTest(bom=bom, pnp=pnp):
+                with self.assertRaisesRegex(SystemExit, "J4"):
+                    generator.validate_required_populated(bom, pnp)
+
     def test_declares_complete_board_dnp_inventory(self) -> None:
         self.assertEqual(
             generator.DNP,

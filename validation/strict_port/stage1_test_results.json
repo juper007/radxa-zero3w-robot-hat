@@ -1,0 +1,26 @@
+{
+  "check_strict_port.py": {
+    "returncode": 0,
+    "output": "STRICT PORT CHECK: PASS\nRegenerated KiCad ERC/DRC/parity/netlist evidence and validated one 65.00 x 30.90 mm centerline-outline routed HAT with zero DRC findings, ten resolved ERC warnings including the removed H2/H3 logo symbols, and exactly one approved C45 library-symbol ERC warning versus upstream.\n\n"
+  },
+  "test_strict_port_guards.py": {
+    "returncode": 0,
+    "output": "STRICT PORT NEGATIVE TESTS: PASS\n\n"
+  },
+  "test_stage1_guards.py": {
+    "returncode": 0,
+    "output": "\ntest_battery_envelope_annotation_cannot_claim_5v_input (__main__.Stage1GuardMutations.test_battery_envelope_annotation_cannot_claim_5v_input) ... ok\ntest_native_netlist_identity_and_r8_bias_mutations (__main__.Stage1GuardMutations.test_native_netlist_identity_and_r8_bias_mutations) ... ok\ntest_pcb_identity_and_geometry_mutations (__main__.Stage1GuardMutations.test_pcb_identity_and_geometry_mutations) ... ok\ntest_q2_symbol_regression (__main__.Stage1GuardMutations.test_q2_symbol_regression) ... ok\ntest_qualified_candidate (__main__.Stage1GuardMutations.test_qualified_candidate) ... ok\ntest_schematic_purchasing_identity_mutations (__main__.Stage1GuardMutations.test_schematic_purchasing_identity_mutations) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.294s\n\nOK\n"
+  },
+  "test_board_artwork.py": {
+    "returncode": 0,
+    "output": "PCB ARTWORK POLICY TESTS: PASS\n\n"
+  },
+  "test_qwiic_functional_parity.py": {
+    "returncode": 0,
+    "output": "QWIIC FUNCTIONAL PARITY TESTS: PASS\n\n"
+  },
+  "test_stage1_power_integrity.py": {
+    "returncode": 0,
+    "output": "\ntest_c39_exact_manufacturer_verified_50v_identity (__main__.Stage1Acceptance.test_c39_exact_manufacturer_verified_50v_identity) ... ok\ntest_control_preserved_power_pin_directions (__main__.Stage1Acceptance.test_control_preserved_power_pin_directions) ... ok\ntest_q2_enhancement_symbol (__main__.Stage1Acceptance.test_q2_enhancement_symbol) ... ok\ntest_q2_exact_identity (__main__.Stage1Acceptance.test_q2_exact_identity) ... ok\ntest_r8_battery_bias_both_native_sources (__main__.Stage1Acceptance.test_r8_battery_bias_both_native_sources) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.284s\n\nOK\n"
+  }
+}

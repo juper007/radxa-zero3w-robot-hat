@@ -1,0 +1,54 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/rockchip.h>
+
+/* OPT-IN: only for the default-OFF transistor circuit on J4.11.
+ * Apply AFTER the pinned aic3104-i2c3 overlay creates /sound-aic3104.
+ * Do not install on the original always-enabled PAM8406 board.
+ * Kernel simple-amplifier requests GPIO low and enables it through DAPM.
+ * This does not validate bootloader pin state or a safe mixer-volume limit.
+ */
+&{/} {
+	robot_hat_amp_5v: robot-hat-amp-5v {
+		compatible = "regulator-fixed";
+		regulator-name = "robot-hat-amp-5v";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		regulator-always-on;
+	};
+
+	robot_hat_amp: robot-hat-amplifier {
+		compatible = "simple-audio-amplifier";
+		sound-name-prefix = "HAT AMP";
+		VCC-supply = <&robot_hat_amp_5v>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&robot_hat_amp_pins>;
+		enable-gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+};
+
+&pinctrl {
+	robot_hat_amp_pull_down: robot-hat-amp-pull-down {
+		bias-pull-down;
+	};
+
+	robot-hat-amplifier {
+		robot_hat_amp_pins: amp-enable-pins {
+			rockchip,pins = <3 RK_PA1 RK_FUNC_GPIO &robot_hat_amp_pull_down>;
+		};
+	};
+};
+
+&{/sound-aic3104} {
+	simple-audio-card,aux-devs = <&robot_hat_amp>;
+	simple-audio-card,widgets = "Speaker", "HAT Speaker";
+	simple-audio-card,routing =
+		"HAT AMP INL", "LLOUT",
+		"HAT AMP INR", "RLOUT",
+		"HAT Speaker", "HAT AMP OUTL",
+		"HAT Speaker", "HAT AMP OUTR";
+};

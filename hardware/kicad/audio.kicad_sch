@@ -2799,7 +2799,8 @@
 			)
 			(embedded_fonts no)
 		)
-	)
+		(symbol "Transistor_BJT:Q_NPN_BEC" (pin_names (offset 0) (hide yes)) (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (duplicate_pin_numbers_are_jumpers no) (property "Reference" "Q" (at 5.08 1.27 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27)) (justify left))) (property "Value" "Q_NPN_BEC" (at 5.08 -1.27 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27)) (justify left))) (property "Footprint" "" (at 5.08 2.54 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "Datasheet" "" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "Description" "NPN transistor, base/emitter/collector" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "Sim.Device" "NPN" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "Sim.Pins" "1=B 2=E 3=C" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "ki_keywords" "BJT" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (symbol "Q_NPN_BEC_0_1" (polyline (pts (xy -2.54 0) (xy 0.635 0)) (stroke (width 0) (type default)) (fill (type none))) (polyline (pts (xy 0.635 1.905) (xy 0.635 -1.905)) (stroke (width 0.508) (type default)) (fill (type none))) (circle (center 1.27 0) (radius 2.8194) (stroke (width 0.254) (type default)) (fill (type none)))) (symbol "Q_NPN_BEC_1_1" (polyline (pts (xy 0.635 0.635) (xy 2.54 2.54)) (stroke (width 0) (type default)) (fill (type none))) (polyline (pts (xy 0.635 -0.635) (xy 2.54 -2.54)) (stroke (width 0) (type default)) (fill (type none))) (polyline (pts (xy 1.27 -1.778) (xy 1.778 -1.27) (xy 2.286 -2.286) (xy 1.27 -1.778)) (stroke (width 0) (type default)) (fill (type outline))) (pin input line (at -5.08 0 0) (length 2.54) (name "B" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27))))) (pin passive line (at 2.54 -5.08 90) (length 2.54) (name "E" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))) (pin passive line (at 2.54 5.08 270) (length 2.54) (name "C" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))) (embedded_fonts no))
+)
 	(text "Onboard Mic."
 		(exclude_from_sim no)
 		(at 262.636 154.94 0)
@@ -12105,209 +12106,7 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 189.23 91.44 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "8b065720-bdb8-4f09-b3be-f53095e91d6e")
-		(property "Reference" "R3"
-			(at 192.278 90.17 90)
-			(effects
-				(font
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Value" "0R"
-			(at 185.928 90.17 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 189.23 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 189.23 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 189.23 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC Part" "C17168"
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Dielectric" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Power Rating" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Resistance" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Tolerance" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Voltage Rating" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "KLC_S3.3" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "KLC_S4.1" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Arrow Part Number" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Arrow Price/Stock" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Height" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" ""
-			(at 189.23 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "6057f39b-94c4-40b7-af17-9bb811324c59")
-		)
-		(pin "1"
-			(uuid "cc3ed71b-6c60-43f0-aa86-9b695acaef13")
-		)
-		(instances
-			(project "radxa_zero3w_robot_hat"
-				(path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d"
-					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
+	(symbol (lib_id "Device:R_Small") (at 189.23 91.44 270) (mirror x) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "8b065720-bdb8-4f09-b3be-f53095e91d6e") (property "Reference" "R3" (at 192.278 90.17 90) (effects (font (size 1.016 1.016)))) (property "Value" "10k" (at 185.928 90.17 90) (effects (font (size 1.27 1.27)))) (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 189.23 91.44 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "~" (at 189.23 91.44 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Resistor, small symbol" (at 189.23 91.44 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC Part" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Dielectric" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Power Rating" "0.063W" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Resistance" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Tolerance" "1%" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Voltage Rating" "50V" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S3.3" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S4.1" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Part Number" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Price/Stock" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Height" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Name" "Yageo" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Part_Number" "RC0402FR-0710KL" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Part Number" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Price/Stock" "" (at 189.23 91.44 90) (effects (font (size 1.27 1.27)) (hide yes))) (pin "2" (uuid "6057f39b-94c4-40b7-af17-9bb811324c59")) (pin "1" (uuid "cc3ed71b-6c60-43f0-aa86-9b695acaef13")) (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d" (reference "R3") (unit 1)))))
 	(symbol
 		(lib_id "Device:C_Small")
 		(at 59.69 120.65 0)
@@ -18007,4 +17806,35 @@
 			)
 		)
 	)
+	(global_label "AMP_INHIBIT" (shape passive) (at 95.25 172.72 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "84a18ebf-4ea8-4472-bf0e-21b3640621ca") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 95.25 172.72 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "GND" (shape passive) (at 123.19 165.1 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "a32bff3b-2d3d-4860-be4e-0d3cdb3f00e8") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 123.19 165.1 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "AMP_ENABLE" (shape passive) (at 124.46 190.5 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "f2cae35a-877e-47e5-918e-7d04b852d5f3") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 124.46 190.5 0) (effects (font (size 1 1)) (hide yes))))
+	(symbol (lib_id "Device:R_Small") (at 160.02 181.61 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "9e9a9bad-0680-4d76-91f7-34f44807758e") (property "Reference" "R46" (at 163.02 180.11 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "100k" (at 163.02 183.11 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "~" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Resistor, small symbol" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC Part" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Dielectric" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Power Rating" "0.063W" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Resistance" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Tolerance" "1%" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Voltage Rating" "50V" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S3.3" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S4.1" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Part Number" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Price/Stock" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Height" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Name" "Yageo" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Part_Number" "RC0402FR-07100KL" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Part Number" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Price/Stock" "" (at 160.02 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "2" (uuid "aa859f08-9b7b-40e3-9200-8634329eae7b")) (pin "1" (uuid "89de89fc-5d6e-4954-ab5a-7d4e2e1f8241")) (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d" (reference "R46") (unit 1)))))
+	(global_label "AMP_INHIBIT" (shape passive) (at 83.82 160.02 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "6813cc58-3ec6-4767-8d17-e0caea9cc3e2") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 83.82 160.02 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "AMP_INHIBIT" (shape passive) (at 171.45 154.94 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "3aea63c5-58f5-4ab2-8613-489598f24af8") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 171.45 154.94 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "AMP_BASE" (shape passive) (at 132.08 160.02 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "3a457830-0128-4a77-aa31-24e6bcf9cce5") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 132.08 160.02 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "+5V" (shape passive) (at 95.25 190.5 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "49f8bffa-6875-4552-952e-e51ce5373baa") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 95.25 190.5 0) (effects (font (size 1 1)) (hide yes))))
+	(symbol (lib_id "Device:R_Small") (at 95.25 181.61 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "ff8ba1dd-7525-4939-8f6b-0e24006fba98") (property "Reference" "R44" (at 98.25 180.11 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "10k" (at 98.25 183.11 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "~" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Resistor, small symbol" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC Part" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Dielectric" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Power Rating" "0.063W" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Resistance" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Tolerance" "1%" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Voltage Rating" "50V" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S3.3" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S4.1" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Part Number" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Price/Stock" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Height" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Name" "Yageo" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Part_Number" "RC0402FR-0710KL" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Part Number" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Price/Stock" "" (at 95.25 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "2" (uuid "07f8b8a0-e138-47e2-9018-4d12077a1ea6")) (pin "1" (uuid "f8ea3d2e-f47d-4aa7-a8dc-101e8e104adb")) (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d" (reference "R44") (unit 1)))))
+	(symbol (lib_id "Device:R_Small") (at 124.46 181.61 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "4f7cb25a-43d5-464e-b571-e0328f3ea010") (property "Reference" "R45" (at 127.46 180.11 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "10k" (at 127.46 183.11 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "~" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Resistor, small symbol" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC Part" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Dielectric" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Power Rating" "0.063W" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Resistance" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Tolerance" "1%" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Voltage Rating" "50V" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S3.3" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S4.1" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Part Number" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Price/Stock" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Height" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Name" "Yageo" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Part_Number" "RC0402FR-0710KL" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Part Number" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Price/Stock" "" (at 124.46 181.61 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "2" (uuid "8880f0b0-79a3-460d-b7da-435119dbea16")) (pin "1" (uuid "7685b35e-85e2-4b78-b269-4cd7bfce69a2")) (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d" (reference "R45") (unit 1)))))
+	(global_label "GND" (shape passive) (at 171.45 165.1 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "765acbde-b78a-4f14-b693-d8805de79b27") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 171.45 165.1 0) (effects (font (size 1 1)) (hide yes))))
+	(symbol (lib_id "Transistor_BJT:Q_NPN_BEC") (at 153.67 160.02 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "3caceeee-1a65-4661-9bb5-4d85aac0b495") (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d" (reference "Q5") (unit 1)))) (property "Reference" "Q5" (at 159.67 158.52 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "BC847B" (at 159.67 161.52 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "Package_TO_SOT_SMD:SOT-23" (at 153.67 160.02 0) (effects (font (size 1 1)) (hide yes))) (property "Manufacturer_Name" "Nexperia" (at 153.67 160.02 0) (effects (font (size 1 1)) (hide yes))) (property "Manufacturer_Part_Number" "BC847B,215" (at 153.67 160.02 0) (effects (font (size 1 1)) (hide yes))) (property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf" (at 153.67 160.02 0) (effects (font (size 1 1)) (hide yes))) (property "Description" "45V 100mA NPN; 1=B 2=E 3=C" (at 153.67 160.02 0) (effects (font (size 1 1)) (hide yes))) (pin "1" (uuid "d6aa3ab9-d444-4081-89da-2ef3f964c0ec")) (pin "2" (uuid "994b6d26-f1b1-4115-9760-efd5cf300f8e")) (pin "3" (uuid "c22beeeb-09cd-4371-a5d1-d33192094510")))
+	(global_label "GND" (shape passive) (at 160.02 190.5 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "7653fced-7a70-4ae3-8798-4e72d03d7450") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 160.02 190.5 0) (effects (font (size 1 1)) (hide yes))))
+	(symbol (lib_id "Transistor_BJT:Q_NPN_BEC") (at 105.41 160.02 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "55a28f18-6142-4d98-baf6-bea438f47d64") (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/0c96912b-e4c1-4c95-9b89-2df53fe3745d" (reference "Q4") (unit 1)))) (property "Reference" "Q4" (at 111.41 158.52 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "BC847B" (at 111.41 161.52 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "Package_TO_SOT_SMD:SOT-23" (at 105.41 160.02 0) (effects (font (size 1 1)) (hide yes))) (property "Manufacturer_Name" "Nexperia" (at 105.41 160.02 0) (effects (font (size 1 1)) (hide yes))) (property "Manufacturer_Part_Number" "BC847B,215" (at 105.41 160.02 0) (effects (font (size 1 1)) (hide yes))) (property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf" (at 105.41 160.02 0) (effects (font (size 1 1)) (hide yes))) (property "Description" "45V 100mA NPN; 1=B 2=E 3=C" (at 105.41 160.02 0) (effects (font (size 1 1)) (hide yes))) (pin "1" (uuid "0d9eeb55-68a2-4682-aaed-f3ab416d8858")) (pin "2" (uuid "f07bc09f-d577-4453-ad07-e5c3b099a972")) (pin "3" (uuid "60fcb5fe-4fab-4a6f-baf3-2322e9899e25")))
+	(global_label "AMP_SHDN" (shape passive) (at 123.19 154.94 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "fb3d1e74-fb8c-4c94-9625-e2f09992a0eb") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 123.19 154.94 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "AMP_BASE" (shape passive) (at 160.02 172.72 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "109f539a-6c77-4fec-b829-604d36720b33") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 160.02 172.72 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "AMP_BASE" (shape passive) (at 124.46 172.72 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "ed73f753-d830-4704-9345-5eb849d6380e") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 124.46 172.72 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "AMP_SHDN" (shape passive) (at 191.77 91.44 0) (effects (font (size 0.7 0.7)) (justify left)) (uuid "3c5d936c-66d8-4d21-a02b-5f77b6e1ce63") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 191.77 91.44 0) (effects (font (size 1 1)) (hide yes))))
+	(wire (pts (xy 95.25 179.07) (xy 95.25 172.72)) (stroke (width 0) (type default)) (uuid "64a71b6d-78a9-4fbc-84ea-5ac8ad93d890"))
+	(wire (pts (xy 95.25 184.15) (xy 95.25 190.5)) (stroke (width 0) (type default)) (uuid "72749461-615b-4254-a2e9-30eeae59c825"))
+	(wire (pts (xy 100.33 160.02) (xy 83.82 160.02)) (stroke (width 0) (type default)) (uuid "4f5b5cd4-6c5f-4b0a-b95a-66c29a1e570c"))
+	(wire (pts (xy 107.95 154.94) (xy 123.19 154.94)) (stroke (width 0) (type default)) (uuid "d2cea582-8eca-4bdc-8bfd-4ecbafcfc57e"))
+	(wire (pts (xy 107.95 165.1) (xy 123.19 165.1)) (stroke (width 0) (type default)) (uuid "0a4f96a1-4945-4189-bcd0-2545513e5deb"))
+	(wire (pts (xy 148.59 160.02) (xy 132.08 160.02)) (stroke (width 0) (type default)) (uuid "1c16a61c-ccec-4432-af2b-69cc6d8259fb"))
+	(wire (pts (xy 156.21 154.94) (xy 171.45 154.94)) (stroke (width 0) (type default)) (uuid "f765c75c-4702-441f-ae9d-87a63626b4e9"))
+	(wire (pts (xy 156.21 165.1) (xy 171.45 165.1)) (stroke (width 0) (type default)) (uuid "ca126b5e-e59b-4045-95d7-e2b7f9093d5d"))
+	(wire (pts (xy 124.46 179.07) (xy 124.46 172.72)) (stroke (width 0) (type default)) (uuid "faf4a881-5660-47df-a0c8-228656b4e0dd"))
+	(wire (pts (xy 124.46 184.15) (xy 124.46 190.5)) (stroke (width 0) (type default)) (uuid "2833d4d4-2641-4a68-8e85-b383dabb05ff"))
+	(wire (pts (xy 160.02 179.07) (xy 160.02 172.72)) (stroke (width 0) (type default)) (uuid "f1890320-01f2-4377-a318-59a1f890d4ed"))
+	(wire (pts (xy 160.02 184.15) (xy 160.02 190.5)) (stroke (width 0) (type default)) (uuid "bf28c5da-0fae-417c-bb84-86f75886feaa"))
+	(text "Default OFF: J4.11 / AMP_ENABLE HIGH enables amplifier" (at 70 196 0) (effects (font (size 1.1 1.1)) (justify left bottom)) (uuid "fbaf627a-95ed-4cb3-9687-58459c152255"))
 )

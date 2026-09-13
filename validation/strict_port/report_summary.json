@@ -1,5 +1,5 @@
 {
-  "revision": "v0.24-logo-free-artwork",
+  "revision": "v0.26-stage2-gpio-safety",
   "classification": "strict single-board port",
   "upstream": {
     "repository": "https://github.com/pollen-robotics/elec_RPI_Robot_HAT",
@@ -8,15 +8,23 @@
   "architecture": {
     "board_count": 1,
     "daughterboard": false,
-    "outline_mm": [65.0, 30.9],
+    "outline_mm": [
+      65.0,
+      30.9
+    ],
     "copper_layers": 4,
     "thickness_mm": 1.0,
-    "copper_um": [70, 35, 35, 70],
+    "copper_um": [
+      70,
+      35,
+      35,
+      70
+    ],
     "surface_finish": "ENIG"
   },
   "schematic": {
-    "components": 127,
-    "nets": 95
+    "components": 134,
+    "nets": 98
   },
   "erc_baseline": {
     "total": 46,
@@ -30,9 +38,9 @@
     "resolved_vs_upstream": 10
   },
   "pcb": {
-    "footprints": 126,
-    "net_table_entries_including_empty": 96,
-    "tracks": 1013,
+    "footprints": 133,
+    "net_table_entries_including_empty": 101,
+    "tracks": 1396,
     "zones": 1,
     "unconnected_items": 0
   },
@@ -45,13 +53,13 @@
     "resolved_vs_upstream": 49
   },
   "schematic_parity_baseline": {
-    "total": 110,
-    "warning": 110,
+    "total": 105,
+    "warning": 105,
     "types": {
-      "footprint_symbol_field_mismatch": 110
+      "footprint_symbol_field_mismatch": 105
     },
     "new_vs_upstream": 0,
-    "resolved_vs_upstream": 1
+    "resolved_vs_upstream": 6
   },
   "validation_policy": {
     "kicad_version": "10.0.6",
@@ -85,7 +93,18 @@
   ],
   "qwiic_functional_parity": {
     "populated": [
-      "J5", "J6", "J7", "J8", "R18", "R19", "R20", "R21", "R34", "R35", "R38", "R39"
+      "J5",
+      "J6",
+      "J7",
+      "J8",
+      "R18",
+      "R19",
+      "R20",
+      "R21",
+      "R34",
+      "R35",
+      "R38",
+      "R39"
     ],
     "overlay": "software/overlays/radxa-zero3w-robot-hat-qwiic.dts",
     "buses": {
@@ -113,7 +132,8 @@
     "31": "GPIO3_B4_P31",
     "35": "I2S3_LRCK_M0",
     "38": "I2S3_SDI_M0",
-    "40": "I2S3_SDO_M0"
+    "40": "I2S3_SDO_M0",
+    "11": "AMP_ENABLE"
   },
   "fabrication_blockers": [
     "J4 REF-182665-01 modified 1.02 x 1.80 mm land pattern requires connector-vendor/assembly-house signoff or prototype assembly validation",
@@ -122,7 +142,46 @@
     "Radxa onboard antenna has no validated HAT copper keepout; external U.FL antenna or OTA validation is required",
     "USB-C and HAT battery input simultaneous operation is prohibited until reverse-current validation passes",
     "J5 hardware I2C3 M0 and J6/J7/J8 i2c-gpio overlays require runtime bus enumeration and device-transfer validation on the intended OS image",
-    "derivative Gerber/drill/BOM/PnP/assembly package generation and review pending"
+    "derivative Gerber/drill/BOM/PnP/assembly package generation and review pending",
+    "Stage 1 Q2 solder assembly/height and 2 A hot-load thermal/SOA/startup tests remain physical gates; its 6.2 A datasheet rating is not a board rating",
+    "Stage 1 battery SKU, protection/cutoff, R8 hot-plug pulse tolerance, VS/VGS sequencing and battery-removal/USB-only reverse-current behavior require bench validation; no universal USB-only isolation guarantee is claimed",
+    "Stage 2 battery-presence thresholds, AMP_ENABLE boot/high-Z default-off sequencing, host back-power and audio shutdown must be validated on the intended host image and hardware"
   ],
-  "fabrication_ready": false
+  "fabrication_ready": false,
+  "stage1_power_integrity": {
+    "q2": "DMN3023L-7",
+    "q2_vgs_absolute_max_v": 20,
+    "c39": "CL05B104KB5NNNC",
+    "c39_voltage_v": 50,
+    "r8_pin1_net": "+BATT",
+    "battery_max_assumed_v": 8.4,
+    "battery_sku_confirmed": false,
+    "digital_drc_violations": 0,
+    "digital_unconnected_items": 0,
+    "new_electrical_errors": 0,
+    "physical_validation_complete": false,
+    "battery_min_assumed_v": 6.0
+  },
+  "stage2_gpio_safety": {
+    "battery_presence": "active low, Q3 collector at GPIO3_B4_P31; pull-up to host +3V3",
+    "amplifier_enable": "J4 physical pin 11 AMP_ENABLE; R46 pulldown/Q5/Q4 default-off chain",
+    "required_populated": [
+      "Q3",
+      "Q4",
+      "Q5",
+      "R24",
+      "R3",
+      "R42",
+      "R43",
+      "R44",
+      "R45",
+      "R46"
+    ],
+    "physical_validation_complete": false,
+    "exact_parity_resolutions": [
+      "D2",
+      "R24",
+      "R3"
+    ]
+  }
 }

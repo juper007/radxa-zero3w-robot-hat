@@ -47,6 +47,7 @@ unchanged.
 | 5 | `IO_03` | `I2C3_SCL_M0` | Active I2C3 clock |
 | 8 | `IO_14` | `UART2_TX_M0` | Active Dynamixel UART TX |
 | 10 | `IO_15` | `UART2_RX_M0` | Active Dynamixel UART RX |
+| 11 | NC | `AMP_ENABLE` / GPIO3_A1 | Approved Stage 2 default-OFF amplifier control, active HIGH |
 | 12 | `IO_18` | `I2S3_SCLK_M0` | Active audio serial clock |
 | 35 | `IO_19` | `I2S3_LRCK_M0` | Active audio frame clock |
 | 38 | `IO_20` | `I2S3_SDI_M0` | Active audio input |
@@ -60,7 +61,17 @@ unchanged.
 | 27 | `ID_SD` | `I2C4_SDA_M0_P27` | Upstream HAT-ID path; U4 DNP |
 | 28 | `ID_SC` | `I2C4_SCL_M0_P28` | Upstream HAT-ID path; U4 DNP |
 | 29 | `IO_05` | `GPIO3_B3_P29` | J6 software-I2C SCL |
-| 31 | `IO_06` | `GPIO3_B4_P31` | Radxa GPIO identity; unused optional upstream path remains DNP |
+| 31 | `IO_06` | `GPIO3_B4_P31` | Populated battery-presence input; Stage 2 Q3 host-referenced collector, connected=LOW; not DNP or voltage ADC |
+
+## Approved corrective exceptions
+
+Approved corrective exceptions retain the single board and all connectors:
+Stage 1 changes Q2's gate rating/land, R8 VS bias and C39's rating. Stage 2
+replaces D2's battery-clamp function with host-referenced Q3 sensing, changes
+R24/R3 values, and adds Q3/Q4/Q5 plus R42–R46 for active-LOW battery presence
+and default-OFF amplifier control. D2 is removed **with its function replaced**,
+not marked DNP to discard a feature. Every other upstream electrical membership
+is checked after reversing only these explicitly approved exceptions.
 
 ## Explicitly excluded from this port
 

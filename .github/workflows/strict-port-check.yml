@@ -3,6 +3,10 @@ name: Strict Radxa port check
 on:
   push:
     paths:
+      - 'hardware/kicad/test_stage2_*.py'
+      - 'hardware/kicad/test_stage1_*.py'
+      - 'hardware/kicad/Package_TO_SOT_SMD.pretty/DMN3023L_SOT23_Diodes.kicad_mod'
+      - 'hardware/kicad/vendored_footprints_manifest.json'
       - 'hardware/kicad/*.kicad_sch'
       - 'hardware/kicad/*.kicad_pcb'
       - 'hardware/kicad/*.kicad_pro'
@@ -17,6 +21,10 @@ on:
       - '.github/workflows/strict-port-check.yml'
   pull_request:
     paths:
+      - 'hardware/kicad/test_stage2_*.py'
+      - 'hardware/kicad/test_stage1_*.py'
+      - 'hardware/kicad/Package_TO_SOT_SMD.pretty/DMN3023L_SOT23_Diodes.kicad_mod'
+      - 'hardware/kicad/vendored_footprints_manifest.json'
       - 'hardware/kicad/*.kicad_sch'
       - 'hardware/kicad/*.kicad_pcb'
       - 'hardware/kicad/*.kicad_pro'
@@ -62,9 +70,14 @@ jobs:
           RUN_KICAD_INTEGRATION: '1'
         run: |
           python3 hardware/kicad/check_strict_port.py
+          /usr/bin/python3 hardware/kicad/test_stage1_power_integrity.py
+          python3 hardware/kicad/test_stage1_guards.py
+          python3 hardware/kicad/test_stage2_gpio.py
+          python3 hardware/kicad/test_stage2_guards.py
           python3 hardware/kicad/test_strict_port_guards.py
           python3 hardware/kicad/test_qwiic_functional_parity.py
           python3 hardware/kicad/test_board_artwork.py
+          python3 software/overlays/test/test_amp_enable_overlay.py
           cpp -nostdinc -I software/overlays/include -undef -x assembler-with-cpp \
             software/overlays/radxa-zero3w-robot-hat-qwiic.dts /tmp/radxa-zero3w-robot-hat-qwiic.pp.dts
           dtc -Wno-alias_paths -@ -I dts -O dtb -o /tmp/radxa-zero3w-robot-hat-qwiic.dtbo \

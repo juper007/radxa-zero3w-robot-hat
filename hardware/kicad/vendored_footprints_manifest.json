@@ -28,6 +28,10 @@
       "sha256": "d437a893d4995a823551bb323314e53e717fa7405d4665177f69017f12d4d33a"
     },
     {
+      "path": "Package_TO_SOT_SMD.pretty/DMN3023L_SOT23_Diodes.kicad_mod",
+      "sha256": "b0a96b0c403a80361245fcec056f94c137dee5b319fddbdcd22fbcf35931533b"
+    },
+    {
       "path": "Package_TO_SOT_SMD.pretty/SOT-23-3.kicad_mod",
       "sha256": "3ed87bb8dc9445a83c76bc5892e565d233431b056fa2cd00f9f07b0e6060c2ff"
     },
@@ -60,5 +64,11 @@
     "Package_TO_SOT_SMD": "${KIPRJMOD}/Package_TO_SOT_SMD.pretty"
   },
   "method": "Exact project-local footprints exported from embedded board instances with KiCad PCB_IO_KICAD_SEXPR",
-  "schema_version": 1
+  "schema_version": 1,
+  "stage1_addition": {
+    "path": "Package_TO_SOT_SMD.pretty/DMN3023L_SOT23_Diodes.kicad_mod",
+    "source": "https://www.diodes.com/assets/Datasheets/DMN3023L.pdf",
+    "page": 6,
+    "method": "Native pcbnew export of Stage 1 Q2 with exact manufacturer suggested land"
+  }
 }

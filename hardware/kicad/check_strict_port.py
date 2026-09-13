@@ -34,10 +34,10 @@ BASELINE_SHA256 = {
 }
 PROJECT_POLICY_SHA256 = "4adff66c71b09e7c04e35641b1ac3bcad518250f7eb9362f8f85f625805de698"
 EDGE_CUTS_SHA256 = "69787bc712e9b43c4ff232a5ceb72b5bce5a73ea0f5e7b6548bc5b64c4cb33bf"
-J4_FOOTPRINT_SHA256 = "653abbdf65d2e09a9d4f49745931e88c6ff32736958e08071b72692091ac2039"
-POWER_REGION_SHA256 = "b3cdfb6456a747281ee42a346d4d0420079616a3159b70a3f8aa6cb9b3f7f079"
-FILLED_ZONE_SHA256 = "e97175d477adf4ce9c3c16561b6130983807780dbf025033157494f3d8ffe8ec"
-VENDORED_MANIFEST_SHA256 = "7d7751af8e81f80c2ffa553f555a4e1eecb841819e3488ccec394000a155fe31"
+J4_FOOTPRINT_SHA256 = "633187a7522dce641146996db62ad33a2ad83803a51cf92812ee3c11c5cfc07e"
+POWER_REGION_SHA256 = "2f1e45f5384c540af41b758fa840bc456297d2d848594cdb04fde4d87418826b"
+FILLED_ZONE_SHA256 = "2bc6aafd6fdacda83edd15b80fea1cfb9daba9127781ba1794de99af1fec9071"
+VENDORED_MANIFEST_SHA256 = "a999341b101bcbc590139d6c56e54bbc5bd3782dc5dcf6903126993cf4672928"
 STACKUP_SHA256 = "a4b0affb9de794daff5e090fa4778559bac95a151b8528a11fcdac733e54fdae"
 EXPECTED_DRC_IGNORES = {
     "footprint_filters_mismatch",
@@ -56,13 +56,36 @@ EXPECTED_ERC_IGNORES = {
 }
 ALLOWED_ADDED_COMPONENTS = {
     "C45": ("10uF 50V X7R", "Capacitor_SMD:C_1210_3225Metric"),
+    "Q3": ("BC847B", "Package_TO_SOT_SMD:SOT-23"),
+    "Q4": ("BC847B", "Package_TO_SOT_SMD:SOT-23"),
+    "Q5": ("BC847B", "Package_TO_SOT_SMD:SOT-23"),
+    "R42": ("100k", "Resistor_SMD:R_0402_1005Metric"),
+    "R43": ("10k", "Resistor_SMD:R_0402_1005Metric"),
+    "R44": ("10k", "Resistor_SMD:R_0402_1005Metric"),
+    "R45": ("10k", "Resistor_SMD:R_0402_1005Metric"),
+    "R46": ("100k", "Resistor_SMD:R_0402_1005Metric"),
 }
-ALLOWED_REMOVED_COMPONENTS = {"H2", "H3"}
+ALLOWED_REMOVED_COMPONENTS = {"H2", "H3", "D2"}  # D2 raw-input clamp replaced by Q3 presence detector.
 ALLOWED_COMPONENT_VALUES = {
+    "R24": ("10k", "100k"),
+    "R3": ("0R", "10k"),
     "C21": ("22u 6V3", "22u 10V"),
     "C22": ("22u 6V3", "22u 10V"),
+    "C39": ("100n 6V3", "100nF 50V X7R"),
     "J4": ("Female Header 2x20 SMD", "Radxa ZERO 3W 2x20 HAT Header"),
 }
+# Stage 1 is a bounded correction, not a new power architecture. See
+# validation/strict_port/stage1_power_integrity.json and stage1_copper_changes.json.
+STAGE1_IDENTITIES = {
+    "Q2": {"Value": "DMN3023L-7", "Manufacturer_Name": "Diodes Incorporated", "Manufacturer_Part_Number": "DMN3023L-7", "LCSC Part": "C443825"},
+    "C39": {"Value": "100nF 50V X7R", "Manufacturer_Name": "Samsung Electro-Mechanics", "Manufacturer_Part_Number": "CL05B104KB5NNNC", "LCSC Part": ""},
+}
+STAGE1_FOOTPRINT_SHA256 = {
+    "Q2": "d3fc3276d123ac9d182749480bf9f0b15463d2579a0ddf40e8dff68ffd3ea5bb",
+    "R8": "91ed2585a3b1a0c4384eb5f1d64d88fde66b603960f0d1dfbcbd6baf67f3b401",
+    "C39": "71edbd4e0577683213d5eb92c0a10397ccb6187659cf336e1d6a33eed6fdfcd3",
+}
+STAGE1_RESOLVED_PARITY_UUIDS = {"3db277dc-0bd3-4353-9cb2-ed3931b86bb7", "2080a52e-68dc-45dd-a1ce-a708fbf3f890"}
 REMOVED_LOGO_SYMBOL_UUIDS = {
     "e8f2ab0f-6624-45f8-b8e5-c599d24045f9",  # H2, Hugging Face
     "27295418-94b8-4760-ba2d-314b58e4124d",  # H3, Pollen Robotics
@@ -252,7 +275,7 @@ def validate_vendored_footprints() -> None:
         fail("fp-lib-table changed")
     manifest_files = {entry.get("path"): entry.get("sha256") for entry in manifest.get("files", [])}
     disk_files = {path.relative_to(ROOT).as_posix() for path in ROOT.glob("*.pretty/*.kicad_mod")}
-    if len(manifest_files) != 12 or set(manifest_files) != disk_files:
+    if len(manifest_files) != 13 or set(manifest_files) != disk_files:
         fail("vendored-footprint file inventory changed")
     for relative, expected_hash in manifest_files.items():
         if sha256(ROOT / relative) != expected_hash:
@@ -436,7 +459,174 @@ def net_memberships(path: Path) -> set[tuple[tuple[str, str, str, str], ...]]:
     }
 
 
+def validate_stage1_power(power_text: str, pcb_text: str, netlist: Path) -> None:
+    """Pin exact purchasing identities, enhancement symbol, pads, and VS topology."""
+    for ref, expected in STAGE1_IDENTITIES.items():
+        symbol = symbol_block(power_text, ref)
+        for key, value in expected.items():
+            if property_value(symbol, key) != value:
+                fail(f"Stage 1 {ref} schematic {key} identity changed")
+    q2 = symbol_block(power_text, "Q2")
+    if '(lib_id "Transistor_FET:Q_NMOS_GSD")' not in q2:
+        fail("Stage 1 Q2 must use the pin-preserving enhancement-mode symbol")
+    if property_value(q2, "Footprint") != "Package_TO_SOT_SMD:DMN3023L_SOT23_Diodes":
+        fail("Stage 1 Q2 manufacturer land identity changed")
+    c39 = symbol_block(power_text, "C39")
+    for key, value in {"Man.": "Samsung Electro-Mechanics", "Man. Ref.": "CL05B104KB5NNNC", "Voltage Rating": "50V", "Dielectric": "X7R", "Tolerance": "10%"}.items():
+        if property_value(c39, key) != value:
+            fail(f"Stage 1 C39 {key} changed")
+    if ("7s/25c" in power_text or '(text "24V"' in power_text or '(text "5A"' in power_text
+            or "assumed max 8.4V" not in power_text or "Assumed minimum 6.0V" not in power_text):
+        fail("Stage 1 battery envelope annotation is missing or stale")
+    for ref, expected_hash in STAGE1_FOOTPRINT_SHA256.items():
+        if hashlib.sha256(footprint_block(pcb_text, ref).encode()).hexdigest() != expected_hash:
+            fail(f"Stage 1 {ref} PCB identity, land, placement, or net changed")
+    root = ET.parse(netlist).getroot()
+    components = {c.get("ref"): c for c in root.findall("./components/comp")}
+    for ref, expected in STAGE1_IDENTITIES.items():
+        fields = {f.get("name"): f.text or "" for f in components[ref].findall("./fields/field")}
+        fields["Value"] = components[ref].findtext("value")
+        if any(fields.get(key) != value for key, value in expected.items()):
+            fail(f"Stage 1 {ref} regenerated netlist purchasing identity changed")
+    pins = {(node.get("ref"), node.get("pin")): net.get("name")
+            for net in root.findall("./nets/net") for node in net.findall("node")}
+    expected_pins = {("R8", "1"): "+BATT", ("R8", "2"): "Net-(U10-VS)",
+                     ("C39", "1"): "Net-(U10-VS)", ("C39", "2"): "GND",
+                     ("U10", "1"): "Net-(U10-VS)", ("U10", "4"): "Net-(D1-K)",
+                     ("U10", "5"): "Net-(Q2-G)", ("U10", "6"): "+5V",
+                     ("Q2", "1"): "Net-(Q2-G)", ("Q2", "2"): "Net-(D1-K)", ("Q2", "3"): "+5V"}
+    for pin, net in expected_pins.items():
+        if pins.get(pin) != net:
+            fail(f"Stage 1 {pin[0]}.{pin[1]} must connect to {net}")
+
+
+def stage2_resolved_parity(rows: list[dict]) -> list[dict]:
+    # Exact upstream warning identities: removed D2, corrected R24/R3 metadata.
+    expected = {
+        ("footprint_symbol_field_mismatch", "warning", (("3d68585d-29b4-4ee8-99b5-7155bc8ceb6b", 99.597501, 93.440001),)),
+        ("footprint_symbol_field_mismatch", "warning", (("e85025b8-aa89-4d7b-96d2-2a882e5a3148", 98.007501, 97.340001),)),
+        ("footprint_symbol_field_mismatch", "warning", (("da1e2968-3898-46d3-8f09-49f562ec5242", 114.897501, 100.540001),)),
+    }
+    selected = [row for row in rows if finding_identity(row) in expected]
+    if finding_counter(selected) != Counter({identity: 1 for identity in expected}):
+        fail("Stage 2 D2/R24/R3 exact parity-resolution set changed")
+    return selected
+
+
+def stage2_identities() -> dict:
+    values = {"Q3": "BC847B", "Q4": "BC847B", "Q5": "BC847B", "R24": "100k", "R42": "100k", "R46": "100k", "R3": "10k", "R43": "10k", "R44": "10k", "R45": "10k"}
+    return {ref: {"Value": value,
+                  "Footprint": "Package_TO_SOT_SMD:SOT-23" if ref.startswith("Q") else "Resistor_SMD:R_0402_1005Metric",
+                  "Manufacturer_Name": "Nexperia" if ref.startswith("Q") else "Yageo",
+                  "Manufacturer_Part_Number": "BC847B,215" if ref.startswith("Q") else ("RC0402FR-07100KL" if value == "100k" else "RC0402FR-0710KL")}
+            for ref, value in values.items()}
+
+
+def validate_stage2_schematics(sheets: dict[str, str]) -> None:
+    for ref, expected in stage2_identities().items():
+        sheet = "power" if ref in {"Q3", "R24", "R42", "R43"} else "audio"
+        block = symbol_block(sheets[sheet], ref)
+        for key, value in expected.items():
+            if property_value(block, key) != value:
+                fail(f"Stage 2 {ref} schematic {key} identity changed")
+        if any(flag not in block for flag in ("(dnp no)", "(in_bom yes)", "(on_board yes)")):
+            fail(f"Stage 2 {ref} must remain populated, in BOM, and on board")
+        if ref.startswith("Q") and '(lib_id "Transistor_BJT:Q_NPN_BEC")' not in block:
+            fail(f"Stage 2 {ref} must use NPN BEC pin order")
+
+
+def validate_stage2_pcb(pcb_text: str) -> None:
+    """Purchasing/population guards; routing and land geometry remain separate."""
+    for ref, expected in stage2_identities().items():
+        block = footprint_block(pcb_text, ref)
+        if not block.lstrip().startswith(f'(footprint "{expected["Footprint"]}"'):
+            fail(f"Stage 2 {ref} PCB footprint identity changed")
+        for key, value in expected.items():
+            if key != "Footprint" and property_value(block, key) != value:
+                fail(f"Stage 2 {ref} PCB {key} identity changed")
+        attr = re.search(r"\(attr ([^)]+)\)", block)
+        flags = set(attr.group(1).split()) if attr else set()
+        if "smd" not in flags or flags & {"dnp", "exclude_from_bom", "exclude_from_pos_files", "board_only"}:
+            fail(f"Stage 2 {ref} PCB must remain populated in BOM and PnP")
+
+
+def validate_stage2_netlist(netlist: Path) -> None:
+    """Exact host-referenced presence detector and high-Z/default-OFF amp topology.
+
+    Q3 inverts battery presence into a 3V3 pull-up, never a raw battery input.
+    R46 holds Q5 off at high-Z; R44 then turns Q4 on, clamping AMP_SHDN low.
+    This is a connectivity/identity contract, not an analog or boot-time proof.
+    """
+    root = ET.parse(netlist).getroot()
+    components = {c.get("ref"): c for c in root.findall("./components/comp")}
+    if len(components) != len(root.findall("./components/comp")):
+        fail("Stage 2 duplicate component reference")
+    if "D2" in components:
+        fail("Stage 2 D2 must be removed, its raw clamp replaced by Q3")
+    for ref, expected in stage2_identities().items():
+        if ref not in components:
+            fail(f"Stage 2 missing {ref}")
+        comp = components[ref]
+        fields = {f.get("name"): f.text or "" for f in comp.findall("./fields/field")}
+        fields.update(Value=comp.findtext("value"), Footprint=comp.findtext("footprint"))
+        if any(fields.get(key) != value for key, value in expected.items()):
+            fail(f"Stage 2 {ref} netlist purchasing identity changed")
+        if any(p.get("name") in {"dnp", "exclude_from_bom", "exclude_from_board"} for p in comp.findall("property")):
+            fail(f"Stage 2 {ref} must remain populated in netlist")
+        if ref.startswith("Q"):
+            lib = comp.find("libsource")
+            if lib is None or (lib.get("lib"), lib.get("part")) != ("Transistor_BJT", "Q_NPN_BEC"):
+                fail(f"Stage 2 {ref} netlist must use NPN BEC symbol")
+    nets = {n.get("name"): n for n in root.findall("./nets/net")}
+    if len(nets) != len(root.findall("./nets/net")):
+        fail("Stage 2 duplicate net name")
+    pins = {}
+    for net in nets.values():
+        for node in net.findall("node"):
+            key = (node.get("ref"), node.get("pin"))
+            if key in pins:
+                fail(f"Stage 2 duplicate pin {key}")
+            pins[key] = net.get("name")
+    exact = {
+        "BAT_BASE": {("R24", "1"), ("R42", "1"), ("Q3", "1")},
+        "/Schematic/Audio/GPIO3_B4_P31": {("Q3", "3"), ("R43", "1"), ("C44", "1"), ("J4", "31")},
+        "AMP_SHDN": {("R3", "1"), ("Q4", "3"), ("U1", "12")},
+        "AMP_INHIBIT": {("R44", "1"), ("Q4", "1"), ("Q5", "3")},
+        "AMP_BASE": {("R45", "1"), ("Q5", "1"), ("R46", "1")},
+        "AMP_ENABLE": {("J4", "11"), ("R45", "2")},
+    }
+    for name, expected in exact.items():
+        actual = {pin for pin, net in pins.items() if net == name}
+        if actual != expected:
+            fail(f"Stage 2 {name} exact membership changed: {sorted(actual)}")
+    for ref in stage2_identities():
+        expected_pins = {"1", "2", "3"} if ref.startswith("Q") else {"1", "2"}
+        actual_pins = {pin for owner, pin in pins if owner == ref}
+        if actual_pins != expected_pins:
+            fail(f"Stage 2 {ref} exact pin inventory changed")
+        for net in nets.values():
+            for node in net.findall("node"):
+                if node.get("ref") != ref:
+                    continue
+                pin = node.get("pin")
+                function = {"1": "B_1", "2": "E_2", "3": "C_3"}[pin] if ref.startswith("Q") else ""
+                kind = "input" if ref.startswith("Q") and pin == "1" else "passive"
+                if (node.get("pinfunction", ""), node.get("pintype", "")) != (function, kind):
+                    fail(f"Stage 2 {ref}.{pin} electrical pin tuple changed")
+    j11 = nets["AMP_ENABLE"].find("node[@ref='J4'][@pin='11']")
+    if (j11.get("pinfunction"), j11.get("pintype")) != ("Pin_11_11", "passive"):
+        fail("Stage 2 J4.11 must be a connected passive header pin")
+    supply = {"+BATT": {("R24", "2")}, "+3V3": {("R43", "2")},
+              "+5V": {("R3", "2"), ("R44", "2"), ("R4", "2")},
+              "GND": {("Q3", "2"), ("R42", "2"), ("C44", "2"), ("Q4", "2"), ("Q5", "2"), ("R46", "2")}}
+    for name, expected in supply.items():
+        for pin in expected:
+            if pins.get(pin) != name:
+                fail(f"Stage 2 {pin[0]}.{pin[1]} must connect to {name}")
+
+
 def validate_upstream_netlist(base: Path, port: Path) -> None:
+    validate_stage2_netlist(port)
     base_components = component_map(base)
     port_components = component_map(port)
     added = set(port_components) - set(base_components)
@@ -455,6 +645,7 @@ def validate_upstream_netlist(base: Path, port: Path) -> None:
         ref: ((before, base_components[ref][1]), (after, base_components[ref][1]))
         for ref, (before, after) in ALLOWED_COMPONENT_VALUES.items()
     }
+    expected["Q2"] = (("SI2312CDS-T1-GE3", "Package_TO_SOT_SMD:TSOT-23"), ("DMN3023L-7", "Package_TO_SOT_SMD:DMN3023L_SOT23_Diodes"))
     if differences != expected:
         fail(f"component value or footprint drift versus upstream: {differences}")
     base_memberships = net_memberships(base)
@@ -467,10 +658,35 @@ def validate_upstream_netlist(base: Path, port: Path) -> None:
     }
     if c45_nodes != {"+BATT": {("C45", "1")}, "GND": {("C45", "2")}}:
         fail(f"C45 net membership changed: {c45_nodes}")
-    normalized_port_memberships = {
-        tuple(node for node in nodes if node[0] != "C45")
-        for nodes in port_memberships
-    }
+    # Invert only the exact approved R8.1 move; retain its full electrical tuple.
+    port_nets = {n.get("name"): n for n in port_root.findall("./nets/net")}
+    r8_nodes = [n for n in port_nets["+BATT"].findall("node") if n.get("ref") == "R8" and n.get("pin") == "1"]
+    if len(r8_nodes) != 1:
+        fail("Stage 1 R8.1 battery bias is missing")
+    r8 = tuple(r8_nodes[0].get(k, "") for k in ("ref", "pin", "pinfunction", "pintype"))
+    normalized_port_memberships = set()
+    for name, net in port_nets.items():
+        nodes = [tuple(n.get(k, "") for k in ("ref", "pin", "pinfunction", "pintype")) for n in net.findall("node") if n.get("ref") != "C45"]
+        if name == "+BATT":
+            nodes.remove(r8)
+        if name == "+5V":
+            nodes.append(r8)
+        # Invert Stage 2 only after its exact topology and all new pin tuples
+        # have been checked. Do not discard any other upstream component/pin.
+        new_refs = {"Q3", "Q4", "Q5", "R42", "R43", "R44", "R45", "R46"}
+        nodes = [node for node in nodes if node[0] not in new_refs]
+        if name == "BAT_BASE":
+            nodes.remove(("R24", "1", "", "passive"))
+        if name == "/Schematic/Audio/GPIO3_B4_P31":
+            nodes.extend([("R24", "1", "", "passive"), ("D2", "1", "K_1", "passive")])
+        if name == "GND":
+            nodes.append(("D2", "2", "A_2", "passive"))
+        if name == "AMP_ENABLE":
+            nodes.remove(("J4", "11", "Pin_11_11", "passive"))
+            nodes.append(("J4", "11", "Pin_11_11", "passive+no_connect"))
+        # BAT_BASE/AMP_BASE/AMP_INHIBIT are the only nets removed by inversion.
+        if nodes or name not in {"BAT_BASE", "AMP_BASE", "AMP_INHIBIT"}:
+            normalized_port_memberships.add(tuple(sorted(nodes)))
     if base_memberships != normalized_port_memberships:
         fail("electrical net membership differs from upstream")
 
@@ -565,7 +781,7 @@ def power_region_digest(text: str) -> tuple[str, str]:
                 and any(94.0 <= x <= 105.0 and 98.0 <= y <= 106.0 for x, y in points)
             ):
                 copper_blocks.append(block)
-    if len(copper_blocks) != 55:
+    if len(copper_blocks) != 60:
         fail(f"unexpected power-region copper inventory: {len(copper_blocks)}")
     payload = "\n".join([
         footprint_block(text, "C45"),
@@ -821,12 +1037,18 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
 
     if netlist_signature(fresh_netlist_path) != netlist_signature(COMMITTED_NETLIST):
         fail("committed Radxa netlist is stale relative to the current schematic")
+    validate_stage2_schematics({"power": power_text, "audio": (ROOT / "audio.kicad_sch").read_text(encoding="utf-8"), "main": main_text})
+    validate_stage2_pcb(pcb_text)
+    validate_stage2_netlist(fresh_netlist_path)
+    validate_stage2_netlist(COMMITTED_NETLIST)
+    validate_stage1_power(power_text, pcb_text, fresh_netlist_path)
+    validate_stage1_power(power_text, pcb_text, COMMITTED_NETLIST)
     validate_upstream_netlist(baseline_netlist, fresh_netlist_path)
 
     fresh_root = ET.parse(fresh_netlist_path).getroot()
     components = fresh_root.findall("./components/comp")
     nets = fresh_root.findall("./nets/net")
-    if len(components) != 127 or len(nets) != 95:
+    if len(components) != 134 or len(nets) != 98:
         fail(f"unexpected netlist size: {len(components)} components / {len(nets)} nets")
 
     expected_header = {
@@ -840,7 +1062,7 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
         8: "UART2_TX_M0",
         9: "GND",
         10: "UART2_RX_M0",
-        11: "unconnected-(J4-Pin_11-Pad11)",
+        11: "AMP_ENABLE",
         12: "I2S3_SCLK_M0",
         13: "unconnected-(J4-Pin_13-Pad13)",
         14: "GND",
@@ -955,8 +1177,16 @@ with tempfile.TemporaryDirectory(prefix="strict-port-") as directory:
     ]
     if len(base_moved_parity) != 1 or len(fresh_moved_parity) != 1:
         fail("moved C22 parity-warning identity changed")
+    stage1_resolved_parity = [
+        f for f in base_parity_rows
+        if f.get("type") == "footprint_symbol_field_mismatch" and f.get("severity") == "warning"
+        and len(f.get("items", [])) == 1 and f["items"][0].get("uuid") in STAGE1_RESOLVED_PARITY_UUIDS
+    ]
+    if len(stage1_resolved_parity) != 2:
+        fail("Stage 1 Q2/C39 exact metadata-parity resolution set changed")
     expected_port_parity = finding_counter(base_parity_rows)
-    expected_port_parity.subtract(finding_counter(resolved_j4_parity + base_moved_parity))
+    stage2_parity = stage2_resolved_parity(base_parity_rows)
+    expected_port_parity.subtract(finding_counter(resolved_j4_parity + base_moved_parity + stage1_resolved_parity + stage2_parity))
     expected_port_parity += finding_counter(fresh_moved_parity)
     expected_port_parity = +expected_port_parity
     fresh_parity = finding_counter(fresh_parity_rows)
@@ -1045,7 +1275,7 @@ if summary["drc_baseline"].get("resolved_vs_upstream") != len(resolved_j4_cleara
     fail("summary resolved DRC count is stale")
 if summary["drc_baseline"]["types"] != type_counts(fresh_drc_rows):
     fail("summary DRC type counts are stale")
-if summary["schematic_parity_baseline"].get("resolved_vs_upstream") != len(resolved_j4_parity):
+if summary["schematic_parity_baseline"].get("resolved_vs_upstream") != len(resolved_j4_parity) + len(stage1_resolved_parity) + len(stage2_parity):
     fail("summary resolved parity count is stale")
 if summary["schematic_parity_baseline"]["types"] != type_counts(fresh_parity_rows):
     fail("summary parity type counts are stale")
@@ -1060,8 +1290,8 @@ if summary["pcb"]["unconnected_items"] != len(fresh_drc["unconnected_items"]):
 expected_summary = {
     "board_count": 1,
     "outline_mm": [65.0, 30.9],
-    "footprints": 126,
-    "tracks": 1013,
+    "footprints": 133,
+    "tracks": 1396,
     "erc_total": 46,
     "erc_new": 1,
     "erc_approved": 1,
@@ -1069,9 +1299,9 @@ expected_summary = {
     "drc_total": 0,
     "drc_new": 0,
     "drc_resolved": 49,
-    "parity_total": 110,
+    "parity_total": 105,
     "parity_new": 0,
-    "parity_resolved": 1,
+    "parity_resolved": 6,
 }
 actual_summary = {
     "board_count": len(board_files),

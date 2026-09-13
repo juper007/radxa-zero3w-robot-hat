@@ -1,0 +1,15 @@
+{
+  "bom_full": 130,
+  "bom_populated": 121,
+  "pnp_all": 133,
+  "pnp_populated": 124,
+  "drill": {
+    "plated": 150,
+    "unplated": 42
+  },
+  "exports": 24,
+  "native_export_commands": 9,
+  "new_parts_present_in_bom_and_pnp": true,
+  "full_release_reproducibility_tested": false,
+  "fabrication_ready": false
+}

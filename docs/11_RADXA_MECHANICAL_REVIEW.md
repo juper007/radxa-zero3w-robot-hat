@@ -45,7 +45,7 @@ The layout is therefore electrically accepted but mechanically conditional. Rele
 3. Controlled M2.5 spacers; connector friction must not set the gap.
 4. Repeat inspection for every intended ZERO 3W SKU.
 5. Center-load and thermal-cycle checks with no witness mark, rocking, bow or intermittent contact.
-6. If these checks fail, do not populate C45 on B.Cu.
+6. If these checks fail, hold assembly. Qualify a lower-height or relocated input bypass capacitor and re-run electrical/physical checks; simply omitting C45 is not an approved production workaround.
 
 ## J4 connector stack
 
@@ -60,6 +60,35 @@ Before fabrication release, the assembly drawing must define:
 - first-article continuity and mechanical fit.
 
 This gate is shared with the modified J4 land-pattern signoff.
+
+### Exact model and land-pattern handoff
+
+The fresh native render review found unresolved custom model paths for populated
+J1/J2/J9 (WAGO `2059-302/998-403`) and J4 (Toby `REF-182665-01`). J4 also retains
+an upstream Raspberry Pi Zero 2 W board model reference; that reference is not
+Radxa mechanical evidence. All four connectors are present in BOM/PnP, so missing
+render bodies must not be interpreted as unpopulated connectors.
+
+Required digital closure before accepting a complete assembly render:
+
+1. Obtain the exact WAGO and Toby STEP models with permitted use. Toby's current
+   product page requires login for full CAD assets. No approximate replacement
+   connector model has been approved.
+2. Vendor permitted models with source/MPN provenance, use project-relative paths,
+   and remove the stale Raspberry Pi host model only when the actual Radxa
+   assembly reference is established.
+3. Verify lead positions and pin 1 against copper, and body heights against the
+   supplier drawing. A resolved file path alone is not mechanical validation.
+4. Render both board sides and the host stack, checking every populated connector.
+
+The current J4 lands are `1.02 x 1.80 mm`, with at least `0.22 mm` nominal copper
+clearance to the preserved NPTH holes. The exact supplier drawing does not give
+a recommended PCB land/paste pattern. Send the exact drawing, land dimensions,
+board thickness and assembly process to the vendor/assembler for approval; do
+not infer solder-joint approval from zero DRC or from a related-family footprint.
+
+These are **exact-model access / external assembly approval** gates, not a
+claim that the existing parts necessarily collide.
 
 ## External interfaces
 

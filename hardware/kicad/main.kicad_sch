@@ -2434,10 +2434,7 @@
 		(at 205.74 74.93)
 		(uuid "aa80808a-cdbc-4612-9c45-0b0490f549b6")
 	)
-	(no_connect
-		(at 193.04 69.85)
-		(uuid "aaaecdb8-e1b4-4de2-ba62-83d1d3241b0c")
-	)
+
 	(no_connect
 		(at 205.74 77.47)
 		(uuid "cd38e2cd-79ac-4f86-a09f-32638234033b")
@@ -7519,4 +7516,5 @@
 			)
 		)
 	)
+	(global_label "AMP_ENABLE" (shape passive) (at 193.04 69.85 0) (effects (font (size 1.0 1.0)) (justify left)) (uuid "2c972b0f-766d-4ba4-8c42-b6daae370be4") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 193.04 69.85 0) (effects (font (size 1 1)) (hide yes))))
 )

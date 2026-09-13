@@ -1,0 +1,64 @@
+{
+  "source_root": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat",
+  "results": [
+    {
+      "test": "hardware/kicad/check_strict_port.py",
+      "exit_code": 0,
+      "stdout": "STRICT PORT CHECK: PASS\nRegenerated KiCad ERC/DRC/parity/netlist evidence and validated one 65.00 x 30.90 mm centerline-outline routed HAT with zero DRC findings, ten resolved ERC warnings including the removed H2/H3 logo symbols, and exactly one approved C45 library-symbol ERC warning versus upstream.\n",
+      "stderr": ""
+    },
+    {
+      "test": "hardware/kicad/test_stage1_power_integrity.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_c39_exact_manufacturer_verified_50v_identity (__main__.Stage1Acceptance.test_c39_exact_manufacturer_verified_50v_identity) ... ok\ntest_control_preserved_power_pin_directions (__main__.Stage1Acceptance.test_control_preserved_power_pin_directions) ... ok\ntest_q2_enhancement_symbol (__main__.Stage1Acceptance.test_q2_enhancement_symbol) ... ok\ntest_q2_exact_identity (__main__.Stage1Acceptance.test_q2_exact_identity) ... ok\ntest_r8_battery_bias_both_native_sources (__main__.Stage1Acceptance.test_r8_battery_bias_both_native_sources) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.211s\n\nOK\n"
+    },
+    {
+      "test": "hardware/kicad/test_stage1_guards.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_battery_envelope_annotation_cannot_claim_5v_input (__main__.Stage1GuardMutations.test_battery_envelope_annotation_cannot_claim_5v_input) ... ok\ntest_native_netlist_identity_and_r8_bias_mutations (__main__.Stage1GuardMutations.test_native_netlist_identity_and_r8_bias_mutations) ... ok\ntest_pcb_identity_and_geometry_mutations (__main__.Stage1GuardMutations.test_pcb_identity_and_geometry_mutations) ... ok\ntest_q2_symbol_regression (__main__.Stage1GuardMutations.test_q2_symbol_regression) ... ok\ntest_qualified_candidate (__main__.Stage1GuardMutations.test_qualified_candidate) ... ok\ntest_schematic_purchasing_identity_mutations (__main__.Stage1GuardMutations.test_schematic_purchasing_identity_mutations) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.262s\n\nOK\n"
+    },
+    {
+      "test": "hardware/kicad/test_stage2_gpio.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_amplifier_default_off_enable (__main__.Stage2GPIO.test_amplifier_default_off_enable) ... ok\ntest_battery_present_low_host_referenced (__main__.Stage2GPIO.test_battery_present_low_host_referenced) ... ok\ntest_exact_parts (__main__.Stage2GPIO.test_exact_parts) ... ok\ntest_stage1_not_reverted (__main__.Stage2GPIO.test_stage1_not_reverted) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.029s\n\nOK\n"
+    },
+    {
+      "test": "hardware/kicad/test_stage2_guards.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_exact_stage2_parity_resolution_set (__main__.Stage2Guards.test_exact_stage2_parity_resolution_set) ... ok\ntest_fresh_candidate (__main__.Stage2Guards.test_fresh_candidate) ... ok\ntest_merged_pcb_population_and_identity (__main__.Stage2Guards.test_merged_pcb_population_and_identity) ... ok\ntest_pcb_population_identity_fixture (__main__.Stage2Guards.test_pcb_population_identity_fixture) ... ok\ntest_precise_upstream_normalization (__main__.Stage2Guards.test_precise_upstream_normalization) ... ok\ntest_production_wiring_and_pin11_header_contract (__main__.Stage2Guards.test_production_wiring_and_pin11_header_contract) ... ok\ntest_reject_d2_restoration_duplicate_records_and_wrong_transistor_symbol (__main__.Stage2Guards.test_reject_d2_restoration_duplicate_records_and_wrong_transistor_symbol) ... ok\ntest_reject_netlist_part_identity_population_and_presence (__main__.Stage2Guards.test_reject_netlist_part_identity_population_and_presence) ... ok\ntest_reject_raw_battery_tied_amp_wrong_gpio_and_bias (__main__.Stage2Guards.test_reject_raw_battery_tied_amp_wrong_gpio_and_bias) ... ok\ntest_schematic_population_identity_presence (__main__.Stage2Guards.test_schematic_population_identity_presence) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 4.340s\n\nOK\n"
+    },
+    {
+      "test": "hardware/kicad/test_strict_port_guards.py",
+      "exit_code": 0,
+      "stdout": "STRICT PORT NEGATIVE TESTS: PASS\n",
+      "stderr": ""
+    },
+    {
+      "test": "hardware/kicad/test_qwiic_functional_parity.py",
+      "exit_code": 0,
+      "stdout": "QWIIC FUNCTIONAL PARITY TESTS: PASS\n",
+      "stderr": ""
+    },
+    {
+      "test": "hardware/kicad/test_board_artwork.py",
+      "exit_code": 0,
+      "stdout": "PCB ARTWORK POLICY TESTS: PASS\n",
+      "stderr": ""
+    },
+    {
+      "test": "production/test_generate_manufacturing_package.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "....................s.....\n----------------------------------------------------------------------\nRan 26 tests in 1.489s\n\nOK (skipped=1)\n"
+    }
+  ],
+  "all_passed": true,
+  "complete": true,
+  "pcb_sha256": "67ec3446de5e63c03ef6e9326a7a828437cfa5d92d7d0d3dd3b0bee7026e4771",
+  "full_release_integration_tested": false,
+  "fabrication_ready": false
+}

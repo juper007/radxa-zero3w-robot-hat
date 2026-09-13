@@ -1400,269 +1400,307 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_FET_Other:Q_NMOS_Depletion_GSD"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at 5.08 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "Q_NMOS_Depletion_GSD"
-				(at 5.08 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Depletion-mode N-channel MOSFET gate/source/drain"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "NMOS"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Q_NMOS_Depletion_GSD_0_1"
-				(polyline
-					(pts
-						(xy 0.254 1.905) (xy 0.254 -1.905)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.254 0) (xy -2.54 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 2.286) (xy 0.762 -2.286)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(circle
-					(center 1.651 0)
-					(radius 2.794)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 2.54) (xy 2.54 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.54 1.778)
-					(radius 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(circle
-					(center 2.54 -1.778)
-					(radius 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.794 0.508) (xy 2.921 0.381) (xy 3.683 0.381) (xy 3.81 0.254)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Q_NMOS_Depletion_GSD_1_1"
-				(pin input line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "G"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "D"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "S"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
+		(symbol "Transistor_FET:Q_NMOS_GSD"
+		(pin_names
+			(offset 0)
+			(hide yes)
 		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "Q"
+			(at 5.08 1.905 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Q_NMOS_GSD"
+			(at 5.08 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 5.08 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "N-MOSFET transistor, gate/source/drain"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "transistor NMOS N-MOS N-MOSFET"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "Q_NMOS_GSD_0_1"
+			(polyline
+				(pts
+					(xy 0.254 1.905) (xy 0.254 -1.905)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.254 0) (xy -2.54 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.762 2.286) (xy 0.762 1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.762 0.508) (xy 0.762 -0.508)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.762 -1.27) (xy 0.762 -2.286)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(circle
+				(center 1.651 0)
+				(radius 2.794)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.54 2.54) (xy 2.54 1.778)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 2.54 1.778)
+				(radius 0.254)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(circle
+				(center 2.54 -1.778)
+				(radius 0.254)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.921 0.381) (xy 3.683 0.381)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "Q_NMOS_GSD_1_1"
+			(pin input line
+				(at -5.08 0 0)
+				(length 2.54)
+				(name "G"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 2.54 -5.08 90)
+				(length 2.54)
+				(name "S"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 2.54 5.08 270)
+				(length 2.54)
+				(name "D"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
 		(symbol "power:+5V"
 			(power)
 			(pin_numbers
@@ -2115,7 +2153,8 @@
 			)
 			(embedded_fonts no)
 		)
-	)
+		(symbol "Transistor_BJT:Q_NPN_BEC" (pin_names (offset 0) (hide yes)) (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (duplicate_pin_numbers_are_jumpers no) (property "Reference" "Q" (at 5.08 1.27 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27)) (justify left))) (property "Value" "Q_NPN_BEC" (at 5.08 -1.27 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27)) (justify left))) (property "Footprint" "" (at 5.08 2.54 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "Datasheet" "" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "Description" "NPN transistor, base/emitter/collector" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "Sim.Device" "NPN" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "Sim.Pins" "1=B 2=E 3=C" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (property "ki_keywords" "BJT" (at 0 0 0) (show_name no) (do_not_autoplace no) (hide yes) (effects (font (size 1.27 1.27)))) (symbol "Q_NPN_BEC_0_1" (polyline (pts (xy -2.54 0) (xy 0.635 0)) (stroke (width 0) (type default)) (fill (type none))) (polyline (pts (xy 0.635 1.905) (xy 0.635 -1.905)) (stroke (width 0.508) (type default)) (fill (type none))) (circle (center 1.27 0) (radius 2.8194) (stroke (width 0.254) (type default)) (fill (type none)))) (symbol "Q_NPN_BEC_1_1" (polyline (pts (xy 0.635 0.635) (xy 2.54 2.54)) (stroke (width 0) (type default)) (fill (type none))) (polyline (pts (xy 0.635 -0.635) (xy 2.54 -2.54)) (stroke (width 0) (type default)) (fill (type none))) (polyline (pts (xy 1.27 -1.778) (xy 1.778 -1.27) (xy 2.286 -2.286) (xy 1.27 -1.778)) (stroke (width 0) (type default)) (fill (type outline))) (pin input line (at -5.08 0 0) (length 2.54) (name "B" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27))))) (pin passive line (at 2.54 -5.08 90) (length 2.54) (name "E" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))) (pin passive line (at 2.54 5.08 270) (length 2.54) (name "C" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))) (embedded_fonts no))
+)
 	(text "Switch off\ndetection"
 		(exclude_from_sim no)
 		(at 243.332 125.73 0)
@@ -2129,7 +2168,7 @@
 		)
 		(uuid "4e47e500-f103-4a03-a8dd-4c7ca1ca733b")
 	)
-	(text "5A"
+	(text "2A path"
 		(exclude_from_sim no)
 		(at 204.216 69.85 0)
 		(effects
@@ -2139,7 +2178,7 @@
 		)
 		(uuid "561ba62e-363b-47bb-a943-9533e3dee3fb")
 	)
-	(text "24V"
+	(text "2S Li-ion input"
 		(exclude_from_sim no)
 		(at 54.61 48.768 0)
 		(effects
@@ -2163,9 +2202,9 @@
 		)
 		(uuid "d4d53438-c56d-4136-9fc5-461ae395b771")
 	)
-	(text "(i.e. 7s/25c, \nfrom 21V to 29V)"
+	(text "NP-F550 style 2S Li-ion\nNominal 7.2-7.4V; assumed max 8.4V\nAssumed minimum 6.0V; not a BMS guarantee\nExact battery SKU confirmation required"
 		(exclude_from_sim no)
-		(at 52.07 53.848 0)
+		(at 52.07 61.468 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2261,12 +2300,7 @@
 		(color 0 0 0 0)
 		(uuid "9173c537-6b38-4097-80d0-d990dca11bd5")
 	)
-	(junction
-		(at 199.39 128.27)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "93ee5797-715c-4113-8c84-16bc19e451c9")
-	)
+
 	(junction
 		(at 205.74 128.27)
 		(diameter 0)
@@ -2402,16 +2436,7 @@
 		)
 		(uuid "22d0de8e-f497-4ad3-a705-0bfd8f4e6a30")
 	)
-	(wire
-		(pts
-			(xy 199.39 138.43) (xy 199.39 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "24d4fc1d-226e-4855-8cba-93d93a3e9769")
-	)
+
 	(wire
 		(pts
 			(xy 158.75 74.93) (xy 158.75 72.39)
@@ -2504,7 +2529,7 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 72.39) (xy 215.9 83.82)
+			(xy 215.9 81.28) (xy 215.9 83.82)
 		)
 		(stroke
 			(width 0)
@@ -2582,16 +2607,7 @@
 		)
 		(uuid "6204139b-1978-4c79-a621-3bd1e9c03f14")
 	)
-	(wire
-		(pts
-			(xy 199.39 128.27) (xy 199.39 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6297d157-f4f4-4bc9-87f9-39822237ef69")
-	)
+
 	(wire
 		(pts
 			(xy 223.52 72.39) (xy 226.06 72.39)
@@ -2752,16 +2768,7 @@
 		)
 		(uuid "a7fab589-8cb8-4ef8-97d4-c713b28b4611")
 	)
-	(wire
-		(pts
-			(xy 199.39 128.27) (xy 205.74 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ac8d48ae-dec1-4881-9ee7-54c55d71e695")
-	)
+
 	(wire
 		(pts
 			(xy 144.78 72.39) (xy 153.67 72.39)
@@ -2902,16 +2909,7 @@
 		)
 		(uuid "e9c45f26-672f-4010-a85e-6b82e7f18e02")
 	)
-	(wire
-		(pts
-			(xy 199.39 127) (xy 199.39 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ef54edd6-631b-4331-92aa-a4ff63660f61")
-	)
+
 	(wire
 		(pts
 			(xy 190.5 90.17) (xy 187.96 90.17)
@@ -5230,7 +5228,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n 6V3"
+		(property "Value" "100nF 50V X7R"
 			(at 227.33 101.6 0)
 			(effects
 				(font
@@ -5248,7 +5246,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://product.samsungsem.com/mlcc/CL05B104KB5NNN.do"
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5257,7 +5255,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Capa 0402"
+		(property "Description" "100nF 50V X7R 10% 0402; Samsung CL05B104KB5NNNC"
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5266,7 +5264,7 @@
 				(hide yes)
 			)
 		)
-		(property "Man." ""
+		(property "Man." "Samsung Electro-Mechanics"
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5275,7 +5273,7 @@
 				(hide yes)
 			)
 		)
-		(property "Man. Ref." ""
+		(property "Man. Ref." "CL05B104KB5NNNC"
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5302,7 +5300,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C1525"
+		(property "LCSC Part" ""
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5311,7 +5309,7 @@
 				(hide yes)
 			)
 		)
-		(property "Dielectric" ""
+		(property "Dielectric" "X7R"
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5338,7 +5336,7 @@
 				(hide yes)
 			)
 		)
-		(property "Tolerance" ""
+		(property "Tolerance" "10%"
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5347,7 +5345,7 @@
 				(hide yes)
 			)
 		)
-		(property "Voltage Rating" ""
+		(property "Voltage Rating" "50V"
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5401,7 +5399,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Name" ""
+		(property "Manufacturer_Name" "Samsung Electro-Mechanics"
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5410,7 +5408,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "CL05B104KB5NNNC"
 			(at 215.9 99.06 0)
 			(effects
 				(font
@@ -5868,152 +5866,8 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "Device:D_Zener")
-		(at 199.39 133.35 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "4ebc154c-2991-4938-adec-d5cd56d0f93a")
-		(property "Reference" "D2"
-			(at 196.85 132.0799 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "3V3 Zener Diode"
-			(at 196.85 134.6199 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
-			(at 199.39 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 199.39 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Zener diode"
-			(at 199.39 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC Part" "C19077392"
-			(at 199.39 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "0d6b24cf-db9d-40b3-bf3f-5122e507fbb6")
-		)
-		(pin "1"
-			(uuid "ca298338-931e-4ab4-8813-76ecb7bdbdde")
-		)
-		(instances
-			(project "radxa_zero3w_robot_hat"
-				(path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05"
-					(reference "D2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 199.39 138.43 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5b87d935-ba7c-44b5-8490-2000c6ff539e")
-		(property "Reference" "#PWR090"
-			(at 199.39 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 199.39 143.51 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Footprint" ""
-			(at 199.39 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 199.39 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 199.39 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "29a387ec-d5a1-426b-9e7a-2b0d787cc266")
-		)
-		(instances
-			(project "radxa_zero3w_robot_hat"
-				(path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05"
-					(reference "#PWR090")
-					(unit 1)
-				)
-			)
-		)
-	)
+
+
 	(symbol
 		(lib_id "power:PWR_FLAG")
 		(at 57.15 80.01 0)
@@ -6764,7 +6618,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_FET_Other:Q_NMOS_Depletion_GSD")
+		(lib_id "Transistor_FET:Q_NMOS_GSD")
 		(at 198.12 74.93 270)
 		(mirror x)
 		(unit 1)
@@ -6781,7 +6635,7 @@
 				)
 			)
 		)
-		(property "Value" "SI2312CDS-T1-GE3"
+		(property "Value" "DMN3023L-7"
 			(at 198.12 68.58 90)
 			(effects
 				(font
@@ -6790,7 +6644,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:TSOT-23"
+		(property "Footprint" "Package_TO_SOT_SMD:DMN3023L_SOT23_Diodes"
 			(at 198.12 74.93 0)
 			(effects
 				(font
@@ -6799,7 +6653,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/DMN3023L.pdf"
 			(at 198.12 74.93 0)
 			(effects
 				(font
@@ -6808,7 +6662,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Depletion-mode N-channel MOSFET gate/source/drain"
+		(property "Description" "Enhancement-mode N-channel MOSFET; 30V VDS; +/-20V VGS; G/S/D=1/2/3"
 			(at 198.12 74.93 0)
 			(effects
 				(font
@@ -6817,7 +6671,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C142518"
+		(property "LCSC Part" "C443825"
 			(at 198.12 74.93 90)
 			(effects
 				(font
@@ -6843,6 +6697,8 @@
 				)
 			)
 		)
+		(property "Manufacturer_Name" "Diodes Incorporated" (at 198.12 74.93 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Manufacturer_Part_Number" "DMN3023L-7" (at 198.12 74.93 0) (effects (font (size 1.27 1.27)) (hide yes)))
 	)
 	(symbol
 		(lib_id "Device:R_Small")
@@ -6990,274 +6846,7 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 199.39 124.46 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "bb5449eb-0127-4b2a-bba9-1f86ed380c81")
-		(property "Reference" "R24"
-			(at 196.088 122.936 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10k"
-			(at 195.834 126.238 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Man." ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Man. Ref." ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Length" "1.6"
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Width" "0.9"
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "'FT Position Offset" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Field7" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC Part" "C25744"
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Dielectric" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Power Rating" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Resistance" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Tolerance" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Voltage Rating" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "KLC_S3.3" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "KLC_S4.1" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Arrow Part Number" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Arrow Price/Stock" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Height" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" ""
-			(at 199.39 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1c1db90d-3ac1-4413-8070-1b6a6d32a868")
-		)
-		(pin "2"
-			(uuid "1eae1712-cdf6-4f3f-ace4-095724e19872")
-		)
-		(instances
-			(project "radxa_zero3w_robot_hat"
-				(path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05"
-					(reference "R24")
-					(unit 1)
-				)
-			)
-		)
-	)
+	(symbol (lib_id "Device:R_Small") (at 199.39 124.46 0) (mirror x) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "bb5449eb-0127-4b2a-bba9-1f86ed380c81") (property "Reference" "R24" (at 196.088 122.936 0) (effects (font (size 1.27 1.27)) (justify right))) (property "Value" "100k" (at 195.834 126.238 0) (effects (font (size 1.27 1.27)) (justify right))) (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "~" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Resistor, small symbol" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Man." "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Man. Ref." "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Length" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Width" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "'FT Position Offset" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Field7" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC Part" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Dielectric" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Power Rating" "0.063W" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Resistance" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Tolerance" "1%" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Voltage Rating" "50V" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S3.3" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S4.1" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Part Number" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Price/Stock" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Height" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Name" "Yageo" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Part_Number" "RC0402FR-07100KL" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Part Number" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Price/Stock" "" (at 199.39 124.46 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "1" (uuid "1c1db90d-3ac1-4413-8070-1b6a6d32a868")) (pin "2" (uuid "1eae1712-cdf6-4f3f-ace4-095724e19872")) (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05" (reference "R24") (unit 1)))))
 	(symbol
 		(lib_id "power:GND")
 		(at 57.15 85.09 0)
@@ -8048,4 +7637,27 @@
 			)
 		)
 	)
+	(global_label "+BATT" (shape input) (at 215.9 81.28 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "368949af-2adc-42ea-8466-cc27145dcacc"))
+	(global_label "GND" (shape passive) (at 69.85 185.42 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "b2dda5ad-5ef2-4b0d-8161-06d0792603a2") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 69.85 185.42 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "BAT_BASE" (shape passive) (at 96.52 176.53 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "d66ff569-cda0-418a-b2a1-105e47be3978") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 176.53 0) (effects (font (size 1 1)) (hide yes))))
+	(label "GPIO3_B4_P31" (at 157.48 167.64 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "46ab4f88-a691-475f-8777-25d2cc581c74"))
+
+	(label "GPIO3_B4_P31" (at 135.89 171.45 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "747f39ff-9090-4739-a276-aee8b1279205"))
+	(global_label "BAT_BASE" (shape passive) (at 69.85 167.64 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "11862b31-778a-4085-b553-b5aeb23397fd") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 69.85 167.64 0) (effects (font (size 1 1)) (hide yes))))
+	(symbol (lib_id "Transistor_BJT:Q_NPN_BEC") (at 118.11 176.53 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "79399c55-9b35-439b-b1bf-0e584112480a") (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05" (reference "Q3") (unit 1)))) (property "Reference" "Q3" (at 124.11 175.03 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "BC847B" (at 124.11 178.03 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "Package_TO_SOT_SMD:SOT-23" (at 118.11 176.53 0) (effects (font (size 1 1)) (hide yes))) (property "Manufacturer_Name" "Nexperia" (at 118.11 176.53 0) (effects (font (size 1 1)) (hide yes))) (property "Manufacturer_Part_Number" "BC847B,215" (at 118.11 176.53 0) (effects (font (size 1 1)) (hide yes))) (property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf" (at 118.11 176.53 0) (effects (font (size 1 1)) (hide yes))) (property "Description" "45V 100mA NPN; 1=B 2=E 3=C" (at 118.11 176.53 0) (effects (font (size 1 1)) (hide yes))) (pin "1" (uuid "ac7dbb4b-e389-495f-8630-f52f6cdc18be")) (pin "2" (uuid "b258626b-3ca7-4cd3-81a7-3315b3395279")) (pin "3" (uuid "48050c36-b3a5-47fe-9a28-edc07626ae90")))
+	(global_label "+3V3" (shape passive) (at 157.48 185.42 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "4faf51ef-8a06-4851-82b2-144af2e5ffae") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 157.48 185.42 0) (effects (font (size 1 1)) (hide yes))))
+	(global_label "GND" (shape passive) (at 135.89 181.61 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "9b7f17c8-5119-4a1b-abc9-96ed2325ecb2") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 135.89 181.61 0) (effects (font (size 1 1)) (hide yes))))
+	(symbol (lib_id "Device:R_Small") (at 69.85 176.53 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "f864d9c2-da07-4c38-be5b-4f9fb5a22863") (property "Reference" "R42" (at 72.85 175.03 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "100k" (at 72.85 178.03 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "~" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Resistor, small symbol" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Man." "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Man. Ref." "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Length" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Width" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "'FT Position Offset" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Field7" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC Part" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Dielectric" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Power Rating" "0.063W" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Resistance" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Tolerance" "1%" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Voltage Rating" "50V" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S3.3" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S4.1" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Part Number" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Price/Stock" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Height" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Name" "Yageo" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Part_Number" "RC0402FR-07100KL" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Part Number" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Price/Stock" "" (at 69.85 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "1" (uuid "2aeff866-9574-4805-9e95-fc2babcf20c5")) (pin "2" (uuid "a5eaf40d-372c-42a0-90cd-95489949b416")) (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05" (reference "R42") (unit 1)))))
+	(symbol (lib_id "Device:R_Small") (at 157.48 176.53 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "6c7d2c31-e552-448c-960d-2fcf0feebe00") (property "Reference" "R43" (at 160.48 175.03 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "10k" (at 160.48 178.03 0.0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "~" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Resistor, small symbol" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Man." "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Man. Ref." "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Length" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Width" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "'FT Position Offset" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Field7" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "LCSC Part" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Dielectric" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Power Rating" "0.063W" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Resistance" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Tolerance" "1%" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Voltage Rating" "50V" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S3.3" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "KLC_S4.1" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Part Number" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Arrow Price/Stock" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Height" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Name" "Yageo" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Manufacturer_Part_Number" "RC0402FR-0710KL" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Part Number" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Mouser Price/Stock" "" (at 157.48 176.53 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "1" (uuid "0cf520d3-de6c-4c10-a2fa-c3a81c341a63")) (pin "2" (uuid "d0684267-e239-4140-8ce3-8a9c454502af")) (instances (project "radxa_zero3w_robot_hat" (path "/bc05f5da-608c-4912-90e4-36b13d989976/d25b6afa-8f8a-4256-aaa0-d06d8816c749/1eed69e4-1e3f-4f08-b497-d13d201c1e05" (reference "R43") (unit 1)))))
+	(global_label "BAT_BASE" (shape passive) (at 185.42 132.08 0) (effects (font (size 0.9 0.9)) (justify left)) (uuid "9ea449a7-0e20-4267-a0b5-a82142a66a81") (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 132.08 0) (effects (font (size 1 1)) (hide yes))))
+	(wire (pts (xy 69.85 173.99) (xy 69.85 167.64)) (stroke (width 0) (type default)) (uuid "40bb0499-6bf8-4f8e-88f0-fd24381b3f6d"))
+	(wire (pts (xy 69.85 179.07) (xy 69.85 185.42)) (stroke (width 0) (type default)) (uuid "f4511603-c439-4a9a-b1ac-bc65cc09ee10"))
+	(wire (pts (xy 113.03 176.53) (xy 96.52 176.53)) (stroke (width 0) (type default)) (uuid "f1ed1203-4b93-435e-96a6-9bddb94486a4"))
+	(wire (pts (xy 120.65 171.45) (xy 135.89 171.45)) (stroke (width 0) (type default)) (uuid "8a465ddd-46f0-4d1d-a18a-baeaf159a828"))
+	(wire (pts (xy 120.65 181.61) (xy 135.89 181.61)) (stroke (width 0) (type default)) (uuid "f02bc849-f3b0-4f80-bff2-92aeb46708f0"))
+	(wire (pts (xy 157.48 173.99) (xy 157.48 167.64)) (stroke (width 0) (type default)) (uuid "1f6b4614-c693-4600-99a7-348be991b89a"))
+	(wire (pts (xy 157.48 179.07) (xy 157.48 185.42)) (stroke (width 0) (type default)) (uuid "155760bd-3298-4836-90c5-71f8e9992d9e"))
+	(wire (pts (xy 199.39 127) (xy 199.39 132.08)) (stroke (width 0) (type default)) (uuid "37401deb-68e9-4f3d-8f4d-bb88cdd65c23"))
+	(wire (pts (xy 199.39 132.08) (xy 185.42 132.08)) (stroke (width 0) (type default)) (uuid "9b86c7da-5384-4dbb-a91d-969191f0d4ea"))
+	(text "Battery present = LOW; collector referenced to host 3V3" (at 65 162 0) (effects (font (size 1.1 1.1)) (justify left bottom)) (uuid "1c4fc2b5-32be-4697-b1cd-19046155901a"))
 )
