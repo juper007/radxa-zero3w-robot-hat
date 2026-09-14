@@ -1,11 +1,12 @@
 # Supplier / assembler clarification — DRAFT, NOT SENT
 
-Subject: REF-182665-01 mating header, insertion window and PCB-stack approval
+Subject: REF-182665-01 production insertion window and PCB land approval
 
 We are evaluating an unchanged single-board Robot HAT with a Toby/Samtec
 REF-182665-01 socket populated on B.Cu. No purchase or assembly release is
 being requested by this draft. Please provide written approval tied to the
-exact socket, mating male header and PCB/stack revision.
+exact socket and PCB/stack revision. The official Radxa standard 2x20 header
+geometry is already accepted as the representative EVT basis.
 
 ## Controlled design facts
 
@@ -16,13 +17,12 @@ exact socket, mating male header and PCB/stack revision.
 - J4 candidate lands: 1.02 x 1.80 mm, 40 pin passages 1.02 mm NPTH,
   locator-hole pattern unchanged. The exact drawing does not establish an
   approved land/stencil for this modified candidate.
-- Official Radxa reference CAD includes male-header plastic 2.5 mm above the
-  host board and pin tips 8.5 mm above it. Its actual commercial header MPN,
-  dimensional tolerances, plating and equivalence to a purchased host are
-  unknown. The CAD assembly is not an approved mating-header drawing.
+- Official Radxa reference CAD includes standard 2x20 male-header plastic
+  2.5 mm above the host board and pin tips 8.5 mm above it. This geometry is
+  accepted for EVT; exact factory header identity is not an EVT prerequisite.
 - The earlier 4.0 mm host-top to HAT-bottom surface gap has a demonstrated
-  housing collision. Larger 6.5/7.0 mm gaps are evaluation cases, not approved
-  spacer prescriptions. Contact-solid intersection in undeformed STEP models
+  housing collision. A 9.5 mm nominal surface gap with M2 hardware is selected
+  for representative EVT. Contact-solid intersection in undeformed STEP models
   is not an insertion/wipe or retention-force test.
 
 ## Questions for Toby / Samtec
@@ -64,20 +64,20 @@ not an identification of the factory Radxa header.
    ambient temperature and selected plating. This review does not enlarge the
    existing AP63205 2 A operating envelope.
 
-## Questions for Radxa / host supplier
+## Optional production questions for Radxa / host supplier
 
-- Identify actual ZERO 3W SKU/revision and whether its header is populated.
-- Provide header MPN/drawing, post and insulator dimensions/tolerances,
-  solder seating, pin-1 orientation and current rating.
+- Confirm production revision control for the header-populated ZERO 3W.
+- If available, provide header tolerances and current rating; this is not a
+  prerequisite for the representative EVT build.
 - Confirm host mounting-hole diameters and true centers for that revision.
   The reference STEP and HAT holes do not form an exactly coincident set
   when the 40-pin grid is aligned. Do not force screws through mismatched holes.
 
 ## Questions for spacer supplier / assembler
 
-- Quote a controlled, insulating spacer solution for the subsequently approved
-  surface gap, with length tolerance, OD/ID, end-face flatness, temperature,
-  compression/creep and tightening-torque limits. No length is approved yet.
+- Quote a controlled, insulating M2 spacer solution that produces a measured
+  9.5 mm PCB-surface gap, with length tolerance, OD/ID, end-face flatness,
+  temperature, compression/creep and tightening-torque limits.
 - Include screw/washer/nut dimensions, material, thread engagement and head
   envelopes. Check both boards, all four locations, copper/mask bearing lands
   and neighboring components. Insulating material does not remove crushing,

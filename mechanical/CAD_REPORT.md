@@ -7,7 +7,7 @@
 Final tested PCB SHA-256: `10decd01363cee7c002294a6e6b6dbfa8d8b9488eec4e8337256af82ff02f592`, on HEAD `9ae7252f5ffe37efb9ec986b2e93972cd3280f16` with the parent's uncommitted, model-only J4 restoration. The first analysis used PCB SHA `67ec3446de5e63c03ef6e9326a7a828437cfa5d92d7d0d3dd3b0bee7026e4771`; **all final CAD checks were rerun using fresh native exports from the final source**. `cad_evidence.json` confirms source SHA unchanged during that final analysis. This worker made no existing PCB, library, checker or documentation edits.
 
 Subsequent connector/spacer review: [STACK_REVIEW.md](STACK_REVIEW.md) records
-seven source-bound gap cases, supplier mating guidance and nominal screw-fit
+eight source-bound gap cases, supplier mating guidance and nominal screw-fit
 analysis. It does not supersede the 4 mm rejection or grant assembly approval.
 
 ## Methods and coordinate datums
@@ -56,6 +56,12 @@ Both peg axes match actual PCB centers `(80.5375,79.64)` and `(126.2575,79.64)` 
 At 4 mm the socket's lowest face is host Z=0.3074, far below the male plastic top at Z=2.5. The large low-height overlap demonstrates **body interference**, not ordinary spring contact. The diagnostic header-region window is merely a Boolean selection volume, not an approximate connector replacement.
 
 At 6.2/6.5 mm the low-height body interference disappears, but complete solids still overlap at pin/contact regions. **Neither spacing is approved here.** Resolve exact male-header MPN and length, pin insertion limits, intended body orientation and spring contact geometry with the supplier, then repeat the model and physical checks. The official STEP's included header is not proof that the intended physical SKU is populated with that exact header.
+
+**Later EVT decision:** the official Radxa standard 2x20 header geometry is
+accepted as the representative design basis; exact factory header MPN is not
+an EVT blocker. `STACK_REVIEW.md` and `STACK_EVT_PLAN.md` select a controlled
+9.5 mm surface gap with M2 hardware for physical fit/continuity validation.
+The paragraph above remains the historical production-qualification position.
 
 ## C45 and the broader underside
 

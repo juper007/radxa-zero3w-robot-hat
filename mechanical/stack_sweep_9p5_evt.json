@@ -1,0 +1,1947 @@
+{
+  "schema_version": 1,
+  "fabrication_ready": false,
+  "measurement_type": "CAD only, not physical",
+  "evt_stack_decision": {
+    "surface_gap_mm": 9.5,
+    "fastener": "M2",
+    "host_header_basis": "official Radxa standard 2x20 geometry",
+    "published_entry_range_mm": [
+      1.78,
+      3.43
+    ],
+    "physical_validation_required": true,
+    "fabrication_ready": false
+  },
+  "cadquery": "2.6.1",
+  "source_binding": {
+    "source_pcb_sha256": "10decd01363cee7c002294a6e6b6dbfa8d8b9488eec4e8337256af82ff02f592",
+    "files": [
+      {
+        "path": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat\\hardware\\kicad\\radxa_zero3w_robot_hat.kicad_pcb",
+        "sha256": "10decd01363cee7c002294a6e6b6dbfa8d8b9488eec4e8337256af82ff02f592"
+      },
+      {
+        "path": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat\\hardware\\kicad\\models-local\\REF-182665-01.step",
+        "sha256": "d5503fca60b62f7d24dcaec78bbc2f76d75032de7a299e5beee15c5749f0aad5"
+      },
+      {
+        "path": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat\\mechanical\\sweep_stack.py",
+        "sha256": "65de514df3fc30c8559fdd7b0edf59fcd7ad3ddf08a6dc2694a10f69c06b1442"
+      },
+      {
+        "path": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat\\mechanical\\evidence_contract.py",
+        "sha256": "9e6b2d2aeaa21b6e7e5b9019e1c73d9e43492103dfab846ba14afcca88c838b4"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\board.step",
+        "sha256": "e3e49d631eb5d2b00044f2949cf5d12fd9fab97df8e4d682cdb69cd568594558"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\bottom.step",
+        "sha256": "a113a0673efd1e5c3b4fd7adb8a5f0c02e7ca6d8f95d2e5a8f133cb86b0ab749"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\c45.step",
+        "sha256": "10b06dbc70cb5eda866d808d91ec92d5de18256fcfb9073a6b788154ea88f69c"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\official_radxa.stp",
+        "sha256": "1eac96aa8804f7270e08610ebd99bf0eccfd26d39d859fae76d119406694ded3"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\surfaces.step",
+        "sha256": "79562e5ba22f19ef822f335749ea38cacc3334b05aa59208c360ca4dbc6c24d3"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\j4-current.step",
+        "sha256": "cd4c652e3cc4d0d64d4b2b4f5f694f12ad0ee56fb24bd97a736912a7743ee458"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\official-current.zip",
+        "sha256": "0dfc39db5f52665ef92bcab34781132aba399a4061dc2c869f757a00f446d2cf"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\inputs.json",
+        "sha256": "c9ed342e3d4427d61acc1f419a320213b9493f07b2a34f7531a1e1e64c7b7d05"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\commands.json",
+        "sha256": "e74e61d60815e9f1c77cb6648ccc40c09ecf103341a52af013e9ea0d9616a1de"
+      },
+      {
+        "path": "C:\\Users\\juper\\AppData\\Local\\Temp\\radxa-cad-final\\j4-current-metadata.json",
+        "sha256": "20594300976ab5ac65982afad5751dc2734f711f5c40e7390b9f8c0fafd25278"
+      },
+      {
+        "path": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat\\mechanical\\cad_evidence.json",
+        "sha256": "65d5158ae7d9337a0eb125dfbb599faeb7e548316b67a5028a4e7ca8bbf7ca93"
+      },
+      {
+        "path": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat\\mechanical\\j4_evidence.json",
+        "sha256": "d4cdb7dfc228ba106be09741199225abfcfc147c8b48e3d19f6cbae7bae83aba"
+      },
+      {
+        "path": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat\\mechanical\\render_evidence.json",
+        "sha256": "d2aa1f318e5af090e9c9c98c75835aabfc49439db0de633411e8d48ee77f8025"
+      },
+      {
+        "path": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat\\mechanical\\stack_4mm.png",
+        "sha256": "6fc3f7ae24c227ec7801520a35be9212df36dd764c9d08f8c65ce6dbc37344a6"
+      },
+      {
+        "path": "C:\\Users\\juper\\OneDrive\\Documents\\ChatGPT\\Microduck_DIY\\radxa-zero3w-robot-hat\\mechanical\\stack_4mm_header_side.png",
+        "sha256": "4e0e2b96f6364b064200b13bb973cc96977e0ce3868bdc2a1c85a454f6086bcb"
+      }
+    ],
+    "populated_bottom_refs": [
+      "C1",
+      "C14",
+      "C15",
+      "C16",
+      "C17",
+      "C18",
+      "C2",
+      "C22",
+      "C26",
+      "C27",
+      "C28",
+      "C29",
+      "C3",
+      "C30",
+      "C31",
+      "C32",
+      "C33",
+      "C34",
+      "C35",
+      "C36",
+      "C37",
+      "C38",
+      "C39",
+      "C4",
+      "C44",
+      "C45",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "C9",
+      "D1",
+      "D4",
+      "FB1",
+      "FB2",
+      "FB3",
+      "J4",
+      "Q2",
+      "R1",
+      "R18",
+      "R2",
+      "R20",
+      "R21",
+      "R29",
+      "R3",
+      "R31",
+      "R32",
+      "R33",
+      "R34",
+      "R35",
+      "R38",
+      "R39",
+      "R4",
+      "R40",
+      "R5",
+      "R6",
+      "R7",
+      "R8",
+      "TH1",
+      "U1",
+      "U10",
+      "U2",
+      "U5",
+      "U6",
+      "U7",
+      "U8",
+      "Y1"
+    ],
+    "excluded_dnp_refs": [
+      "C25",
+      "R10",
+      "R11",
+      "R17",
+      "R41",
+      "U4"
+    ],
+    "represented_bottom_refs": [
+      "C1",
+      "C14",
+      "C15",
+      "C16",
+      "C17",
+      "C18",
+      "C2",
+      "C22",
+      "C26",
+      "C27",
+      "C28",
+      "C29",
+      "C3",
+      "C30",
+      "C31",
+      "C32",
+      "C33",
+      "C34",
+      "C35",
+      "C36",
+      "C37",
+      "C38",
+      "C39",
+      "C4",
+      "C44",
+      "C45",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "C9",
+      "D1",
+      "D4",
+      "FB1",
+      "FB2",
+      "FB3",
+      "Q2",
+      "R1",
+      "R18",
+      "R2",
+      "R20",
+      "R21",
+      "R29",
+      "R3",
+      "R31",
+      "R32",
+      "R33",
+      "R34",
+      "R35",
+      "R38",
+      "R39",
+      "R4",
+      "R40",
+      "R5",
+      "R6",
+      "R7",
+      "R8",
+      "TH1",
+      "U1",
+      "U10",
+      "U2",
+      "U5",
+      "U6",
+      "U7",
+      "U8"
+    ],
+    "missing_bottom_refs": [
+      "Y1"
+    ],
+    "exact_j4_separate": true,
+    "existing_evidence_verified_before_cad": true,
+    "unchanged_after_sweep": true
+  },
+  "geometry": {
+    "board.step": {
+      "bbox_mm": [
+        70.897468,
+        135.897502,
+        -106.140034,
+        -75.240000999993,
+        0.0,
+        0.84
+      ],
+      "solids": 1
+    },
+    "bottom.step": {
+      "bbox_mm": [
+        74.847501,
+        132.215121,
+        -105.7000001,
+        -83.890001,
+        -2.62,
+        -0.11999999999999938
+      ],
+      "solids": 65
+    },
+    "c45.step": {
+      "bbox_mm": [
+        97.8,
+        100.3,
+        -102.55,
+        -99.35,
+        -2.62,
+        -0.11999999999999984
+      ],
+      "solids": 1
+    },
+    "j4-current.step": {
+      "bbox_mm": [
+        77.99749990000001,
+        128.797500099996,
+        -82.9293,
+        -76.3507,
+        -3.7776001000000066,
+        0.9976000000000035
+      ],
+      "solids": 1
+    },
+    "official_radxa.stp": {
+      "bbox_mm": [
+        -0.013470255037000441,
+        65.001648105842,
+        -1.5000001,
+        30.005528100000003,
+        -4.484104349629011,
+        8.500000000000004
+      ],
+      "solids": 22
+    },
+    "surfaces.step": {
+      "bbox_mm": [
+        70.897468,
+        135.897502000169,
+        -106.140034,
+        -75.240000999993,
+        -0.085,
+        0.925
+      ],
+      "solids": 474
+    }
+  },
+  "datums": {
+    "host_pin_tip_faces": [
+      {
+        "face": 2178,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          56.455028,
+          56.705028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.06249999999999778,
+        "center_xy_mm": [
+          56.580028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2187,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          53.915028,
+          54.165028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          54.040028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2196,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          51.375028,
+          51.625028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          51.500028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2205,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          48.835028,
+          49.085028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.06249999999999911,
+        "center_xy_mm": [
+          48.960028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2214,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          46.295028,
+          46.545028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.500000000000004
+        ],
+        "area_mm2": 0.06249999999999689,
+        "center_xy_mm": [
+          46.420028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2223,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          43.755028,
+          44.005028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.06249999999999867,
+        "center_xy_mm": [
+          43.880028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2232,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          41.215028,
+          41.465028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.062499999999999556,
+        "center_xy_mm": [
+          41.340028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2241,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          38.67502799999999,
+          38.925028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.06250000000000089,
+        "center_xy_mm": [
+          38.800028,
+          27.94508
+        ],
+        "width_x_mm": 0.2500000000000071,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2250,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          36.135028,
+          36.385028,
+          27.82008,
+          28.070080000000004,
+          8.5,
+          8.500000000000004
+        ],
+        "area_mm2": 0.062499999999999556,
+        "center_xy_mm": [
+          36.260028,
+          27.945080000000004
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25000000000000355
+      },
+      {
+        "face": 2259,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          33.595028,
+          33.845028,
+          27.82008,
+          28.07008,
+          8.499999999999996,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          33.720028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2268,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          31.055028,
+          31.305028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.500000000000004
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          31.180028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2277,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          28.515028,
+          28.765028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          28.640028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2286,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          25.975028,
+          26.225028,
+          27.82008,
+          28.070080000000004,
+          8.5,
+          8.500000000000004
+        ],
+        "area_mm2": 0.062499999999999556,
+        "center_xy_mm": [
+          26.100028,
+          27.945080000000004
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25000000000000355
+      },
+      {
+        "face": 2295,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          23.435028,
+          23.685028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          23.560028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2304,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          20.895028,
+          21.145028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          21.020028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2313,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          18.355027999999997,
+          18.605028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.06250000000000044,
+        "center_xy_mm": [
+          18.480027999999997,
+          27.94508
+        ],
+        "width_x_mm": 0.25000000000000355,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2322,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          15.815028,
+          16.065028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          15.940028000000002,
+          27.94508
+        ],
+        "width_x_mm": 0.2500000000000018,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2331,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          13.275028,
+          13.525028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          13.400028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2340,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          10.735028,
+          10.985028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          10.860028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2349,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          8.195028,
+          8.445028,
+          27.82008,
+          28.07008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          8.320028,
+          27.94508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2448,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          8.195028,
+          8.445028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          8.320028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2457,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          10.735028,
+          10.985028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          10.860028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2466,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          13.275028,
+          13.525028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          13.400028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2475,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          15.815028,
+          16.065028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          15.940028000000002,
+          25.40508
+        ],
+        "width_x_mm": 0.2500000000000018,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2484,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          18.355028,
+          18.605028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          18.480028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2493,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          20.895027999999996,
+          21.145028000000003,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.06250000000000133,
+        "center_xy_mm": [
+          21.020028,
+          25.40508
+        ],
+        "width_x_mm": 0.2500000000000071,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2502,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          23.435028,
+          23.685028,
+          25.28008,
+          25.53008,
+          8.499999999999996,
+          8.500000000000004
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          23.560028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2511,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          25.975028,
+          26.225028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.062499999999999105,
+        "center_xy_mm": [
+          26.100028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2520,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          28.515028,
+          28.765028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          28.640028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2529,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          31.055028,
+          31.305028000000004,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          31.180028,
+          25.40508
+        ],
+        "width_x_mm": 0.25000000000000355,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2538,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          33.595028,
+          33.845028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.500000000000004
+        ],
+        "area_mm2": 0.06250000000000044,
+        "center_xy_mm": [
+          33.720028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2547,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          36.135028,
+          36.385028000000005,
+          25.28008,
+          25.53008,
+          8.499999999999996,
+          8.500000000000004
+        ],
+        "area_mm2": 0.06250000000000089,
+        "center_xy_mm": [
+          36.260028000000005,
+          25.40508
+        ],
+        "width_x_mm": 0.2500000000000071,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2556,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          38.675028,
+          38.925028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          38.800028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2565,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          41.215028,
+          41.465028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          41.340028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2574,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          43.755028,
+          44.005028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.06249999999999911,
+        "center_xy_mm": [
+          43.880028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2583,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          46.295028,
+          46.545028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.500000000000004
+        ],
+        "area_mm2": 0.06249999999999645,
+        "center_xy_mm": [
+          46.420028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2592,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          48.835028,
+          49.085028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.06249999999999911,
+        "center_xy_mm": [
+          48.960028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2601,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          51.375028,
+          51.625028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.062499999999998224,
+        "center_xy_mm": [
+          51.500028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2610,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          53.915028,
+          54.165028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.0625,
+        "center_xy_mm": [
+          54.040028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      },
+      {
+        "face": 2619,
+        "plane_z_mm": 8.5,
+        "bbox_mm": [
+          56.455028,
+          56.705028,
+          25.28008,
+          25.53008,
+          8.5,
+          8.5
+        ],
+        "area_mm2": 0.062499999999997335,
+        "center_xy_mm": [
+          56.580028,
+          25.40508
+        ],
+        "width_x_mm": 0.25,
+        "width_y_mm": 0.25
+      }
+    ],
+    "host_header_plastic_top_faces": [
+      {
+        "face": 1517,
+        "plane_z_mm": 2.5,
+        "bbox_mm": [
+          7.050027999999979,
+          57.85002800000002,
+          24.13508,
+          29.21508,
+          2.5,
+          2.5
+        ],
+        "area_mm2": 233.96400000000384
+      }
+    ],
+    "host_board_top_faces": [
+      {
+        "face": 4,
+        "plane_z_mm": 0.0,
+        "bbox_mm": [
+          -0.013470255037000441,
+          65.001648105842,
+          -1.0000016964207816e-07,
+          30.005528100000003,
+          -0.0006739449924362648,
+          0.006000100000001002
+        ],
+        "area_mm2": 1166.8209937455474
+      }
+    ],
+    "host_pin_tip_z_mm": 8.5,
+    "host_plastic_top_z_mm": 2.5,
+    "host_board_top_z_mm": 0.0,
+    "hat_mask_bottom_native_z_mm": -0.085,
+    "hat_mask_top_native_z_mm": 0.925,
+    "socket_lower_native_z_mm": -3.7776001000000066,
+    "socket_lower_faces": [
+      {
+        "face": 44,
+        "bbox_mm": [
+          77.9975,
+          128.797499999996,
+          -82.18,
+          -77.1,
+          -3.7776000000000067,
+          -3.777599999999995
+        ],
+        "area_mm2": 155.95092892635518
+      }
+    ],
+    "translation_xy_mm": [
+      -70.947472,
+      106.31507999999997
+    ],
+    "header_grid_residuals_mm": [
+      3.907985046680551e-14,
+      3.972054645195637e-14,
+      3.907985046680551e-14,
+      3.972054645195637e-14,
+      3.907985046680551e-14,
+      3.972054645195637e-14,
+      3.972054645195637e-14,
+      3.907985046680551e-14,
+      4.322062729257126e-14,
+      3.907985046680551e-14,
+      3.972054645195637e-14,
+      3.907985046680551e-14,
+      4.2780337774645346e-14,
+      4.050716828981883e-14,
+      3.9241005173051e-14,
+      3.972054645195637e-14,
+      3.9241005173051e-14,
+      4.0076437005177744e-14,
+      3.907985046680551e-14,
+      3.972054645195637e-14,
+      3.197442310920451e-14,
+      3.275440170573378e-14,
+      3.197442310920451e-14,
+      3.275440170573378e-14,
+      3.197442310920451e-14,
+      3.275440170573378e-14,
+      3.275440170573378e-14,
+      3.197442310920451e-14,
+      3.499017183300205e-14,
+      3.197442310920451e-14,
+      3.275440170573378e-14,
+      3.197442310920451e-14,
+      3.2171190647067566e-14,
+      3.370400129833633e-14,
+      3.2171190647067566e-14,
+      3.370400129833633e-14,
+      3.2171190647067566e-14,
+      3.318508435560369e-14,
+      3.197442310920451e-14,
+      3.275440170573378e-14
+    ]
+  },
+  "diagnostic_window": {
+    "bbox_mm": [
+      7.05002799999999,
+      57.85002799999999,
+      24.135080000000002,
+      29.21508,
+      0.0,
+      2.499
+    ],
+    "description": "Existing low host-header-region Boolean selection only; not a substitute connector model"
+  },
+  "c45_envelope": {
+    "dimensions_xyz_mm": [
+      2.7,
+      3.5,
+      2.7
+    ],
+    "native_bbox_mm": [
+      97.7,
+      100.4,
+      -102.69999999999999,
+      -99.19999999999999,
+      -2.8200000000000003,
+      -0.11999999999999988
+    ],
+    "description": "Maximum-material bounding envelope at measured C45 seating plane, not exact supplier CAD"
+  },
+  "gaps": [
+    {
+      "surface_gap_mm": 4.0,
+      "fabrication_ready": false,
+      "axial_geometry": {
+        "translation_z_mm": 4.085,
+        "socket_lower_face_z_mm": 0.3073998999999934,
+        "body_lower_face_minus_host_plastic_top_mm": -2.1926001000000066,
+        "pin_tip_above_hat_bottom_mm": 4.5,
+        "pin_tip_above_hat_top_mm": 3.49,
+        "axial_entry_past_socket_lower_face_mm": 8.192600100000007
+      },
+      "j4_bbox_mm": [
+        7.050027899999983,
+        57.850028099996,
+        23.385779999999954,
+        29.964379999999952,
+        0.30739989999999373,
+        5.082600000000006
+      ],
+      "bottom_to_complete_host": {
+        "minimum_distance_mm": 0.004999999999999893,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          43.950029,
+          3.605078999999961,
+          3.165
+        ],
+        "point_b_mm": [
+          43.950029,
+          3.605078999999961,
+          3.16
+        ]
+      },
+      "c45_to_complete_host": {
+        "minimum_distance_mm": 0.6649999999999998,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          1.4649999999999999
+        ],
+        "point_b_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          0.8
+        ]
+      },
+      "c45_max_material_envelope_to_host": {
+        "minimum_distance_mm": 0.46499999999999964,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          1.2649999999999997
+        ],
+        "point_b_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          0.8
+        ]
+      },
+      "substrate_to_complete_host": {
+        "minimum_distance_mm": 0.05038059222870994,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          7.959403541594875,
+          25.76570445840513,
+          4.085
+        ],
+        "point_b_mm": [
+          7.995028,
+          25.73008,
+          4.085
+        ]
+      },
+      "j4_to_complete_host_including_contact_regions": {
+        "minimum_distance_mm": 0.0,
+        "intersection_volume_mm3": 498.3173099624742,
+        "point_a_mm": [
+          16.631648144449997,
+          29.215079999999972,
+          1.5511272781640022
+        ],
+        "point_b_mm": [
+          16.631648144449997,
+          29.21508,
+          1.5511272781640022
+        ]
+      },
+      "j4_low_header_region_intersection_mm3": 478.0297596895603
+    },
+    {
+      "surface_gap_mm": 6.2,
+      "fabrication_ready": false,
+      "axial_geometry": {
+        "translation_z_mm": 6.285,
+        "socket_lower_face_z_mm": 2.5073998999999936,
+        "body_lower_face_minus_host_plastic_top_mm": 0.0073998999999935755,
+        "pin_tip_above_hat_bottom_mm": 2.3,
+        "pin_tip_above_hat_top_mm": 1.29,
+        "axial_entry_past_socket_lower_face_mm": 5.992600100000006
+      },
+      "j4_bbox_mm": [
+        7.050027899999983,
+        57.850028099996,
+        23.385779999999954,
+        29.964379999999952,
+        2.5073998999999945,
+        7.282600000000005
+      ],
+      "bottom_to_complete_host": {
+        "minimum_distance_mm": 2.205,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          43.950029,
+          3.605078999999961,
+          5.365
+        ],
+        "point_b_mm": [
+          43.950029,
+          3.605078999999961,
+          3.16
+        ]
+      },
+      "c45_to_complete_host": {
+        "minimum_distance_mm": 2.865,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          3.665
+        ],
+        "point_b_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          0.7999999999999998
+        ]
+      },
+      "c45_max_material_envelope_to_host": {
+        "minimum_distance_mm": 2.665,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          3.465
+        ],
+        "point_b_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          0.7999999999999998
+        ]
+      },
+      "substrate_to_complete_host": {
+        "minimum_distance_mm": 0.05038059222870994,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          7.959403541594875,
+          25.76570445840513,
+          6.285
+        ],
+        "point_b_mm": [
+          7.995028,
+          25.73008,
+          6.285
+        ]
+      },
+      "j4_to_complete_host_including_contact_regions": {
+        "minimum_distance_mm": 0.0,
+        "intersection_volume_mm3": 48.50638000000275,
+        "point_a_mm": [
+          56.905028,
+          28.270080000000007,
+          5.885600000000159
+        ],
+        "point_b_mm": [
+          56.905028,
+          28.27008,
+          5.885600000000159
+        ]
+      },
+      "j4_low_header_region_intersection_mm3": 0.0
+    },
+    {
+      "surface_gap_mm": 6.5,
+      "fabrication_ready": false,
+      "axial_geometry": {
+        "translation_z_mm": 6.585,
+        "socket_lower_face_z_mm": 2.8073998999999934,
+        "body_lower_face_minus_host_plastic_top_mm": 0.3073998999999934,
+        "pin_tip_above_hat_bottom_mm": 2.0,
+        "pin_tip_above_hat_top_mm": 0.9900000000000002,
+        "axial_entry_past_socket_lower_face_mm": 5.692600100000007
+      },
+      "j4_bbox_mm": [
+        7.050027899999983,
+        57.850028099996,
+        23.385779999999954,
+        29.964379999999952,
+        2.8073998999999943,
+        7.582600000000006
+      ],
+      "bottom_to_complete_host": {
+        "minimum_distance_mm": 2.505,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          43.950029,
+          3.605078999999961,
+          5.665
+        ],
+        "point_b_mm": [
+          43.950029,
+          3.605078999999961,
+          3.16
+        ]
+      },
+      "c45_to_complete_host": {
+        "minimum_distance_mm": 3.165,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          3.965
+        ],
+        "point_b_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          0.7999999999999998
+        ]
+      },
+      "c45_max_material_envelope_to_host": {
+        "minimum_distance_mm": 2.965,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          3.7649999999999997
+        ],
+        "point_b_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          0.7999999999999998
+        ]
+      },
+      "substrate_to_complete_host": {
+        "minimum_distance_mm": 0.05038059222870994,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          7.959403541594875,
+          25.76570445840513,
+          6.585
+        ],
+        "point_b_mm": [
+          7.995028,
+          25.73008,
+          6.585
+        ]
+      },
+      "j4_to_complete_host_including_contact_regions": {
+        "minimum_distance_mm": 0.0,
+        "intersection_volume_mm3": 48.506380000002736,
+        "point_a_mm": [
+          56.905028,
+          28.270080000000007,
+          6.185600000000159
+        ],
+        "point_b_mm": [
+          56.905028,
+          28.27008,
+          6.185600000000159
+        ]
+      },
+      "j4_low_header_region_intersection_mm3": 0.0
+    },
+    {
+      "surface_gap_mm": 7.0,
+      "fabrication_ready": false,
+      "axial_geometry": {
+        "translation_z_mm": 7.085,
+        "socket_lower_face_z_mm": 3.3073998999999934,
+        "body_lower_face_minus_host_plastic_top_mm": 0.8073998999999934,
+        "pin_tip_above_hat_bottom_mm": 1.5,
+        "pin_tip_above_hat_top_mm": 0.4900000000000002,
+        "axial_entry_past_socket_lower_face_mm": 5.192600100000007
+      },
+      "j4_bbox_mm": [
+        7.050027899999983,
+        57.850028099996,
+        23.385779999999954,
+        29.964379999999952,
+        3.3073998999999943,
+        8.082600000000005
+      ],
+      "bottom_to_complete_host": {
+        "minimum_distance_mm": 2.6550010000000164,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          16.250028999999998,
+          22.42507899999997,
+          6.93
+        ],
+        "point_b_mm": [
+          16.250028999999998,
+          25.08008,
+          6.93
+        ]
+      },
+      "c45_to_complete_host": {
+        "minimum_distance_mm": 3.665,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          4.465
+        ],
+        "point_b_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          0.7999999999999998
+        ]
+      },
+      "c45_max_material_envelope_to_host": {
+        "minimum_distance_mm": 3.465,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          4.265
+        ],
+        "point_b_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          0.7999999999999998
+        ]
+      },
+      "substrate_to_complete_host": {
+        "minimum_distance_mm": 0.05038059222870994,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          7.959403541594875,
+          25.76570445840513,
+          7.085
+        ],
+        "point_b_mm": [
+          7.995028,
+          25.73008,
+          7.085
+        ]
+      },
+      "j4_to_complete_host_including_contact_regions": {
+        "minimum_distance_mm": 0.0,
+        "intersection_volume_mm3": 48.50638000000274,
+        "point_a_mm": [
+          56.905028,
+          28.270080000000007,
+          6.685600000000159
+        ],
+        "point_b_mm": [
+          56.905028,
+          28.27008,
+          6.685600000000159
+        ]
+      },
+      "j4_low_header_region_intersection_mm3": 0.0
+    },
+    {
+      "surface_gap_mm": 8.0,
+      "fabrication_ready": false,
+      "axial_geometry": {
+        "translation_z_mm": 8.085,
+        "socket_lower_face_z_mm": 4.307399899999995,
+        "body_lower_face_minus_host_plastic_top_mm": 1.8073998999999947,
+        "pin_tip_above_hat_bottom_mm": 0.5,
+        "pin_tip_above_hat_top_mm": -0.5100000000000016,
+        "axial_entry_past_socket_lower_face_mm": 4.192600100000005
+      },
+      "j4_bbox_mm": [
+        7.050027899999983,
+        57.850028099996,
+        23.385779999999954,
+        29.964379999999952,
+        4.307399899999995,
+        9.082600000000005
+      ],
+      "bottom_to_complete_host": {
+        "minimum_distance_mm": 2.6550010000000164,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          16.250028999999998,
+          22.42507899999997,
+          7.930000000000001
+        ],
+        "point_b_mm": [
+          16.250028999999998,
+          25.08008,
+          7.930000000000001
+        ]
+      },
+      "c45_to_complete_host": {
+        "minimum_distance_mm": 4.665000000000001,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          5.465000000000001
+        ],
+        "point_b_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          0.7999999999999998
+        ]
+      },
+      "c45_max_material_envelope_to_host": {
+        "minimum_distance_mm": 4.465000000000001,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          5.265000000000001
+        ],
+        "point_b_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          0.7999999999999998
+        ]
+      },
+      "substrate_to_complete_host": {
+        "minimum_distance_mm": 0.05038059222870994,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          7.959403541594875,
+          25.76570445840513,
+          8.3
+        ],
+        "point_b_mm": [
+          7.995028,
+          25.73008,
+          8.3
+        ]
+      },
+      "j4_to_complete_host_including_contact_regions": {
+        "minimum_distance_mm": 0.0,
+        "intersection_volume_mm3": 48.506380000002665,
+        "point_a_mm": [
+          56.905028,
+          28.270080000000007,
+          7.685600000000157
+        ],
+        "point_b_mm": [
+          56.905028,
+          28.27008,
+          7.685600000000157
+        ]
+      },
+      "j4_low_header_region_intersection_mm3": 0.0
+    },
+    {
+      "surface_gap_mm": 9.0,
+      "fabrication_ready": false,
+      "axial_geometry": {
+        "translation_z_mm": 9.085,
+        "socket_lower_face_z_mm": 5.307399899999995,
+        "body_lower_face_minus_host_plastic_top_mm": 2.8073998999999947,
+        "pin_tip_above_hat_bottom_mm": -0.5,
+        "pin_tip_above_hat_top_mm": -1.5100000000000016,
+        "axial_entry_past_socket_lower_face_mm": 3.1926001000000053
+      },
+      "j4_bbox_mm": [
+        7.050027899999983,
+        57.850028099996,
+        23.385779999999954,
+        29.964379999999952,
+        5.307399899999995,
+        10.082600000000005
+      ],
+      "bottom_to_complete_host": {
+        "minimum_distance_mm": 2.6736221329875858,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          16.215029,
+          22.42507899999997,
+          8.615
+        ],
+        "point_b_mm": [
+          16.215029,
+          25.08008,
+          8.3
+        ]
+      },
+      "c45_to_complete_host": {
+        "minimum_distance_mm": 5.665000000000001,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          6.465000000000001
+        ],
+        "point_b_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          0.7999999999999998
+        ]
+      },
+      "c45_max_material_envelope_to_host": {
+        "minimum_distance_mm": 5.465000000000001,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          6.265000000000001
+        ],
+        "point_b_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          0.7999999999999998
+        ]
+      },
+      "substrate_to_complete_host": {
+        "minimum_distance_mm": 0.6732479266937315,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          7.95940354159491,
+          25.765704458405164,
+          9.085
+        ],
+        "point_b_mm": [
+          8.195028,
+          25.53008,
+          8.5
+        ]
+      },
+      "j4_to_complete_host_including_contact_regions": {
+        "minimum_distance_mm": 0.0,
+        "intersection_volume_mm3": 43.71640666666659,
+        "point_a_mm": [
+          8.645027999999996,
+          28.270080000000007,
+          5.815400000000007
+        ],
+        "point_b_mm": [
+          8.645028,
+          28.27008,
+          5.815400000000007
+        ]
+      },
+      "j4_low_header_region_intersection_mm3": 0.0
+    },
+    {
+      "surface_gap_mm": 9.5,
+      "fabrication_ready": false,
+      "axial_geometry": {
+        "translation_z_mm": 9.585,
+        "socket_lower_face_z_mm": 5.807399899999995,
+        "body_lower_face_minus_host_plastic_top_mm": 3.3073998999999947,
+        "pin_tip_above_hat_bottom_mm": -1.0,
+        "pin_tip_above_hat_top_mm": -2.0100000000000016,
+        "axial_entry_past_socket_lower_face_mm": 2.6926001000000053
+      },
+      "j4_bbox_mm": [
+        7.050027899999983,
+        57.850028099996,
+        23.385779999999954,
+        29.964379999999952,
+        5.807399899999995,
+        10.582600000000005
+      ],
+      "bottom_to_complete_host": {
+        "minimum_distance_mm": 2.777274799151335,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          16.050028999999995,
+          22.42507899999997,
+          9.115
+        ],
+        "point_b_mm": [
+          16.050028999999995,
+          25.08008,
+          8.3
+        ]
+      },
+      "c45_to_complete_host": {
+        "minimum_distance_mm": 6.165000000000001,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          6.965000000000001
+        ],
+        "point_b_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          0.7999999999999998
+        ]
+      },
+      "c45_max_material_envelope_to_host": {
+        "minimum_distance_mm": 5.965000000000001,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          6.765000000000001
+        ],
+        "point_b_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          0.7999999999999998
+        ]
+      },
+      "substrate_to_complete_host": {
+        "minimum_distance_mm": 1.135016638995838,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          7.95940354159491,
+          25.765704458405164,
+          9.585
+        ],
+        "point_b_mm": [
+          8.195028,
+          25.53008,
+          8.5
+        ]
+      },
+      "j4_to_complete_host_including_contact_regions": {
+        "minimum_distance_mm": 0.0,
+        "intersection_volume_mm3": 35.266406666666576,
+        "point_a_mm": [
+          8.64502800000001,
+          28.270080000000007,
+          6.315400000000007
+        ],
+        "point_b_mm": [
+          8.645028,
+          28.27008,
+          6.315400000000007
+        ]
+      },
+      "j4_low_header_region_intersection_mm3": 0.0
+    },
+    {
+      "surface_gap_mm": 10.0,
+      "fabrication_ready": false,
+      "axial_geometry": {
+        "translation_z_mm": 10.085,
+        "socket_lower_face_z_mm": 6.307399899999995,
+        "body_lower_face_minus_host_plastic_top_mm": 3.8073998999999947,
+        "pin_tip_above_hat_bottom_mm": -1.5,
+        "pin_tip_above_hat_top_mm": -2.5100000000000016,
+        "axial_entry_past_socket_lower_face_mm": 2.1926001000000053
+      },
+      "j4_bbox_mm": [
+        7.050027899999983,
+        57.850028099996,
+        23.385779999999954,
+        29.964379999999952,
+        6.307399899999995,
+        11.082600000000005
+      ],
+      "bottom_to_complete_host": {
+        "minimum_distance_mm": 2.9628120612015016,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          16.215029,
+          22.42507899999997,
+          9.615
+        ],
+        "point_b_mm": [
+          16.215029,
+          25.08008,
+          8.3
+        ]
+      },
+      "c45_to_complete_host": {
+        "minimum_distance_mm": 6.665000000000001,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          7.465000000000001
+        ],
+        "point_b_mm": [
+          29.312527999999986,
+          6.565079999999966,
+          0.7999999999999998
+        ]
+      },
+      "c45_max_material_envelope_to_host": {
+        "minimum_distance_mm": 6.465000000000001,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          7.265000000000001
+        ],
+        "point_b_mm": [
+          26.752527999999998,
+          7.115079999999978,
+          0.7999999999999998
+        ]
+      },
+      "substrate_to_complete_host": {
+        "minimum_distance_mm": 1.619648965300015,
+        "intersection_volume_mm3": 0.0,
+        "point_a_mm": [
+          7.95940354159491,
+          25.765704458405164,
+          10.085
+        ],
+        "point_b_mm": [
+          8.195028,
+          25.53008,
+          8.5
+        ]
+      },
+      "j4_to_complete_host_including_contact_regions": {
+        "minimum_distance_mm": 0.0,
+        "intersection_volume_mm3": 26.81640666666659,
+        "point_a_mm": [
+          8.64502800000001,
+          28.270080000000007,
+          6.815400000000007
+        ],
+        "point_b_mm": [
+          8.645028,
+          28.27008,
+          6.815400000000007
+        ]
+      },
+      "j4_low_header_region_intersection_mm3": 0.0
+    }
+  ],
+  "limitations": [
+    "9.5mm is the representative EVT target, not production assembly approval; fabrication_ready is false",
+    "Y1 missing underside model; top WAGO, other top bodies, cables, spacers and enclosure not reviewed",
+    "Official fused host includes the nominal standard 2x20 male-header geometry used as the EVT design basis",
+    "J4 complete intersection includes intended pin/contact regions, not a body-only collision metric",
+    "Axial entry is pin tip minus socket lower face, NOT wipe/contact acceptance or mating specification",
+    "Exact solder, board bow, seating, manufacturing and insertion tolerances remain open",
+    "Generic underside models and maximum-material C45 envelope do not prove physical clearance",
+    "Pin-tip face width is the imported tip shape, not a physical shaft-size measurement",
+    "Nominal 6.2mm body separation is below supplier general body-height tolerance; not a robust fit",
+    "No supplier insertion-depth limits applied: exact orientation/part applicability remains unresolved",
+    "Mounting-hole residuals and pin numbering require independent review",
+    "Licensed raw J4 model is kept in local scratch; no redistribution"
+  ]
+}

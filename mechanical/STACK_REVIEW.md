@@ -3,16 +3,19 @@
 ## Decision
 
 Keep the existing single-board HAT and exact J4. **Do not adopt 4.0 mm or
-6.2 mm spacers. Do not order a larger spacer solely because housings no longer
-collide.** The exact male header, insertion datum/window, actual host revision
-and controlled spacer assembly are not yet approved. `fabrication_ready=false`.
+6.2 mm PCB-surface gaps.** Use the official Radxa standard 2x20 header geometry as the
+EVT design basis and target a controlled **9.5 mm PCB-surface gap with M2
+fasteners**. This authorizes a representative mechanical/continuity prototype,
+not production release; `fabrication_ready=false` until the measured acceptance
+checks below pass.
 
 The user supplied the [official ZERO 3W product page](https://radxa.com/products/zeros/zero3w/).
-It explicitly offers both 40-pin-header and headerless versions. This confirms
-the product family, but not a chosen header-population variant, board revision
-or header MPN. The present CAD evaluation therefore remains conditional on
-the official model's populated-header geometry; it does not authorize
-desoldering a factory header or assume a headerless purchase.
+It explicitly offers both 40-pin-header and headerless versions, while Radxa's
+hardware-interface documentation describes the 40-pin header as compatible
+with most SBC accessories. For this EVT, buy the header-populated version and
+treat the official STEP's nominal 2x20 geometry as sufficient; an exact factory
+header MPN is not a blocker. Do not desolder a factory header or assume a
+headerless purchase.
 
 The known 4 mm CAD case has substantial housing interference. At 6.2 mm the
 nominal housing margin is smaller than the socket's drawing tolerance alone.
@@ -95,13 +98,14 @@ for this socket mounted on the HAT underside. Therefore:
   male tip an approved insertion depth or contact wipe.
 - Do not approve 6.5/7/8 mm merely because the bodies clear, or choose a taller
   spacer by applying the family bounds to an unconfirmed datum.
-- The supplier must identify the relevant case and allowable overtravel for
-  this exact orientation. This may change the preferred evaluation gap.
+- Supplier confirmation of the exact case and allowable overtravel remains a
+  production-qualification item. It does not block the selected 9.5 mm
+  representative EVT, which must directly verify fit and continuity.
 
-## Executed seven-gap CAD sweep
+## Executed eight-gap CAD sweep
 
 `sweep_stack.py` was exercised against the existing source-bound native STEP
-exports with CadQuery 2.6.1. `stack_sweep.json` contains all seven cases, source
+exports with CadQuery 2.6.1. `stack_sweep_9p5_evt.json` contains all eight cases, source
 hashes, measured planes, 40 pin-tip faces, and exact BRep distance/intersection
 results. At the initial implementation checkpoint, the parent independently
 rechecked every bound file hash and reran the opt-in real-CAD integration:
@@ -114,7 +118,7 @@ Pre-commit follow-up corrected a POSIX publication race: complete temporary
 output is now published with atomic exclusive hard-link creation, never a
 potentially overwriting rename. Windows and Linux pure suites each passed
 **12 tests, 1 opt-in CAD test skipped**; the suite is now included in CI.
-The final code separately completed the real seven-gap CAD CLI again, and its
+The final code separately completed the real gap CAD CLI again, and its
 new snapshot reproduced every prior gap result exactly. All bound local-file
 hashes were rechecked before replacing the generated snapshot. Independent
 code re-review found no blocking errors. Script checkouts are LF-pinned;
@@ -134,19 +138,21 @@ body clearance means overlapping height envelopes.
 | 7.0 | 0.8074 | 5.1926 | 2.6550 | 3.4650 |
 | 8.0 | 1.8074 | 4.1926 | 2.6550 | 4.4650 |
 | 9.0 | 2.8074 | 3.1926 | 2.6736 | 5.4650 |
+| 9.5 | 3.3074 | 2.6926 | 2.7773 | 5.9650 |
 | 10.0 | 3.8074 | 2.1926 | 2.9628 | 6.4650 |
 
 The underside distance covers **65 represented populated underside components**,
 excluding separately analyzed J4 and missing Y1. It can be limited by the host
 male pins rather than a vertically adjacent USB-C body; therefore it does not
-increase linearly at every gap. All seven represented underside/substrate
+increase linearly at every gap. All eight represented underside/substrate
 intersection volumes are zero; the 4 mm C7 distance is nevertheless unusably
 small as assembly assurance.
 
 At 4 mm the low-header-region J4 intersection is **478.029760 mm³**;
-at all six higher gaps that diagnostic regional volume is zero. Complete J4/host
+at every higher gap that diagnostic regional volume is zero. Complete J4/host
 intersection is **498.317310 mm³** at 4 mm, **48.506380 mm³** at 6.2/6.5/7/8 mm,
-**43.716407 mm³** at 9 mm, and **26.816407 mm³** at 10 mm. It includes modeled
+**43.716407 mm³** at 9 mm, **35.266407 mm³** at 9.5 mm, and **26.816407 mm³**
+at 10 mm. It includes modeled
 pin/contact geometry and is not automatically classified as either permitted
 contact deflection or a rigid collision. No new geometry was substituted to
 make it disappear.
@@ -155,11 +161,13 @@ make it disappear.
 less than the J4 body-height tolerance alone (0.127 mm). **6.5/7/8 mm are not
 approved by housing separation:** their axial entry exceeds the published
 1.78–3.43 mm top-entry range if that range applies to this exact custom part.
-The 9/10 mm cases fall numerically inside that range and are therefore useful
-**supplier-confirmation candidates only**. This comparison neither proves the
-range's applicability nor establishes minimum wipe, complete tolerance budget,
-or an approved spacer. At these two gaps the pin tips lie below the HAT PCB,
-which is not itself a failed connection for a socket projecting below the PCB.
+The 9/9.5/10 mm cases fall numerically inside that range. By user direction,
+**9.5 mm is the nominal EVT target** because its 2.6926 mm axial entry is near
+the middle of the published 1.78–3.43 mm range and its nominal body clearance
+is 3.3074 mm. This does not establish production tolerance or contact wipe;
+the representative prototype must prove those physically. At these gaps the
+pin tips lie below the HAT PCB, which is not itself a failed connection for a
+socket projecting below the PCB.
 
 Measured host pin-tip faces are 0.25 mm squares at Z=8.5 mm; these are tip faces,
 **not** shaft-size measurements and not a contradiction of the THD 0.64 mm
@@ -186,8 +194,8 @@ shaft, the maximum allowable axis offset is
   position exceeds it by 0.019105 mm. Thus the model does **not** support a
   blanket M2.5 screw-fit claim at exact header alignment.
 - A nominal 2.0 mm shaft has 0.75 mm combined budget and positive ideal margin
-  at every position. **This is an evaluation option, not a selected screw or
-  approved spacer assembly.** Thread crests, tolerance, tilt, head/washer/OD,
+  at every position. **Use M2 hardware for the 9.5 mm EVT stack; this is not yet
+  a production-approved spacer assembly.** Thread crests, tolerance, tilt, head/washer/OD,
   board bearing surfaces and neighboring components remain unqualified.
 - The official STEP hole centers may be approximate. Do not drill/slot the
   HAT or alter its alignment solely to fit this CAD. Confirm exact-revision
@@ -197,28 +205,37 @@ A spacer must control surface-to-surface separation, not connector friction.
 Its insulating material, OD/ID, actual length tolerance, compression/creep,
 flatness and tightening limits matter. A catalog listing with the right
 length alone is not enough to nominate an orderable assembly. No spacer MPN
-has been approved or added to purchasing outputs. Any washers inside the
-stack contribute to the controlled gap.
+has been added to purchasing outputs. The EVT assembly must
+measure and record the actual PCB-surface gap; any washers inside the stack
+contribute to that controlled 9.5 mm target.
 
 ## Approval handoff
 
 [STACK_APPROVAL_REQUEST.md](STACK_APPROVAL_REQUEST.md) is a prepared,
-**unsent** supplier/assembler inquiry covering the exact socket/male pairing,
-insertion window, candidate land/stencil, host revision/header identity,
-spacer tolerances and first-article acceptance. No supplier was contacted and
-no purchase was made.
+**unsent** supplier/assembler inquiry retained for production qualification of
+the socket insertion window and candidate land/stencil. Exact factory Radxa
+header identity is no longer an EVT prerequisite. No supplier was contacted
+and no purchase was made.
 
 | Gate | Current disposition |
 |---|---|
 | Exact J4 nominal geometry / supplier drawing | Digitally established within model scope |
 | 4 mm stack | Digitally rejected |
 | 6.2 mm gap | Not tolerance-safe from available evidence; not adopted |
-| THD-20-R family mating relationship | Supplier-published candidate, not actual-host identity |
-| Exact mating direction / insertion window / complete tolerance stack | External supplier approval pending |
-| Screw/spacer assembly and exact-revision hole fit | External identification and physical verification pending |
+| Standard Radxa 2x20 header geometry | Accepted as EVT design basis from official docs/STEP |
+| 9.5 mm surface gap with M2 hardware | Selected for representative EVT; physical verification pending |
+| Exact mating direction / insertion window / complete tolerance stack | Production approval pending; EVT must record continuity and fit |
+| Screw/spacer assembly and exact-revision hole fit | M2 EVT selection; measured fit pending |
 | J4 modified land/stencil | External approval / representative assembly pending |
 | Missing Y1/top models, cables, FPC, antenna and real component tolerances | Remaining digital/physical mechanical gates |
 | Electrical, audio, thermal and OS behavior | Separate physical/runtime EVT pending |
+
+The new eight-gap real CAD CLI completed successfully with all 19 bound files
+unchanged through publication. At 9.5 mm, represented underside, C45, maximum
+C45 envelope and substrate intersections are all zero; the complete J4 value
+above remains the expected pin/contact-solid overlap, while the low rigid-body
+header-region intersection is zero. The current pure suite passes 14 tests with
+the opt-in real-CAD case skipped; the real CLI result is the published JSON.
 
 Licensed STEP files and supplier drawing rasterizations remain in local
 scratch; this report links the original sources rather than redistributing

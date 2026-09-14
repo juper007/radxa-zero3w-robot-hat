@@ -11,10 +11,11 @@ and `../validation/mechanical/model_only_change_audit.json`.
 
 **The previously proposed 4.0 mm gap is NOT a valid whole-assembly approval.**
 Actual CAD intersection with the official Radxa host shows major J4/host-header
-body interference at that gap. The 6.2 mm diagnostic case is not an approved
-alternative: header MPN, insertion/contact geometry, tolerances and physical
-seating remain unqualified. See `../mechanical/j4_evidence.json` for computed
-solid intersections. Do not order spacers from the earlier 4.0 mm value alone.
+body interference at that gap. The 6.2 mm diagnostic case is also rejected.
+The official standard 2x20 header geometry is now accepted as the EVT basis;
+exact factory header MPN is not an EVT blocker. A controlled 9.5 mm surface gap
+with M2 hardware is selected for representative fit/continuity testing. See
+`../mechanical/STACK_REVIEW.md`. This is not production tolerance approval.
 
 The older outline/C45 discussion below is retained as the review history.
 Its approximate XY transform is superseded for current CAD work by the
@@ -81,13 +82,16 @@ The layout is therefore electrically accepted but mechanically conditional. Rele
 
 J4 is on B.Cu at `(103.3975, 79.64)`, rotation `-90°`. Its mounting-hole and electrical grids align with the host, but the exact assembled Z-stack is not defined by the PCB source. Toby documents REF-182665-01 as a pass-through, bottom-entry HAT socket with a finite insertion-depth range.[6]
 
-Before fabrication release, the assembly drawing must define:
+For the representative EVT assembly:
 
-- exact male-header and socket MPNs;
-- PCB-surface spacing and M2.5 spacer length;
-- minimum and maximum pin insertion;
+- use a header-populated ZERO 3W and the exact J4 socket;
+- control and measure a 9.5 mm PCB-surface gap with M2 hardware;
+- record physical pin insertion/continuity and adjacent-pin isolation;
 - connector body orientation;
 - first-article continuity and mechanical fit.
+
+Production release still requires a qualified tolerance stack and accepted J4
+land/stencil or successful representative assembly evidence.
 
 This gate is shared with the modified J4 land-pattern signoff.
 
@@ -156,7 +160,7 @@ The current release recommendation is **external U.FL antenna**.
 - Board outline compatibility: **conditional — 0.9 mm long-edge overhang**
 - C45 physical clearance: **conditional — qualified stack and measured 0.5 mm residual required; include component tolerance**
 - J4 model restoration: **locally complete; native locator/lead alignment checked**
-- J4 Z-stack: **4.0 mm case fails CAD body interference; no alternate stack approved**
+- J4 Z-stack: **4.0/6.2 mm rejected; 9.5 mm/M2 selected for representative EVT**
 - USB-C/HDMI/microSD/CSI access: **first-article check required**
 - Onboard antenna under HAT: **not approved**
 - External U.FL antenna: **recommended**

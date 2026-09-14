@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 2026-09-13
+Last updated: 2026-09-14
 
 ## Current phase
 
@@ -28,19 +28,20 @@ Last updated: 2026-09-13
 
 ### Connector / spacer follow-up
 
-- Executed source-bound CAD comparisons at seven gaps, 4.0 through 10.0 mm;
+- Executed source-bound CAD comparisons at eight gaps, 4.0 through 10.0 mm,
+  including the new 9.5 mm nominal EVT target;
   see `../mechanical/STACK_REVIEW.md` and `stack_sweep.json` in that directory.
 - 4.0 mm remains mechanically rejected. At 6.2 mm the nominal socket-body
   separation is only 0.0074 mm, below its body-height tolerance; do not adopt it.
-- 6.5/7/8 mm body separation does not establish permitted insertion. 9/10 mm
-  are supplier-confirmation candidates only, not selected spacers. Current
-  B.Cu socket is approached from its exposed face, unlike the supplier's
-  top-of-HAT bottom-entry example. Exact -01 entry/insertion approval is open.
-- Toby names THD-20-R as a REF-family mate; this does not identify the actual
-  Radxa header. The user-supplied official ZERO 3W page offers both headered
-  and unheadered versions, without resolving the purchased SKU/revision.
+- 6.5/7/8 mm body separation does not establish permitted insertion. The
+  header-populated ZERO 3W and its official standard 2x20 STEP geometry are now
+  accepted as the EVT basis; exact factory header MPN is not an EVT blocker.
+- A controlled 9.5 mm PCB-surface gap gives nominal 3.3074 mm body clearance
+  and 2.6926 mm axial entry. Use M2 hardware and verify measured fit, continuity,
+  board bow and retention on the representative prototype. Production approval
+  of the exact -01 entry/tolerance stack remains open.
 - Nominal M2.5 screw fit is not supported at one CAD hole pair after header
-  alignment; a smaller shaft is an evaluation option, not assembly approval.
+  alignment; M2 is selected for the representative EVT, not yet production approval.
 - An unsent supplier/assembler request is prepared in
   `../mechanical/STACK_APPROVAL_REQUEST.md`. No PCB, schematic, BOM/PnP,
   existing package or manufacturing approval was changed.
@@ -129,7 +130,11 @@ U11 INT1 through R25, and codec MCLK is the existing HAT Y1 12 MHz oscillator.
 - [ ] Measure battery-input leakage and amplifier enable/shutdown behavior on the actual assembled board and OS image; digital topology is not a physical safety/noise qualification.
 - [x] Acquired exact J4 STEP through Samtec's linked public CAD service, verified native locator/lead alignment, installed a project-relative licensed local model, and removed the unrelated socket/Pi references without changing copper/pads/nets. Local models are Git-ignored; clean clones require re-acquisition.
 - [ ] Restore exact J1/J2/J9 WAGO models (official published STEP endpoint returns 404), and resolve additional MK1/Y1 model gaps. Current top/bottom renders are explicitly incomplete, not assembly approval.
-- [ ] Qualify the complete male-header/J4/spacer stack. Exact CAD shows major body interference at the earlier 4.0 mm gap; the 6.2 mm diagnostic case is not an approved alternative. See `../mechanical/j4_evidence.json`.
+- [ ] Build and qualify the selected 9.5 mm/M2 representative EVT stack. Exact
+  CAD rejects the earlier 4.0 mm gap and the 6.2 mm diagnostic case; the
+  official Radxa standard 2x20 header geometry is accepted as the EVT basis.
+  Record all four gaps, 40-pin continuity, adjacent-pin isolation, board bow,
+  retention and component clearance. Execute `../mechanical/STACK_EVT_PLAN.md`.
 - [ ] Obtain connector-vendor/assembly-house approval for the J4 1.02 × 1.80 mm DRC-clean land pattern, or validate it on a representative assembled prototype.
 - [ ] Independently verify every critical J4 pin against the exact Radxa ZERO 3W hardware revision.
 - [ ] Validate the `i2c3m0_xfer` overlay and document the effect of disabling/reassigning the FUSB302 I2C3 M1 device.

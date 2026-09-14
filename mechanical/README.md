@@ -4,11 +4,17 @@ Read [CAD_REPORT.md](CAD_REPORT.md) for findings, assumptions and physical limit
 
 ## Connector / spacer follow-up
 
-Read [STACK_REVIEW.md](STACK_REVIEW.md) for the executed seven-gap comparison,
+Read [STACK_REVIEW.md](STACK_REVIEW.md) for the executed eight-gap comparison,
 supplier-named THD-20-R candidate, connector entry-direction caveat, and
 nominal screw-fit screen. [STACK_APPROVAL_REQUEST.md](STACK_APPROVAL_REQUEST.md)
 is an **unsent** supplier/assembler inquiry, not an order or approval.
-`stack_sweep.json` and `mount_fit_review.json` keep fabrication approval false.
+[STACK_EVT_PLAN.md](STACK_EVT_PLAN.md) is the executable unpowered fit and
+40-pin continuity procedure for the selected 9.5 mm/M2 representative stack.
+Use [STACK_EVT_CONTINUITY.csv](STACK_EVT_CONTINUITY.csv) for its pin-by-pin record
+and [STACK_EVT_ISOLATION.csv](STACK_EVT_ISOLATION.csv) for all 58 physical-grid
+adjacent-pair checks. `stack_sweep_9p5_evt.json` is the current eight-gap EVT decision artifact;
+historical `stack_sweep.json` and `mount_fit_review.json` remain available.
+All keep fabrication approval false.
 
 After preparing and verifying the existing native exports below, reproduce
 the sweep with the CAD environment (`--output` must not already exist):
@@ -20,8 +26,9 @@ python -m unittest discover -s mechanical -p test_stack_sweep.py -v
 RUN_STACK_CAD=1 "$V/Scripts/python.exe" -m unittest discover -s mechanical -p test_stack_sweep.py -v
 ```
 
-The default sweep includes 4.0/6.2/6.5/7.0/8.0/9.0/10.0 mm mask-to-host-board
-surface gaps. These are not selected spacer lengths. Missing or stale native
+The default sweep includes 4.0/6.2/6.5/7.0/8.0/9.0/9.5/10.0 mm mask-to-host-board
+surface gaps. The 9.5 mm case is the selected nominal EVT surface-gap target,
+not automatically a catalog spacer length. Missing or stale native
 inputs fail closed; the tool does not synthesize replacement geometry.
 
 Committed JSON is a **historical local-run snapshot**: its raw hashes include

@@ -60,7 +60,9 @@ The solder-mask and silkscreen colors are ordering choices; the electrical/geome
 - Populate J5/J6/J7/J8 and R18/R19/R20/R21/R34/R35/R38/R39. Omitting the auxiliary connectors or their 0 Ω/pull-up networks breaks upstream functional parity.
 - Install and validate `../software/overlays/radxa-zero3w-robot-hat-qwiic.dts` on the intended Radxa OS image before accepting J6/J7/J8 operation.
 - Populate C45 as Murata `GRM32ER71H106KA12L` / LCSC `C77102` only after the assembled stack proves at least 4.0 mm PCB-surface gap and 0.5 mm residual clearance at the Radxa U1 overlap.
-- Use controlled M2.5 spacers; connector friction must not define the board gap.
+- For the representative EVT stack, control the PCB-surface gap at 9.5 mm and
+  use M2 fasteners; connector friction must not define the gap. This is not a
+  production-approved spacer MPN or tolerance stack.
 - Use 8 Ω speakers only and keep audio muted during host boot. The final audio limit comes from EVT current and undervoltage measurements.
 - Do not power the Radxa USB-C input while the HAT battery input is energized.
 - Use the Radxa external U.FL antenna unless OTA validation approves the onboard antenna under the full-size HAT.

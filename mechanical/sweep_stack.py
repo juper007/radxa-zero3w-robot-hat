@@ -31,9 +31,19 @@ def stack_datums(gap, mask_bottom, mask_top, socket_lower, host_top, plastic_top
                 axial_entry_past_socket_lower_face_mm=pin_tip-lower)
 
 
-GAPS = (4., 6.2, 6.5, 7., 8., 9., 10.)
+EVT_TARGET_GAP_MM = 9.5
+PUBLISHED_ENTRY_RANGE_MM = (1.78, 3.43)
+GAPS = (4., 6.2, 6.5, 7., 8., 9., EVT_TARGET_GAP_MM, 10.)
 POPULATED_BOTTOM = frozenset('C1 C14 C15 C16 C17 C18 C2 C22 C26 C27 C28 C29 C3 C30 C31 C32 C33 C34 C35 C36 C37 C38 C39 C4 C44 C45 C5 C6 C7 C8 C9 D1 D4 FB1 FB2 FB3 J4 Q2 R1 R18 R2 R20 R21 R29 R3 R31 R32 R33 R34 R35 R38 R39 R4 R40 R5 R6 R7 R8 TH1 U1 U10 U2 U5 U6 U7 U8 Y1'.split())
 DNP_BOTTOM = frozenset('R11 R10 C25 U4 R41 R17'.split())
+
+
+def evt_stack_decision():
+    """Selected representative build basis; physical qualification stays open."""
+    return dict(surface_gap_mm=EVT_TARGET_GAP_MM, fastener='M2',
+                host_header_basis='official Radxa standard 2x20 geometry',
+                published_entry_range_mm=list(PUBLISHED_ENTRY_RANGE_MM),
+                physical_validation_required=True, fabrication_ready=False)
 
 
 def preflight(scratch, evidence_dir=None):
@@ -166,6 +176,7 @@ def run_sweep(scratch):
     cb = shapes['c45.step'].BoundingBox()
     envelope = cq.Workplane('XY').box(2.7,3.5,2.7).val().translate(((cb.xmin+cb.xmax)/2,(cb.ymin+cb.ymax)/2,cb.zmax-1.35))
     result = dict(schema_version=1, fabrication_ready=False, measurement_type='CAD only, not physical',
+                  evt_stack_decision=evt_stack_decision(),
                   cadquery=cq.__version__, source_binding=binding, geometry=geometry,
                   datums=dict(host_pin_tip_faces=pins, host_header_plastic_top_faces=plastic,
                     host_board_top_faces=boardplanes, host_pin_tip_z_mm=pin_z, host_plastic_top_z_mm=plastic_z,
@@ -175,14 +186,14 @@ def run_sweep(scratch):
                   diagnostic_window=dict(bbox_mm=bbox(window), description='Existing low host-header-region Boolean selection only; not a substitute connector model'),
                   c45_envelope=dict(dimensions_xyz_mm=[2.7,3.5,2.7], native_bbox_mm=bbox(envelope), description='Maximum-material bounding envelope at measured C45 seating plane, not exact supplier CAD'),
                   gaps=[], limitations=[
-                    'No assembly approval or spacer prescription; fabrication_ready is false at every gap',
+                    '9.5mm is the representative EVT target, not production assembly approval; fabrication_ready is false',
                     'Y1 missing underside model; top WAGO, other top bodies, cables, spacers and enclosure not reviewed',
-                    'Official fused host includes nominal male header; exact physical male-header MPN unresolved',
+                    'Official fused host includes the nominal standard 2x20 male-header geometry used as the EVT design basis',
                     'J4 complete intersection includes intended pin/contact regions, not a body-only collision metric',
                     'Axial entry is pin tip minus socket lower face, NOT wipe/contact acceptance or mating specification',
                     'Exact solder, board bow, seating, manufacturing and insertion tolerances remain open',
                     'Generic underside models and maximum-material C45 envelope do not prove physical clearance',
-                    'Pin-tip face width is the imported tip shape, not proof of shaft size or exact physical header identity',
+                    'Pin-tip face width is the imported tip shape, not a physical shaft-size measurement',
                     'Nominal 6.2mm body separation is below supplier general body-height tolerance; not a robust fit',
                     'No supplier insertion-depth limits applied: exact orientation/part applicability remains unresolved',
                     'Mounting-hole residuals and pin numbering require independent review',

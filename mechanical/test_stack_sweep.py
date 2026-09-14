@@ -32,6 +32,20 @@ class DatumTests(unittest.TestCase):
             self.assertGreater(r['body_lower_face_minus_host_plastic_top_mm'], 0)
         self.assertAlmostEqual(s.stack_datums(6.2, -.085, .925, -3.7776, 0., 2.5, 8.5)['body_lower_face_minus_host_plastic_top_mm'], .0074)
 
+    def test_standard_header_evt_candidate_is_centered_at_nine_point_five_mm(self):
+        import sweep_stack as s
+        self.assertEqual(s.GAPS, (4., 6.2, 6.5, 7., 8., 9., 9.5, 10.))
+        r = s.stack_datums(9.5, -.085, .925, -3.7776, 0., 2.5, 8.5)
+        self.assertAlmostEqual(r['body_lower_face_minus_host_plastic_top_mm'], 3.3074)
+        self.assertAlmostEqual(r['axial_entry_past_socket_lower_face_mm'], 2.6926)
+        decision = s.evt_stack_decision()
+        self.assertEqual(decision['surface_gap_mm'], 9.5)
+        self.assertEqual(decision['fastener'], 'M2')
+        self.assertEqual(decision['host_header_basis'], 'official Radxa standard 2x20 geometry')
+        self.assertEqual(decision['published_entry_range_mm'], [1.78, 3.43])
+        self.assertTrue(decision['physical_validation_required'])
+        self.assertFalse(decision['fabrication_ready'])
+
 class BindingTests(unittest.TestCase):
     def test_stale_current_source_rejected_before_exports(self):
         import sweep_stack as s
@@ -190,17 +204,19 @@ class RealSweepTests(unittest.TestCase):
         import json
         import sys
         import tempfile
+        import sweep_stack as s
         with tempfile.TemporaryDirectory() as td:
             output = pathlib.Path(td)/'stack_sweep.json'
             result = subprocess.run([sys.executable, str(MODULE), '--scratch',
                 'C:/Users/juper/AppData/Local/Temp/radxa-cad-final', '--output', str(output)],
-                capture_output=True, text=True, timeout=600)
+                capture_output=True, text=True, timeout=900)
             print(result.stdout, flush=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertTrue(output.exists(), 'missing successful sweep artifact')
             report = json.loads(output.read_text())
         self.assertFalse(report['fabrication_ready'])
-        self.assertEqual([r['surface_gap_mm'] for r in report['gaps']], [4., 6.2, 6.5, 7., 8., 9., 10.])
+        self.assertEqual(report['evt_stack_decision'], s.evt_stack_decision())
+        self.assertEqual([r['surface_gap_mm'] for r in report['gaps']], [4., 6.2, 6.5, 7., 8., 9., 9.5, 10.])
         self.assertEqual(report['geometry']['bottom.step']['solids'], 65)
         self.assertEqual(len(report['datums']['host_pin_tip_faces']), 40)
         self.assertGreater(report['gaps'][0]['j4_low_header_region_intersection_mm3'], 400)
