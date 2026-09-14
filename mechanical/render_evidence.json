@@ -1,0 +1,73 @@
+{
+  "kind": "OpenCascade tessellation with VTK rendering; real imported STEP surfaces",
+  "sources": [
+    {
+      "file": "official_radxa.stp",
+      "sha256": "1eac96aa8804f7270e08610ebd99bf0eccfd26d39d859fae76d119406694ded3",
+      "translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "vertices": 332597,
+      "triangles": 417325
+    },
+    {
+      "file": "board.step",
+      "sha256": "e3e49d631eb5d2b00044f2949cf5d12fd9fab97df8e4d682cdb69cd568594558",
+      "translation_mm": [
+        -70.947472,
+        106.31508,
+        4.085
+      ],
+      "vertices": 27050,
+      "triangles": 27156
+    },
+    {
+      "file": "bottom.step",
+      "sha256": "a113a0673efd1e5c3b4fd7adb8a5f0c02e7ca6d8f95d2e5a8f133cb86b0ab749",
+      "translation_mm": [
+        -70.947472,
+        106.31508,
+        4.085
+      ],
+      "vertices": 49206,
+      "triangles": 43898
+    },
+    {
+      "file": "j4-current.step",
+      "sha256": "cd4c652e3cc4d0d64d4b2b4f5f694f12ad0ee56fb24bd97a736912a7743ee458",
+      "translation_mm": [
+        -70.947472,
+        106.31508,
+        4.085
+      ],
+      "vertices": 23164,
+      "triangles": 26756
+    },
+    {
+      "file": "c45.step",
+      "sha256": "10b06dbc70cb5eda866d808d91ec92d5de18256fcfb9073a6b788154ea88f69c",
+      "translation_mm": [
+        -70.947472,
+        106.31508,
+        4.085
+      ],
+      "vertices": 624,
+      "triangles": 572
+    }
+  ],
+  "assumed_gap_mm": 4.0,
+  "outputs": [
+    {
+      "file": "stack_4mm.png",
+      "sha256": "6fc3f7ae24c227ec7801520a35be9212df36dd764c9d08f8c65ce6dbc37344a6",
+      "bytes": 152385
+    },
+    {
+      "file": "stack_4mm_header_side.png",
+      "sha256": "4e0e2b96f6364b064200b13bb973cc96977e0ce3868bdc2a1c85a454f6086bcb",
+      "bytes": 64616
+    }
+  ]
+}

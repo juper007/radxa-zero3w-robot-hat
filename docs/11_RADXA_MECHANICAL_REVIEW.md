@@ -1,5 +1,35 @@
 # Radxa ZERO 3W Mechanical and RF Review
 
+## Current CAD correction — 2026-09-13
+
+The exact J4 `REF-182665-01` STEP has now been acquired, aligned to its PCB
+locator holes, installed as a licensed local model, and rendered. The unrelated
+FH-00339 socket and Raspberry Pi host model references have been removed from
+the active PCB and vendored J4 footprint. No pad, hole, net or copper changed.
+See `../hardware/kicad/LOCAL_3D_MODELS.md`, `../mechanical/J4_PLACEMENT.md`,
+and `../validation/mechanical/model_only_change_audit.json`.
+
+**The previously proposed 4.0 mm gap is NOT a valid whole-assembly approval.**
+Actual CAD intersection with the official Radxa host shows major J4/host-header
+body interference at that gap. The 6.2 mm diagnostic case is not an approved
+alternative: header MPN, insertion/contact geometry, tolerances and physical
+seating remain unqualified. See `../mechanical/j4_evidence.json` for computed
+solid intersections. Do not order spacers from the earlier 4.0 mm value alone.
+
+The older outline/C45 discussion below is retained as the review history.
+Its approximate XY transform is superseded for current CAD work by the
+header-grid-derived transform documented in `../mechanical/HANDOFF.md`.
+Supplier C45 thickness is 2.5 +/-0.2 mm; a nominal-height render cannot
+establish worst-case 0.5 mm residual clearance.
+
+The wider underside check also finds **C7 only 0.005 mm from the official
+host's USB-C body model at the 4.0 mm gap**. C45 nominal CAD separation is
+0.665 mm, but its explicitly labeled maximum-dimensional envelope reduces this
+to 0.465 mm. These are calculated model distances, not measured physical gaps.
+The current header-aligned CAD transform also leaves up to 0.269105 mm mounting
+axis mismatch. Detailed evidence, source hashes and limitations are in
+`../mechanical/CAD_REPORT.md`; no spacer length or complete screw fit is approved.
+
 ## Scope and source revision
 
 This review overlays the current one-board HAT against Radxa's official ZERO 3W V1.11 DXF and STEP resources.[1][2][3]
@@ -40,7 +70,7 @@ C45 maps to approximately Radxa `(28.1475, 5.1850)`. Its XY projection overlaps 
 
 The layout is therefore electrically accepted but mechanically conditional. Release requires all of the following:
 
-1. Fully seated and screwed-down PCB-surface gap of at least `4.0 mm` at C45/U1.
+1. A qualified complete header/socket/spacer stack; `4.0 mm` was a C45-only lower-bound proposal and fails the exact J4/host-body CAD check above.
 2. Measured residual physical clearance of at least `0.5 mm`.
 3. Controlled M2.5 spacers; connector friction must not set the gap.
 4. Repeat inspection for every intended ZERO 3W SKU.
@@ -63,23 +93,27 @@ This gate is shared with the modified J4 land-pattern signoff.
 
 ### Exact model and land-pattern handoff
 
-The fresh native render review found unresolved custom model paths for populated
-J1/J2/J9 (WAGO `2059-302/998-403`) and J4 (Toby `REF-182665-01`). J4 also retains
-an upstream Raspberry Pi Zero 2 W board model reference; that reference is not
-Radxa mechanical evidence. All four connectors are present in BOM/PnP, so missing
-render bodies must not be interpreted as unpopulated connectors.
+The exact J4 model is now installed with a project-relative reference into
+Git-ignored `models-local/`, and its locator/lead alignment was checked through
+native STEP export. A clean clone must re-acquire the licensed model. The old
+Raspberry Pi and non-equivalent socket references are removed, not substituted
+with a visually similar model. All required connectors remain populated.
+
+J1/J2/J9 (WAGO `2059-302/998-403`) still require exact-model acquisition and
+placement. WAGO's public exact-MPN MCAD record is available, but its published
+STEP file endpoint returned 404. The complete inventory also identified
+unresolved MK1 and Y1 models. Missing render bodies are not DNP decisions.
 
 Required digital closure before accepting a complete assembly render:
 
-1. Obtain the exact WAGO and Toby STEP models with permitted use. Toby's current
-   product page requires login for full CAD assets. No approximate replacement
-   connector model has been approved.
-2. Vendor permitted models with source/MPN provenance, use project-relative paths,
-   and remove the stale Raspberry Pi host model only when the actual Radxa
-   assembly reference is established.
+1. Obtain remaining exact WAGO/MK1/Y1 models with permitted use. Toby's page
+   requires login, but exact J4 was acquired via Samtec's linked public CAD service.
+2. Keep restricted standalone models local; retain source/MPN/hash provenance and
+   project-relative paths. Use the actual Radxa STEP as the assembly reference.
 3. Verify lead positions and pin 1 against copper, and body heights against the
    supplier drawing. A resolved file path alone is not mechanical validation.
-4. Render both board sides and the host stack, checking every populated connector.
+4. Both current board sides have been rendered; complete the missing bodies and
+   qualify the host stack before treating a render as complete mechanical evidence.
 
 The current J4 lands are `1.02 x 1.80 mm`, with at least `0.22 mm` nominal copper
 clearance to the preserved NPTH holes. The exact supplier drawing does not give
@@ -118,10 +152,11 @@ The current release recommendation is **external U.FL antenna**.
 
 ## Verdict
 
-- Hole/grid alignment: **pass**
+- Hole/grid alignment: **historical overlay only; current CAD datum/tolerance qualification required**
 - Board outline compatibility: **conditional — 0.9 mm long-edge overhang**
-- C45 physical clearance: **conditional — measured 4.0/0.5 mm gate required**
-- J4 Z-stack: **not yet approved**
+- C45 physical clearance: **conditional — qualified stack and measured 0.5 mm residual required; include component tolerance**
+- J4 model restoration: **locally complete; native locator/lead alignment checked**
+- J4 Z-stack: **4.0 mm case fails CAD body interference; no alternate stack approved**
 - USB-C/HDMI/microSD/CSI access: **first-article check required**
 - Onboard antenna under HAT: **not approved**
 - External U.FL antenna: **recommended**

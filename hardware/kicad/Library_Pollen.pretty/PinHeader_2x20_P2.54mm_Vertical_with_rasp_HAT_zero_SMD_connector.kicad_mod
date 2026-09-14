@@ -2051,26 +2051,15 @@
 		(uuid "c78eaefd-1d7a-4b38-bef0-3a8e99d85658")
 	)
 	(embedded_fonts no)
-	(model "${KICAD_USER_LIB}/LCSC_parts/easyeda2kicad.3dshapes/HDR-SMD_40P-P2.54-V-F-R2-C20-S6.6_FH-00339.step"
+	(model "${KIPRJMOD}/models-local/REF-182665-01.step"
 		(offset
-			(xyz 0 -0 0.4)
+			(xyz 0 -4.19905533063427 0.302503373819)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz -0 -0 90)
-		)
-	)
-	(model "${KICAD_USER_3DMOD}/rasp_pi_zero_2_W_with_40_pin_male_connector v4.step"
-		(offset
-			(xyz 11.5 0 7.4)
-		)
-		(scale
-			(xyz 1 1 1)
-		)
-		(rotate
-			(xyz -90 -180 -90)
+			(xyz -90 0 90)
 		)
 	)
 )

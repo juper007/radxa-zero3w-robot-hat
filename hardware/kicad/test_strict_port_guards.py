@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shlex
 import shutil
 import subprocess
 import sys
@@ -319,7 +320,24 @@ def test_unconnected_evidence_guard() -> None:
         run_checker(repository, "committed DRC unconnected items are stale")
 
 
+def test_ci_standard_library_contract() -> None:
+    """A headless runner must recreate the baseline's standard libraries."""
+    workflow = (REPO / ".github/workflows/strict-port-check.yml").read_text(encoding="utf-8")
+    install = workflow.split("- name: Install KiCad 10.0.6 CLI", 1)[1].split("- name:", 1)[0]
+    script = install.split("run: |", 1)[1].replace("\\\n", " ")
+    commands = [shlex.split(line, comments=True) for line in script.splitlines() if line.strip()]
+    packages = {"kicad=10.0.6~ubuntu24.04.1", "kicad-symbols=10.0.6~ubuntu24.04.1", "kicad-footprints=10.0.6~ubuntu24.04.1"}
+    if not any(command[:3] == ["sudo", "apt-get", "install"] and packages.issubset(command) for command in commands):
+        raise AssertionError("CI must explicitly install the pinned KiCad CLI, symbols, and footprints")
+    # KiCad CLI does not perform the GUI's first-run library-table setup.
+    for table in ("fp-lib-table", "sym-lib-table"):
+        expected = ["cp", f"/usr/share/kicad/template/{table}", f"$HOME/.config/kicad/10.0/{table}"]
+        if expected not in commands:
+            raise AssertionError(f"CI must initialize the shipped {table} before regenerating upstream evidence")
+
+
 def main() -> None:
+    test_ci_standard_library_contract()
     test_policy_guard()
     test_erc_pin_map_guard()
     test_baseline_hash_guard()

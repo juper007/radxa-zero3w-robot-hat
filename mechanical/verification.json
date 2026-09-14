@@ -1,0 +1,72 @@
+{
+  "evidence_complete": true,
+  "fabrication_ready": false,
+  "measurement_type": "CAD only, not physical",
+  "source_pcb_sha256": "10decd01363cee7c002294a6e6b6dbfa8d8b9488eec4e8337256af82ff02f592",
+  "checked_populated_bottom_refs": 67,
+  "represented_bottom_excluding_j4": 65,
+  "missing_bottom_model": "Y1",
+  "exact_j4_separate": true,
+  "closest_bottom_refs": [
+    {
+      "ref": "C7",
+      "minimum_distance_mm": 0.004999999999999893
+    },
+    {
+      "ref": "C6",
+      "minimum_distance_mm": 0.30499999999999927
+    },
+    {
+      "ref": "C8",
+      "minimum_distance_mm": 0.3049999999999997
+    },
+    {
+      "ref": "C9",
+      "minimum_distance_mm": 0.3049999999999997
+    },
+    {
+      "ref": "FB2",
+      "minimum_distance_mm": 0.3049999999999997
+    },
+    {
+      "ref": "FB3",
+      "minimum_distance_mm": 0.3049999999999997
+    },
+    {
+      "ref": "C37",
+      "minimum_distance_mm": 0.4124847862116356
+    },
+    {
+      "ref": "R3",
+      "minimum_distance_mm": 0.4549999999999992
+    },
+    {
+      "ref": "C45",
+      "minimum_distance_mm": 0.6649999999999998
+    },
+    {
+      "ref": "U5",
+      "minimum_distance_mm": 0.8149999999999995
+    },
+    {
+      "ref": "U6",
+      "minimum_distance_mm": 0.8149999999999995
+    },
+    {
+      "ref": "U7",
+      "minimum_distance_mm": 0.8149999999999995
+    }
+  ],
+  "images": [
+    {
+      "file": "stack_4mm.png",
+      "sha256": "6fc3f7ae24c227ec7801520a35be9212df36dd764c9d08f8c65ce6dbc37344a6",
+      "bytes": 152385
+    },
+    {
+      "file": "stack_4mm_header_side.png",
+      "sha256": "4e0e2b96f6364b064200b13bb973cc96977e0ce3868bdc2a1c85a454f6086bcb",
+      "bytes": 64616
+    }
+  ]
+}

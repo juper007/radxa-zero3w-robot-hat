@@ -179,11 +179,11 @@ def normalized_kicad_bytes(data: bytes, source_epoch: int, filename: str) -> byt
     pdf = timestamp.strftime("%Y:%m:%d:%H:%M:%S").encode()
     if filename in GERBER_FILENAMES:
         data = replace_metadata(data, rb"^(%TF\.CreationDate,)20\d\d-\d\d-\d\dT\d\d:\d\d:\d\d[+-]\d\d:\d\d(\*%\r?)$", rb"\g<1>" + iso_tz + rb"\g<2>", "Gerber CreationDate")
-        data = replace_metadata(data, rb"^(G04 Created by KiCad \(PCBNEW 10\.0\.6\) date )20\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\*\r?)$", rb"\g<1>" + spaced + rb"\g<2>", "Gerber comment date")
+        data = replace_metadata(data, rb"^(G04 Created by KiCad \(PCBNEW 10\.0\.6(?:-10\.0\.6~ubuntu24\.04\.1)?\) date )20\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\*\r?)$", rb"\g<1>" + spaced + rb"\g<2>", "Gerber comment date")
     elif filename == f"{BOARD_NAME}-job.gbrjob":
         data = replace_metadata(data, rb'^([ \t]*"CreationDate": ")20\d\d-\d\d-\d\dT\d\d:\d\d:\d\d[+-]\d\d:\d\d("\r?)$', rb"\g<1>" + iso_tz + rb"\g<2>", "Gerber job CreationDate")
     elif filename in DRILL_FILENAMES:
-        data = replace_metadata(data, rb"^(; DRILL file KiCad 10\.0\.6 date )20\d\d-\d\d-\d\dT\d\d:\d\d:\d\d(\r?)$", rb"\g<1>" + iso + rb"\g<2>", "drill comment date")
+        data = replace_metadata(data, rb"^(; DRILL file KiCad 10\.0\.6(?:-10\.0\.6~ubuntu24\.04\.1)? date )20\d\d-\d\d-\d\dT\d\d:\d\d:\d\d(\r?)$", rb"\g<1>" + iso + rb"\g<2>", "drill comment date")
         data = replace_metadata(data, rb"^(; #@! TF\.CreationDate,)20\d\d-\d\d-\d\dT\d\d:\d\d:\d\d[+-]\d\d:\d\d(\r?)$", rb"\g<1>" + iso_tz + rb"\g<2>", "drill CreationDate")
     elif filename == "drill_report.txt":
         data = replace_metadata(data, rb"^(Created on )20\d\d-\d\d-\d\dT\d\d:\d\d:\d\d(\r?)$", rb"\g<1>" + iso + rb"\g<2>", "drill report date")

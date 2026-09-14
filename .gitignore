@@ -4,3 +4,6 @@ __pycache__/
 *.kicad_sch-bak
 *.kicad_pcb-bak
 ~*.kicad_*.lck
+
+# Manufacturer/CAD-provider models licensed for local design use only.
+hardware/kicad/models-local/

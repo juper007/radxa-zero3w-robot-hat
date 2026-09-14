@@ -136,6 +136,29 @@ class ReproducibilityTests(unittest.TestCase):
             ),
         )
 
+    def test_normalizes_exact_ubuntu_package_metadata(self) -> None:
+        # Native exports from the CI-pinned PPA package include its build suffix,
+        # although kicad-cli --version reports only 10.0.6.
+        version = b"10.0.6-10.0.6~ubuntu24.04.1"
+        for newline in (b"\n", b"\r\n"):
+            for filename, rows in (
+                (f"{generator.BOARD_NAME}-F_Cu.gtl", (
+                    b"%TF.CreationDate,2026-09-14T00:53:28+00:00*%",
+                    b"G04 Created by KiCad (PCBNEW " + version + b") date 2026-09-14 00:53:28*",
+                )),
+                (f"{generator.BOARD_NAME}-PTH.drl", (
+                    b"; DRILL file KiCad " + version + b" date 2026-09-14T00:53:28",
+                    b"; #@! TF.CreationDate,2026-09-14T00:53:28+00:00",
+                )),
+            ):
+                source = newline.join(rows) + newline
+                expected = source.replace(b"2026-09-14", b"2000-01-01").replace(b"00:53:28", b"00:00:00")
+                with self.subTest(filename=filename, newline=newline):
+                    self.assertEqual(generator.normalized_kicad_bytes(source, 946684800, filename), expected)
+                    for wrong in (b"10.0.6-10.0.7~ubuntu24.04.1", b"10.0.6-10.0.6~ubuntu24.04.2", version + b"-unknown"):
+                        with self.assertRaisesRegex(SystemExit, "comment date"):
+                            generator.normalized_kicad_bytes(source.replace(version, wrong), 946684800, filename)
+
     def test_does_not_normalize_unknown_file_types(self) -> None:
         source = b"%TF.CreationDate,2026-09-12T06:07:39-07:00*%\n"
         self.assertEqual(generator.normalized_kicad_bytes(source, 946684800, "notes.txt"), source)

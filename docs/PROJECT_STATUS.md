@@ -4,7 +4,27 @@ Last updated: 2026-09-13
 
 ## Current phase
 
-**Stage 2 integrated — battery-presence LOW and default-OFF amplifier routed with zero physical DRC/unconnected findings; Stage 1 and Qwiic parity preserved; fabrication approval pending**
+**Stage 2 integrated — exact J4 model restored locally; 4 mm host-stack CAD interference found; Stage 1 and Qwiic parity preserved; fabrication approval pending**
+
+### CI and online CAD follow-up
+
+- Fixed the locally reproduced Linux CI setup failure by explicitly installing
+  pinned KiCad symbols/footprints and initializing their global library tables.
+- Fixed a second Linux export failure: accept only the exact pinned Ubuntu
+  KiCad build suffix in generated Gerber/drill timestamp normalization; unknown
+  versions remain rejected. Added RED/GREEN regression coverage.
+- Current-source native strict-port checks pass on Windows and the reproduced
+  Ubuntu environment. Parent verification also passed Stage 1/2 acceptance,
+  mutation/parity/artwork checks, the three local J4 model checks, and synthetic
+  amplifier-overlay compile/apply. Manufacturing unit run: 27 tests, 2 integration
+  tests skipped. This does not claim a current clean-commit release integration
+  pass. Linux pcbnew emitted nonfatal enum-initialization assertions.
+- At that initial local checkpoint no commit/push had been made. Subsequent
+  pre-commit review and finding validation are recorded in `14_CODE_REVIEW_CLOSURE.md`;
+  the exact published commit's GitHub checks remain the source for remote CI status.
+- Exact CAD rejects the assumed 4.0 mm host stack: J4 body interference,
+  C7/USB-C nominal model distance 0.005 mm, and a maximum-dimensional C45
+  envelope distance of 0.465 mm. See `../mechanical/CAD_REPORT.md`.
 
 ## Architecture
 
@@ -79,7 +99,9 @@ The checker pins the exact J4 footprint S-expression after platform newline and 
 - [x] Replaced the raw-battery/Zener GPIO31 path with Q3 host-referenced active-LOW presence sensing; exact part/net/population checks pass. Powered-off leakage/voltage still needs measurement.
 - [x] Implemented Q4/Q5 default-OFF SHDN control from J4.11 and the opt-in amplifier overlay. Scope bootloader/codec/power sequencing and verify actual silence before accepting boot-time behavior.
 - [ ] Measure battery-input leakage and amplifier enable/shutdown behavior on the actual assembled board and OS image; digital topology is not a physical safety/noise qualification.
-- [ ] Restore exact, portable 3D models for J1/J2/J9/J4 and remove the stale Raspberry Pi host-model reference before using a render for mechanical signoff. J4 supplier CAD download requires account access.
+- [x] Acquired exact J4 STEP through Samtec's linked public CAD service, verified native locator/lead alignment, installed a project-relative licensed local model, and removed the unrelated socket/Pi references without changing copper/pads/nets. Local models are Git-ignored; clean clones require re-acquisition.
+- [ ] Restore exact J1/J2/J9 WAGO models (official published STEP endpoint returns 404), and resolve additional MK1/Y1 model gaps. Current top/bottom renders are explicitly incomplete, not assembly approval.
+- [ ] Qualify the complete male-header/J4/spacer stack. Exact CAD shows major body interference at the earlier 4.0 mm gap; the 6.2 mm diagnostic case is not an approved alternative. See `../mechanical/j4_evidence.json`.
 - [ ] Obtain connector-vendor/assembly-house approval for the J4 1.02 × 1.80 mm DRC-clean land pattern, or validate it on a representative assembled prototype.
 - [ ] Independently verify every critical J4 pin against the exact Radxa ZERO 3W hardware revision.
 - [ ] Validate the `i2c3m0_xfer` overlay and document the effect of disabling/reassigning the FUSB302 I2C3 M1 device.
@@ -88,7 +110,7 @@ The checker pins the exact J4 footprint S-expression after platform newline and 
 - [ ] Validate I2S3 codec capture/playback and clocking.
 - [ ] Validate the documented 2 A operating envelope: 8 Ω speakers, muted boot, measured audio limit, startup/load-step voltage and 30-minute U9/L4/Q2 thermal test.
 - [ ] Keep USB-C and HAT battery power mutually exclusive; complete both source-order reverse-current tests before changing this restriction.
-- [ ] Measure at least 4.0 mm PCB-surface gap and 0.5 mm residual clearance at C45/Radxa U1 on every intended SKU.[5][6]
+- [ ] After qualifying the full connector stack, measure at least 0.5 mm residual clearance at C45/Radxa U1 on every intended SKU. The earlier 4.0 mm C45-only gap proposal fails J4 body clearance; include C45's 2.5 +/-0.2 mm thickness tolerance.[5][6]
 - [ ] Use the external U.FL antenna or complete OTA validation; the full-size copper HAT has no approved onboard-antenna keepout.[7]
 - [ ] Verify USB-C, micro-HDMI, microSD and CSI access with nominated cables/FPC and the controlled spacer stack; optional heatsinks remain unsupported until overlaid.
 

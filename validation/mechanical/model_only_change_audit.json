@@ -1,0 +1,18 @@
+[
+  {
+    "path": "hardware/kicad/radxa_zero3w_robot_hat.kicad_pcb",
+    "non_model_content_unchanged": true,
+    "old_model_count": 2,
+    "new_model_count": 1,
+    "new_normalized_file_sha256": "10decd01363cee7c002294a6e6b6dbfa8d8b9488eec4e8337256af82ff02f592",
+    "new_j4_hash": null
+  },
+  {
+    "path": "hardware/kicad/Library_Pollen.pretty/PinHeader_2x20_P2.54mm_Vertical_with_rasp_HAT_zero_SMD_connector.kicad_mod",
+    "non_model_content_unchanged": true,
+    "old_model_count": 2,
+    "new_model_count": 1,
+    "new_normalized_file_sha256": "8091ef8c91c19dbb1cce44df23bd9b453be220900a5c0eee493932adcad9bb48",
+    "new_j4_hash": null
+  }
+]

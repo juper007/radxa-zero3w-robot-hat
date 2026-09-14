@@ -138,7 +138,10 @@
   "fabrication_blockers": [
     "J4 REF-182665-01 modified 1.02 x 1.80 mm land pattern requires connector-vendor/assembly-house signoff or prototype assembly validation",
     "AP63205 2 A operation requires 8 ohm speakers, a measured audio-output limit, and EVT load/thermal validation",
-    "C45/Radxa U1 overlap requires at least 4.0 mm measured PCB-surface gap and 0.5 mm residual clearance on every intended SKU",
+    "Exact J4 versus official Radxa CAD shows housing interference at 4.0 mm gap; qualify the complete male-header/socket/spacer stack before assembly; 6.2/6.5 mm diagnostic cases are not approved",
+    "After complete stack qualification, C45/Radxa U1 requires 0.5 mm measured residual clearance on every intended SKU including C45 thickness tolerance 2.5 +/-0.2 mm",
+    "At the rejected 4.0 mm CAD stack, C7 is only 0.005 mm from the host USB-C body and C45 maximum-dimensional envelope is 0.465 mm from the host; qualify all underside tolerances and mounting alignment",
+    "Exact J4 CAD is licensed locally, not bundled for clean clones; J1/J2/J9 WAGO, MK1 and Y1 models remain unresolved, so current assembly renders are incomplete",
     "Radxa onboard antenna has no validated HAT copper keepout; external U.FL antenna or OTA validation is required",
     "USB-C and HAT battery input simultaneous operation is prohibited until reverse-current validation passes",
     "J5 hardware I2C3 M0 and J6/J7/J8 i2c-gpio overlays require runtime bus enumeration and device-transfer validation on the intended OS image",

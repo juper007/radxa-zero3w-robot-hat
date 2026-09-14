@@ -3,6 +3,9 @@ name: Strict Radxa port check
 on:
   push:
     paths:
+      - 'mechanical/**'
+      - 'hardware/kicad/test_model_reference_policy.py'
+      - 'hardware/kicad/Library_Pollen.pretty/**'
       - 'hardware/kicad/test_stage2_*.py'
       - 'hardware/kicad/test_stage1_*.py'
       - 'hardware/kicad/Package_TO_SOT_SMD.pretty/DMN3023L_SOT23_Diodes.kicad_mod'
@@ -21,6 +24,9 @@ on:
       - '.github/workflows/strict-port-check.yml'
   pull_request:
     paths:
+      - 'mechanical/**'
+      - 'hardware/kicad/test_model_reference_policy.py'
+      - 'hardware/kicad/Library_Pollen.pretty/**'
       - 'hardware/kicad/test_stage2_*.py'
       - 'hardware/kicad/test_stage1_*.py'
       - 'hardware/kicad/Package_TO_SOT_SMD.pretty/DMN3023L_SOT23_Diodes.kicad_mod'
@@ -61,9 +67,17 @@ jobs:
           sudo apt-get install -y --no-install-recommends software-properties-common
           sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends 'kicad=10.0.6~ubuntu24.04.1' device-tree-compiler gcc
+          sudo apt-get install -y --no-install-recommends \
+            'kicad=10.0.6~ubuntu24.04.1' \
+            'kicad-symbols=10.0.6~ubuntu24.04.1' \
+            'kicad-footprints=10.0.6~ubuntu24.04.1' device-tree-compiler gcc python3-pil
           test "$(kicad-cli --version)" = '10.0.6'
           test "$(dtc --version)" = 'Version: DTC 1.7.0'
+          # Headless CLI does not initialize the GUI's standard library tables.
+          # Upstream regeneration must use the same pinned libraries as the baseline.
+          mkdir -p "$HOME/.config/kicad/10.0"
+          cp /usr/share/kicad/template/fp-lib-table "$HOME/.config/kicad/10.0/fp-lib-table"
+          cp /usr/share/kicad/template/sym-lib-table "$HOME/.config/kicad/10.0/sym-lib-table"
       - name: Regenerate and compare strict-port evidence
         env:
           UPSTREAM_SOURCE_DIR: ${{ github.workspace }}/.upstream/pollen
@@ -77,6 +91,8 @@ jobs:
           python3 hardware/kicad/test_strict_port_guards.py
           python3 hardware/kicad/test_qwiic_functional_parity.py
           python3 hardware/kicad/test_board_artwork.py
+          python3 hardware/kicad/test_model_reference_policy.py
+          python3 mechanical/test_evidence.py
           python3 software/overlays/test/test_amp_enable_overlay.py
           cpp -nostdinc -I software/overlays/include -undef -x assembler-with-cpp \
             software/overlays/radxa-zero3w-robot-hat-qwiic.dts /tmp/radxa-zero3w-robot-hat-qwiic.pp.dts
