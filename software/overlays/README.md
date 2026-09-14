@@ -78,6 +78,15 @@ Then connect a known 3.3 V Qwiic device to one connector at a time and perform a
 
 DTBO compilation proves syntax and fixup generation only. Runtime bus ownership, signal integrity and attached-device transfers remain EVT requirements.
 
+The independent reference audit is in
+[`../../docs/15_HOST_PINMUX_REFERENCE_AUDIT.md`](../../docs/15_HOST_PINMUX_REFERENCE_AUDIT.md).
+Before installation, apply the complete selected overlay set to the actual
+image DTB and read back the resolved pinctrl and device statuses. In particular,
+`i2c3-pihat` depends on the exact FUSB302 target path, and `aic3104-i2c3` relies
+on the base tree's I2S3 pinctrl. A synthetic-fixture pass does not validate either
+assumption for a different image. UART2 also needs bootloader, kernel console
+and getty ownership released; GPIO3_B0/pin 15 is the populated IMU INT1 route.
+
 ## Opt-in amplifier enable overlay (corrected hardware only)
 
 Stage 2 hardware implements the enable circuit and active-LOW battery-presence

@@ -1,0 +1,135 @@
+{
+  "source_pcb_sha256": "10decd01363cee7c002294a6e6b6dbfa8d8b9488eec4e8337256af82ff02f592",
+  "cad_evidence_sha256": "65d5158ae7d9337a0eb125dfbb599faeb7e548316b67a5028a4e7ca8bbf7ca93",
+  "measurement_type": "Analytical nominal circle fit based on source-bound CAD axes; not physical screw fit",
+  "hat_hole_diameter_mm": 2.7,
+  "host_hole_diameter_mm": 2.8,
+  "alignment": "40-pin header grid, no arbitrary shift or screw-induced board bending",
+  "formula": "For parallel circular bores, allowable center offset <= (D_hat-d_shaft)/2 + (D_host-d_shaft)/2; each screw may float independently. No tolerances included.",
+  "mounts": [
+    {
+      "hat_center_pcb_mm": [
+        132.3925,
+        79.645
+      ],
+      "hat_center_in_host_frame_mm": [
+        61.44502800000001,
+        26.67007999999997
+      ],
+      "nearest_host_center_mm": [
+        61.399928,
+        26.500074
+      ],
+      "axis_offset_mm": 0.17588646916687437,
+      "shaft_trials": [
+        {
+          "nominal_shaft_diameter_mm": 2.5,
+          "combined_radial_budget_mm": 0.25,
+          "offset_margin_mm": 0.07411353083312563,
+          "ideal_circular_bores_have_common_straight_shaft_axis": true
+        },
+        {
+          "nominal_shaft_diameter_mm": 2.0,
+          "combined_radial_budget_mm": 0.75,
+          "offset_margin_mm": 0.5741135308331257,
+          "ideal_circular_bores_have_common_straight_shaft_axis": true
+        }
+      ]
+    },
+    {
+      "hat_center_pcb_mm": [
+        74.3925,
+        79.645
+      ],
+      "hat_center_in_host_frame_mm": [
+        3.4450279999999935,
+        26.67007999999997
+      ],
+      "nearest_host_center_mm": [
+        3.599942,
+        26.450036
+      ],
+      "axis_offset_mm": 0.269105387036359,
+      "shaft_trials": [
+        {
+          "nominal_shaft_diameter_mm": 2.5,
+          "combined_radial_budget_mm": 0.25,
+          "offset_margin_mm": -0.019105387036359,
+          "ideal_circular_bores_have_common_straight_shaft_axis": false
+        },
+        {
+          "nominal_shaft_diameter_mm": 2.0,
+          "combined_radial_budget_mm": 0.75,
+          "offset_margin_mm": 0.480894612963641,
+          "ideal_circular_bores_have_common_straight_shaft_axis": true
+        }
+      ]
+    },
+    {
+      "hat_center_pcb_mm": [
+        132.3925,
+        102.645
+      ],
+      "hat_center_in_host_frame_mm": [
+        61.44502800000001,
+        3.6700799999999703
+      ],
+      "nearest_host_center_mm": [
+        61.399928,
+        3.599942
+      ],
+      "axis_offset_mm": 0.08338674381456734,
+      "shaft_trials": [
+        {
+          "nominal_shaft_diameter_mm": 2.5,
+          "combined_radial_budget_mm": 0.25,
+          "offset_margin_mm": 0.16661325618543266,
+          "ideal_circular_bores_have_common_straight_shaft_axis": true
+        },
+        {
+          "nominal_shaft_diameter_mm": 2.0,
+          "combined_radial_budget_mm": 0.75,
+          "offset_margin_mm": 0.6666132561854327,
+          "ideal_circular_bores_have_common_straight_shaft_axis": true
+        }
+      ]
+    },
+    {
+      "hat_center_pcb_mm": [
+        74.3925,
+        102.645
+      ],
+      "hat_center_in_host_frame_mm": [
+        3.4450279999999935,
+        3.6700799999999703
+      ],
+      "nearest_host_center_mm": [
+        3.549904,
+        3.599942
+      ],
+      "axis_offset_mm": 0.1261678026280763,
+      "shaft_trials": [
+        {
+          "nominal_shaft_diameter_mm": 2.5,
+          "combined_radial_budget_mm": 0.25,
+          "offset_margin_mm": 0.12383219737192369,
+          "ideal_circular_bores_have_common_straight_shaft_axis": true
+        },
+        {
+          "nominal_shaft_diameter_mm": 2.0,
+          "combined_radial_budget_mm": 0.75,
+          "offset_margin_mm": 0.6238321973719236,
+          "ideal_circular_bores_have_common_straight_shaft_axis": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Host STEP hole centers may be approximate; exact revision DXF/physical parts required",
+    "Nominal shaft trials are not selected screw MPNs",
+    "No thread crests, tilt, torque, head/washer/spacer OD, copper bearing land, nylon creep, board bow or component collision qualification",
+    "M2.5 nominal failure is a model diagnostic, not proof that every real assembly fails",
+    "M2 nominal common axis does not approve an assembly or buy"
+  ],
+  "fabrication_ready": false
+}

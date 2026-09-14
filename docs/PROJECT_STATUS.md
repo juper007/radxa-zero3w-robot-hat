@@ -26,6 +26,25 @@ Last updated: 2026-09-13
   C7/USB-C nominal model distance 0.005 mm, and a maximum-dimensional C45
   envelope distance of 0.465 mm. See `../mechanical/CAD_REPORT.md`.
 
+### Connector / spacer follow-up
+
+- Executed source-bound CAD comparisons at seven gaps, 4.0 through 10.0 mm;
+  see `../mechanical/STACK_REVIEW.md` and `stack_sweep.json` in that directory.
+- 4.0 mm remains mechanically rejected. At 6.2 mm the nominal socket-body
+  separation is only 0.0074 mm, below its body-height tolerance; do not adopt it.
+- 6.5/7/8 mm body separation does not establish permitted insertion. 9/10 mm
+  are supplier-confirmation candidates only, not selected spacers. Current
+  B.Cu socket is approached from its exposed face, unlike the supplier's
+  top-of-HAT bottom-entry example. Exact -01 entry/insertion approval is open.
+- Toby names THD-20-R as a REF-family mate; this does not identify the actual
+  Radxa header. The user-supplied official ZERO 3W page offers both headered
+  and unheadered versions, without resolving the purchased SKU/revision.
+- Nominal M2.5 screw fit is not supported at one CAD hole pair after header
+  alignment; a smaller shaft is an evaluation option, not assembly approval.
+- An unsent supplier/assembler request is prepared in
+  `../mechanical/STACK_APPROVAL_REQUEST.md`. No PCB, schematic, BOM/PnP,
+  existing package or manufacturing approval was changed.
+
 ## Architecture
 
 - Active board count: **1**
@@ -93,6 +112,15 @@ The exact REF-182665-01 supplier drawing does not publish a recommended PCB land
 The checker pins the exact J4 footprint S-expression after platform newline and leading-indent normalization, including quoted strings, placement, graphics, pad layers, paste/mask attributes, holes and UUID inventory. It subtracts exactly the 40 known J4 findings from the pinned upstream DRC baseline. Any different removed finding, new finding or J4 footprint text drift fails validation.
 
 ## Release blockers
+
+Reference header/pinmux audit: see `15_HOST_PINMUX_REFERENCE_AUDIT.md` and
+`validation/strict_port/host_pin_reference_audit.json`. All 40 numbered J4
+contacts were enumerated against official V1.11/V1.12 reference publications;
+active allocations agree with the selected vendor pinctrl. Native strict-port,
+Qwiic parity and synthetic overlay compile/apply/readback checks pass. The
+actual host revision and complete image DTB remain unidentified, so the
+corresponding release checkboxes below intentionally remain open. Pin 15 is
+U11 INT1 through R25, and codec MCLK is the existing HAT Y1 12 MHz oscillator.
 
 - [x] Corrected the gate-drive rating mismatch: Q2 is now DMN3023L-7, rated ±20 V VGS, with manufacturer-suggested pads and unchanged numbered G/S/D connections. Actual VGS, hot-load loss and SOA remain physical gates.
 - [x] Moved R8.1 to +BATT for U10 VS and qualified C39's exact 50 V MPN digitally. Assumed battery envelope is 6.0–8.4 V, not a verified pack specification. Measure VS, hot-plug pulse, battery-removal and USB-only behavior before electrical signoff.

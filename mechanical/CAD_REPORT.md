@@ -6,6 +6,10 @@
 
 Final tested PCB SHA-256: `10decd01363cee7c002294a6e6b6dbfa8d8b9488eec4e8337256af82ff02f592`, on HEAD `9ae7252f5ffe37efb9ec986b2e93972cd3280f16` with the parent's uncommitted, model-only J4 restoration. The first analysis used PCB SHA `67ec3446de5e63c03ef6e9326a7a828437cfa5d92d7d0d3dd3b0bee7026e4771`; **all final CAD checks were rerun using fresh native exports from the final source**. `cad_evidence.json` confirms source SHA unchanged during that final analysis. This worker made no existing PCB, library, checker or documentation edits.
 
+Subsequent connector/spacer review: [STACK_REVIEW.md](STACK_REVIEW.md) records
+seven source-bound gap cases, supplier mating guidance and nominal screw-fit
+analysis. It does not supersede the 4 mm rejection or grant assembly approval.
+
 ## Methods and coordinate datums
 
 KiCad 10.0.6 native STEP exports, CadQuery 2.6.1 / OCP 7.8.1.1.post1, real BRepExtrema minimum distances and solid Boolean intersections were exercised. Distances below are measured **in CAD**. No physical spacing, solder height, insertion depth or contact force was measured.

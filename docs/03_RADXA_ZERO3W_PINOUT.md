@@ -12,6 +12,12 @@ The design rule is to identify every signal by:
 
 Do not rely on Raspberry Pi BCM numbering.
 
+The reference-document cross-check against official V1.11/V1.12 schematics,
+all 40 current J4 contacts and pinned vendor pinctrl is recorded in
+[`15_HOST_PINMUX_REFERENCE_AUDIT.md`](15_HOST_PINMUX_REFERENCE_AUDIT.md).
+Actual purchased host revision, complete image DTB and runtime ownership remain
+unverified; this is not an assembly or OS signoff.
+
 ## Baseline mapping
 
 | Physical pin | Electrical rail / planned function | Project use |
@@ -29,7 +35,7 @@ Do not rely on Raspberry Pi BCM numbering.
 | 11 | GPIO3_A1 | AMP_ENABLE, active HIGH; LOW/unclaimed requests hardware shutdown |
 | 12 | I2S3 SCLK/BCLK M0 | Audio bit clock |
 | 14 | GND | Ground |
-| 15 | GPIO3_B0 | Preserved Radxa GPIO identity |
+| 15 | GPIO3_B0 | U11 INT1 through populated R25; not a spare GPIO output |
 | 17 | 3.3 V | Logic / sensor rail reference |
 | 19 | GPIO4_C3 | J8 SDA; R38 pull-up; `i2c12` |
 | 20 | GND | Ground |
@@ -101,7 +107,11 @@ Planned audio signals:
 - Pin 38: SDI into host
 - Pin 40: SDO from host
 
-The exact codec clocking topology must be finalized during the audio-design phase, including MCLK requirements and whether an external oscillator/clock source is needed.
+The existing HAT Y1 12 MHz oscillator drives U2 MCLK directly; J4 pin 13 is
+unconnected. The pinned audio overlay describes that physical 12 MHz source
+separately from the CPU DAI's 12.288 MHz system clock and makes the CPU DAI
+bit/frame master. Actual codec PLL, clock frequencies and capture/playback
+still require validation on the intended image; see the reference audit.
 
 ## Power pins
 

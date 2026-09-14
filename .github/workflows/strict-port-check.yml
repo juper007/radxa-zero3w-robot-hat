@@ -93,6 +93,7 @@ jobs:
           python3 hardware/kicad/test_board_artwork.py
           python3 hardware/kicad/test_model_reference_policy.py
           python3 mechanical/test_evidence.py
+          python3 mechanical/test_stack_sweep.py
           python3 software/overlays/test/test_amp_enable_overlay.py
           cpp -nostdinc -I software/overlays/include -undef -x assembler-with-cpp \
             software/overlays/radxa-zero3w-robot-hat-qwiic.dts /tmp/radxa-zero3w-robot-hat-qwiic.pp.dts

@@ -2,6 +2,35 @@
 
 Read [CAD_REPORT.md](CAD_REPORT.md) for findings, assumptions and physical limits. Nothing in this directory authorizes fabrication or a 4 mm connector stack. No licensed standalone model is stored here.
 
+## Connector / spacer follow-up
+
+Read [STACK_REVIEW.md](STACK_REVIEW.md) for the executed seven-gap comparison,
+supplier-named THD-20-R candidate, connector entry-direction caveat, and
+nominal screw-fit screen. [STACK_APPROVAL_REQUEST.md](STACK_APPROVAL_REQUEST.md)
+is an **unsent** supplier/assembler inquiry, not an order or approval.
+`stack_sweep.json` and `mount_fit_review.json` keep fabrication approval false.
+
+After preparing and verifying the existing native exports below, reproduce
+the sweep with the CAD environment (`--output` must not already exist):
+
+```bash
+"$V/Scripts/python.exe" mechanical/sweep_stack.py --scratch "$S" --output "$S/stack-sweep-review.json"
+python -m unittest discover -s mechanical -p test_stack_sweep.py -v
+# Opt-in integration: runs real CAD into a temporary output, not repo evidence.
+RUN_STACK_CAD=1 "$V/Scripts/python.exe" -m unittest discover -s mechanical -p test_stack_sweep.py -v
+```
+
+The default sweep includes 4.0/6.2/6.5/7.0/8.0/9.0/10.0 mm mask-to-host-board
+surface gaps. These are not selected spacer lengths. Missing or stale native
+inputs fail closed; the tool does not synthesize replacement geometry.
+
+Committed JSON is a **historical local-run snapshot**: its raw hashes include
+local absolute paths and the newline bytes of metadata at execution time.
+Git may normalize metadata newlines; these hashes are not a portable checkout
+manifest. Reacquire the licensed model, regenerate/verify the native inputs,
+and write a fresh sweep to a new output for another checkout. Do not rewrite
+historical hashes to make a different checkout appear verified.
+
 ## Windows commands (Git Bash)
 
 The following paths are the actual exercised environment. Change `S` for a new scratch run. The installed KiCad CLI and bundled Python are both 10.0.6. `python` for CAD is an isolated uv environment, not KiCad's Python.
